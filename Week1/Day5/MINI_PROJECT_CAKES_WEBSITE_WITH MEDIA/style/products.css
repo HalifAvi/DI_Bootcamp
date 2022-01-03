@@ -316,23 +316,7 @@ a:hover{
 }
 
 
-@media all and (min-width: 1200px){
 
-	div.productDisplay{
-		background-color: red;
-		width: 16%; /*EVERY LINE WE WILL SEE 6 DIVS*/
-	}
-}
-
-
-
-@media all and (min-width: 992px) and (max-width: 1200px){
-
-	div.productDisplay{
-		background-color: green;
-		width: 24%; /*EVERY LINE WE WILL SEE 4 DIVS(if we want spaces we need to change)*/
-	}
-} 
 
 
 
@@ -340,21 +324,57 @@ a:hover{
 
 	div.productDisplay{
 		background-color: yellow;
-		width: 49%; /*EVERY LINE WE WILL SEE 2 DIVS(if we want spaces we need to change)*/
+		width: 49%;
 	}
-} 
+}  
 
 
-
-
-@media all and max-width: 768px){
+@media all and (min-width: 992px) and (max-width: 1200px){
 
 	div.productDisplay{
-		background-color: pink;
-		width: vw; /*EVERY LINE WE WILL SEE 1 DIVS(if we want spaces we need to change)*/
+		background-color: green;
+		width: 24%; 
 	}
 } 
 
+ @media all and (min-width: 1200px){
+
+	div.productDisplay{
+		background-color: red;
+		width: 16%;
+	}
+}
+
+/* @media all and (max-width: 768px){
+
+	div.productDisplay{
+		background-color: blue; 
+		width: 99%;
+	}
+}   */
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ /*EVERY LINE WE WILL SEE 6 DIVS*/
+
+ /*EVERY LINE WE WILL SEE 4 DIVS(if we want spaces we need to change)*/
+
+  /*EVERY LINE WE WILL SEE 2 DIVS(if we want spaces we need to change)*/
+
+  /*EVERY LINE WE WILL SEE 1 DIVS(if we want spaces we need to change)*/
 
 
 
