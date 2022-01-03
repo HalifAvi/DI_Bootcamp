@@ -1,0 +1,168 @@
+#backgroundImage{
+	margin: 40px;
+	font-family: 'Raleway', sans-serif;
+	background-image: url("../img/pipe-a-WQTwsgq_mxg-unsplash.jpg");
+}
+
+.roundedBorderBackground{
+	display: inline-block;/*MUST DEFINE AS INLIN-BLOCK FOR THE DIVs INSIDE HIM AFTER*/
+	margin: 0px;
+	padding: 0px;
+	border-radius: 15px;
+	opacity: 1;
+	height: 100%; 
+	width: 100%;
+}
+
+#leftPageContainer{ 
+	display: inline-block; /*MUST DEFINE AS INLIN-BLOCK FOR THE NEXT DIV NEXT TO*/
+	height: 100%; 
+	width: 31%;
+	background-color: #DED5D5;
+	opacity: 1;
+	border-radius: 15px;
+	color: #685656;
+	margin-right: 10px;
+}
+
+#personalDetailsSection{
+	background-color: #DED5D5;
+	opacity: 1;
+	text-align: center;
+	border-radius: 15px;
+	margin-left: 15px;
+	height: 500px;
+	width: 430px;
+}
+
+h1{
+	margin-top: 0px;
+	font-size: 60px;
+	padding-: 0px;
+}
+
+h2{
+	font-weight: bold;
+	font-size: 25px;
+	margin-top: 23.5px;
+}
+
+h3{
+	font-size: 30px;
+}
+
+#underlineProf{
+  width: 400px;
+}
+
+#underlineAddress{
+  width: 270px;
+}
+
+.yellowShortUnderline{
+	border-bottom: 4px solid #FF8E00;
+}
+
+#sociaMediaLinksSection{
+	background-color: #DED5D5;
+	text-align: center;
+	border-radius: 15px;
+	margin-left: 15px;
+	opacity: 1;
+	height: 50%; 
+	width: 430px;
+}
+
+.socialMediaTitle{
+	display: block;
+	font-weight: bold;
+	font-size: 20px;
+	text-decoration: none; 
+	width: 80px;
+	margin-left: 0px;
+	padding-left: 170px;
+}
+
+.socialMediaIcon{
+	display: block;
+	font-size: 4em;
+ 	margin-top: 55px; 
+	text-align: center;
+}
+
+#rightPageContainer{ 
+ 	display: inline-block; /*FOR BEING IN THE SAME LINE WITH OTHER DIVs*/
+	width: 978.7px;
+	height: 100%;
+ 	border-radius: 15px; 
+}
+
+#profileSection{
+	display: inline-block;
+	background-color: #DED5D5;
+	border-radius: 15px;
+  height: 496px;  
+}
+
+#educationSection{
+	display: inline-block;
+	padding-top: 15px;
+	background-color: #DED5D5;
+	width: 100%;
+}
+
+img{
+	display: inline-block;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	width: 300px;
+	height: 300px;
+}
+
+#aboutMePara{
+	font-size: 25px;
+}
+
+h4{
+	text-decoration: underline;
+	line-height: 5px;
+	margin-left: 10px;
+}
+
+dd{
+  display: list-item;
+  list-style-type: disc;
+} 
+
+dt{
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+#skillsSection{
+	display: inline-block;
+	padding-top: 15px;
+	background-color: #DED5D5;
+	border-radius: 15px;
+	width: 100%;
+}
+
+.seconderyHeader{
+	margin-top: 0px;
+}
+
+ul{
+	margin-bottom: 0px;
+}
+
+div#skillsSection h2{
+	width:150px 
+}
+
+div#educationSection h2{
+	width:250px 
+}
+
+
+

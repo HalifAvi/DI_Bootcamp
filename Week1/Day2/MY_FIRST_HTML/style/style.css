@@ -1,0 +1,65 @@
+
+#aboutPara{
+	line-height: 40px;
+}
+
+span{
+	background-color: yellow;
+}
+
+#catSensesPara{
+	text-indent: 100px;
+}
+
+.list{
+	list-style-position: inside;
+}
+
+#catsList{
+	list-style-type: upper-roman; 
+}
+
+
+.centerPosition{
+	text-align: center;
+	margin-right: 205px;
+	margin-left: 90px; 
+}
+
+.img{
+	width: 600px;
+	height: 420px;
+	border: 10px solid orange;
+	margin-top: 55px;
+}
+
+#lionTitle{
+	margin-top: 70px; 
+}
+
+h4{
+	border: 3px solid red;
+	color: red;
+	font-weight: bold;
+}
+
+table, th, td{
+	margin: auto;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+th{
+	border-bottom: double;
+}
+
+/*Set the left border table cells - just for the right side in the table  */
+tr td:nth-child(2), th:nth-child(2){
+	border-left: double;
+}
+
+td{
+	padding: 5px 5px;
+	font-size: 17px;
+	text-align: center;
+}

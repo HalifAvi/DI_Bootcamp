@@ -1,0 +1,119 @@
+*{
+	font-family: 'Poppins', sans-serif; 
+}
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+.navContainer{
+	 background-color: #ebebeb; 
+	 height: 50px;
+}
+
+.navContainer h1{ /*Block element : has width & height and spread the whole row*/
+	display: inline-block; /*Due to we don't want the element spread the whole row we change the default "inline",
+					         We choose "inline-block" cause we need to set the paddings+margins*/
+	font-size: 20px;
+	margin-top: 15px; 
+	margin-left: 200px;
+}
+
+.navContainer a{ /*Inline element : don't has width & height and come affter the next element*/
+	display: inline-block;  /*Due to we want change the width&height and the paddling+margins*/
+	text-decoration: none;
+	background-color: #507CE1;
+	color: white;
+	margin-left: 900px;
+	padding: 5px 8px 5px 8px;
+	border-radius: 3px;
+	border: none;
+}
+
+.backgroundImgSection{
+	height: 400px;
+	background-image: url("../img/pexels-photo-457882.jpeg"); 
+}
+
+div.backgroundImgSection p{ /*<p> is a block element and has margins&paddings,
+						   width&height and the next element will be line after and it's good for us*/
+	margin: 0px;
+	padding-top:150px; 
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 30px;
+	line-height: 30px;
+}
+
+ .formContainer{ 
+	margin-top: 25px; 
+	margin-left: 575px;
+} 
+
+ .formContainer input#email{ 
+ 	height: 28px;
+	width: 275px;
+	border-radius: 2px;
+	border: none;
+} 
+
+ .formContainer input#botton{ 
+	color: white;
+	background-color: #507CE1;
+	border-radius: 5px;
+	padding: 6px 20px 6px 20px;
+	border: none;
+} 
+
+section.thirdPageSection{
+	height: 272px; /* <section> is an inline element so we have to set the size*/
+} 
+
+section.thirdPageSection div{
+		height: 100%;
+		background-color: #ebebeb; 
+}
+
+div.tecnologiesSection p, h2{
+	text-align: center; 
+} 
+
+i{
+	margin-left: 130px;
+	margin-top: 30px:
+}
+
+/*Tabbing the content in the 2 sides divs*/
+
+div#firstTec p, div#firstTec h2, div#firstTec i{
+	padding-inline-start: 300px; 
+	writing-mode: horizontal-tb;
+}
+
+div#thirdTec p, div#thirdTec h2, div#thirdTec i{
+	padding-inline-start: 300px;
+	writing-mode: horizontal-tb;
+	direction: rtl;
+}
+
+/*Using id's + float property to locate 3 div's side by side*/
+#firstTec{
+	float: left;
+	width: 40%;
+}
+
+#secondTec{
+	float:  left;
+	width: 20%;
+}
+
+#thirdTec{
+	float:  right;
+	width:  40%;
+}   
+
+
+
+

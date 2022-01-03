@@ -1,0 +1,127 @@
+*{
+	font-family: 'Indie Flower', cursive;
+	text-shadow: 0 0 4px #F0FD00;
+}
+
+body{
+	margin: 0px;
+	padding: 0px; /*WE DON'T WANT TO INCREASE THE PAGE SIZES SO WE PUT A VALUE 0*/
+	overflow: hidden; /* Hide scrollbars */
+	background-color: #7DC49C;
+}
+
+#mainContainer{
+	display: inline-block;
+}
+
+#rightSideContainer{
+	display: inline-block;
+	float: right;
+	width: 70%;
+	margin-top: 100px;
+}
+
+#bigImgSection{ /*IT'S A BLOCK SO BY DEFAULT THE SIZE IS ACCORDING TO THE CONTENT INSIDE THE MAIN
+	    		  WE HAVE JUST A IMG SO LET SET WIDTH & HEIGHT FOR THE DIMENTIONS*/
+ 	background-image: url("../img/p1838sdfffds_aa.jpg"); 
+ 	display: inline-block;
+ 	width: 100%;
+ 	height: 610px;
+
+ 	background-repeat: no-repeat; 
+	background-position: center;
+	background-size: cover; /*FULL THE *WHOLE* ELEMENT WITH THE IMG*/
+	margin: 0px;
+}
+
+#leftSideContainer{
+	display: inline-block;
+	float: left;
+	width: 30%;
+	margin-top: 100px;
+}
+
+#infoSection{
+	display: inline-block; 
+	background-color: #AA3939;
+ 	height: 610px;
+ 	border: 5px solid #226764; 
+}
+
+p{
+	text-align: left;
+ 	margin-top:10px;
+	padding: 30px;
+	color: white; 
+	text-shadow: 0 0 3px #F0FD00;
+	font-size: 20px;
+	line-height: 30px;
+} 
+
+#headerSection{
+	height: 110px;
+	width: 100%;
+	position: fixed; 
+	top= 0px;
+}
+
+#navigatorContainer{
+	background-color: #7DC49C;
+	height: 100%;
+	width: 100%;
+}
+
+h1{
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 90px;
+	color: #9D0577;
+	margin-top: 23px;
+	position: fixed;
+	top: 3px;
+	left: 0px;
+}
+
+img{
+	display: inline-block;
+	width: 90px;
+	height: 110px;
+}
+
+#smallImg1{ /*SET THE ALL IMG AS 'INLINE-BLOCK' AND AFTER LOCATED THE FIRST IMG ALL THE REST ALIGN TO THE FIRST */
+	margin-left: 600px; /*SET POSITION FOR THE FIRST 'INLINE-BLOCK' IMG*/
+}
+
+a{
+	color: #9D0577;
+}
+
+ul{ /*FOR LOCATE THE LIST AS THE NEXT ELEMENT IN THE NAV BAR WE DEFINE 'UL' AS 'INLINE-BLOCK' 
+	AND AFTER DEFINE 'LI's AS 'INLINE'*/
+	display: inline-block;
+	position: fixed;
+	top: 35px;
+	right: 0px;
+}
+
+li{
+	list-style-type: none; /*REMOVE THE BULLETS*/
+	display: inline;
+	font-weight: bold;
+	font-size: 60px;
+	margin-left: 30px; /*SET THE SPACES BETWEEN THE 'LI's*/
+}
+
+#lastSection{
+	background-color: blue;
+	height: 35px;
+	width: 100%;
+	position: fixed; 
+	bottom: 0px;
+	border: 5px solid #226764;
+	background-color: #7DC49C;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+
