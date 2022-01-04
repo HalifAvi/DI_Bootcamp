@@ -1,0 +1,74 @@
+body,html{
+    padding: 0px;
+    margin: 0px;
+}
+
+.uppercaseTxt{
+    text-transform: uppercase;
+}
+
+.centerAlignTxt{
+    text-align: center;
+}
+
+.seconderyTitle{
+    font-size: 50px;
+}
+
+.spreadTwoRightCells
+{
+     grid-column: span 3;
+}
+
+#mainPageContainer{
+    height: 700px;
+    width: 100vw;
+    background-color: red;
+}
+
+.gridContainer3x3{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    row-gap: 20px;
+    column-gap: 40px;
+    background-color: yellow;
+    border: 2px solid black;
+}
+
+.gridContainer3x3 > div{
+    background-color: green;
+    border: 2px solid red;
+/*     height: 50px;
+    width: 80px; */
+} 
+
+#mainTitleCellGrid{
+    font-size: 30px;
+}
+
+.horizontalFlexBox3cells{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.horizontalFlexBox3cells > div{
+    background-color: pink;
+    border: 2px solid red;
+    height: 70%;
+    width: 20%;
+} 
+
+.moveFlexBoxCellTop{
+    align-self: self-start;
+}
+
+.moveFlexBoxCellBtt{
+    align-self: self-end;
+}
+
