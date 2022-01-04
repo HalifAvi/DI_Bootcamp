@@ -40,10 +40,10 @@ body,html{
 }
 
 #mainPageContainer{
-    height: 100vh;
-    width: 100vw;
+    height: vh;
+    width: vw;
     background-image: url('../img/222.jfif');
-    background-repeat: no-repeat; 
+    background-repeat: repeat; 
     background-position: center;
     background-size: cover;
 }
@@ -55,8 +55,8 @@ body,html{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 2fr;
     row-gap: 20px;
-    column-gap: 5px;
-    overflow-wrap: break-word;
+    /* column-gap: 5px; */
+   /*  overflow-wrap: break-word; */
 }
 
 #mainTitleCellGrid{
@@ -68,27 +68,47 @@ body,html{
     flex-direction: row;
     justify-content: space-around;
     align-items: center; 
-    flex-wrap: wrap;
+    column-gap: 50px;
+    flex-wrap: wrap; 
 }
 
 .horizontalFlexBox3cells > div{
     background-color: white;
     height: 70%;
     width: 20%;
-     position: relative;
+    position: relative;
 } 
 
 div.FlexBoxCell{
     border-radius: 1%;
     width: 350px;
+
 } 
+
+
+/*testtttttttttttttttt*/
+/* div.gridContainer3x3 > div{
+    background-color: yellow;
+    border: 3px solid black;
+} */
+
+/*testtttttttttttttttt*/
+/* div.horizontalFlexBox3cells > div{ 
+    background-color: green;
+    border: 3px solid black;
+} */
+
+
+
+
+
 
 /* div#imgsFlexBoxCell div:first-child{
     margin-right: 20px;
     margin-left: 170px;
-}
+} */
 
-div#imgsFlexBoxCell div:nth-child(2){
+/* div#imgsFlexBoxCell div:nth-child(2){
     margin-right: 70px;
     margin-left: 50px;
     margin-bottom: 20px;
@@ -97,8 +117,8 @@ div#imgsFlexBoxCell div:nth-child(2){
 div#imgsFlexBoxCell div:nth-child(3){
     margin-right: 100px;
     margin-left: 50px;
-} */
-
+}
+ */
 .moveFlexBoxCellTop{
     align-self: self-start;
 }
@@ -114,9 +134,9 @@ div#imgsFlexBoxCell div:nth-child(3){
     margin-bottom: 20px;
 }
 
-.colorBlock{
+.colorSection{
     width: 100%;
-    height: 49%;
+    height: 52%;
     margin: 0px;
     padding: 0px;
     border-radius: 2%;
