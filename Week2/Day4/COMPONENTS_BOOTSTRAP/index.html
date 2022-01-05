@@ -5,64 +5,53 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>COMPONENTS BOOTSTRAP</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container-fluid">
-	<div class="row fixed-top">  <!--ROW 1 WITH 2 COLS-->
-    	<div class="col col-xl-8 bg-dark"> <!--COL NUM 1: NAVBAR-->
-      		<nav class="navbar navbar-expand-lg navbar-muted">
+	<div class="row">  <!--ROW 1 WITH 1 COL-->
+    	<div class="col col-xl-12 bg-dark fixed-top"> <!--1 COL: NAVBAR-->
+      		<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 			  <div class="container-fluid">
-			    <a class="navbar-brand text-secondary" href="#">Project Excercise #9</a>
-			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="
-			    	#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <a class="navbar-brand text-secondary ms-5" href="#">Project Excercise #9</a>
+			    <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			    </button>
 			    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			        <li class="nav-item">
-			          <a class="nav-link active text-secondary" aria-current="page" href="#">Home</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link text-secondary" href="#">About<span class="sr-only"></span></a>
-			        </li>
-			        <li class="nav-item">
-					<a class="nav-link text-secondary" href="#">Contact<span class="ms-2 badge badge-pill badge-light bg-primary">3</span></a>
-			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            Dropdown
-			          </a>
-			          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			            <li><a class="dropdown-item" href="#">Action</a></li>
-			            <li><a class="dropdown-item" href="#">Another action</a></li>
-			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">Something else here</a></li>
-			          </ul>
-			        </li>
-			      </ul>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				        <li class="nav-item">
+				          	<a class="nav-link text-secondary" aria-current="page" href="#">Home</a>
+				        </li>
+				        <li class="nav-item"> 
+				          	<a class="nav-link active text-secondary" href="#">About</a>
+				        </li>
+				        <li class="nav-item">
+							<a class="nav-link text-secondary" href="#">Contact<span class="ms-2 badge badge-pill badge-light bg-primary">3</span></a>
+				        </li>
+				        <li class="nav-item dropdown">
+				        	<a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				            Dropdown
+				          	</a>
+				        <ul class="dropdown-menu border-primary" aria-labelledby="navbarDropdown">
+				            <li><a class="dropdown-item" href="#">Action</a></li>
+				            <li><a class="dropdown-item" href="#">Another action</a></li>
+				            <li><hr class="dropdown-divider"></li>
+				            <li><a class="dropdown-item" href="#">Something else here</a></li>
+				          </ul>
+				        </li>
+			    	</ul>
+			      	<form class="d-flex">
+			        	<input class="form-control me-2" type="email" placeholder="Email" aria-label="Search">
+			        	<input class="form-control me-5 " type="password" placeholder="Password" aria-label="Search">
+			        	<button class="btn btn-success px-5 me-5" type="submit">SignIn</button>
+			      	</form>
 			    </div>
 			  </div>
 			</nav>
     	</div>
-    	<div class="col col-xl-4"> <!--FIRST ROW COL NUM 2 : SIGN IN FORM-->
-			<form class="h-100">
-			    <div class="row h-100 bg-dark justify-content-center ">
-  					<div class="col">
-    					<input type="email" class="form-control mt-2 m-1" id="inputEmail4" placeholder="Email">
-  					</div>
-  					<div class="col">
-    					<input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Password">
-  					</div>
-  					<div class="col">
-    					<button type="submit" class="btn btn-success mt-2">Sign in</button>
-  					</div>
-				</div>
-			</form>
-  		</div>
-  	</div>
-
-   	<div class="row"> <!--ROW 2 WITH 1 COL-->
+    	
+   	<div class="row bg-light"> <!--ROW 2 WITH 1 COL-->
    		<div class="col col-xl-12 bg-light"> <!--COL NUM 1: JUMBOTRON -->
    			<!-- Jumbotron -->
   			<div class="p-5 bg-light">
