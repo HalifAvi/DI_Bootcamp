@@ -96,11 +96,11 @@ div.horizontalFlexBox3cells div:nth-child(3){
    margin-right: 150px;
 }
 
-.moveFlexBoxCellTop{
+.spreadFlexBoxCellTop{
     align-self: self-start;
 }
 
-.moveFlexBoxCellBtt{
+.spreadFlexBoxCellBtt{
     align-self: self-end;
 }
 
