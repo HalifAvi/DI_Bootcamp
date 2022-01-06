@@ -14,9 +14,9 @@ body, html{
 }
 
 div{
-	border: 2px solid black;
 	text-align: center;
 	font-size: 50px;
+	color: white;
 }
 
 .span2RowsDown{
@@ -30,3 +30,37 @@ div{
 .span3RowsDown{
 	grid-row: auto / span 3;
 }
+
+#myMainGridContainer div:nth-child(1){
+	background-color: #AA3939;
+} 
+
+#myMainGridContainer div:nth-child(2){
+	background-color: #AF005C;
+} 
+
+#myMainGridContainer div:nth-child(3){
+	background-color: #8A0DB2;
+} 
+
+#myMainGridContainer div:nth-child(4){
+	background-color: #5A16B5;
+} 
+
+#myMainGridContainer div:nth-child(5){
+	background-color: #B4543D;
+} 
+
+#myMainGridContainer div:nth-child(6){
+	background-color: #B4843D;
+}
+
+#myMainGridContainer div:nth-child(7){
+	background-color: #B4723D;
+} 
+
+#myMainGridContainer div:nth-child(8){
+	background-color: #3F1CB8;
+} 
+
+
