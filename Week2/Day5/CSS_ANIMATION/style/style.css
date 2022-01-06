@@ -1,0 +1,32 @@
+body, html{
+	margin: 0;
+	padding: 0;
+}
+
+#myMainGridContainer{
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	grid-template-rows: repeat(5,1fr);
+	gap: 10px;
+	margin: 10px;
+	width: 100vh;
+	height: 90vh;
+}
+
+div{
+	border: 2px solid black;
+	text-align: center;
+	font-size: 50px;
+}
+
+.span2RowsDown{
+	grid-row: auto / span 2;
+}
+
+.span2ColsRight{
+	grid-column: auto / span 2;
+}
+
+.span3RowsDown{
+	grid-row: auto / span 3;
+}
