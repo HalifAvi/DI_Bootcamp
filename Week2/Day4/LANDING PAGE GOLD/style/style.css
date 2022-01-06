@@ -1,0 +1,15 @@
+.bg-img{
+	background-image: url('../img/2.jfif');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	height: 70vh;
+}
+
+.font{
+	font-family: 'Montserrat', sans-serif;
+}
+
+.my-bg-dark{
+	background-color: rgba(0, 0, 0, 0.7);
+}
