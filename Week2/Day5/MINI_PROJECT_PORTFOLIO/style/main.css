@@ -1,0 +1,98 @@
+body,html{
+	margin: 0;
+	padding: 0;
+	color: white;
+	/* background-color: #255E69; */
+}
+
+
+#backgroundVideo{
+	position: fixed;
+	z-index: -1;
+}
+
+#backgroundVideo{
+    max-height: 60%;
+    min-width: 100%;
+    object-fit: fill;
+}
+
+nav{
+	z-index: 2000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.yellow{
+	background-color: yellow;
+}
+
+.red{
+	background-color: red;
+}
+
+.black{
+	background-color: black;
+}
+
+.blue{
+	background-color: blue;
+}
+
+.pink{
+	background-color: pink;
+}
+
+.green{
+	background-color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+article{
+	background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+
+img{
+	float: left;
+	width: 20%;
+	height: 20%;
+	margin-right: 0;
+	shape-outside: circle(45%);
+}
+
+p{
+	display: inline;
+	color: white;
+} */
