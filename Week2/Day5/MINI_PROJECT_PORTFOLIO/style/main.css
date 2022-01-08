@@ -2,24 +2,86 @@ body,html{
 	margin: 0;
 	padding: 0;
 	color: white;
-	/* background-color: #255E69; */
+}
+
+.bg-lightBlue{
+	background-color: #323776;
+}
+
+.tx-lightBlue{
+	color: #323776;
+}
+
+.bg-lightGrey{
+	background-color: #ABABAB;
+}
+
+.specialFont{
+	font-family: 'Montserrat', sans-serif;
+}
+
+.specialFont1{
+	font-family: 'Licorice', cursive;
+	letter-spacing: 2px;
+}
+
+h2{
+	writing-mode: vertical-lr;
+	transform: rotate(180deg);
+	text-shadow: 2px 2px 4px #000000;
+	-webkit-text-stroke: 0.4px ghostwhite;
+	font-size: 40px;
+/* 	text-decoration: underline; */
+}
+
+.jumbotron{
+  position: relative;
+  overflow: hidden; 
+}
+
+.jumbotron video{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+
+.jumbotron .container-fluid{
+  z-index: 2;
+  position: relative;
+}
+
+img{
+	height: 31vh;
+	float: left;
+	shape-outside: circle(30%);
+}
+
+P{
+	font-size: 20px;
+}
+
+h1{
+	font-size: 100px;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+h5{
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.centerTextAlign{
+	text-align: center;
 }
 
 
-#backgroundVideo{
-	position: fixed;
-	z-index: -1;
-}
 
-#backgroundVideo{
-    max-height: 60%;
-    min-width: 100%;
-    object-fit: fill;
-}
 
-nav{
-	z-index: 2000;
-}
+
+
+
 
 
 
