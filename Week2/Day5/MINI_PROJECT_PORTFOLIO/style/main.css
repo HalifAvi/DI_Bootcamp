@@ -31,7 +31,6 @@ h2{
 	text-shadow: 2px 2px 4px #000000;
 	-webkit-text-stroke: 0.4px ghostwhite;
 	font-size: 40px;
-/* 	text-decoration: underline; */
 }
 
 .jumbotron{
@@ -75,6 +74,28 @@ h5{
 .centerTextAlign{
 	text-align: center;
 }
+
+.btn-outline-light{
+    color: #fbfbfb;
+    border-color: #fbfbfb;
+}
+
+div#aboutMeDescription ul{
+	list-style: none; /* Remove default bullets */
+}
+
+div#aboutMeDescription ul li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: red; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 1em; /* Also needed for space (tweak if needed) */
+  margin-left: -1em; /* Also needed for space (tweak if needed) */
+  color: white;
+  font-size: 30px;
+}
+
+
 
 
 
