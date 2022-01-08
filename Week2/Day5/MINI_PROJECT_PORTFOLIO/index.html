@@ -10,12 +10,14 @@
 		  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 	<!--EXTERNAL FONT LINK-->
-	<link href="https://fonts.googleapis.com/css2?family=Licorice&family=Luxurious+Roman&display=swap" rel="
-		  stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Licorice&family=Luxurious+Roman&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Licorice&family=Luxurious+Roman&
 		  family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+	<!--BACKGROUND PATTERNS LINK-->
+	<link href="https://unpkg.com/pattern.css" rel="stylesheet">
 
     <!--MY CSS FILES LINK-->
 	<link rel="stylesheet" href="./style/main.css">
@@ -23,7 +25,7 @@
 
 <body>
 	<!--ONE BIG CONTAINER FOR THE FIRST PAGE-->
-	<section id="mainContainer" class="container-fluid border">
+	<section id="mainContainer" class="container-fluid">
 
 		<!--ROW NO.1 OF THE BIG CONTAINER : FIRST PART OF PAGE - 'navbarContainer'-->
 		<div id="navbarContainerRow" class="row"> 
@@ -118,14 +120,14 @@
 
 			<!--THE 'HEADER - ABOUT ME' CODE COL : SPREAD JUST 2 COLS WIDTH-->
 			<div id="aboutMeHeader"class="col-md-1 bg-lightGrey">
-				<h2 class="tx-lightBlue fw-bolder me-0 mt-2">ABOUT ME</h2>
+				<h2 class="verticalHeader tx-lightBlue fw-bolder me-0 mt-2">ABOUT ME</h2>
 			</div>
 
 			<!--THE IMG CODE COL : SPREAD 5 COLS WIDTH-->
 			<div id="aboutMeHeader"class="col-lg-5 m-0 bg-lightBlue">
-				<img class="m-0" src="./img/me.png" alt="me">
-				<h1 class="specialFont1 mb-0">Avi Halif</h1>
-				<h5 class="mt-0">Junior Web Developer</h5>
+				<img id="myImg" class="m-0" src="./img/me.png" alt="me">
+				<h1 class="mainHeaderFont text-shadow specialFont1 mb-0">Avi Halif</h1>
+				<h5 class="text-shadow mt-0">Junior Web Developer</h5>
 			</div>
 
 			<!--THE ABOUT ME DISCRIPTION CODE COL : SPREAD 6 COLS WIDTH-->
@@ -143,13 +145,234 @@
 	</section>
 
 	<!--ONE BIG CONTAINER FOR THE PORTFOLIO SECTION-->
-	<section id="portfolioContainer" class="container-fluid border">
+	<section id="portfolioContainer" class="container-fluid">
 
 		<!--ROW NO.1 OF THE PORTFOLIO CONTAINER-->
-		<div id="navbarContainer" class="row"> 
+		<div id="portfolioImgContainerRow" class="row mt-0 mb-0 mb-0"> 
 
-			<!--THE 'NAVBAR' CODE COL : SPREAD THE WHOLE ROW (12 COLS)-->
-			<div id="navbarContainer"class="col-md-12 m-0">
+			<!--THE BACKGROUND IN PORTFOLIO SECTION CODE COL : SPREAD WHOLE ROW (12 COLS)-->
+			<div id="portfolioImage"class="pattern-vertical-stripes-sm col-md-12 mt-2 p-0"></div>
+		</div>
+
+		<!--ROW NO.2 OF THE PORTFOLIO CONTAINER-->
+		<div id="portfolioGridContainerRow" class="row mt-2"> 
+
+			<!--THE 'HEADER - PORTFOLIO' CODE COL : SPREAD JUST 2 COLS WIDTH-->
+		 	<div id="portfolioHeader"class="col-md-1 bg-lightGrey">
+				<h2 class="verticalHeader tx-pruple fw-bolder me-0 mt-3">MY PORTFOLIO</h2>
+			</div> 
+
+			<!--THE 'GRID - PORTFOLIO' CODE COL : SPREAD 11 COLS WIDTH-->
+		 	<div id="portfolioHeader"class="col-md-11 bg-pruple">
+		 		<section id="myImgsGridContainer" class="mt-5">
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img1" class="gridImg" src="./img/signin.png" alt="img1">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img2" class="gridImg" src="./img/langing1.png" alt="img3">
+					</div>
+					<div class="span2ColsRight span3RowsDown grow">
+						<img id = "img3" class="gridImg" src="./img/pro.png" alt="img4">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img4" class="gridImg" src="./img/cv.png" alt="img5">
+					</div>
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img5" class="gridImg" src="./img/land2.png" alt="img7">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img6" class="gridImg" src="./img/simpsons.png" alt="img8">
+					</div> 
+				</section>
+			</div> 
+	</section>
+
+	<!--ONE BIG CONTAINER FOR THE BLOG SECTION-->
+	<section id="blogContainer" class="container-fluid">
+
+		<!--ROW NO.1 OF THE BLOG CONTAINER-->
+		<div id="blogImgContainerRow" class="row mt-0 mb-0 mb-0">
+
+			<!--THE BACKGROUND IN BLOG SECTION CODE COL : SPREAD WHOLE ROW (12 COLS)-->
+			<div id="blogImage"class="pattern-zigzag-sm col-md-12 mt-2 p-0"></div>
+		</div>
+
+		<!--ROW NO.2 OF THE BLOG CONTAINER-->
+		<div id="portfolioGridContainerRow" class="row mt-2"> 
+
+			<!--THE 'HEADER - BLOG' CODE COL : SPREAD JUST 2 COLS WIDTH-->
+		 	<div id="blogHeader"class="col-md-1 bg-lightGrey">
+				<h2 class="verticalHeader tx-turquoise fw-bolder me-0 mt-3">MY BLOG</h2>
+			</div> 
+
+			<!--sdggsdsdg fhadfhad-hadPdfhafdORTFOLIO'fdgsfgsgsfdha CODE COL : SPREAD 11 COLS WIDTH-->
+		 	<div id="portfolioHeader"class="col-md-11 bg-turquoise">
+		 		<section id="myImgsGridContainer" class="mt-5">
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img1" class="gridImg" src="./img/signin.png" alt="img1">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img2" class="gridImg" src="./img/langing1.png" alt="img3">
+					</div>
+					<div class="span2ColsRight span3RowsDown grow">
+						<img id = "img3" class="gridImg" src="./img/pro.png" alt="img4">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img4" class="gridImg" src="./img/cv.png" alt="img5">
+					</div>
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img5" class="gridImg" src="./img/land2.png" alt="img7">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img6" class="gridImg" src="./img/simpsons.png" alt="img8">
+					</div> 
+				</section>
+			</div> 
+	</section>
+
+	<!--ONE BIG CONTAINER FOR THE TEAM SECTION-->
+	<section id="teamContainer" class="container-fluid">
+
+		<!--ROW NO.1 OF THE TEAM CONTAINER-->
+		<div id="blogImgContainerRow" class="row mt-0 mb-0 mb-0">
+
+			<!--THE BACKGROUND IN TEAM SECTION CODE COL : SPREAD WHOLE ROW (12 COLS)-->
+			<div id="teamImage"class="pattern-diagonal-stripes-sm col-md-12 mt-2 p-0"></div>
+		</div>
+
+		<!--ROW NO.2 OF THE TEAM CONTAINER-->
+		<div id="teamGridContainerRow" class="row mt-2"> 
+
+			<!--THE 'HEADER - TEAM' CODE COL : SPREAD JUST 2 COLS WIDTH-->
+		 	<div id="teamHeader"class="col-md-1 bg-lightGrey">
+				<h2 class="verticalHeader tx-yellow fw-bolder me-0 mt-3">OUR TEAM</h2>
+			</div>  
+
+			<!--sdggsdsdg fhadfhad-hadPdfhafdORTFOLIO'fdgsfgsgsfdha CODE COL : SPREAD 11 COLS WIDTH-->
+		 	<div id="teamHeader"class="col-md-11 bg-yellow">
+		 		<section id="myImgsGridContainer" class="mt-5">
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img1" class="gridImg" src="./img/signin.png" alt="img1">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img2" class="gridImg" src="./img/langing1.png" alt="img3">
+					</div>
+					<div class="span2ColsRight span3RowsDown grow">
+						<img id = "img3" class="gridImg" src="./img/pro.png" alt="img4">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img4" class="gridImg" src="./img/cv.png" alt="img5">
+					</div>
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img5" class="gridImg" src="./img/land2.png" alt="img7">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img6" class="gridImg" src="./img/simpsons.png" alt="img8">
+					</div> 
+				</section>
+			</div> 
+	</section>
+
+		<!--ONE BIG CONTAINER FOR THE CONTACT SECTION-->
+	<section id="contactContainer" class="container-fluid">
+
+		<!--ROW NO.1 OF THE CONTACT CONTAINER-->
+		<div id="contactImgContainerRow" class="row mt-0 mb-0 mb-0">
+
+			<!--THE BACKGROUND IN CONTACT SECTION CODE COL : SPREAD WHOLE ROW (12 COLS)-->
+			<div id="contactImage"class="pattern-dots-xl col-md-12 mt-2 p-0"></div>
+		</div>
+
+		<!--ROW NO.2 OF THE CONTACT CONTAINER-->
+		<div id="contactGridContainerRow" class="row mt-2"> 
+
+			<!--THE 'HEADER - CONTACT' CODE COL : SPREAD JUST 2 COLS WIDTH-->
+		 	<div id="contactHeader"class="col-md-1 bg-lightGrey">
+				<h2 class="verticalHeader tx-pink fw-bolder me-0 mt-3">GET IN TOUCH</h2>
+			</div>  
+
+			<!--sdggsdsdg fhadfhad-hadPdfhafdORTFOLIO'fdgsfgsgsfdha CODE COL : SPREAD 11 COLS WIDTH-->
+		 	<div id="contactHeader"class="col-md-11 bg-pink">
+		 		<section id="myImgsGridContainer" class="mt-5">
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img1" class="gridImg" src="./img/signin.png" alt="img1">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img2" class="gridImg" src="./img/langing1.png" alt="img3">
+					</div>
+					<div class="span2ColsRight span3RowsDown grow">
+						<img id = "img3" class="gridImg" src="./img/pro.png" alt="img4">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img4" class="gridImg" src="./img/cv.png" alt="img5">
+					</div>
+					<div class="span2RowsDown span2ColsRight grow">
+						<img id = "img5" class="gridImg" src="./img/land2.png" alt="img7">
+					</div>
+					<div class="span2ColsRight grow">
+						<img id = "img6" class="gridImg" src="./img/simpsons.png" alt="img8">
+					</div> 
+				</section>
+			</div> 
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+	<!--ONE BIG CONTAINER FOR THE TEAM SECTION-->
+<!-- 	<section id="teamContainer" class="container-fluid"> -->
+
+		<!--ROW NO.1 OF THE BLOG CONTAINER-->
+	<!-- 	<div id="teamImgContainerRow" class="row mt-0 mb-0 mb-0"> 
+ -->
+			<!--THE BACKGROUND IN TEAM SECTION CODE COL : SPREAD WHOLE ROW (12 COLS)-->
+<!-- 			<div id="teamImage"class="pattern-zigzag-sm col-md-12 mt-2 p-0"></div>
+		</div> -->
+
+		<!--ROW NO.2 OF THE TEAM CONTAINER-->
+<!-- 		<div id="portfolioGridContainerRow" class="row mt-2"> 
+
+			<!--THE 'TEAM - PORTFOLIO' CODE COL : SPREAD JUST 2 COLS WIDTH-->
+<!-- 		 	<div id="blogTeam"class="col-md-1 bg-lightGrey">
+				<h2 class="verticalHeader tx-Turquoise fw-bolder me-0 mt-3">OUR TEAM</h2>
+			</div> 
+	</section>  -->
+
+
+
+
+
 
 
 

@@ -12,8 +12,40 @@ body,html{
 	color: #323776;
 }
 
+.tx-pruple{
+	color: #512C73;
+}
+
+.tx-yellow{
+	color: #FFFC03;
+}
+
+.bg-pruple{
+	background-color: #512C73;
+}
+
 .bg-lightGrey{
 	background-color: #ABABAB;
+}
+
+.bg-pink{
+	background-color: #E70F2D;
+}
+
+.tx-pink{
+	color: #E70F2D;
+}
+
+.bg-turquoise{
+background-color: #468C77;
+}
+
+.bg-yellow{
+	background-color: #FFFC03;
+}
+
+.tx-turquoise{
+	color: #468C77;
 }
 
 .specialFont{
@@ -25,7 +57,7 @@ body,html{
 	letter-spacing: 2px;
 }
 
-h2{
+.verticalHeader{
 	writing-mode: vertical-lr;
 	transform: rotate(180deg);
 	text-shadow: 2px 2px 4px #000000;
@@ -52,23 +84,18 @@ h2{
   position: relative;
 }
 
-img{
+#myImg{
 	height: 31vh;
 	float: left;
 	shape-outside: circle(30%);
 }
 
-P{
-	font-size: 20px;
-}
-
-h1{
+.mainHeaderFont{
 	font-size: 100px;
-	text-shadow: 2px 2px 4px #000000;
 }
 
-h5{
-	text-shadow: 2px 2px 4px #000000;
+.text-shadow{
+		text-shadow: 2px 2px 4px #000000;
 }
 
 .centerTextAlign{
@@ -96,86 +123,112 @@ div#aboutMeDescription ul li::before {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.yellow{
-	background-color: yellow;
+#portfolioImage{
+	height: 40vh;
+	opacity: 0.8;
+	background-color: #555794;
 }
 
-.red{
-	background-color: red;
+#blogImage{
+	height: 40vh;
+	opacity: 0.8;
+	background-color: #512C73;
 }
 
-.black{
-	background-color: black;
+#teamImage{
+	height: 40vh;
+	opacity: 0.8;
+	background-color: #468C77;
 }
 
-.blue{
-	background-color: blue;
+#contactImage{
+	height: 40vh;
+	opacity: 0.8;
+	background-color: #FFFC03;
+	opacity: 0.7;
+}
+  
+
+#myImgsGridContainer{
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	grid-template-rows: repeat(5,1fr);
+	gap: 10px;
+	margin: 10px;
+	width: 100vh;
+	height: 75vh;
 }
 
-.pink{
-	background-color: pink;
-}
-
-.green{
-	background-color: green;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-article{
-	background-color: rgba(0, 0, 0, 0.7);
-
-}
-
-
-img{
-	float: left;
-	width: 20%;
-	height: 20%;
-	margin-right: 0;
-	shape-outside: circle(45%);
-}
-
-p{
-	display: inline;
+section#myImgsGridContainer div{
+	border: 3px solid white;
+	text-align: center;
+	font-size: 50px;
 	color: white;
-} */
+	transition:all 0.5s ease; /*1.WHICH PROPERTIES. 2.SPEED. 3.ACCELERATION(HERE: DEFAULT)*/
+}
+
+/*GROW - enlarge: greater than 1, to shrink: less than 1*/
+.grow:hover
+{
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.span2RowsDown{
+	grid-row: auto / span 2;
+}
+
+.span2ColsRight{
+	grid-column: auto / span 2;
+}
+
+.span3RowsDown{
+	grid-row: auto / span 3;
+}
+
+.gridImg{
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
