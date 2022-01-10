@@ -1,6 +1,9 @@
 body, html{
 	margin: 0;
 	padding: 0;
+}
+
+.tx-white{
 	color: white;
 }
 
@@ -84,12 +87,6 @@ background-color: #468C77;
   position: relative;
 }
 
-#myImg{
-	height: 31vh;
-	float: left;
-	shape-outside: circle(30%);
-}
-
 .mainHeaderFont{
 	font-size: 100px;
 }
@@ -158,6 +155,13 @@ div#aboutMeDescription ul li::before {
 	width: 100vh;
 	height: 75vh;
 }
+
+#myImg{
+	height: 31vh;
+	float: left;
+	shape-outside: circle(30%);
+}
+
 
 section#myImgsGridContainer div{
 	border: 3px solid white;
@@ -261,6 +265,34 @@ section#myImgsGridContainer div{
   animation-name: swing;
   animation-duration: 1s;
 }
+
+
+@media all and (max-width: 992px){
+
+	div#aboutMeHeader h2{
+			writing-mode: horizontal-tb;
+			transform: rotate(0deg);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

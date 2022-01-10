@@ -119,15 +119,15 @@
 		<div id="aboutMeContainer" class="row mt-2"> 
 
 			<!--THE 'HEADER - ABOUT ME' CODE COL : SPREAD JUST 2 COLS WIDTH-->
-			<div id="aboutMeHeader"class="col-md-1 bg-lightGrey">
+			<div id="aboutMeHeader"class="col-lg-1 col-sm-12 col-md-12 bg-lightGrey"> 
 				<h2 class="verticalHeader tx-lightBlue fw-bolder me-0 mt-2">ABOUT ME</h2>
 			</div>
 
 			<!--THE IMG CODE COL : SPREAD 5 COLS WIDTH-->
 			<div id="aboutMeHeader"class="col-lg-5 m-0 bg-lightBlue">
 				<img id="myImg" class="m-0" src="./img/me.png" alt="me">
-				<h1 class="mainHeaderFont text-shadow specialFont1 mb-0">Avi Halif</h1>
-				<h5 class="text-shadow mt-0">Junior Web Developer</h5>
+				<h1 class="mainHeaderFont text-shadow specialFont1 mb-0 tx-white">Avi Halif</h1>
+				<h5 class="text-shadow mt-0 tx-white">Junior Web Developer</h5>
 			</div>
 
 			<!--THE ABOUT ME DISCRIPTION CODE COL : SPREAD 6 COLS WIDTH-->
@@ -164,26 +164,28 @@
 
 			<!--THE 'GRID - PORTFOLIO' CODE COL : SPREAD 11 COLS WIDTH-->
 		 	<div id="portfolioHeader"class="col-md-11 bg-pruple">
-		 		<section id="myImgsGridContainer" class="my-5 mx-5">
-					<div class="span2RowsDown span2ColsRight grow">
-						<img id = "img1" class="gridImg" src="./img/signin.png" alt="img1">
-					</div>
-					<div class="span2ColsRight grow">
-						<img id = "img2" class="gridImg" src="./img/langing1.png" alt="img3">
-					</div>
-					<div class="span2ColsRight span3RowsDown grow">
-						<img id = "img3" class="gridImg" src="./img/pro.png" alt="img4">
-					</div>
-					<div class="span2ColsRight grow">
-						<img id = "img4" class="gridImg" src="./img/cv.png" alt="img5">
-					</div>
-					<div class="span2RowsDown span2ColsRight grow">
-						<img id = "img5" class="gridImg" src="./img/land2.png" alt="img7">
-					</div>
-					<div class="span2ColsRight grow">
-						<img id = "img6" class="gridImg" src="./img/simpsons.png" alt="img8">
-					</div> 
-				</section>
+		 		<div class="row">
+			 		<section id="myImgsGridContainer" class="my-5 mx-5">  
+						<div class="span2RowsDown span2ColsRight grow">
+							<img id = "img1" class="gridImg" src="./img/signin.png" alt="img1">
+						</div>
+						<div class="span2ColsRight grow">
+							<img id = "img2" class="gridImg" src="./img/langing1.png" alt="img3">
+						</div>
+						<div class="span2ColsRight span3RowsDown grow">
+							<img id = "img3" class="gridImg" src="./img/pro.png" alt="img4">
+						</div>
+						<div class="span2ColsRight grow">
+							<img id = "img4" class="gridImg" src="./img/cv.png" alt="img5">
+						</div>
+						<div class="span2RowsDown span2ColsRight grow">
+							<img id = "img5" class="gridImg" src="./img/land2.png" alt="img7">
+						</div>
+						<div class="span2ColsRight grow">
+							<img id = "img6" class="gridImg" src="./img/simpsons.png" alt="img8">
+						</div> 
+					</section>
+				</div>
 			</div> 
 	</section>
 
@@ -191,7 +193,7 @@
 	<section id="blogContainer" class="container-fluid">
 
 		<!--ROW NO.1 OF THE BLOG CONTAINER-->
-		<div id="blogImgContainerRow" class="row mt-0 mb-0 mb-0">
+		<div id="blogImgContainerRow" class="row mt-0 mb-0">
 
 			<!--THE BACKGROUND IN BLOG SECTION CODE COL : SPREAD WHOLE ROW (12 COLS)-->
 			<div id="blogImage"class="pattern-zigzag-sm col-md-12 mt-2 p-0"></div>
@@ -207,13 +209,13 @@
 
 			<!--BLOG CODE COL - CAROUSEL : SPREAD 11 COLS WIDTH-->
 		 	<div id="portfolioHeader"class="col-md-11 bg-turquoise">
-		 		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  					<div class="carousel-indicators">
-    					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-   						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		 		<div id="carouselCaptions" class="carousel slide" data-bs-ride="carousel">
+  					<div class="carousel-indicators"> <!--HERE ARE THE INDICATORS-->
+    					<button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+   						<button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    					<button type="button" data-bs-target="#carouselaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   					</div>
-	  				<div class="carousel-inner">
+	  				<div class="carousel-inner"> <!--HERE ARE THE SLIDES-->
 	    				<div class="carousel-item active">
 	      					<img src="./img/blog1.jpg" class="d-block w-100" alt="...">
 	      					<div class="carousel-caption d-none d-md-block">
@@ -243,13 +245,14 @@
 	    				</div>
 	  				</div>
 
+	  				<!--HERE ARE THE TWO SIDES BOTTONS-->
   					<button class="carousel-control-prev" type="button" data-bs-target="
-  							#carouselExampleCaptions" data-bs-slide="prev">
+  							#carouselCaptions" data-bs-slide="prev">
     					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
     					<span class="visually-hidden">Previous</span>
   					</button>
   					<button class="carousel-control-next" type="button" data-bs-target="
-  							#carouselExampleCaptions" data-bs-slide="next">
+  							#carouselCaptions" data-bs-slide="next">
     					<span class="carousel-control-next-icon" aria-hidden="true"></span>
     					<span class="visually-hidden">Next</span>
   					</button>
@@ -328,13 +331,13 @@
                 		<div class="col">
                   			<div class="form-outline">
                     			<input type="text" class="form-control mt-5"/>
-                    			<label class="form-label" for="form3Example1">First name</label>
+                    			<label class="form-label tx-white" for="form3Example1">First name</label>
                   			</div>
                 		</div>
                 		<div class="col">
                   			<div class="form-outline">
                     			<input type="text" class="form-control mt-5"/>
-                    			<label class="form-label" for="form3Example2">Last name</label>
+                    			<label class="form-label tx-white" for="form3Example2">Last name</label>
                   			</div>
                 		</div>
               		</div>
@@ -342,7 +345,7 @@
               		<!-- Email input -->
               		<div class="form-outline mb-4">
                 		<input type="email" class="form-control"/>
-                			<label class="form-label" for="email">Email address</label>
+                			<label class="form-label tx-white" for="email">Email address</label>
               		</div>
 
               		<!-- Text area -->
