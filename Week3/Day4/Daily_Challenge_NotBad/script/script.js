@@ -1,6 +1,6 @@
 
 // The value of the variable should be a string that contains the words “not” and “bad”
-let sentence = "This dinner is not that bad ! You cook well";
+let sentence = "";
 
 let idxOfNot = sentence.indexOf("not");
 let idxOfBad = sentence.indexOf("bad");
