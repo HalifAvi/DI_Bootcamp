@@ -60,19 +60,19 @@ switch(newDog){
 
 let x = prompt("Hello! Please enter a number :)");
 
-let xConvertToInt = Number(x); // return number(if the user entered num) or NaN (if the user entered string)
+let xConvertToNumber = Number(x); // return number(if the user entered num) or NaN (if the user entered string)
 
 // Check if the user enter a number
-if(!(isNaN(xConvertToInt))){
+if(!(isNaN(xConvertToNumber))){
 
 	// Check whether the variable is even or odd
-	if(xConvertToInt % 2 == 0){
+	if(xConvertToNumber % 2 == 0){
 
-		console.log(`${xConvertToInt} is an even number`);
+		console.log(`${xConvertToNumber} is an even number`);
 	}
 	else{
 
-		console.log(`${xConvertToInt} is an odd number`);
+		console.log(`${xConvertToNumber} is an odd number`);
 	}
 }
 else{
