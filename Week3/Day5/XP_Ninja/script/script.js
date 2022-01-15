@@ -1,6 +1,6 @@
 
 
-// Exercise 1: Checking The BMI
+// Exercise 1 : Checking The BMI
 
 // Create two objects, each object should hold a person’s details
 
