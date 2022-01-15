@@ -188,21 +188,56 @@ for(const familyMember in family){
 
 let details = {
   my: 'name',
-  is: 'Rudolf',
+  is: 'Rudolf', 
   the: 'raindeer'
 }
 
+// OPTION #1 - WITH 'entries'
 
 let keyValueDetailsArr = Object.entries(details); // Return array with 3 arrays inside
-
-console.log(keyValueDetailsArr);//////////
-
+												  // Every array has 2 elements
 let sentence = "";
 
-// for(let i=0; i<keyValueDetailsArr.length; i++){
+// Now that we have 3 Arrays we can just print the elements inside according to the indexes
+for(let i=0; i<keyValueDetailsArr.length; i++){
 
-// 	sentence = sentence + keyValueDetailsArr[i] + " ";
-// }
+	for(let j=0; j< keyValueDetailsArr[j].length; j++){
 
-sentence = sentence + keyValueDetailsArr[0][0] + " " + keyValueDetailsArr[0][1] ;
+		sentence += keyValueDetailsArr[i][j] + " ";
+	}
+}
+
 console.log(sentence);
+
+
+// OPTION #2 - WITH 'for --- in'
+
+let sentence1 = "";
+
+for(const detail in details){
+
+		sentence1 += detail + " " + details[detail] + " ";
+}
+
+console.log(sentence1);
+
+
+
+// Exercise 7 : Secret Group
+
+let names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
+let secret = "";
+
+// First - sort the array 
+names.sort();
+
+// Second - concate every first letter to one word
+for(let i=0; i< names.length; i++){
+
+		secret += names[i][0];
+}
+
+console.log(secret);
+
+
+
