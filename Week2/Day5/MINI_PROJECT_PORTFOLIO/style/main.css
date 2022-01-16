@@ -273,7 +273,27 @@ section#myImgsGridContainer div{
 			writing-mode: horizontal-tb;
 			transform: rotate(0deg);
 	}
+
+  #myImgsGridContainer{
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+
+    gap: 10px;
+    margin: 10px;
+    width: 50vh;
+    height: 30vh;
+  }
+
+  .noSpan{
+
+    grid-row: auto;
+    grid-column: auto;
+  }
+
 }
+
 
 
 
