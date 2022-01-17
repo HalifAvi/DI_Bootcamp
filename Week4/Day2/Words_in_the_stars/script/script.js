@@ -1,18 +1,9 @@
 
-//HERE IS THE GLOBAL SCOPE
-
-// Const variable : amount of stars adding to the longest word in sentence
-const addingStars = 4;
-
-let sentenceInArray = getSentenceFromUser();
-
-printSentenceInTheStars(sentenceInArray);
-
 
 // HERE ARE ALL THE FUNCTIONS
 
 // Return an array of words according the user sentence
-function getSentenceFromUser(){
+const getSentenceFromUser = () => {
 
     // Prompt the user for several words (separated by commas)
     let userSentence = prompt("Please enter a sentence separated by commas");
@@ -21,14 +12,12 @@ function getSentenceFromUser(){
 }
 
 // Return an array of words according the user sentence split by comma
-function convertStringToArray(sentence){
-
-   // Put the words into an array (The opposite from 'join')
-   return sentence.split(",");  
-}
+// Put the words into an array (The opposite from 'join')
+const convertStringToArray = sentence => sentence.split(","); 
+   
 
 // Recieve words array and print it in stars frame
-function printSentenceInTheStars(array){
+const printSentenceInTheStars = array => {
 
         let rectWidth = calculateRectangleWidth(array); // calling to function to know the width of the frame
 
@@ -40,7 +29,7 @@ function printSentenceInTheStars(array){
  }
 
  // Recieve the words array and return the width of the frame (equals to the longest word in the array + addingStars const variable)
- function calculateRectangleWidth(array){
+ const calculateRectangleWidth = array => {
 
     let longestWord = array[0].length;
 
@@ -56,7 +45,7 @@ function printSentenceInTheStars(array){
  }
 
  // Recieve the width of the frame and print according to that row of stars
- function printTheTopOrBttRow(sizeOfRow){
+ const printTheTopOrBttRow = sizeOfRow => {
 
     let lineToPrint = "";
 
@@ -69,7 +58,7 @@ function printSentenceInTheStars(array){
  }
 
 // Recieve the words array and the width of frame and print the all rows inside the stars frame
- function printAllRowsWithWords(array, rectWidth){
+ const printAllRowsWithWords = (array, rectWidth) => {
 
     for(let i=0; i<array.length; i++){
 
@@ -78,7 +67,7 @@ function printSentenceInTheStars(array){
  }
 
  // Recieve the words array, width of frame and the specific word index and print the row 
- function printSingleRowWithWord(array, wordIndexInArray, rectWidth){
+ const printSingleRowWithWord = (array, wordIndexInArray, rectWidth) => {
 
     let lineToPrint = `* ${array[wordIndexInArray]}`;
 
@@ -88,7 +77,7 @@ function printSentenceInTheStars(array){
  }
 
  // Recieve the string to print and the width of frame and return the complete row to print (with spaces to the frame)
- function addSpaceFromWordToLastStar(rectWidth, lineToPrint){
+ const addSpaceFromWordToLastStar = (rectWidth, lineToPrint) => {
 
     let howManySpaceToLastStar =  rectWidth - lineToPrint.length;
 
@@ -99,3 +88,14 @@ function printSentenceInTheStars(array){
 
     return lineToPrint + "*";
  }
+
+/************************************************************************************** */
+ //HERE IS THE GLOBAL SCOPE
+
+// Const variable : amount of stars adding to the longest word in sentence
+const addingStars = 4;
+
+let sentenceInArray = getSentenceFromUser();
+
+printSentenceInTheStars(sentenceInArray);
+
