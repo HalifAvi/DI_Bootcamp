@@ -2,24 +2,40 @@
 // Const variables for the whole program scope
 const minNumRange = 0;
 const maxNumRange = 10;
-const maxGuessNum = 2;
+const maxGuessNum = 2; // Up to 3 guesses
 
 // General variable
 let numOfGuess = 0;
+let newGame = true;
+let firstTest = true;
 
 
 let playTheGame = () => {
 
-    if( isUserWantToStartTheGame() ){ // In case the user want to start the game
+    if(newGame){ // In case of new game - Ask user if he want to start the game
 
-        let numberFromUser = getNumberFromUser();
+        newGame = false;
 
-        if( numberFromUser !== "Nan"){ // If the user input is a valid number continue the program
+        if( isUserWantToStartTheGame() ){ // In case the user want to start the game
 
-            let computerNumber = getRandomNumber(); // Get a random number from computer
-
-            test(numberFromUser, computerNumber); // Check if the user guess the right number
+            getNumberFromUserAndRandomAndTestBoth();
         }
+    }
+    else{ // In case the user have to pick a new valid number
+
+        getNumberFromUserAndRandomAndTestBoth();
+    }
+}
+
+const getNumberFromUserAndRandomAndTestBoth = () => {
+
+    let numberFromUser = getNumberFromUser();
+
+    if( numberFromUser !== "Nan"){ // If the user input is a valid number continue the program
+
+        let computerNumber = getRandomNumber(); // Get a random number from computer
+
+        testTwoNumbers(numberFromUser, computerNumber); // Check if the user guess the right number
     }
 }
 
@@ -79,7 +95,8 @@ const isInputContainDigitsOnly = inputToCheck => {
     }
     else{
 
-        alert("Sorry Not a number, Goodbye!");
+        alert("Sorry Not a number, Try again!");
+        playTheGame();
     }
 
     return answer;
@@ -96,7 +113,8 @@ const isNumberIntoASpecificRange = number => {
     }
     else{
 
-        alert("Sorry it's not a good number, Goodbye");
+        alert("Sorry it's not a good number, Try again!");
+        playTheGame();
     }
 
     return answer;
@@ -107,7 +125,7 @@ const getRandomNumber = () => {
     return Math.floor(Math.random() * 10) + 1; // 0-10
 }
 
-const test = (userNumber, computerNumber) => {
+const testTwoNumbers = (userNumber, computerNumber) => {
 
     let optionsArr = [ userNumber === computerNumber,
                        userNumber > computerNumber,
@@ -118,28 +136,31 @@ const test = (userNumber, computerNumber) => {
         switch(optionsArr.indexOf(true)){
 
             case 0: alert("WINNER! ! ! ! ! !"); 
-    
                 break;
     
             case 1: alert("Your number is bigger then the computer's, guess again!");
                     numOfGuess++; // Increase the guesses counter
                     reAskAndTestUserNumberGuess(computerNumber);
-    
                 break;
     
             case 2: alert("Your number is smaller then the computer's, guess again!");
                     numOfGuess++; // Increase the guesses counter
                     reAskAndTestUserNumberGuess(computerNumber);
+                break;
         }
     }
     else{ // If the user already reach to max number of guesses - alert and STOP!
 
-        alert("out of chances");
+        if(firstTest){
+
+            firstTest = false;
+            alert("out of chances");
+        }
     }
 }
 
 // Ask and test again the user number
 const reAskAndTestUserNumberGuess = (computerNumber) => {
 
-    test(getNumberFromUser(), computerNumber);
+    testTwoNumbers(getNumberFromUser(), computerNumber);
 }
