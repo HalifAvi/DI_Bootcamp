@@ -112,7 +112,7 @@ const myBill = () => {
     for(let i=0; i<shoppingList.length;i++){
 
         // In case the fruit name doesn't exist in the stock so the if condition is (undefined > 0) and it's false
-        if(stock[shoppingList[i]] > 0){
+        if(stock[shoppingList[i]] > 0){     
 
             stock[shoppingList[i]]--;
             totalPrice += prices[shoppingList[i]];
