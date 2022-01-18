@@ -5,8 +5,14 @@
 // Return an array of words according the user sentence
 const getSentenceFromUser = () => {
 
-    // Prompt the user for several words (separated by commas)
-    let userSentence = prompt("Please enter a sentence separated by commas");
+    let userSentence = "";
+
+    do{
+        // Prompt the user for several words (separated by commas)
+        userSentence = prompt("Please enter a sentence separated by commas");
+
+    }while(userSentence === "")
+
 
     return convertStringToArray(userSentence); // Calling to function 
 }
