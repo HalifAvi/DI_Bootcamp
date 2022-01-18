@@ -151,7 +151,7 @@ const testTwoNumbers = (userNumber, computerNumber) => {
     }
     else{ // If the user already reach to max number of guesses - alert and STOP!
 
-        if(firstTest){
+        if(firstTest) {
 
             firstTest = false;
             alert("out of chances");
