@@ -11,10 +11,24 @@ const getSentenceFromUser = () => {
         // Prompt the user for several words (separated by commas)
         userSentence = prompt("Please enter a sentence separated by commas");
 
-    }while(userSentence === "")
-
+    }while(!isWordsWithCommas(userSentence)) // Make sure the input is a correct pattern
 
     return convertStringToArray(userSentence); // Calling to function 
+}
+
+// Recieve a string to check if contains words separate by commas
+const isWordsWithCommas = (sentenceToCheck) => {
+
+    let regExp =  /^\w+(,\w+)*$/;   // \w = a to z, A to Z, 0 to 9
+
+    if(regExp.test(sentenceToCheck)){
+
+		return true;
+    }
+    else{
+
+	return false;
+}
 }
 
 // Return an array of words according the user sentence split by comma

@@ -36,7 +36,7 @@ else{
 
 let zipCode1 = prompt("Please enter your zipCode"); 
 
-let regExp = /^\d{5}$/;
+let regExp =  /^\d{5}$/;
 
 if(regExp.test(zipCode1)){
 
