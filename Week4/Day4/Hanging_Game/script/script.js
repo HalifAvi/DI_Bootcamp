@@ -1,6 +1,6 @@
 
 // Define const variables
-const maxNumOfGuesses = 4;
+const maxNumOfGuesses = 10;
 const minLettersInWord = 8;
 const mainPlayer = 1;
 const guessPlayer = 2;
@@ -42,19 +42,28 @@ const playHangingGame = () => {
     // Print the hidden word with astriskes
     displayTheHiddenWord(guessPlayer);
 
-    while(playersArr[guessPlayer-1].numberOfGuesses != 0){
+    // Ask for a letter in case the user still remains guesses and also does not descover the hidden word
+    while( (playersArr[guessPlayer-1].hiddenWord).indexOf('*') !== -1 &&
+            playersArr[guessPlayer-1].numberOfGuesses !== 0) {
 
         // Asking continuously from second player for letters
         startGuessingLetters(guessPlayer);
     }
 
+    checkAndPrintWhoIsTheWinner();
+}
 
+// Check and print who is the winner player
+const checkAndPrintWhoIsTheWinner = () => {
 
+    if((playersArr[guessPlayer-1].hiddenWord).indexOf('*') === -1){
 
+        console.log(`CONGRATS ${playersArr[guessPlayer-1].name}!!! YOU WIN :)))))))))`);
+    }
+    else{
 
-
-
-
+        console.log(`${playersArr[guessPlayer-1].name}!!! YOU LOSE:(`);
+    }
 }
 
 
@@ -118,17 +127,26 @@ const startGuessingLetters = playerNo => {
 
     if(isLetterInsideWord(letterPositions)){
 
-        for(let i=0; i<letterPositions.length; i++){
-
-            let stringToArray = (playersArr[guessPlayer-1].hiddenWord).split("");
-            stringToArray.splice(letterPositions[i],1,playersArr[mainPlayer-1].word[letterPositions[i]]);
-            playersArr[guessPlayer-1].hiddenWord = stringToArray.join('');
-        }
-        
-     console.log(playersArr[guessPlayer-1].hiddenWord);
+        replaceAstriskesWithLettersInHiddenWord(letterPositions);
+        displayTheHiddenWord(guessPlayer);
     }
 }
 
+// Recieve the array letter positions and change the hidden word according to
+const replaceAstriskesWithLettersInHiddenWord = letterPositions => {
+
+    for(let i=0; i<letterPositions.length; i++){
+
+        // Convert the hidden word to array for using the splice after
+        let stringToArray = (playersArr[guessPlayer-1].hiddenWord).split("");
+        // Replace the astrisk in the specific position according to the index we stored before
+        stringToArray.splice(letterPositions[i],1,playersArr[mainPlayer-1].word[letterPositions[i]]);
+        // Assign the hidden word (string type) to the property of the object
+        playersArr[guessPlayer-1].hiddenWord = stringToArray.join('');
+    }
+}
+
+// Return true if the letter exsists into the hidden word
 const isLetterInsideWord = letterPositions =>{
 
     let exsist = false;
