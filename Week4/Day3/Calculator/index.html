@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      button {
+        width:70px;
+        height:70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="mainGridContainer">
+      <label id="displayLabel" class="label span4ColsRight">0</label>
+      <button class="button numberColor" type="button" name="button" onclick="number(0);">0</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(1);">1</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(2);">2</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(3);">3</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(4);">4</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(5);">5</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(6);">6</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(7);">7</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(8);">8</button>
+      <button class="button numberColor" type="button" name="button" onclick="number(9);">9</button>
+      <button class="button numberColor" type="button" name="button" onclick="operator('.');">.</button>
+      <button class="button operatorColor" type="button" name="button" onclick="operator('+');">+</button>
+      <button class="button operatorColor" type="button" name="button" onclick="operator('-');">-</button>
+      <button class="button operatorColor" type="button" name="button" onclick="operator('*');">*</button>
+      <button class="button operatorColor" type="button" name="button" onclick="operator('/');">/</button>
+      <button class="button operatorColor" type="button" name="button" onclick="equal();">=</button>
+      <button class="button resetColor span2ColsRight" type="button" name="button" onclick="reset();">RESET</button>
+      <button class="button clearColor span2ColsRight" type="button" name="button" onclick="clearDisplay();">CLEAR</button>
+    </section>
+    <script src="js/main.js" charset="utf-8"></script>
+  </body>
+</html>
