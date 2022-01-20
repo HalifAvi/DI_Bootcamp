@@ -125,6 +125,13 @@ const getRandomNumber = () => {
     return Math.floor(Math.random() * 10) + 1; // 0-10
 }
 
+const alertToUserWhenNumberIsBiggerOrSmallerAndDecreaseGuess = (status, computerNumber) => {
+
+    alert(`Your number is ${status} then the computer's, guess again!`);
+    numOfGuess++; // Increase the guesses counter
+    reAskAndTestUserNumberGuess(computerNumber);
+}
+
 const testTwoNumbers = (userNumber, computerNumber) => {
 
     let optionsArr = [ userNumber === computerNumber,
@@ -138,14 +145,10 @@ const testTwoNumbers = (userNumber, computerNumber) => {
             case 0: alert("WINNER! ! ! ! ! !"); 
                 break;
     
-            case 1: alert("Your number is bigger then the computer's, guess again!");
-                    numOfGuess++; // Increase the guesses counter
-                    reAskAndTestUserNumberGuess(computerNumber);
+            case 1: alertToUserWhenNumberIsBiggerOrSmallerAndDecreaseGuess("bigger", computerNumber);
                 break;
     
-            case 2: alert("Your number is smaller then the computer's, guess again!");
-                    numOfGuess++; // Increase the guesses counter
-                    reAskAndTestUserNumberGuess(computerNumber);
+            case 2: alertToUserWhenNumberIsBiggerOrSmallerAndDecreaseGuess("smaller", computerNumber);
                 break;
         }
     }
@@ -158,6 +161,8 @@ const testTwoNumbers = (userNumber, computerNumber) => {
         }
     }
 }
+
+
 
 // Ask and test again the user number
 const reAskAndTestUserNumberGuess = (computerNumber) => {
