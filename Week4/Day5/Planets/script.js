@@ -1,6 +1,3 @@
-let position = 100;
-
-
 
 const planets = () => {
 
@@ -80,15 +77,17 @@ const addClassesToNewDivForStyle = (newDiv, styleAccordingToName, styleAccording
 // After this function we will have a styled moon divs inside the planet div 
 const createDivForEachMoonAndAppendToPlanetDiv = (planetObj, planetDivToAppendTo) => {
 
+    let position = 100; // just for put the moons one by one
+
     (planetObj.moonNames).forEach( moon => { // moon is an element in the moons array names
 
         let newMoonDiv = createNewDiv(moon);
 
         addClassesToNewDivForStyle(newMoonDiv, moon , "moon"); //"moon"= build-in class, moon = class of the name of moon
 
-        newMoonDiv.setAttribute('style',`right: ${position-30}px`);
+        newMoonDiv.setAttribute('style',`right: ${position-30}px`); // just for put the moons one by one
 
-        position -= 30;
+        position -= 30; // just for put the moons one by one
 
         // Finally append moon div to the planet div in the HTML
         planetDivToAppendTo.appendChild(newMoonDiv);
