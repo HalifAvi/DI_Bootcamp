@@ -1,0 +1,20 @@
+table, th, td{
+	margin: auto;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+th{
+	border-bottom: double;
+}
+
+/*Set the left border table cells - just for the right side in the table  */
+tr td:nth-child(2), th:nth-child(2){
+	border-left: double;
+}
+
+td{
+	padding: 5px 5px;
+	font-size: 17px;
+	text-align: center;
+}
