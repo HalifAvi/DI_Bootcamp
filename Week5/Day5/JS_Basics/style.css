@@ -1,0 +1,23 @@
+html,body{
+
+    background-color: black;
+}
+
+
+
+
+#gridContainer{
+	display: grid;
+	grid-template-columns: repeat(7,1fr);
+	grid-template-rows: repeat(7,1fr);
+	width: 40vh;
+	height: 85vh;
+}
+
+
+.gridCell{
+	border: 1px solid lightgrey;
+    text-align: center;
+    color: brown;
+    font-size: 30px;
+}
