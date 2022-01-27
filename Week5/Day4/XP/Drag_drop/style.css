@@ -1,0 +1,58 @@
+
+#box {
+    margin: auto;
+    width: 30%;
+    height: 300px;
+    border: 2px solid blue;
+    padding: 2px;
+    }
+    
+    #square1, #square2, #square3 {
+    float: left; /*To set the rectangels one by one instead of row after row*/
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    }
+    
+    #square1 {
+    width: 50px;
+    height: 30px;
+    background-color: #BEA7CC;
+    }
+
+    .square1 {
+        width: 50px;
+        height: 30px;
+        background-color: #BEA7CC;
+        }
+    
+    #square2 {
+    width: 70px;
+    height: 50px;
+    background-color: #B5D5F5;
+    }
+    
+    #square3 {
+    width: 250px;
+    height: 120px;
+    background-color:#F5B5C5 ;
+    }
+    
+    /* -- ONDRAGENTER-- ONDRAGLEAVE */
+    
+    .hold{ /*ON DRAGGING THE DIV - CHANGE THE BORDER TO DASH*/
+      border: 2px dashed #000;
+    }
+
+    .over{ /*WHEN HOVER ON THE UNDRAGGABLE RECTANGLE CHANGE HIS BORDER TO RED*/
+        border: 2px dashed red;
+    }
+
+    .invisible{ /*WHEN WE GEAB THE RECTANGLE FROM HIS ORIGIN PLACE MAKE HIM A MOMENT AFTER INVISIBLE IN ORIGIN PLACE*/
+        display: none;
+    }
+
+    .fill{ /*WHEN STOP CLICK AFTER WE HOLD THE RECTANGLE AND GRAG (=WITH MOUSE DOWN) 
+             FILL AGAIN THE ORIGIN RECTANGLE*/
+
+    }
