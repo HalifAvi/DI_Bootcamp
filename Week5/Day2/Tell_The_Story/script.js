@@ -134,6 +134,7 @@ const isValidInputs = () => {
     // Scan each of the obj array we created and check the value of 'theWord' key into the obj
     userWordsObjArray.forEach(inputValue => {
 
+        console.log(inputValue)
         if( !(isValidWord(inputValue.theWord)) ){
 
             answer = false;

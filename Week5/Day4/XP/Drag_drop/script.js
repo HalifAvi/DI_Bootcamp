@@ -103,8 +103,8 @@ square3.addEventListener('drop', dragDrop); // When we drop on him other rectang
 
 // Make the background with blue border also an element we can drop into
 // So now we can grab the little boxes from him to the pink one and the opposite
-let box = document.getElementById("box");
-box.addEventListener('dragover', allowDrop); // can also called as : 'when over' 
-box.addEventListener('dragenter', allowEnter);
-box.addEventListener('dragleave', allowLeave); 
-box.addEventListener('drop', dragDrop); // When we drop on him other rectangle
+// let box = document.getElementById("box");
+// box.addEventListener('dragover', allowDrop); // can also called as : 'when over' 
+// box.addEventListener('dragenter', allowEnter);
+// box.addEventListener('dragleave', allowLeave); 
+// box.addEventListener('drop', dragDrop); // When we drop on him other rectangle
