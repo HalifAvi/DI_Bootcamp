@@ -159,8 +159,8 @@ details.forEach( (element, idx, details) => {
 console.log(details);
 
 // Display your current bankAccount standing at the end of the month.
-const reducer = (accumulator, curr) => accumulator + curr;
-console.log(bankAmount + details.reduce(reducer));
+console.log(bankAmount + details.reduce((accumulator, curr) => accumulator + curr), 0);
+
 
 
 
