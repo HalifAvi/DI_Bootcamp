@@ -30,6 +30,7 @@ let convertKgToGrams2 = function(weightInKg) {
 
 // Write in a one line comment, the difference between function declaration and function expression.
 // function declaration is a named function and the function expression is an anonymous function (no named function) 
+// A function expression can be used as an IIFE (Immediately Invoked Function Expression) which runs as soon as it is defined
 
 
 
@@ -45,8 +46,8 @@ console.log(convertKgToGrams3(1));
 // and married to <partner's name> with <number of children> kids."
 (function (numOfChildren, partnerName, geographicLocation, jobTitle) {
 
-    // let mainSection = document.querySelector('#mainSection');
-    // mainSection.innerHTML = `You will be a ${jobTitle} in ${geographicLocation}, and married to ${partnerName} with ${numOfChildren} kids.`;
+    let whereToWrite = document.querySelector('#col2');
+    whereToWrite.innerHTML = `You will be a ${jobTitle} in ${geographicLocation}, and married to ${partnerName} with ${numOfChildren} kids.`;
     
   }(5, "Ran", "Tel-Aviv", "Programmer"));
 
@@ -71,7 +72,7 @@ console.log(convertKgToGrams3(1));
     div.appendChild(img);
     
 
-    let whereToAppend = document.querySelector('#col2');
+    let whereToAppend = document.querySelector('#col3');
     whereToAppend.appendChild(div);
 
   }("Avi"));
@@ -95,7 +96,7 @@ console.log(convertKgToGrams3(1));
 
     function addIngredients ( firstIngredient, secondIngredient, thirdIngredient ) {
 
-        let txtNode2 = document.createTextNode(`The client wants a ${beverageSize} juice, containing ${firstIngredient}, ${secondIngredient}, ${thirdIngredient}`)
+        let txtNode2 = document.createTextNode(`\nThe client wants a ${beverageSize} juice, containing ${firstIngredient}, ${secondIngredient}, ${thirdIngredient}`)
         let whereToAppend = document.querySelector('#col2');
         whereToAppend.appendChild(txtNode2);
 
@@ -110,7 +111,7 @@ console.log(convertKgToGrams3(1));
 
         function displayJuice () {
 
-            let sentence = `    The client wants a ${beverageSize} juice, containing  `;
+            let sentence = `\nThe client wants a ${beverageSize} juice, containing  `;
             ingredients.forEach( element => sentence += `${element}, `)
 
             let txtNode3 = document.createTextNode(sentence);
