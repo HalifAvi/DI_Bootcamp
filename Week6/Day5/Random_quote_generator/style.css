@@ -1,0 +1,61 @@
+
+section{
+
+    background-color: burlywood;
+    padding: 50px;
+    width: 40vw;
+
+}
+
+#innerArea{
+
+    background-color: wheat;
+    font-size: 50px;
+    width: 40vw;
+    height: 70vh;
+    position: relative;
+}
+
+button{
+
+    color: white;
+    background-color: turquoise;
+    border: 5px solid lightskyblue;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    border-color: transparent #ddd #999 transparent;
+    background-clip: padding-box; 
+}
+
+#quoteArea{
+
+    position: absolute;
+    top: 210px;
+    left: 200px;
+    right: 50px;
+    font-family: 'Comforter', cursive; 
+    font-size: 50px;
+}
+
+span{
+
+    position: absolute;
+    left: 30px;
+    font-size: 400px;
+    font-family: 'Oswald', sans-serif;
+}
+
+#authorArea{
+
+     font-size: 40px;
+     color: turquoise;
+     font-weight: bold;
+     text-align: right;
+     font-family: 'Oswald', sans-serif;
+}
+
