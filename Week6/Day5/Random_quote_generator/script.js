@@ -2,7 +2,7 @@
 let idQuote = 0;
 
 let currentQuote;
-
+let clickedLike = true;
 let randomQuoteID;
 let prevQuoteID = randomQuoteID;
 let fstBttTxtContent = document.querySelector('button#numOfCharsWithSpaceBtt').innerHTML;
@@ -16,24 +16,29 @@ const quotesArr = [
     {
         id: idQuote++,
         author: "Dan-Emmanuel Azoulay",
-        quote: "All roads lead to Rome."
+        quote: "All roads lead to Rome.",
+        likes: 3
     },
 
     {
         id: idQuote++,
         author: "Walt Disney",
-        quote: "The way to get started is to quit talking and begin doing."
+        quote: "The way to get started is to quit talking and begin doing.",
+        likes: 0
     },
 
     {
         id: idQuote++,
         author: "John Lennon",
-        quote: "Life is what happens when you're busy making other plans."
+        quote: "Life is what happens when you're busy making other plans.",
+        likes: 10
     }
 ]
 
 
 let changeQuote = () => {
+
+    clickedLike = true;
 
     while(prevQuoteID === randomQuoteID){
 
@@ -49,16 +54,30 @@ let changeQuote = () => {
     let txtQuoteNode = document.createTextNode(currentQuote);
     let txtAuthorNode = document.createTextNode(currentAuthor);
 
-   
+    let likeIcon = document.querySelector('ion-icon');
+    likeIcon.style.display = "block";
+    likeIcon.style.color = "black";
+
+
+    // let likeLabel = document.querySelector('#likeLabel');
+
+    // // console.log(likeLabel)
+    // likeLabel.style.display = "block";
+
+
+    
+    
+
     quoteArea = document.querySelector('#quoteArea');
     authorArea = document.querySelector('#authorArea');
 
     quoteArea.textContent = "";
     authorArea.textContent = "";
 
-    quoteArea.appendChild(txtQuoteNode);
+    authorArea.appendChild(likeIcon);
     authorArea.appendChild(txtAuthorNode);
-
+    quoteArea.appendChild(txtQuoteNode);
+    
     quoteArea.appendChild(authorArea);
 }
 
@@ -75,7 +94,8 @@ let addQuote = e => {
 
             id: idQuote++,
             author: authorInput.value,
-            quote: quoteInput.value
+            quote: quoteInput.value,
+            like: 0
         })
         alert("ADDED NEW QUOTE SUCCESSFULLY");
     }
@@ -123,6 +143,22 @@ let howManyWords = e => {
     e.preventDefault();
 }
 
+let likeQuote = e => {
+
+    if(clickedLike){
+
+        clickedLike = false;
+        e.target.style.color = "red";
+        quotesArr[randomQuoteID].likes++;
+    }
+    else{
+
+        clickedLike = true;
+        e.target.style.color = "black";
+        quotesArr[randomQuoteID].likes--;
+    }
+}
+
 
 
 
@@ -146,6 +182,12 @@ numOfCharsNoSpaceBtt.addEventListener('click', howManyCharsNoSpaces);
 
 let numOfWordsBtt = document.querySelector("button#numOfWordsBtt");
 numOfWordsBtt.addEventListener('click', howManyWords);
+
+let likeIcon = document.querySelector("ion-icon");
+likeIcon.addEventListener('click', likeQuote);
+
+
+
 
 
 

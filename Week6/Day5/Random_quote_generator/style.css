@@ -69,3 +69,26 @@ span{
     background-clip: padding-box; 
 }
 
+#heartIcon{
+
+    position: absolute;
+    bottom: 200px;
+    left: 10px;
+}
+
+ion-icon{
+
+    color: black;
+    margin-right: 50px;
+    display: none;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.badge{
+
+    font-size: 100px;
+}
+
+
