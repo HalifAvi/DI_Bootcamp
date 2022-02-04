@@ -5,11 +5,13 @@ let currentQuote;
 let clickedLike = true;
 let randomQuoteID;
 let prevQuoteID = randomQuoteID;
-let fstBttTxtContent = document.querySelector('button#numOfCharsWithSpaceBtt').innerHTML;
-let scdBttTxtContent = document.querySelector('button#numOfCharsNoSpaceBtt').innerHTML;
-let trdBttTxtContent = document.querySelector('button#numOfWordsBtt').innerHTML;
+let fstBttTxtContent = "HOW MANY CHARECTERS WITH SPACES"; 
+let scdBttTxtContent = "HOW MANY CHARECTERS NO SPACES"; 
+let trdBttTxtContent = "HOW MANY WORDS"; 
 let howCharsWithSpaces;
 let howCharsNoSpaces;
+
+
 
 const quotesArr = [
 
@@ -38,6 +40,8 @@ const quotesArr = [
 
 let changeQuote = () => {
 
+    resetBtts();
+
     clickedLike = true;
 
     while(prevQuoteID === randomQuoteID){
@@ -58,16 +62,14 @@ let changeQuote = () => {
     likeIcon.style.display = "block";
     likeIcon.style.color = "black";
 
+    let badge = document.createElement('span');
+    badge.classList.add('badge');   
 
-    // let likeLabel = document.querySelector('#likeLabel');
-
-    // // console.log(likeLabel)
-    // likeLabel.style.display = "block";
-
-
+    ///////////////////////////////////
+    console.log(quotesArr[randomQuoteID])
+    let txtBadge = document.createTextNode(quotesArr[randomQuoteID].likes);
+    badge.appendChild(txtBadge);    
     
-    
-
     quoteArea = document.querySelector('#quoteArea');
     authorArea = document.querySelector('#authorArea');
 
@@ -75,6 +77,7 @@ let changeQuote = () => {
     authorArea.textContent = "";
 
     authorArea.appendChild(likeIcon);
+    authorArea.appendChild(badge);
     authorArea.appendChild(txtAuthorNode);
     quoteArea.appendChild(txtQuoteNode);
     
@@ -95,7 +98,7 @@ let addQuote = e => {
             id: idQuote++,
             author: authorInput.value,
             quote: quoteInput.value,
-            like: 0
+            likes: 0
         })
         alert("ADDED NEW QUOTE SUCCESSFULLY");
     }
@@ -108,6 +111,21 @@ let addQuote = e => {
     authorInput.value = "";
 
     e.preventDefault()
+}
+
+let resetBtts = () => {
+
+    let fstBtt = document.querySelector('button#numOfCharsWithSpaceBtt');
+    let scdBtt = document.querySelector('button#numOfCharsNoSpaceBtt');
+    let trdBtt = document.querySelector('button#numOfWordsBtt');
+
+    fstBtt.textContent = fstBttTxtContent;
+    scdBtt.textContent = scdBttTxtContent;
+    trdBtt.textContent = trdBttTxtContent;
+
+    fstBtt.style.color = "black";
+    scdBtt.style.color = "black";
+    trdBtt.style.color = "black";
 }
 
 let howManyCharsWithSpaces = e => {
@@ -145,21 +163,27 @@ let howManyWords = e => {
 
 let likeQuote = e => {
 
+    let badge;
+
     if(clickedLike){
 
         clickedLike = false;
         e.target.style.color = "red";
         quotesArr[randomQuoteID].likes++;
+        badge = document.querySelector('.badge');
+        badge.textContent = "";
+        badge.textContent = quotesArr[randomQuoteID].likes;
     }
     else{
 
         clickedLike = true;
         e.target.style.color = "black";
         quotesArr[randomQuoteID].likes--;
+        badge = document.querySelector('.badge');
+        badge.textContent = "";
+        badge.textContent = quotesArr[randomQuoteID].likes;
     }
 }
-
-
 
 
 

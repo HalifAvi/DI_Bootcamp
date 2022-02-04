@@ -42,7 +42,7 @@ section{
     white-space: pre-wrap; /*Display str with white spaces*/
 }
 
-span{
+#quoteMark{
 
     position: absolute;
     left: 30px;
@@ -52,6 +52,7 @@ span{
 
 #authorArea{
 
+    position: relative;
      font-size: 40px;
      color: turquoise;
      font-weight: bold;
@@ -69,16 +70,11 @@ span{
     background-clip: padding-box; 
 }
 
-#heartIcon{
-
-    position: absolute;
-    bottom: 200px;
-    left: 10px;
-}
-
 ion-icon{
 
     color: black;
+    width: 60px;
+    height: 60px;
     margin-right: 50px;
     display: none;
     position: absolute;
@@ -89,6 +85,11 @@ ion-icon{
 .badge{
 
     font-size: 100px;
+    position: absolute;
+    bottom: 15px;
+    left: 14px;
+    font-size: 15px;
+    color: black;
 }
 
 
