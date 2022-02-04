@@ -5,6 +5,11 @@ let currentQuote;
 
 let randomQuoteID;
 let prevQuoteID = randomQuoteID;
+let fstBttTxtContent = document.querySelector('button#numOfCharsWithSpaceBtt').innerHTML;
+let scdBttTxtContent = document.querySelector('button#numOfCharsNoSpaceBtt').innerHTML;
+let trdBttTxtContent = document.querySelector('button#numOfWordsBtt').innerHTML;
+let howCharsWithSpaces;
+let howCharsNoSpaces;
 
 const quotesArr = [
 
@@ -44,6 +49,7 @@ let changeQuote = () => {
     let txtQuoteNode = document.createTextNode(currentQuote);
     let txtAuthorNode = document.createTextNode(currentAuthor);
 
+   
     quoteArea = document.querySelector('#quoteArea');
     authorArea = document.querySelector('#authorArea');
 
@@ -52,12 +58,11 @@ let changeQuote = () => {
 
     quoteArea.appendChild(txtQuoteNode);
     authorArea.appendChild(txtAuthorNode);
+
     quoteArea.appendChild(authorArea);
 }
 
 let isNotEmpty = testStr => testStr !== "";
-
-
 
 let addQuote = e => {
 
@@ -85,6 +90,43 @@ let addQuote = e => {
     e.preventDefault()
 }
 
+let howManyCharsWithSpaces = e => {
+
+    e.target.textContent = "";
+    howCharsWithSpaces = currentQuote.length;
+    
+    e.target.textContent = `${fstBttTxtContent} : ${howCharsWithSpaces}`;
+    e.target.style.color = "red";
+
+    e.preventDefault();
+}
+
+let howManyCharsNoSpaces = e => {
+
+    e.target.textContent = "";
+    howCharsNoSpaces = currentQuote.length - (currentQuote.split(" ").length-1);
+
+    e.target.textContent = `${scdBttTxtContent} : ${howCharsNoSpaces}`;
+    e.target.style.color = "green";
+
+    e.preventDefault();
+}
+
+let howManyWords = e => {
+
+    e.target.textContent = "";
+    let howWords = currentQuote.match(/(\w+)/g).length;
+
+    e.target.textContent = `${trdBttTxtContent} : ${howWords}`;
+    e.target.style.color = "blue";
+
+    e.preventDefault();
+}
+
+
+
+
+
 
 
 
@@ -95,6 +137,21 @@ generateBtt.addEventListener('click', changeQuote);
 
 let addQuoteBtt = document.querySelector("button#addQuoteBtt");
 addQuoteBtt.addEventListener('click', addQuote);
+
+let numOfCharsWithSpaceBtt = document.querySelector("button#numOfCharsWithSpaceBtt");
+numOfCharsWithSpaceBtt.addEventListener('click', howManyCharsWithSpaces);
+
+let numOfCharsNoSpaceBtt = document.querySelector("button#numOfCharsNoSpaceBtt");
+numOfCharsNoSpaceBtt.addEventListener('click', howManyCharsNoSpaces);
+
+let numOfWordsBtt = document.querySelector("button#numOfWordsBtt");
+numOfWordsBtt.addEventListener('click', howManyWords);
+
+
+
+
+
+
 
 
 

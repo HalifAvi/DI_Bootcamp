@@ -29,7 +29,6 @@ section{
     top: 50px;
     left: 180px;
     border-color: transparent #ddd #999 transparent;
-    background-clip: padding-box; 
 }
 
 #quoteArea{
@@ -40,6 +39,7 @@ section{
     right: 50px;
     font-family: 'Comforter', cursive; 
     font-size: 50px;
+    white-space: pre-wrap; /*Display str with white spaces*/
 }
 
 span{
@@ -57,6 +57,7 @@ span{
      font-weight: bold;
      text-align: right;
      font-family: 'Oswald', sans-serif;
+     white-space: pre-wrap; /*Display str with white spaces*/
 }
 
 #addQuoteBtt{
