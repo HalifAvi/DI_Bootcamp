@@ -3,7 +3,7 @@ section{
 
     background-color: burlywood;
     padding: 50px;
-    width: 40vw;
+    width: 50vw;
 
 }
 
@@ -12,11 +12,11 @@ section{
     background-color: wheat;
     font-size: 50px;
     width: 40vw;
-    height: 70vh;
+    height: 75vh;
     position: relative;
 }
 
-button{
+#generateQuoteBtt{
 
     color: white;
     background-color: turquoise;
@@ -57,5 +57,14 @@ span{
      font-weight: bold;
      text-align: right;
      font-family: 'Oswald', sans-serif;
+}
+
+#addQuoteBtt{
+
+    color: white;
+    background-color: turquoise;
+    border: 5px solid lightskyblue;
+    border-color: transparent #ddd #999 transparent;
+    background-clip: padding-box; 
 }
 

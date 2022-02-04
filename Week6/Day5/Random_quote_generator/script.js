@@ -47,8 +47,6 @@ let changeQuote = () => {
     quoteArea = document.querySelector('#quoteArea');
     authorArea = document.querySelector('#authorArea');
 
-    console.log(authorArea)
-
     quoteArea.textContent = "";
     authorArea.textContent = "";
 
@@ -57,12 +55,46 @@ let changeQuote = () => {
     quoteArea.appendChild(authorArea);
 }
 
+let isNotEmpty = testStr => testStr !== "";
 
-let generateBtt = document.querySelector("#generateQuote");
+
+
+let addQuote = e => {
+
+    let quoteInput = document.querySelector("#quote");
+    let authorInput = document.querySelector("#author");
+
+    if( isNotEmpty( quoteInput.value ) && isNotEmpty( authorInput.value )){
+
+        quotesArr.push( {
+
+            id: idQuote++,
+            author: authorInput.value,
+            quote: quoteInput.value
+        })
+        alert("ADDED NEW QUOTE SUCCESSFULLY");
+    }
+    else{
+
+        alert("PLEASE INSERT QUOTE AND AUTHOR");
+    }
+
+    quoteInput.value = "";
+    authorInput.value = "";
+
+    e.preventDefault()
+}
+
+
+
+
+
+
+let generateBtt = document.querySelector("button#generateQuoteBtt");
 generateBtt.addEventListener('click', changeQuote);
 
-
-
+let addQuoteBtt = document.querySelector("button#addQuoteBtt");
+addQuoteBtt.addEventListener('click', addQuote);
 
 
 
