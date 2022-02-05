@@ -57,6 +57,10 @@ const quotesArr = [
 ]
 
 
+
+/****************************FUNCTION DEFINITIONS*****************************************/
+
+
 let changeQuote = () => {
 
     resetBtts();
