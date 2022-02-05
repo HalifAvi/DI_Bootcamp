@@ -1,4 +1,24 @@
 
+
+#searchAuthorForm{
+
+    margin-top: 50px;
+    padding: 20px;
+    background-color: coral;
+    color: antiquewhite;
+}
+
+.centerTxt{
+
+    text-align: center;
+}
+
+h1{
+
+    font-size: 100px;
+    font-family: 'Comforter', cursive; 
+}
+
 section{
 
     background-color: burlywood;
@@ -89,6 +109,14 @@ ion-icon{
     bottom: 15px;
     left: 14px;
     font-size: 15px;
+    color: black;
+}
+
+.quoteToDisplayStyle{
+
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
     color: black;
 }
 

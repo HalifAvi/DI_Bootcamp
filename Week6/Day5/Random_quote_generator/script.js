@@ -1,6 +1,5 @@
 
 let idQuote = 0;
-
 let currentQuote;
 let clickedLike = true;
 let randomQuoteID;
@@ -10,6 +9,20 @@ let scdBttTxtContent = "HOW MANY CHARECTERS NO SPACES";
 let trdBttTxtContent = "HOW MANY WORDS"; 
 let howCharsWithSpaces;
 let howCharsNoSpaces;
+let inputChanged = true;
+let allAuthorQuotesArr = [];
+let currentQupteDisplayedIndex = 0;
+
+let writeBeforeThis = document.querySelector('h3');
+
+let whereToWrite = document.createElement('p');
+whereToWrite.classList.add('quoteToDisplayStyle');
+let parent = document.querySelector('#searchAuthorForm');
+let searchAuthorInput = document.querySelector("#authorNameToSearch");
+let prevQuoteBtt = document.querySelector("#prevQuoteBtt");
+let nextQuoteBtt = document.querySelector("#nextQuoteBtt");
+let authorNameInput = document.querySelector('#authorNameToSearch');
+
 
 
 
@@ -65,7 +78,6 @@ let changeQuote = () => {
     let badge = document.createElement('span');
     badge.classList.add('badge');   
 
-    ///////////////////////////////////
     console.log(quotesArr[randomQuoteID])
     let txtBadge = document.createTextNode(quotesArr[randomQuoteID].likes);
     badge.appendChild(txtBadge);    
@@ -185,9 +197,79 @@ let likeQuote = e => {
     }
 }
 
+let searchQuotes = e => {
 
+    allAuthorQuotesArr =  quotesArr.filter( quoteObj => quoteObj.author.toLowerCase() === authorNameInput.value.toLowerCase() );
 
+    if(inputChanged){
 
+        if(allAuthorQuotesArr.length !== 0){
+
+            whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
+            whereToWrite.style.fontFamily = "Comforter, cursive";
+            whereToWrite.style.color = "black";
+            inputChanged = false;
+
+            if(allAuthorQuotesArr.length > 1){
+
+                document.querySelector('#nextQuoteBtt').style.color = "white";
+            }
+        }
+        else{
+    
+            whereToWrite.textContent = `NO RESULTS WITH "${authorNameInput.value}" AUTHOR NAME !!!`;
+            whereToWrite.style.fontFamily = "cursive";
+            whereToWrite.style.color = "red";
+            inputChanged = false;
+        }
+
+        parent.insertBefore(whereToWrite, writeBeforeThis);
+    }
+
+    e.preventDefault();
+}
+
+let enableSearchBtt = () => {
+
+    document.querySelector('#searchAuthorBtt').style.color = "white";
+    inputChanged = true;
+}
+
+let changeToNextQuote = e => {
+
+    if(currentQupteDisplayedIndex < allAuthorQuotesArr.length-1){
+
+        currentQupteDisplayedIndex++;
+        whereToWrite.textContent = "";
+        whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
+        nextQuoteBtt.style.color = "white";
+    }
+    else{
+
+        nextQuoteBtt.style.color = "black";
+        prevQuoteBtt.style.color = "white";
+    }
+
+    e.preventDefault();
+}
+
+let changeToPrevQuote = e => {
+
+    if(currentQupteDisplayedIndex > 0){
+
+        currentQupteDisplayedIndex--;
+        whereToWrite.textContent = "";
+        whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
+        prevQuoteBtt.style.color = "white";
+    }
+    else{
+
+        prevQuoteBtt.style.color = "black";
+        nextQuoteBtt.style.color = "white";
+    }
+
+    e.preventDefault();
+}
 
 
 
@@ -210,9 +292,12 @@ numOfWordsBtt.addEventListener('click', howManyWords);
 let likeIcon = document.querySelector("ion-icon");
 likeIcon.addEventListener('click', likeQuote);
 
+let searchAuthorBtt = document.querySelector("#searchAuthorBtt");
+searchAuthorBtt.addEventListener('click', searchQuotes);
 
-
-
+searchAuthorInput.addEventListener('input', enableSearchBtt);
+prevQuoteBtt.addEventListener('click', changeToPrevQuote);
+nextQuoteBtt.addEventListener('click', changeToNextQuote); 
 
 
 
