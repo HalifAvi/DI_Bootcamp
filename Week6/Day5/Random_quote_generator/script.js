@@ -1,4 +1,6 @@
 
+
+/****************************GLOBAL VARIABLES*****************************************/
 let idQuote = 0;
 let currentQuote;
 let clickedLike = true;
@@ -12,20 +14,24 @@ let howCharsNoSpaces;
 let inputChanged = true;
 let allAuthorQuotesArr = [];
 let currentQupteDisplayedIndex = 0;
-
 let writeBeforeThis = document.querySelector('h3');
-
-let whereToWrite = document.createElement('p');
-whereToWrite.classList.add('quoteToDisplayStyle');
 let parent = document.querySelector('#searchAuthorForm');
-let searchAuthorInput = document.querySelector("#authorNameToSearch");
 let prevQuoteBtt = document.querySelector("#prevQuoteBtt");
 let nextQuoteBtt = document.querySelector("#nextQuoteBtt");
 let authorNameInput = document.querySelector('#authorNameToSearch');
+let generateBtt = document.querySelector("button#generateQuoteBtt");
+let addQuoteBtt = document.querySelector("button#addQuoteBtt");
+let numOfCharsWithSpaceBtt = document.querySelector("button#numOfCharsWithSpaceBtt");
+let numOfCharsNoSpaceBtt = document.querySelector("button#numOfCharsNoSpaceBtt");
+let numOfWordsBtt = document.querySelector("button#numOfWordsBtt");
+let likeIcon = document.querySelector("ion-icon");
+let searchAuthorBtt = document.querySelector("#searchAuthorBtt");
+let whereToWrite = document.createElement('p');
+    whereToWrite.classList.add('quoteToDisplayStyle');
 
 
 
-
+/****************************QUOTES ARRAY DEFINITION*****************************************/
 const quotesArr = [
 
     {
@@ -71,7 +77,6 @@ let changeQuote = () => {
     let txtQuoteNode = document.createTextNode(currentQuote);
     let txtAuthorNode = document.createTextNode(currentAuthor);
 
-    let likeIcon = document.querySelector('ion-icon');
     likeIcon.style.display = "block";
     likeIcon.style.color = "black";
 
@@ -113,10 +118,16 @@ let addQuote = e => {
             likes: 0
         })
         alert("ADDED NEW QUOTE SUCCESSFULLY");
+
+        prevQuoteBtt.style.color = "black";
+        nextQuoteBtt.style.color = "black";
+        searchAuthorBtt.style.color = "black";
+        authorNameInput.value = "";
+        whereToWrite.textContent = "";
     }
     else{
 
-        alert("PLEASE INSERT QUOTE AND AUTHOR");
+        alert("PLEASE INSERT QUOTE AND AUTHOR NAME");
     }
 
     quoteInput.value = "";
@@ -127,17 +138,13 @@ let addQuote = e => {
 
 let resetBtts = () => {
 
-    let fstBtt = document.querySelector('button#numOfCharsWithSpaceBtt');
-    let scdBtt = document.querySelector('button#numOfCharsNoSpaceBtt');
-    let trdBtt = document.querySelector('button#numOfWordsBtt');
+    numOfCharsWithSpaceBtt.textContent = fstBttTxtContent;
+    numOfCharsNoSpaceBtt.textContent = scdBttTxtContent;
+    numOfWordsBtt.textContent = trdBttTxtContent;
 
-    fstBtt.textContent = fstBttTxtContent;
-    scdBtt.textContent = scdBttTxtContent;
-    trdBtt.textContent = trdBttTxtContent;
-
-    fstBtt.style.color = "black";
-    scdBtt.style.color = "black";
-    trdBtt.style.color = "black";
+    numOfCharsWithSpaceBtt.style.color = "black";
+    numOfCharsNoSpaceBtt.style.color = "black";
+    numOfWordsBtt.style.color = "black";
 }
 
 let howManyCharsWithSpaces = e => {
@@ -212,7 +219,7 @@ let searchQuotes = e => {
 
             if(allAuthorQuotesArr.length > 1){
 
-                document.querySelector('#nextQuoteBtt').style.color = "white";
+                nextQuoteBtt.style.color = "white";
             }
         }
         else{
@@ -221,6 +228,8 @@ let searchQuotes = e => {
             whereToWrite.style.fontFamily = "cursive";
             whereToWrite.style.color = "red";
             inputChanged = false;
+            prevQuoteBtt.style.color = "black";
+            nextQuoteBtt.style.color = "black";
         }
 
         parent.insertBefore(whereToWrite, writeBeforeThis);
@@ -231,23 +240,32 @@ let searchQuotes = e => {
 
 let enableSearchBtt = () => {
 
-    document.querySelector('#searchAuthorBtt').style.color = "white";
+    searchAuthorBtt.style.color = "white";
     inputChanged = true;
 }
 
 let changeToNextQuote = e => {
 
-    if(currentQupteDisplayedIndex < allAuthorQuotesArr.length-1){
+    if(allAuthorQuotesArr.length <= 1){
+
+        prevQuoteBtt.style.color = "black";
+        nextQuoteBtt.style.color = "black";
+    }
+    else if(currentQupteDisplayedIndex < allAuthorQuotesArr.length-1){
 
         currentQupteDisplayedIndex++;
         whereToWrite.textContent = "";
         whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
-        nextQuoteBtt.style.color = "white";
-    }
-    else{
+        
+        if(currentQupteDisplayedIndex !== allAuthorQuotesArr.length-1){
 
-        nextQuoteBtt.style.color = "black";
-        prevQuoteBtt.style.color = "white";
+            nextQuoteBtt.style.color = "white";
+        }
+        else{
+
+            nextQuoteBtt.style.color = "black";
+            prevQuoteBtt.style.color = "white";
+        }
     }
 
     e.preventDefault();
@@ -255,47 +273,42 @@ let changeToNextQuote = e => {
 
 let changeToPrevQuote = e => {
 
-    if(currentQupteDisplayedIndex > 0){
+    if(allAuthorQuotesArr.length <= 1){
+
+        prevQuoteBtt.style.color = "black";
+        nextQuoteBtt.style.color = "black";
+    }
+    else if(currentQupteDisplayedIndex > 0){
 
         currentQupteDisplayedIndex--;
         whereToWrite.textContent = "";
         whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
-        prevQuoteBtt.style.color = "white";
-    }
-    else{
 
-        prevQuoteBtt.style.color = "black";
-        nextQuoteBtt.style.color = "white";
+        if(currentQupteDisplayedIndex !== 0){
+
+            prevQuoteBtt.style.color = "white";
+        }
+        else{
+
+            prevQuoteBtt.style.color = "black";
+            nextQuoteBtt.style.color = "white";
+        }
     }
 
     e.preventDefault();
 }
 
 
+/****************************ADDING EVEVNTS TO ELEMENTS*****************************************/
 
-
-let generateBtt = document.querySelector("button#generateQuoteBtt");
 generateBtt.addEventListener('click', changeQuote);
-
-let addQuoteBtt = document.querySelector("button#addQuoteBtt");
 addQuoteBtt.addEventListener('click', addQuote);
-
-let numOfCharsWithSpaceBtt = document.querySelector("button#numOfCharsWithSpaceBtt");
 numOfCharsWithSpaceBtt.addEventListener('click', howManyCharsWithSpaces);
-
-let numOfCharsNoSpaceBtt = document.querySelector("button#numOfCharsNoSpaceBtt");
 numOfCharsNoSpaceBtt.addEventListener('click', howManyCharsNoSpaces);
-
-let numOfWordsBtt = document.querySelector("button#numOfWordsBtt");
 numOfWordsBtt.addEventListener('click', howManyWords);
-
-let likeIcon = document.querySelector("ion-icon");
 likeIcon.addEventListener('click', likeQuote);
-
-let searchAuthorBtt = document.querySelector("#searchAuthorBtt");
 searchAuthorBtt.addEventListener('click', searchQuotes);
-
-searchAuthorInput.addEventListener('input', enableSearchBtt);
+authorNameInput.addEventListener('input', enableSearchBtt);
 prevQuoteBtt.addEventListener('click', changeToPrevQuote);
 nextQuoteBtt.addEventListener('click', changeToNextQuote); 
 
