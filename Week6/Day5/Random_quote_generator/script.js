@@ -305,7 +305,13 @@ let changeToNextQuote = e => {
         currentQupteDisplayedIndex++;
         displayAnotherFilteredQuote();
 
-        currentQupteDisplayedIndex !== allAuthorQuotesArr.length-1 ? nextQuoteBtt.style.color = "white" : changeBttColorToContinuePrev();
+        currentQupteDisplayedIndex !== allAuthorQuotesArr.length-1 ?
+        
+        nextQuoteBtt.style.color = "white" 
+        
+        :
+        
+        changeBttColorToContinuePrev();
     }
 
     e.preventDefault();
@@ -322,7 +328,13 @@ let changeToPrevQuote = e => {
         currentQupteDisplayedIndex--;
         displayAnotherFilteredQuote();
 
-        currentQupteDisplayedIndex !== 0 ? prevQuoteBtt.style.color = "white" : changeBttColorToContinueNext();
+        currentQupteDisplayedIndex !== 0 ? 
+        
+        prevQuoteBtt.style.color = "white" 
+        
+        : 
+        
+        changeBttColorToContinueNext();
     }
 
     e.preventDefault();
