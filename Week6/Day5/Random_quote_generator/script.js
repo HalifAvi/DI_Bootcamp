@@ -61,11 +61,21 @@ const quotesArr = [
 /****************************FUNCTION DEFINITIONS*****************************************/
 
 
-let changeQuote = () => {
+let changeDisplayedQuote = () => {
 
     resetBtts();
 
+    displayQuote();
+}
+
+let displayQuote = () => {
+
     clickedLike = true;
+
+    randomQuote();
+}
+
+let randomQuote = () => {
 
     while(prevQuoteID === randomQuoteID){
 
@@ -78,8 +88,28 @@ let changeQuote = () => {
 
     prevQuoteID = randomQuoteID;
 
+    createNewQuoteElementToDisplay();
+}
+
+let createNewQuoteElementToDisplay = () => {
+
     let txtQuoteNode = document.createTextNode(currentQuote);
     let txtAuthorNode = document.createTextNode(currentAuthor);
+
+    quoteArea = document.querySelector('#quoteArea');
+    authorArea = document.querySelector('#authorArea');
+
+    quoteArea.textContent = "";
+    authorArea.textContent = "";
+
+    displayLikeIcon();
+
+    authorArea.appendChild(txtAuthorNode);
+    quoteArea.appendChild(txtQuoteNode);
+    quoteArea.appendChild(authorArea);
+}
+
+let displayLikeIcon = () => {
 
     likeIcon.style.display = "block";
     likeIcon.style.color = "black";
@@ -87,22 +117,11 @@ let changeQuote = () => {
     let badge = document.createElement('span');
     badge.classList.add('badge');   
 
-    console.log(quotesArr[randomQuoteID])
     let txtBadge = document.createTextNode(quotesArr[randomQuoteID].likes);
     badge.appendChild(txtBadge);    
     
-    quoteArea = document.querySelector('#quoteArea');
-    authorArea = document.querySelector('#authorArea');
-
-    quoteArea.textContent = "";
-    authorArea.textContent = "";
-
-    authorArea.appendChild(likeIcon);
     authorArea.appendChild(badge);
-    authorArea.appendChild(txtAuthorNode);
-    quoteArea.appendChild(txtQuoteNode);
-    
-    quoteArea.appendChild(authorArea);
+    authorArea.appendChild(likeIcon);
 }
 
 let isNotEmpty = testStr => testStr !== "";
@@ -110,34 +129,50 @@ let isNotEmpty = testStr => testStr !== "";
 let addQuote = e => {
 
     let quoteInput = document.querySelector("#quote");
-    let authorInput = document.querySelector("#author");
+    let authorInput = document.querySelector("#author");    
 
     if( isNotEmpty( quoteInput.value ) && isNotEmpty( authorInput.value )){
 
-        quotesArr.push( {
+        addNewQuoteToArray(quoteInput, authorInput); 
 
-            id: idQuote++,
-            author: authorInput.value,
-            quote: quoteInput.value,
-            likes: 0
-        })
         alert("ADDED NEW QUOTE SUCCESSFULLY");
 
-        prevQuoteBtt.style.color = "black";
-        nextQuoteBtt.style.color = "black";
-        searchAuthorBtt.style.color = "black";
-        authorNameInput.value = "";
-        whereToWrite.textContent = "";
+        resetInputFieldsDisplayAndBttsPart2();
     }
     else{
 
         alert("PLEASE INSERT QUOTE AND AUTHOR NAME");
     }
 
-    quoteInput.value = "";
-    authorInput.value = "";
+    resetInputFieldsPart1(quoteInput, authorInput);
 
     e.preventDefault()
+}
+
+let resetInputFieldsDisplayAndBttsPart2 = () => {
+
+    prevQuoteBtt.style.color = "black";
+    nextQuoteBtt.style.color = "black";
+    searchAuthorBtt.style.color = "black";
+    authorNameInput.value = "";
+    whereToWrite.textContent = "";
+}
+
+let resetInputFieldsPart1 = (quoteInput, authorInput) => {
+
+    quoteInput.value = "";
+    authorInput.value = "";
+}
+
+let addNewQuoteToArray = (quoteInput, authorInput) => {
+
+    quotesArr.push( {
+
+        id: idQuote++,
+        author: authorInput.value,
+        quote: quoteInput.value,
+        likes: 0
+    })
 }
 
 let resetBtts = () => {
@@ -193,19 +228,24 @@ let likeQuote = e => {
         clickedLike = false;
         e.target.style.color = "red";
         quotesArr[randomQuoteID].likes++;
-        badge = document.querySelector('.badge');
-        badge.textContent = "";
-        badge.textContent = quotesArr[randomQuoteID].likes;
+
+        updateLikeIcon(badge);
     }
     else{
 
         clickedLike = true;
         e.target.style.color = "black";
         quotesArr[randomQuoteID].likes--;
-        badge = document.querySelector('.badge');
-        badge.textContent = "";
-        badge.textContent = quotesArr[randomQuoteID].likes;
+
+        updateLikeIcon(badge);
     }
+}
+
+let updateLikeIcon = (badge) => {
+
+    badge = document.querySelector('.badge');
+    badge.textContent = "";
+    badge.textContent = quotesArr[randomQuoteID].likes;
 }
 
 let searchQuotes = e => {
@@ -216,31 +256,37 @@ let searchQuotes = e => {
 
         if(allAuthorQuotesArr.length !== 0){
 
-            whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
-            whereToWrite.style.fontFamily = "Comforter, cursive";
-            whereToWrite.style.color = "black";
-            inputChanged = false;
+            changeDisplayToFirstFoundedQuote(); 
 
-            if(allAuthorQuotesArr.length > 1){
-
-                nextQuoteBtt.style.color = "white";
-            }
+            allAuthorQuotesArr.length > 1 ? nextQuoteBtt.style.color = "white" : nextQuoteBtt.style.color = "black";
         }
         else{
-    
-            whereToWrite.textContent = `NO RESULTS WITH "${authorNameInput.value}" AUTHOR NAME !!!`;
-            whereToWrite.style.fontFamily = "cursive";
-            whereToWrite.style.color = "red";
-            inputChanged = false;
-            prevQuoteBtt.style.color = "black";
-            nextQuoteBtt.style.color = "black";
+
+            changeDisplayToNoResults();  
         }
 
+        inputChanged = false;
         parent.insertBefore(whereToWrite, writeBeforeThis);
     }
 
     e.preventDefault();
 }
+
+let changeDisplayToFirstFoundedQuote = () => {
+
+    whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
+    whereToWrite.style.fontFamily = "Comforter, cursive";
+    whereToWrite.style.color = "black";
+}
+
+let changeDisplayToNoResults = () => {
+
+    whereToWrite.textContent = `NO RESULTS WITH "${authorNameInput.value}" AUTHOR NAME !!!`;
+    whereToWrite.style.fontFamily = "cursive";
+    whereToWrite.style.color = "red";
+    prevQuoteBtt.style.color = "black";
+    nextQuoteBtt.style.color = "black";
+}   
 
 let enableSearchBtt = () => {
 
@@ -252,24 +298,14 @@ let changeToNextQuote = e => {
 
     if(allAuthorQuotesArr.length <= 1){
 
-        prevQuoteBtt.style.color = "black";
-        nextQuoteBtt.style.color = "black";
+        changeBttColorIfLessThan2Quotes();
     }
     else if(currentQupteDisplayedIndex < allAuthorQuotesArr.length-1){
 
         currentQupteDisplayedIndex++;
-        whereToWrite.textContent = "";
-        whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
-        
-        if(currentQupteDisplayedIndex !== allAuthorQuotesArr.length-1){
+        displayAnotherFilteredQuote();
 
-            nextQuoteBtt.style.color = "white";
-        }
-        else{
-
-            nextQuoteBtt.style.color = "black";
-            prevQuoteBtt.style.color = "white";
-        }
+        currentQupteDisplayedIndex !== allAuthorQuotesArr.length-1 ? nextQuoteBtt.style.color = "white" : changeBttColorToContinuePrev();
     }
 
     e.preventDefault();
@@ -279,33 +315,47 @@ let changeToPrevQuote = e => {
 
     if(allAuthorQuotesArr.length <= 1){
 
-        prevQuoteBtt.style.color = "black";
-        nextQuoteBtt.style.color = "black";
+        changeBttColorIfLessThan2Quotes();
     }
     else if(currentQupteDisplayedIndex > 0){
 
         currentQupteDisplayedIndex--;
-        whereToWrite.textContent = "";
-        whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
+        displayAnotherFilteredQuote();
 
-        if(currentQupteDisplayedIndex !== 0){
-
-            prevQuoteBtt.style.color = "white";
-        }
-        else{
-
-            prevQuoteBtt.style.color = "black";
-            nextQuoteBtt.style.color = "white";
-        }
+        currentQupteDisplayedIndex !== 0 ? prevQuoteBtt.style.color = "white" : changeBttColorToContinueNext();
     }
 
     e.preventDefault();
 }
 
+let changeBttColorIfLessThan2Quotes = () => {
+
+    prevQuoteBtt.style.color = "black";
+    nextQuoteBtt.style.color = "black";
+}
+
+let displayAnotherFilteredQuote = () => {
+
+    whereToWrite.textContent = "";
+    whereToWrite.textContent = `${currentQupteDisplayedIndex+1}/${allAuthorQuotesArr.length} : "${allAuthorQuotesArr[currentQupteDisplayedIndex].quote}"`;
+}
+
+let changeBttColorToContinuePrev = () => {
+
+    nextQuoteBtt.style.color = "black";
+    prevQuoteBtt.style.color = "white";
+}
+
+let changeBttColorToContinueNext = () => {
+
+    prevQuoteBtt.style.color = "black";
+    nextQuoteBtt.style.color = "white";
+}
+
 
 /****************************ADDING EVEVNTS TO ELEMENTS*****************************************/
 
-generateBtt.addEventListener('click', changeQuote);
+generateBtt.addEventListener('click', changeDisplayedQuote);
 addQuoteBtt.addEventListener('click', addQuote);
 numOfCharsWithSpaceBtt.addEventListener('click', howManyCharsWithSpaces);
 numOfCharsNoSpaceBtt.addEventListener('click', howManyCharsNoSpaces);
@@ -315,6 +365,9 @@ searchAuthorBtt.addEventListener('click', searchQuotes);
 authorNameInput.addEventListener('input', enableSearchBtt);
 prevQuoteBtt.addEventListener('click', changeToPrevQuote);
 nextQuoteBtt.addEventListener('click', changeToNextQuote); 
+
+
+
 
 
 
