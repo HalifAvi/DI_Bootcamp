@@ -14,7 +14,12 @@ let inventory = [
   ];
 
 
-let getCarHonda = carInventory => carInventory[carInventory.findIndex( car => car.car_make === "Honda" )];
+let getCarHonda = carInventory => { 
+  
+  let hondaCar = carInventory.find( car => car.car_make === "Honda" );
+
+  return `This is a ${hondaCar.car_make} ${hondaCar.car_model} from ${hondaCar.car_year}`;
+}
         
 console.log( getCarHonda(inventory) );
 
@@ -27,7 +32,7 @@ console.log( getCarHonda(inventory) );
 
 let sortCarInventoryByYear = carInventory => {
 
-    let [...clonedArray] =  carInventory;
+    let clonedArray =  [...carInventory];
 
     return clonedArray.sort( (car1, car2) => car1.car_year - car2.car_year)
 };
