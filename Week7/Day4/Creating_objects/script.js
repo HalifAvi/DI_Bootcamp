@@ -34,12 +34,21 @@ const video2 = new Video("Game of Thrones", "Ortal", 2400);
 
 // Bonus: Use an array to store data for five Video instances (ie. title, uploader, time)
 // Think of the best data structure to save this information within the array.
-let videos = [];
+let videos = [new Video("video1", "ortal", 2400),
+              new Video("video2", "avi", 2400),
+              new Video("video3", "shlomi", 2400),
+              new Video("video4", "ran", 2400),
+              new Video("video5", "hana", 2400),
+];
 
 // Bonus: Loop through the array to instantiate those instances.
-for(let i=0; i<5; i++){
+let arrayOfVideoInstances = [
 
-    videos.push(new Video("Game of Thrones", "Ortal", 2400));
-}
+    ["video1", "ortal", 2400],
+    ["video2", "avi", 2400],
+    ["video3", "shlomi", 2400],
+    ["video4", "ran", 2400],
+    ["video5", "hana", 2400],
+].map( ([title, uploader, time]) => new Video(title, uploader, time) );
 
-console.log(videos)
+console.log(arrayOfVideoInstances);

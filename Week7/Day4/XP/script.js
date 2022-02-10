@@ -42,7 +42,7 @@ let entriesArray = Object.entries(users);
 console.log( entriesArray );
 // Modify the outcome of part 1, by multipling the user’s ID by 2.
 // Excepted output: [ [ 'user1', 36546 ], [ 'user2', 185666 ], [ 'user3', 180630 ] ]
-console.log( entriesArray.map( element => [element[0], element[1]*2] ) );
+console.log( entriesArray.map( ([a,b]) => [a, b*2]  ));
 
 // Exercise 4 : Person Class
 class Person {
@@ -117,13 +117,14 @@ class Mamal extends Animal{
 
     sound(sound){
 
-        return `${sound} I'm an ${this.type} ${this.name} with ${this.color} color`;
+        return [this.name, this.type, this.color, sound];
     }
 }
 
 // Create a cow object that accepts a name, a type and a color and calls the sound method that moo’s her name, type and color.
 let cow = new Mamal("cow", "A", "black");
 console.log( cow.sound("moooo") );
+
 
 
 
