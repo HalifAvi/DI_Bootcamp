@@ -1,23 +1,22 @@
 
 let strWithoutSpaces = str => str.replace(/\s/g, '');
 
-
 let isAnagram = (strToCheck, strToCheckWith) => {
 
-    let anagram = false;
-
-    // First - convert strings to arrays in lowerCase letters and sort them
-    let sortedLetterArrayWithoutSpacesToCheckWith = strWithoutSpaces(strToCheckWith.toLowerCase()).split("").sort();
-    let sortedLetterArrayWithoutSpacesToCheck = strWithoutSpaces(strToCheck.toLowerCase()).split("").sort();
+    // First - sort the string as an array and then convert back to string
+    let sortedLetterWithoutSpacesToCheckWith = strWithoutSpaces(strToCheckWith.toLowerCase()).split("").sort().join("");
+    let sortedLetterWithoutSpacesToCheck = strWithoutSpaces(strToCheck.toLowerCase()).split("").sort().join("");
 
     // To return true first condition is to be the same length
-    if(sortedLetterArrayWithoutSpacesToCheckWith.length !== sortedLetterArrayWithoutSpacesToCheck.length){
+    if(sortedLetterWithoutSpacesToCheckWith.length === sortedLetterWithoutSpacesToCheck.length &&
+       sortedLetterWithoutSpacesToCheck.localeCompare( sortedLetterWithoutSpacesToCheckWith ) === 0){
 
-        return anagram;
+        return true;
     }
+    else{
 
-    // To return true the second condition is to have excactlly the same amount of letters
-    return sortedLetterArrayWithoutSpacesToCheck.every( (letter, idx) => letter === sortedLetterArrayWithoutSpacesToCheckWith[idx] );
+        return false;
+    }
 }
 
 
