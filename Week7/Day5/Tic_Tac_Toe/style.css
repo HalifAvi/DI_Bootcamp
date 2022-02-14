@@ -1,0 +1,76 @@
+*{
+    
+    font-family: 'Orbitron', sans-serif;
+}
+
+html, body{
+
+    padding: 0px;
+    margin: 0px;
+}
+
+h1{
+    font-size: 100px;
+    color: aliceblue;
+}
+
+#rowBoardDisplay{
+
+    position: relative;
+}
+
+button{
+
+    background-color: aqua;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    font-size: 50px;
+    border: 3px solid blue;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+#mainGridContainer{
+
+    visibility: hidden;
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	grid-template-rows: repeat(3,1fr);
+	gap: 10px;
+	margin: 10px;
+	width: 60vh;
+	height: 60vh;
+    display : "inline-block";
+    position: absolute;
+    right: 35vw;
+    top: 10vh;
+}
+
+
+.cell{
+	text-align: center;
+    line-height: 150px;
+	font-size: 50px;
+	color: black;
+}
+
+.borderTop{
+
+    border-top: 3px solid;
+}
+
+.borderBtt{
+
+    border-bottom: 3px solid;
+}
+
+.borderRight{
+
+    border-right: 3px solid;
+}
+
+.borderLeft{
+
+    border-left: 3px solid;
+}

@@ -98,9 +98,9 @@ const robots = [
             cardDiv.style.width = "18rem";
             cardDiv.style.display = "inline-block";
             cardDiv.style.margin = "20px";
-            cardDiv.style.textAlign = "center";
+            cardDiv.style.textAlign = "center"; 
             cardDiv.style.background = "#CAA7DE";
-            cardDiv.style.padding = "20px";
+            cardDiv.style.padding = "20px"; 
 
             let cardImg = document.createElement('img');
             cardImg.classList.add('card-img-top', 'robotImg');
