@@ -14,8 +14,10 @@
 
 
     <form method="POST" name = "my_form" onsubmit="return submitData()">
-        <input type="text" placeholder="name" name="name">
-        <input type="text" placeholder="lastName" name="lastName">
+        <label name="nameLabel">Name</label><br>
+        <input type="text" placeholder="name" name="name"><br>
+        <label name="nameLabel">Comments</label><br>
+        <textarea name="comments" placeholder="Hello this is a comment" ></textarea>
         <input type="submit" value="Send">
       </form>
 
