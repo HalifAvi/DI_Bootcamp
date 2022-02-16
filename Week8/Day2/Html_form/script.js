@@ -1,27 +1,17 @@
 
-const submitData = () => {
+const submitData = e => {
 
-    let nameInput = document.forms.my_form.name.value;
-    let lastNameInput = document.forms.my_form.lastName.value;
+    e.preventDefault();
 
-    if(nameInput.length > 0 && lastNameInput.length > 0){
+    let formData = new FormData(e.target);
+    let toBeJsoned = Object.fromEntries(formData.entries());
+    let jsoned = JSON.stringify(toBeJsoned);
 
-        let details = {
-            name: nameInput,
-            lastName: lastNameInput
-          };
-
-        let jsonDetails = JSON.stringify(details);
-
-        console.log(jsonDetails);
-
-        return true;
-    }
-    else{
-
-        return false;
-    }
+    document.querySelector('div').textContent = jsoned;
 }
+
+let form = document.querySelector("form");
+form.addEventListener('submit', submitData);
 
 
  
