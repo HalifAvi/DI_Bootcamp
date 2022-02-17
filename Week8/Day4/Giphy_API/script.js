@@ -38,7 +38,7 @@ const handleSubmit = e => {
         let gif = document.createElement('img');
         
 
-        gif.src = `${xhr.response.data[0].images.preview_gif.url}`;
+        gif.src = xhr.response.data[0].images.preview_gif.url;
 
         newGifDiv.appendChild(gif);
         newGifDiv.appendChild(deleteBtt);
