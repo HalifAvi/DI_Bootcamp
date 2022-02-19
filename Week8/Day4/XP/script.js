@@ -12,8 +12,8 @@
 let xhr = new XMLHttpRequest();
 let xhr1 = new XMLHttpRequest();
 
-xhr.open("GET", "https://api.giphy.com/v1/gifs/search?q=hilarious&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My", [true]);
-xhr1.open("GET", "https://api.giphy.com/v1/gifs/search?q=sun&offset=2&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My", [true]);
+xhr.open("GET", "https://api.giphy.com/v1/gifs/search?q=hilarious&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My", true);
+xhr1.open("GET", "https://api.giphy.com/v1/gifs/search?q=sun&offset=2&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My", true);
 
 xhr.send();
 xhr1.send();
@@ -30,4 +30,81 @@ xhr1.onload = function() {
 
     console.log(xhr1.response);
 }
+
+
+
+
+
+
+
+// class Image{
+
+//     constructor({title, images : {original : {url}}}){
+
+//         this.url = url;
+//         this.title = title;
+//     }
+
+//     createHtml(){
+
+//         let image = document.createElement('img');
+//         image.src = this.url;
+//         image.title = this.title;
+//         document.body.append(image);
+//     }
+// }
+
+
+
+
+
+// let xhr = new XMLHttpRequest();
+
+// let rParams = {
+
+//     api_key : `hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My`,
+//     q : `hilarious`,
+//     rating : `g`,
+
+//     generatorParams (){
+
+//         return Object.entries(this) // Create [value,key] array from this object
+//         .filter( ([key, value]) => typeof value !== "function") // Remove the function
+//         .map( ([key, value]) => `${key}=${value}`) // Create an array of strings 
+//         .join("&") // Convert array to one big string and put '&' between the elements 
+//     }
+// }
+
+// xhr.open('GET', `https://api.giphy.com/v1/gifs/search?${rParams.generatorParams()}`);
+
+// xhr.responseType = "json";
+
+// xhr.send();
+
+
+
+// xhr.onload = function() {
+
+//     if(xhr.status != 200){
+
+
+//     }
+//     else{
+
+//         let arr = xhr.response.data;
+
+//         arr.forEach(element => {
+
+//             console.log(element);
+
+//             let currentImg = new Image(element);
+//             currentImg.createHtml();
+//         });
+//     }
+// }
+
+
+
+
+
 
