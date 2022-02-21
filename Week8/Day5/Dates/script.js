@@ -28,7 +28,7 @@ let formatDate = (dateObj) => {
     
 
 
-console.log(formatDate(new Date(2020, 6, 4, 8, 0, 0))) //➞ "20200704080000"
+console.log(formatDate(new Date(2020, 6, 4, 8, 0, 0))) // "20200704080000"
 
 console.log(formatDate(new Date(2019, 11, 31, 23, 59, 59))) // "20191231235959"
 
