@@ -36,6 +36,7 @@ const makeAllCaps = wordsArr => {
     });
 };
 
+
 //in this example, the catch method is executed
 makeAllCaps([1, "pear", "banana"])
       .then((arr) => sortWords(arr))

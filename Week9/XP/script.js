@@ -2,40 +2,26 @@
 
 // Exercise 1 : Comparison
 
-
-
-
-
-
-
 const compareToTen = num => {
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { `${num} is bigger than 10, success!`
 
-        if(num >= 10) {
+        if(num <= 10) {
 
-                // the promise rejects if argument is greater than 10
-            reject(`${num} is bigger than 10, success!`);
-
-        } else if(num < 10) {
-
-              // the promise resolves if the argument is less than 10
-            resolve(`${num} is less than 10, error!`);
+          num < 10 ? resolve(`${num} is smaller than 10, error!`) : resolve(`${num} is equal to 10`);
 
         } else {
 
-            reject(`Not all items in the array are strings!`)
+            reject(`${num} is bigger than 10, success!`)
         }
     });
   };
 
 
-
-compareToTen(3)
+// The fun return the promise and to get the answer from the promise we have to use '.then'
+compareToTen(9)
   .then(result => console.log(result))
   .catch(error => console.log(error))
-
-
 
 
   // Exercise 2 : Promises
@@ -55,6 +41,7 @@ compareToTen(3)
         console.log(error);
       })
 
+      
 // How can you make your promise from part 1 shorter 
 Promise.resolve("success").then( res => console.log(res));
 
