@@ -134,14 +134,22 @@ let handleSubmit = async (e) => {
 
         if(inputFirstCityValue !== "" && inputSecondCityValue !== ""){
 
-      
             let urls = [ `https://api.sunrise-sunset.org/json?${generatorParams(inputFirstCityValue)}`,
                          `https://api.sunrise-sunset.org/json?${generatorParams(inputSecondCityValue)}`, 
             ];
 
-            const response = await Promise.all(urls.map(url =>
-                                   fetch(url).then(res => res.json())))
+            let response;
 
+            try{
+                
+                response = await Promise.all(urls.map(url =>
+                fetch(url).then(res => res.json())));
+
+            }catch(error){
+
+                throw new Error ("Error to fetch data from api");
+            }
+            
             displayCoordinatesAndSunriseHour(response);
 
         }else{
