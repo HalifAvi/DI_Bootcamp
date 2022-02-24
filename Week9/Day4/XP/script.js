@@ -49,6 +49,6 @@ async function asyncCall() {
 asyncCall();
 
 // First we will see the console.log('calling'); ------> "calling"
-// Then we waut to the answer from 'resolveAfter2Seconds' function that will be a promose
-// but by using the 'await' key word we will store into 'result' variable the resolve answer from the promise (it'll be after 2 sec)
-// First we will see the console.log('calling'); ----> "resolved"
+// Then we'll wait to the answer from 'resolveAfter2Seconds' function that will be a promise
+// but by using the 'await' keyword we will store into 'result' variable the resolve answer from the promise (it'll be after 2 sec)
+// Then we will see the console.log('calling'); ----> "resolved"
