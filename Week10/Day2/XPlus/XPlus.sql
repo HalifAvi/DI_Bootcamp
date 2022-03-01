@@ -25,22 +25,17 @@ Insert your last_name, first_name and birth_date to the students table (Take a l
 
 
 INSERT INTO students (student_first_name, student_last_name, student_birth_date)
-VALUES ('Marc', 'Benichou', '1998-11-2' )
+VALUES ('Marc', 'Benichou', '1998-11-2' ),
 
-INSERT INTO students (student_first_name, student_last_name, student_birth_date)
-VALUES ('Yoan', 'Cohen', '2010-12-3' )
+('Yoan', 'Cohen', '2010-12-3' ),
 
-INSERT INTO students (student_first_name, student_last_name, student_birth_date)
-VALUES ('Lea', 'Benichou', '1987-07-27' )
+('Lea', 'Benichou', '1987-07-27' ),
 
-INSERT INTO students (student_first_name, student_last_name, student_birth_date)
-VALUES ('Amelia', 'Dux', '1996-04-07' )
+('Amelia', 'Dux', '1996-04-07' ),
 
-INSERT INTO students (student_first_name, student_last_name, student_birth_date)
-VALUES ('David', 'Grez', '2003-06-14' )
+('David', 'Grez', '2003-06-14' ),
 
-INSERT INTO students (student_first_name, student_last_name, student_birth_date)
-VALUES ('Omer', 'Simpson', '1980-10-03' )
+('Omer', 'Simpson', '1980-10-03' )
 
 
 /* Fetch all of the data from the table. */
