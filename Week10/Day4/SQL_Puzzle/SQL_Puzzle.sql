@@ -65,13 +65,16 @@ SELECT COUNT(*)
 /* Result: 0 -  SELECT COUNT(*) FROM FirstTab AS ft WHERE ft.id NOT IN ( EMPTY )*/
 
 
-
 SELECT COUNT(*) 
     FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab WHERE id = 5 )
 /* Result: 2 - 'Null' isn't including */
 
 
-
 SELECT COUNT(*) 
     FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab )
-/* SELECT COUNT(*) FROM FirstTab AS ft WHERE ft.id NOT IN ( NULL, 5 )*/
+/* Result: 0 - SELECT COUNT(*) FROM FirstTab AS ft WHERE ft.id NOT IN ( 5 )*/
+
+
+SELECT COUNT(*) 
+    FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab WHERE id IS NOT NULL )
+/* Result: 2 - SELECT COUNT(*) FROM FirstTab AS ft WHERE ft.id NOT IN ( 5 ) ===> 6 , 7 */
