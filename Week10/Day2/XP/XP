@@ -26,7 +26,7 @@ INSERT INTO items (item_name, item_price)
 VALUES ('Small Desk', 100)
 
 INSERT INTO items (item_name, item_price)
-VALUES ('Large desk ', 300)
+VALUES ('Large Desk ', 300)
 
 INSERT INTO items (item_name, item_price)
 VALUES ('Fan', 80)
