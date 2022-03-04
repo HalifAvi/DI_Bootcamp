@@ -25,7 +25,7 @@ CREATE TABLE purchases (
 	item_id INTEGER,
 	FOREIGN KEY (customer_id) REFERENCES public.customers (customer_id),
 	FOREIGN KEY (item_id) REFERENCES public.items (item_id),
-	quantity_purchased integer
+	quantity_purchased INTEGER
 )
 
 
