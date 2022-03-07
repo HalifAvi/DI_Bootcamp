@@ -10,10 +10,10 @@ CREATE TABLE orders (
 
 CREATE TABLE items (
 
-    item_id serial PRIMARY KEY,
+  item_id serial PRIMARY KEY,
 	item_price INTEGER,
 	item_desc VARCHAR(10),
-    order_id INTEGER,
+  order_id INTEGER,
 	FOREIGN KEY (order_id) REFERENCES orders (order_id)
 )
 
