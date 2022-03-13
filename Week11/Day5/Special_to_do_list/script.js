@@ -18,23 +18,37 @@ let addNewTask = e => {
 
     e.preventDefault();
 
-    localStorage.setItem(`task${++(localStorage.length)}`, 
+    if(taskStartDate.value < taskEndDate.value ){
+
+        localStorage.setItem(`task${++(localStorage.length)}`, 
         JSON.stringify({title: `${taskTitle.value}`,
                         description: `${taskDesc.value}`,
-                        startDate: `${taskStartDate.value}`,
-                        endDate: `${taskEndDate.value}`,
+                        startDate: `${(taskStartDate.value).replace('T', ' ')}`,
+                        endDate: `${(taskEndDate.value).replace('T', ' ')}`,
                         done: `${taskDone.value}`}));
 
-    if(newTabWin === undefined){
+        if(newTabWin === undefined){
 
-        newTabWin = window.open();
-        newTabWin.addEventListener('beforeunload', setNewTabWinWhenClose);
-        divTasks = document.createElement('div');
-        (newTabWin.document.querySelector('body')).appendChild(divTasks);
+            newTabWin = window.open();
+            newTabWin.addEventListener('beforeunload', setNewTabWinWhenClose);
+            divTasks = document.createElement('div');
+            (newTabWin.document.querySelector('body')).appendChild(divTasks);
+        }
+
+        updateTasksArray();
+        updateUI();
+
+
+        taskTitle.value = '';
+        taskDesc.value = '';
+        taskStartDate.value = '';
+        taskEndDate.value = '';
+        taskDone.value = '';
+
+    }else{
+
+        alert("Error! End date must be after Start date!");
     }
-
-    updateTasksArray();
-    updateUI();
 }
 
 
@@ -84,7 +98,16 @@ let updateUI = () => {
         dropDownBtt.setAttribute('id','dropdownMenuButton1');
         dropDownBtt.setAttribute('data-bs-toggle','dropdown');
         dropDownBtt.setAttribute('aria-expanded','false');
-        dropDownBtt.textContent = task.title;
+        dropDownBtt.textContent = `Task Name: ${task.title}`;
+
+        if(formatDate(new Date()) > task.endDate){
+
+            dropDownBtt.style.color = 'orange';
+
+        }else{
+
+            task.done === 'true' ? dropDownBtt.style.color = 'green' : dropDownBtt.style.color = 'red';
+        }
         dropDownBtt.style.margin = "10px";
         dropDownDiv.appendChild(dropDownBtt);
 
@@ -94,25 +117,59 @@ let updateUI = () => {
         
         let startDateLi = document.createElement('li');
 
-        startDateLi.textContent = task.startDate;
+        startDateLi.textContent = `Starting Date: ${task.startDate}`;
         ulDropDown.appendChild(startDateLi);
 
         let howManyDaysLi = document.createElement('li');
 
-        howManyDaysLi.textContent = "32433243";
-        ulDropDown.appendChild(howManyDaysLi);
+        howManyDaysLi.textContent = `How many days left to complete: ${howManyDays(task.endDate)}`;
+        ulDropDown.appendChild(howManyDaysLi);  
 
         dropDownDiv.appendChild(ulDropDown);
-        divTasks.appendChild(dropDownDiv);
+        divTasks.appendChild(dropDownDiv);   
     });
-
 }
     
 
+let howManyDays = taskEndDate => {
 
+    let diff = Math.round((moment.duration( moment( taskEndDate ).diff( moment(formatDate(new Date())) ))).asDays());
 
+    diff <= 0 ? diff = 0 : null;
 
-
+    return diff;
+}
 
   
 (document.querySelector('form')).addEventListener('submit', addNewTask);
+
+
+
+
+
+
+// Format Date as yyyy-mm-dd hh:mm:ss
+
+function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+  
+  function formatDate(date) {
+    return (
+      [
+        date.getFullYear(),
+        padTo2Digits(date.getMonth() + 1),
+        padTo2Digits(date.getDate()),
+      ].join('-') +
+      ' ' +
+      [
+        padTo2Digits(date.getHours()),
+        padTo2Digits(date.getMinutes()),
+      ].join(':')
+    );
+  }
+
+
+
+
+
