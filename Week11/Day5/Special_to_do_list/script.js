@@ -6,7 +6,7 @@ let taskTitle = document.querySelector('#inputTaskTitle'),
     newTabWin,
     tasksArray = [],
     divTasks,
-    pDescription = document.createElement('p');;
+    pDescription = document.createElement('p');
 
 let setNewTabWinWhenClose = e => {
 
@@ -20,7 +20,7 @@ let addNewTask = e => {
 
     if(taskStartDate.value < taskEndDate.value ){
 
-        localStorage.setItem(`task${++(localStorage.length)}`, 
+        localStorage.setItem(`task${localStorage.length}`, 
         JSON.stringify({title: `${taskTitle.value}`,
                         description: `${taskDesc.value}`,
                         startDate: `${(taskStartDate.value).replace('T', ' ')}`,
@@ -38,12 +38,13 @@ let addNewTask = e => {
         updateTasksArray();
         updateUI();
 
-
         taskTitle.value = '';
         taskDesc.value = '';
         taskStartDate.value = '';
         taskEndDate.value = '';
         taskDone.value = '';
+
+        console.log(tasksArray)
 
     }else{
 
@@ -65,19 +66,20 @@ function compare( a, b ) {
 
 let updateTasksArray = () => {
 
-    let i = localStorage.length;
+    let i = localStorage.length - 1;
 
     // In case we totally closed the browser and then start again so the array is empty but we still have data in localStorage
     if(localStorage.length !== 0 && tasksArray.length === 0){
 
-        while(i > 0){
+        while(i >= 0){
 
-            tasksArray.push(JSON.parse(localStorage.getItem(`task${i--}`)));
+            tasksArray.push(JSON.parse(localStorage.getItem(`task${i}`)));
+            i--;
         }
 
     }else{ // If we just add a new task and we already stored all the previous in our array
 
-        tasksArray.push(JSON.parse(localStorage.getItem(`task${localStorage.length}`)));
+        tasksArray.push(JSON.parse(localStorage.getItem(`task${(localStorage.length)-1}`)));
     }
 
     tasksArray.sort( compare );
@@ -94,7 +96,7 @@ let updateUI = () => {
         let dropDownBtt = document.createElement('button');
         dropDownBtt.classList.add('btn', 'btn-secondary', 'dropdown-toggle');
         dropDownBtt.setAttribute('type','button');
-        dropDownBtt.setAttribute('id',`${idx+1}`);
+        dropDownBtt.setAttribute('id',`${idx}`);
         dropDownBtt.setAttribute('data-bs-toggle','dropdown');
         dropDownBtt.setAttribute('aria-expanded','false');
         
@@ -108,7 +110,13 @@ let updateUI = () => {
         }else{
 
             task.done === 'true' ? dropDownBtt.style.color = 'green' : dropDownBtt.style.color = 'red';
+            let checkStatus = document.createElement('input');
+            checkStatus.setAttribute('id',`${idx}`);
+            checkStatus.setAttribute('type', 'checkbox');
+            checkStatus.addEventListener('click',changeStatus);
+            dropDownDiv.appendChild(checkStatus);
         }
+
         dropDownBtt.style.margin = "10px";
         dropDownDiv.appendChild(dropDownBtt);
 
@@ -129,6 +137,28 @@ let updateUI = () => {
         dropDownDiv.appendChild(ulDropDown);
         divTasks.appendChild(dropDownDiv);   
     });
+}
+
+
+let changeStatus = e => {
+
+    let toBeParsed = localStorage.getItem(`task${(e.target).nextElementSibling.id}`);
+    let taskObj = JSON.parse( toBeParsed );
+
+    if((e.target).nextElementSibling.style.color === "green"){
+
+        (e.target).nextElementSibling.style.color = "red";
+        tasksArray[(e.target).nextElementSibling.id].done = false;
+        taskObj.done = false;
+
+    }else{
+
+        (e.target).nextElementSibling.style.color = "green";
+        tasksArray[(e.target).nextElementSibling.id].done = true;
+        taskObj.done = true;
+    }
+
+    localStorage.setItem(`task${(e.target).nextElementSibling.id}`, JSON.stringify(taskObj));
 }
 
 
@@ -173,7 +203,7 @@ function padTo2Digits(num) {
     );
   }
 
-  
+
 
   
 (document.querySelector('form')).addEventListener('submit', addNewTask);
