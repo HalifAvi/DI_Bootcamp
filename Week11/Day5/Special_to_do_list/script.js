@@ -6,7 +6,7 @@ let taskTitle = document.querySelector('#inputTaskTitle'),
     newTabWin,
     tasksArray = [],
     divTasks,
-    pDescription = document.createElement('p');
+    pDescription = document.createElement('p');   
 
 let setNewTabWinWhenClose = e => {
 
@@ -20,12 +20,13 @@ let addNewTask = e => {
 
     if(taskStartDate.value < taskEndDate.value ){
 
-        localStorage.setItem(`task${localStorage.length}`, 
+        localStorage.setItem(`task${localStorage.length}`,  ////////// אולי צריך לשנות שיתקבל פה לפי טאסק הכי גבוה + 1
         JSON.stringify({title: `${taskTitle.value}`,
                         description: `${taskDesc.value}`,
                         startDate: `${(taskStartDate.value).replace('T', ' ')}`,
                         endDate: `${(taskEndDate.value).replace('T', ' ')}`,
                         done: `${taskDone.value}`}));
+
 
         if(newTabWin === undefined){
 
@@ -67,20 +68,33 @@ function compare( a, b ) {
 let updateTasksArray = () => {
 
     let i = localStorage.length - 1;
+    let j = 0;
 
     // In case we totally closed the browser and then start again so the array is empty but we still have data in localStorage
-    if(localStorage.length !== 0 && tasksArray.length === 0){
+    if(localStorage.length !== 0 && (tasksArray.length === 1 && tasksArray[0] === null)){
+
+        tasksArray = [];
 
         while(i >= 0){
 
-            tasksArray.push(JSON.parse(localStorage.getItem(`task${i}`)));
-            i--;
+            if(localStorage.getItem(`task${j}`) !== null){
+
+                tasksArray.push(JSON.parse(localStorage.getItem(`task${j}`)));
+                i--;
+            }
+
+            j++;
         }
+
+        
+        console.log(tasksArray)
 
     }else{ // If we just add a new task and we already stored all the previous in our array
 
         tasksArray.push(JSON.parse(localStorage.getItem(`task${(localStorage.length)-1}`)));
     }
+
+    console.log(tasksArray)
 
     tasksArray.sort( compare );
 }
@@ -93,6 +107,14 @@ let updateUI = () => {
 
         let dropDownDiv = document.createElement('div');
         dropDownDiv.classList.add('dropdown');
+
+        let removeBtt = document.createElement('button');
+        removeBtt.classList.add('btn', 'btn-secondary');
+        removeBtt.textContent = "REMOVE";
+        removeBtt.setAttribute('id',`${idx}`);
+        removeBtt.addEventListener('click', removeTask);
+        dropDownDiv.appendChild(removeBtt); 
+
         let dropDownBtt = document.createElement('button');
         dropDownBtt.classList.add('btn', 'btn-secondary', 'dropdown-toggle');
         dropDownBtt.setAttribute('type','button');
@@ -121,6 +143,7 @@ let updateUI = () => {
         dropDownDiv.appendChild(dropDownBtt);
 
         let ulDropDown = document.createElement('ul');
+        ulDropDown.setAttribute('id',`${idx}`);
         ulDropDown.classList.add('dropdown-menu');
         ulDropDown.setAttribute('aria-labelledby','dropdownMenuButton1');
         
@@ -139,6 +162,30 @@ let updateUI = () => {
     });
 }
 
+
+let removeTask = e => {
+
+    // tasksArray.splice(e.target.id,1);
+    // console.log(tasksArray);
+    
+
+    // נמחק את כל המערך
+    // נמחק את האיבר הספציפי מתוך לוקאל סטוראג
+    // נקרא לאפדייט אראיי
+    // נקרא לאפדייט יואיייי
+    // !!!צריך לבדוק איך מתקבלים המיספורים אם זה לפי הגודל של לוקאל סטורג אז זה לא טוב כי יתכן שמחקנו
+    console.log(tasksArray);
+    tasksArray = [];
+    console.log(tasksArray);
+    localStorage.removeItem(`task${e.target.id}`);
+    updateTasksArray();
+    console.log(tasksArray);
+    
+
+    // let taskNum = localStorage.key((localStorage.length)-1).charAt(localStorage.key((localStorage.length)-1));
+
+    // console.log(taskNum)
+}
 
 let changeStatus = e => {
 
