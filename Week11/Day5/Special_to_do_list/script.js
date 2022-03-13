@@ -1,4 +1,3 @@
-
 let taskTitle = document.querySelector('#inputTaskTitle'),
     taskDesc = document.querySelector('#textarea'),
     taskStartDate = document.querySelector('#datetime-local1'),
@@ -6,7 +5,8 @@ let taskTitle = document.querySelector('#inputTaskTitle'),
     taskDone = document.forms[0].optionsRadios,
     newTabWin,
     tasksArray = [],
-    divTasks;
+    divTasks,
+    pDescription = document.createElement('p');;
 
 let setNewTabWinWhenClose = e => {
 
@@ -87,17 +87,18 @@ let updateTasksArray = () => {
 let updateUI = () => {
 
     divTasks.textContent = '';
-
-    tasksArray.forEach(task => {
+    tasksArray.forEach((task, idx) => {
 
         let dropDownDiv = document.createElement('div');
         dropDownDiv.classList.add('dropdown');
         let dropDownBtt = document.createElement('button');
         dropDownBtt.classList.add('btn', 'btn-secondary', 'dropdown-toggle');
         dropDownBtt.setAttribute('type','button');
-        dropDownBtt.setAttribute('id','dropdownMenuButton1');
+        dropDownBtt.setAttribute('id',`${idx+1}`);
         dropDownBtt.setAttribute('data-bs-toggle','dropdown');
         dropDownBtt.setAttribute('aria-expanded','false');
+        
+        dropDownBtt.addEventListener('click', showDiscription);
         dropDownBtt.textContent = `Task Name: ${task.title}`;
 
         if(formatDate(new Date()) > task.endDate){
@@ -129,6 +130,14 @@ let updateUI = () => {
         divTasks.appendChild(dropDownDiv);   
     });
 }
+
+
+let showDiscription = e => {
+
+    pDescription.textContent = '';
+    pDescription.textContent = `DESCRIPTION : ${tasksArray[e.target.id].description}`;
+    (((e.target).nextElementSibling).lastChild).appendChild(pDescription);
+}
     
 
 let howManyDays = taskEndDate => {
@@ -139,11 +148,6 @@ let howManyDays = taskEndDate => {
 
     return diff;
 }
-
-  
-(document.querySelector('form')).addEventListener('submit', addNewTask);
-
-
 
 
 
@@ -169,6 +173,10 @@ function padTo2Digits(num) {
     );
   }
 
+  
+
+  
+(document.querySelector('form')).addEventListener('submit', addNewTask);
 
 
 
