@@ -71,11 +71,13 @@ let updateTasksArray = () => {
     let j = 0;
 
     // In case we totally closed the browser and then start again so the array is empty but we still have data in localStorage
-    if(localStorage.length !== 0 && (tasksArray.length === 1 && tasksArray[0] === null)){
+    if((localStorage.length !== 0 || (tasksArray.length === 1 && tasksArray[0] === null))){
 
         tasksArray = [];
 
         while(i >= 0){
+
+            console.log("aviiiii")
 
             if(localStorage.getItem(`task${j}`) !== null){
 
@@ -85,9 +87,6 @@ let updateTasksArray = () => {
 
             j++;
         }
-
-        
-        console.log(tasksArray)
 
     }else{ // If we just add a new task and we already stored all the previous in our array
 
@@ -170,16 +169,27 @@ let removeTask = e => {
     
 
     // נמחק את כל המערך
+    // נמחק את כל היואיי
     // נמחק את האיבר הספציפי מתוך לוקאל סטוראג
     // נקרא לאפדייט אראיי
     // נקרא לאפדייט יואיייי
     // !!!צריך לבדוק איך מתקבלים המיספורים אם זה לפי הגודל של לוקאל סטורג אז זה לא טוב כי יתכן שמחקנו
     console.log(tasksArray);
     tasksArray = [];
+    divTasks.textContent = "";
+    console.log(`id: ${e.target.id}`);
+    localStorage.removeItem(`task${e.target.id}`); // כאן הבעיההההה למה הוא עושה רימובבב להכל ולא רק לאיידי הספצפיייי?
     console.log(tasksArray);
-    localStorage.removeItem(`task${e.target.id}`);
     updateTasksArray();
     console.log(tasksArray);
+
+    console.log(tasksArray.length);
+    console.log(tasksArray[0]);
+    if(!(tasksArray.length === 1 && tasksArray[0] === null)){
+
+        updateUI();
+    }
+   
     
 
     // let taskNum = localStorage.key((localStorage.length)-1).charAt(localStorage.key((localStorage.length)-1));
