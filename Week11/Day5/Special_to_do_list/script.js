@@ -6,7 +6,7 @@ let taskTitle = document.querySelector('#inputTaskTitle'),
     newTabWin,
     tasksArray = [],
     divTasks,
-    pDescription = document.createElement('p');   
+    descInput = document.createElement('input');
 
 let setNewTabWinWhenClose = e => {
 
@@ -18,14 +18,17 @@ let addNewTask = e => {
 
     e.preventDefault();
 
-    if(taskStartDate.value < taskEndDate.value ){
+    if( taskStartDate.value < taskEndDate.value ){
 
-        localStorage.setItem(`task${localStorage.length}`,  ////////// אולי צריך לשנות שיתקבל פה לפי טאסק הכי גבוה + 1
+        let serial = getNextTaskSerial();
+
+        localStorage.setItem(`${serial}`,  
         JSON.stringify({title: `${taskTitle.value}`,
                         description: `${taskDesc.value}`,
                         startDate: `${(taskStartDate.value).replace('T', ' ')}`,
                         endDate: `${(taskEndDate.value).replace('T', ' ')}`,
-                        done: `${taskDone.value}`}));
+                        done: `${taskDone.value}`,
+                        serial: `${serial}`}));
 
 
         if(newTabWin === undefined){
@@ -36,7 +39,7 @@ let addNewTask = e => {
             (newTabWin.document.querySelector('body')).appendChild(divTasks);
         }
 
-        updateTasksArray();
+        updateTasksArray(serial);
         updateUI();
 
         taskTitle.value = '';
@@ -54,6 +57,32 @@ let addNewTask = e => {
 }
 
 
+let getNextTaskSerial = () => {
+
+    let biggest = 0;
+
+    if(localStorage.length > 0){
+
+        (Object.keys(localStorage)).forEach(element => {
+
+            if( element > biggest){
+
+                biggest = element;
+            }
+        });
+
+        res = Number(biggest) + 1;
+
+    }else{
+
+        res = biggest;
+
+    }
+
+    return res;
+}
+
+
 function compare( a, b ) {
     if ( a.startDate < b.startDate ){
       return -1;
@@ -65,44 +94,38 @@ function compare( a, b ) {
   }
 
 
-let updateTasksArray = () => {
+let updateTasksArray = serial => {
 
-    let i = localStorage.length - 1;
-    let j = 0;
-
-    // In case we totally closed the browser and then start again so the array is empty but we still have data in localStorage
-    if((localStorage.length !== 0 || (tasksArray.length === 1 && tasksArray[0] === null))){
+    if( localStorage.length === 1 ){
 
         tasksArray = [];
+    }
 
-        while(i >= 0){
+    // In case we totally closed the browser and then start again so the array is empty but we still have data in localStorage
+    if( tasksArray.length === 0 ){
 
-            console.log("aviiiii")
+        (Object.keys(localStorage)).forEach(element => {
+            
+            let taskObj = JSON.parse(localStorage.getItem(`${element}`));
 
-            if(localStorage.getItem(`task${j}`) !== null){
-
-                tasksArray.push(JSON.parse(localStorage.getItem(`task${j}`)));
-                i--;
-            }
-
-            j++;
-        }
+            tasksArray.push(taskObj);
+        });
 
     }else{ // If we just add a new task and we already stored all the previous in our array
 
-        tasksArray.push(JSON.parse(localStorage.getItem(`task${(localStorage.length)-1}`)));
+        tasksArray.push(JSON.parse(localStorage.getItem(`${serial}`)));
     }
 
-    console.log(tasksArray)
-
     tasksArray.sort( compare );
+
+    console.log(tasksArray)
 }
 
 
 let updateUI = () => {
 
     divTasks.textContent = '';
-    tasksArray.forEach((task, idx) => {
+    tasksArray.forEach(task => {
 
         let dropDownDiv = document.createElement('div');
         dropDownDiv.classList.add('dropdown');
@@ -110,18 +133,18 @@ let updateUI = () => {
         let removeBtt = document.createElement('button');
         removeBtt.classList.add('btn', 'btn-secondary');
         removeBtt.textContent = "REMOVE";
-        removeBtt.setAttribute('id',`${idx}`);
+        removeBtt.setAttribute('id',`${task.serial}`);
         removeBtt.addEventListener('click', removeTask);
         dropDownDiv.appendChild(removeBtt); 
 
         let dropDownBtt = document.createElement('button');
         dropDownBtt.classList.add('btn', 'btn-secondary', 'dropdown-toggle');
         dropDownBtt.setAttribute('type','button');
-        dropDownBtt.setAttribute('id',`${idx}`);
+        dropDownBtt.setAttribute('id',`${task.serial}`);
         dropDownBtt.setAttribute('data-bs-toggle','dropdown');
         dropDownBtt.setAttribute('aria-expanded','false');
         
-        dropDownBtt.addEventListener('click', showDiscription);
+        dropDownBtt.addEventListener('click', showDescription);
         dropDownBtt.textContent = `Task Name: ${task.title}`;
 
         if(formatDate(new Date()) > task.endDate){
@@ -132,7 +155,7 @@ let updateUI = () => {
 
             task.done === 'true' ? dropDownBtt.style.color = 'green' : dropDownBtt.style.color = 'red';
             let checkStatus = document.createElement('input');
-            checkStatus.setAttribute('id',`${idx}`);
+            checkStatus.setAttribute('id',`${task.serial}`);
             checkStatus.setAttribute('type', 'checkbox');
             checkStatus.addEventListener('click',changeStatus);
             dropDownDiv.appendChild(checkStatus);
@@ -142,7 +165,7 @@ let updateUI = () => {
         dropDownDiv.appendChild(dropDownBtt);
 
         let ulDropDown = document.createElement('ul');
-        ulDropDown.setAttribute('id',`${idx}`);
+        ulDropDown.setAttribute('id',`${task.serial}`);
         ulDropDown.classList.add('dropdown-menu');
         ulDropDown.setAttribute('aria-labelledby','dropdownMenuButton1');
         
@@ -164,67 +187,54 @@ let updateUI = () => {
 
 let removeTask = e => {
 
-    // tasksArray.splice(e.target.id,1);
-    // console.log(tasksArray);
-    
-
-    // נמחק את כל המערך
-    // נמחק את כל היואיי
-    // נמחק את האיבר הספציפי מתוך לוקאל סטוראג
-    // נקרא לאפדייט אראיי
-    // נקרא לאפדייט יואיייי
-    // !!!צריך לבדוק איך מתקבלים המיספורים אם זה לפי הגודל של לוקאל סטורג אז זה לא טוב כי יתכן שמחקנו
     console.log(tasksArray);
     tasksArray = [];
     divTasks.textContent = "";
-    console.log(`id: ${e.target.id}`);
-    localStorage.removeItem(`task${e.target.id}`); // כאן הבעיההההה למה הוא עושה רימובבב להכל ולא רק לאיידי הספצפיייי?
-    console.log(tasksArray);
+    localStorage.removeItem(`${e.target.id}`); 
     updateTasksArray();
     console.log(tasksArray);
-
-    console.log(tasksArray.length);
-    console.log(tasksArray[0]);
-    if(!(tasksArray.length === 1 && tasksArray[0] === null)){
-
-        updateUI();
-    }
-   
-    
-
-    // let taskNum = localStorage.key((localStorage.length)-1).charAt(localStorage.key((localStorage.length)-1));
-
-    // console.log(taskNum)
+    updateUI();
 }
 
 let changeStatus = e => {
 
-    let toBeParsed = localStorage.getItem(`task${(e.target).nextElementSibling.id}`);
+    let toBeParsed = localStorage.getItem(`${(e.target).nextElementSibling.id}`);
     let taskObj = JSON.parse( toBeParsed );
+    let objToChange = tasksArray.find( obj => obj.serial === (e.target).nextElementSibling.id);
 
     if((e.target).nextElementSibling.style.color === "green"){
-
         (e.target).nextElementSibling.style.color = "red";
-        tasksArray[(e.target).nextElementSibling.id].done = false;
-        taskObj.done = false;
+        objToChange.done = 'false';
+        taskObj.done = 'false';
 
     }else{
 
         (e.target).nextElementSibling.style.color = "green";
-        tasksArray[(e.target).nextElementSibling.id].done = true;
-        taskObj.done = true;
+        objToChange.done = 'true';
+        taskObj.done = 'true';
     }
 
-    localStorage.setItem(`task${(e.target).nextElementSibling.id}`, JSON.stringify(taskObj));
+    localStorage.setItem(`${(e.target).nextElementSibling.id}`, JSON.stringify(taskObj));
+
+    console.log(tasksArray)
 }
 
 
-let showDiscription = e => {
+let showDescription = e => {
 
-    pDescription.textContent = '';
-    pDescription.textContent = `DESCRIPTION : ${tasksArray[e.target.id].description}`;
-    (((e.target).nextElementSibling).lastChild).appendChild(pDescription);
+    descInput.textContent = '';
+    descInput.setAttribute('disabled', 'true'); 
+    let JSONToParse = localStorage.getItem(e.target.id);
+    let objToDisplay = JSON.parse(JSONToParse);
+    descInput.value = `DESCRIPTION : ${objToDisplay.description}`;
+    descInput.style.color = "blue";
+    (((e.target).nextElementSibling).lastChild).appendChild(descInput);
+
+    let saveBtt = document.createElement('button');
+    saveBtt.textContent = "save changes";
+    
 }
+
     
 
 let howManyDays = taskEndDate => {
@@ -235,8 +245,6 @@ let howManyDays = taskEndDate => {
 
     return diff;
 }
-
-
 
 
 // Format Date as yyyy-mm-dd hh:mm:ss
