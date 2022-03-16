@@ -6,7 +6,8 @@ let taskTitle = document.querySelector('#inputTaskTitle'),
     newTabWin,
     tasksArray = [],
     divTasks,
-    descInput = document.createElement('input');
+    descInput = document.createElement('input'),
+    saveBtt = document.createElement('button');;
 
 let setNewTabWinWhenClose = e => {
 
@@ -187,13 +188,18 @@ let updateUI = () => {
 
 let removeTask = e => {
 
-    console.log(tasksArray);
-    tasksArray = [];
-    divTasks.textContent = "";
-    localStorage.removeItem(`${e.target.id}`); 
-    updateTasksArray();
-    console.log(tasksArray);
-    updateUI();
+    let answer = newTabWin.confirm("Are you sure you want to delete?");
+
+    if(answer === true){
+
+        console.log(tasksArray);
+        tasksArray = [];
+        divTasks.textContent = "";
+        localStorage.removeItem(`${e.target.id}`); 
+        updateTasksArray();
+        console.log(tasksArray);
+        updateUI();
+    }
 }
 
 let changeStatus = e => {
@@ -222,19 +228,50 @@ let changeStatus = e => {
 
 let showDescription = e => {
 
+    saveBtt.style.pointerEvents = 'auto';
+    saveBtt.value = '';
     descInput.textContent = '';
-    descInput.setAttribute('disabled', 'true'); 
+    descInput.style.pointerEvents = 'none';
     let JSONToParse = localStorage.getItem(e.target.id);
     let objToDisplay = JSON.parse(JSONToParse);
-    descInput.value = `DESCRIPTION : ${objToDisplay.description}`;
+    descInput.value = `${objToDisplay.description}`;
     descInput.style.color = "blue";
+    descInput.addEventListener('keyup', saveChanges);
+    descInput.setAttribute('id',`${e.target.id}`); 
     (((e.target).nextElementSibling).lastChild).appendChild(descInput);
 
-    let saveBtt = document.createElement('button');
-    saveBtt.textContent = "save changes";
-    
+    saveBtt.textContent = "TO EDIT DESCRIPTION PRESS ON THIS BTT !";
+    saveBtt.style.color = "red";
+    saveBtt.addEventListener('click', openToEditDescription);
+    (((e.target).nextElementSibling).lastChild).appendChild(saveBtt);
 }
 
+let openToEditDescription = e => {
+
+    descInput.style.pointerEvents = 'auto';
+    saveBtt.textContent = "TO SAVE CHANGES PRESS ON THE DESCRIPTION AND AFTER ENTER";
+    saveBtt.style.color = "green";
+}
+
+
+let saveChanges = event => {
+
+    if(event.keyCode === 13){
+
+        let obj = JSON.parse(localStorage.getItem(`${descInput.getAttribute('id')}`));
+        obj.description = descInput.value;
+        localStorage.setItem(`${descInput.getAttribute('id')}`, JSON.stringify(obj));
+
+        let arrCellToChange = tasksArray.find( obj => obj.serial === descInput.getAttribute('id'));
+        arrCellToChange.description = descInput.value;
+
+        newTabWin.alert("Description was saved sucessfully!");
+        saveBtt.textContent = "SAVED";
+        saveBtt.style.color = "blue";
+        descInput.style.pointerEvents = 'none';
+        saveBtt.style.pointerEvents = 'none';
+    }
+}
     
 
 let howManyDays = taskEndDate => {
