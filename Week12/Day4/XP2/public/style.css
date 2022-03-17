@@ -1,0 +1,22 @@
+
+.textAlign{
+
+    text-align: center;
+}
+
+.border{
+
+    border: 2px dashed blue;
+}
+
+.color{
+
+    color: red;
+}
+
+button{
+
+    position: fixed;
+    right: 48vw;
+    color: blue;
+}
