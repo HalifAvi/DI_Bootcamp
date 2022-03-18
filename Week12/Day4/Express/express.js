@@ -7,35 +7,43 @@ app.listen(5000, () => {
     console.log('listen on port 5000');
 })
 
-const Hobbies = [
-    {name: 'swimming', price: 800},
-    {name: 'traveling', price: 650},
-    {name: 'eating', price: 750}
-];
-
-// app.get('/api/products', (req, res) => {
-
-//     res.json(products);
-// })
-
-// app.get('/api/search', (req, res) => {
-
-//     const result = products.find(item => {
-
-//         return item.name == req.query.name
-//     });
-
-//     // res.json({msg:'ok'});  
-//     res.json(result); 
-// })
+app.use('/', express.static(__dirname + '/public'));
 
 app.get('/aboutMe/:hobby', (req, res) => {
 
-    const result = Hobbies.find(item => {
+    let hobby = req.params.hobby;
 
-        return item.name == req.params.hobby
-    });
+    if(typeof hobby === "string"){
 
-    // res.json({msg:'ok'});  
-    res.json(result); 
+        res.end(hobby);
+
+    }else{
+
+        res.status(404).send("Not found.");
+    }
+})
+
+
+app.get('/pic', (req, res) => {
+
+    res.sendFile('/public/pic.html', {root: __dirname});
+})
+
+
+app.get('/form', (req, res) => {
+
+    res.sendFile('/public/form.html', {root: __dirname});
+})
+
+
+
+// Output:
+// You should get the data and display it on the route /formData.
+// For example, “john@gmail.com sent you a message “Love your new website”.
+app.get('/formData', (req, res) => {
+
+    let email = req.query.email;
+    let message = req.query.message;
+
+    res.end( `"${email}" sent you a message: "${message}"` );
 })
