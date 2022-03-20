@@ -23,7 +23,7 @@ const fileName = 'items.txt';
 
 app.post('/addItem', (req, res) => {
 
-    // The way to store new items with history items :
+    // The way to store new items with historical items :
 
     // First save the previous data from the file 
     // And keep it into the array
