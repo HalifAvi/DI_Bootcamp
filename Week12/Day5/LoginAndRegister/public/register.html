@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>REGISTER FORM</title>
+
+</head>
+<body>
+    <section>
+      <h1>REGISTER</h1>
+      <form method="POST" action="http://localhost:5000/register"> 
+        <div>
+            <label for="firstName">FIRST NAME:</label>
+            <input type="text" pattern="[a-zA-Z]*" name="firstName" id="firstName" oninput="makeBttEnable()" required>
+          </div>
+          <div>
+            <label for="lastName">LAST NAME:</label>
+            <input type="text" pattern="[a-zA-Z]*" name="lastName" id="lastName" oninput="makeBttEnable()" required>
+          </div>
+          <div>
+            <label for="email">EMAIL:</label>
+            <input type="email" name="email" id="email" pattern=".+@.+\.com" oninput="makeBttEnable()" required>
+          </div>
+        <div>
+          <label for="userName">USER NAME:</label>
+          <input type="text" pattern="[a-zA-Z]*" name="userName" id="userName" oninput="makeBttEnable()" required>
+        </div>
+        <div>
+          <label for="password">PASSWORD:</label>
+          <input type="password" name="password" id="password" oninput="makeBttEnable()" required>
+        </div>
+        <div>
+          <input type="submit" value="LOG-IN" id="registerBtt" disabled>
+        </div>
+      </form>
+    </section>
+
+    <div id="message">
+
+    </div>
+
+    <script type="text/javascript"  src="registerScript.js"></script>
+  </body>
+</html>

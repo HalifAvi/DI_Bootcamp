@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>LOGIN FORM</title>
+
+</head>
+<body>
+    <section>
+      <h1>LOG-IN</h1>
+      <form method="POST" action="http://localhost:5000/login">
+        <div>
+          <label for="userName">USER NAME:</label>
+          <input type="text" pattern="[a-zA-Z]*" name="userName" id="userName" required>
+        </div>
+        <div>
+          <label for="password">PASSWORD:</label>
+          <input type="password" name="password" id="password" required>
+        </div>
+        <div>
+          <input type="submit" value="LOG-IN" id="logInBtt" disabled>
+        </div>
+      </form>
+    </section>
+
+    <div id="message">
+
+    </div>
+
+    <script type="text/javascript"  src="logInScript.js"></script>
+  </body>
+</html>
