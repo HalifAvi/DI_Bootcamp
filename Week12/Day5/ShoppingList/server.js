@@ -23,8 +23,18 @@ const fileName = 'items.txt';
 
 app.post('/addItem', (req, res) => {
 
+    // The way to store new items with history items :
+
+    // First save the previous data from the file 
+    // And keep it into the array
+    const bufferDataFile = fs.readFileSync('items.txt');
+    let strDataFile = bufferDataFile.toString();
+    items = JSON.parse(strDataFile); 
+
+    // Second add the new item to the previous array data
     items.push( req.body );
 
+    // Write the all data (old+new) to file
     fs.writeFile('items.txt', JSON.stringify(items), err => {
 
         if(err){
@@ -47,6 +57,10 @@ app.get('/showItems', (req, res) => {
     const jsonData = itemsBuffer.toString(); // Convert from buffer data to string
 
     res.json(jsonData); // Send a JSON data back to browser
+    
+    // We can also send it as an array without stringify
+    // Cause 'express' fix it for us
+    // res.send(JSON.parse(jsonData));
 })
 
 

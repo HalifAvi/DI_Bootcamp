@@ -1,8 +1,9 @@
 
 fetch("http://localhost:5000/showItems")
-.then(res=> res.json())
+.then(res=> res.json()) // We get a JSON from the server
 .then(jsonData=> {
     
+    // Convert from JSON to array of objects
     let objArray = JSON.parse(jsonData);
     let whereToAppend = document.querySelector('ul');
 
