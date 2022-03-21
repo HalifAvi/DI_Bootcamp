@@ -3,7 +3,6 @@ const express = require('express');
 var bodyParser = require('body-parser');
 
 const fs = require('fs');
-const { resourceUsage } = require('process');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,9 +16,9 @@ app.listen(5000, ()=> {
 app.use(express.json());
 app.use('/', express.static(__dirname + '/public'));
 
+
 let users = [];
 const fileName = 'users.txt';
-
 
 
 let isAlreadyInFile = req => {
@@ -56,7 +55,6 @@ app.post('/register', (req, res) => {
             users = JSON.parse(strDataFile); 
         }
 
-
         // Second add the new item to the previous array data
         users.push( req.body );
 
@@ -65,7 +63,7 @@ app.post('/register', (req, res) => {
 
             if(err){
 
-                res.json({msg: `WRITTING ERROR : FILE ${fileName}`});
+                res.send({msg: `WRITTING ERROR : FILE ${fileName}`});
 
             }else{
 
@@ -80,18 +78,16 @@ app.post('/register', (req, res) => {
 })
 
 
-
-
 app.post('/login', (req, res) => {
 
     // Check if the user exists in the file
     if(isAlreadyInFile(req)){
-
-        res.send(`Hi ${(req.body).userName}, Welcome back again!`);
+    
+        res.send({message: `Hi ${(req.body).userName}, Welcome back again!`});
 
     } else{
-
-        res.send(`Username : "${(req.body).userName}" is not registered`);
+        
+        res.send({message: `Username : "${(req.body).userName}" is not registered`});
     }
 })
 

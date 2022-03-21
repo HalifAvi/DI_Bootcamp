@@ -19,8 +19,6 @@ let items = [];
 const fileName = 'items.txt';
 
 
-
-
 app.post('/addItem', (req, res) => {
 
     // The way to store new items with historical items :
@@ -35,7 +33,7 @@ app.post('/addItem', (req, res) => {
     items.push( req.body );
 
     // Write the all data (old+new) to file
-    fs.writeFile('items.txt', JSON.stringify(items), err => {
+    fs.writeFile('items.txt', "JSON.stringify(items)", err => {
 
         if(err){
 

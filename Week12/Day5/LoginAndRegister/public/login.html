@@ -8,8 +8,15 @@
 </head>
 <body>
     <section>
-      <h1>LOG-IN</h1>
-      <form method="POST" action="http://localhost:5000/login">
+      <h1>LOG-IN</h1> <!--PREVENT THE DEFAULT REFRESHING PAGE OF THE FORM : ANG NOW WE CAN FETCH
+                          IN THE FRONT-END IN THE JS FILE AND GETTING BACK THE ANSWER AND APPEND TO THE
+                          SAME HTML PAGE !!!!!!!!!!!!!!!! 
+                          By this solution we don't have to remove the form or to force ourselves
+                          getting to the path in the form 'action' attribute and then to have the
+                          res from server overwrite the page
+                          AND HERE WE HAVE A SOLUTION ALSO IN STATIC PAGES
+                          WE DON'T HAVE TO WAIT TO SOLUTION WITH DYNAMIC PAGES AND PASS PARAMS-->
+      <form onsubmit= "handleData(event)" method="POST">
         <div>
           <label for="userName">USER NAME:</label>
           <input type="text" pattern="[a-zA-Z]*" name="userName" id="userName" required>
