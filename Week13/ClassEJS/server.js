@@ -17,6 +17,15 @@ app.listen(process.env.PORT||8080, ()=> {
 app.set('view engine', 'ejs');
 
 
+
+
+
+
+
+
+let countries;
+let cities;
+
 // RESPONSES TO DYNAMIC PAGES : 
 // The server returns the dynamic page with all the ordered data already in the page
 app.get('/show', (req, res) => {
@@ -24,7 +33,34 @@ app.get('/show', (req, res) => {
     DB.getCountries() 
     .then(data => {
 
-        res.render('countries',
+        countries = data;
+    })
+    .catch(e=> res.json({message: e.message}));
+
+    DB.getAllCities() 
+    .then(data => {
+
+        cities = data;
+    })
+    .catch(e=> res.json({message: e.message}));
+
+    res.render('pages/countries',
+    
+    // An Obj to send in the response to client ( PAGE + DATA) :
+        {
+            countries : countries,
+            cities : cities
+        }
+    )
+})
+
+
+app.get('/show/cities', (req, res) => {
+
+    DB.getCities() 
+    .then(data => {
+
+        res.render('pages/countries',
     
         // An Obj to send in the response to client ( PAGE + DATA) :
             {

@@ -34,13 +34,22 @@ const getCountries = () => {
 const getCities = countryId => {
 
     return  db('city')
-    .select('city')
+    .select('city', 'country_id')
     .where({country_id : countryId})
+} 
+
+
+
+const getAllCities = () => {
+
+    return  db('city')
+    .select('city', 'country_id')
 } 
 
 
 module.exports = {
 
     getCountries,
-    getCities
+    getCities,
+    getAllCities
 }

@@ -27,7 +27,6 @@ app.set('view engine', 'ejs');
 let feed;
 let categories;
 let postsToDisplay = [];
-// let titles;
 
 app.get('/', (req, res) => {
 

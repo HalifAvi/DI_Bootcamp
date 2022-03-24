@@ -7,11 +7,25 @@
     <title>COUNTRIES</title>
 </head>
 <body>
-    <select id="country">
+    <select id="country" onchange="displayCities()">
         <% countries.forEach(item => { %> 
             <option value="<%= item.country_id %>"> <%= item.country %> </option>
         <% }) %>
     </select>
+    
+    <select id="city">
+        <% cities.forEach(item => { %> 
+            <option value="<%= item.country_id %>"> <%= item.city %> </option>
+        <% }) %>
+    </select>
 
+    <script>
+
+        let displayCities = event => {
+
+            console.log(event.target.value)
+        }
+    </script>
 </body>
 </html>
+
