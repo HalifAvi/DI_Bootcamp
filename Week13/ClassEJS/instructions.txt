@@ -1,0 +1,4 @@
+1. create a express server
+2. connect to your database
+3. create .env file with all the parameters that you need - port. db connecttion
+4. create an api (/countris) to get all the countries from db‏
