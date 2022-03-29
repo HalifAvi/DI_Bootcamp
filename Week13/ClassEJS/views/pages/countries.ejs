@@ -8,14 +8,8 @@
 </head>
 <body>
     <select id="country" onchange="displayCities()">
-        <% countries.forEach(item => { %> 
+        <% countriesData.forEach(item => { %> 
             <option value="<%= item.country_id %>"> <%= item.country %> </option>
-        <% }) %>
-    </select>
-    
-    <select id="city">
-        <% cities.forEach(item => { %> 
-            <option value="<%= item.country_id %>"> <%= item.city %> </option>
         <% }) %>
     </select>
 

@@ -23,35 +23,41 @@ app.set('view engine', 'ejs');
 
 
 
-let countries;
-let cities;
+// let countries;
+// let cities;
 
 // RESPONSES TO DYNAMIC PAGES : 
 // The server returns the dynamic page with all the ordered data already in the page
-app.get('/show', (req, res) => {
+app.get('/', (req, res) => {
 
     DB.getCountries() 
     .then(data => {
 
-        countries = data;
-    })
-    .catch(e=> res.json({message: e.message}));
-
-    DB.getAllCities() 
-    .then(data => {
-
-        cities = data;
-    })
-    .catch(e=> res.json({message: e.message}));
-
-    res.render('pages/countries',
+        res.render('pages/countries',
     
     // An Obj to send in the response to client ( PAGE + DATA) :
         {
-            countries : countries,
-            cities : cities
+            countriesData : data
         }
     )
+    })
+    .catch(e=> res.json({message: e.message}));
+
+    // DB.getAllCities() 
+    // .then(data => {
+
+    //     cities = data;
+    // })
+    // .catch(e=> res.json({message: e.message}));
+
+    // res.render('pages/countries',
+    
+    // // An Obj to send in the response to client ( PAGE + DATA) :
+    //     {
+    //         countries : countries,
+    //         cities : cities
+    //     }
+    // )
 })
 
 
@@ -70,6 +76,10 @@ app.get('/show/cities', (req, res) => {
     })
     .catch(e=> res.json({message: e.message}));
 })
+
+
+
+
 
 
 
