@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import NumInput from './Components/NumInput';
 import OperationSelect from './Components/OperationSelect';
