@@ -63,7 +63,7 @@ class App extends React.Component{
       quote : quotes[currQuoteIdx].quote,
       author : author,
       color : colorsArr[currColorIdx],
-      class : " "
+      class : " " 
     } , () => {
 
       setTimeout(()=> this.setState({class : "fadeIn"}), 100)
