@@ -2,41 +2,47 @@ import React from "react";
 
 export default class Color extends React.Component{
 
-    constructor(){
+    constructor(props){
 
-        super();
-        this.state = {favoriteColor : "red",
-                      show : true
-                     }
+        super(props);
+        this.state = {favoriteColor : '',
+                      show : true,
+                      display : false                     
+                    }
     }
 
     componentDidMount(){ // Go to this function once - after creating the component (after render()) 
 
-        setTimeout(this.changeColor, 5000);  // MENDATORY TO WRITE HERE 'this' TO RECOGNIZE THE FUNCTION
+        this.setState({favoriteColor : "red"});
     }
 
-    shouldComponentUpdate(){
-
-        return true;
-    }
-
-
-    componentDidUpdate(prevProps, prevState) {
-        // this.state.favoriteColor = "orange" 
-      }
-
-
+    
     changeColor = () => {
         
-        this.setState({favoriteColor : "yellow"});
+        this.setState({favoriteColor : "yellow"}); // HERE 'display' is false so we won't go to render
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+
+        if(nextState.display){
+
+            return true;
+        }
+
+        this.setState({display : true})
+
+        return false;
     }
 
 
-    changeToBlue = () => {
+    // Only after updating the state and going to render!!!
+    componentDidUpdate(prevProps, prevState) {
 
-        this.setState({favoriteColor : "pink"});
+        if(prevState.favoriteColor != "yellow"){
 
-    }
+            setTimeout(this.changeColor, 5000);  // MENDATORY TO WRITE HERE 'this' TO RECOGNIZE THE FUNCTION
+        }
+      }
 
 
     handleClick = () => {
@@ -52,7 +58,7 @@ export default class Color extends React.Component{
 
             <>
                 <h1>{`My favorite color is : ${this.state.favoriteColor}`}</h1>
-                <button onClick={this.changeToBlue}>CHANGE COLOR</button><br/>
+                {/* <h1>{this.props.message}</h1> */}
 
 
                 <p>{this.state.show ? <Child/> : null}</p>     
