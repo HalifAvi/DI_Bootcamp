@@ -21,10 +21,9 @@ export default class Color extends React.Component{
     }
 
 
-    componentDidUpdate(){
-
-        
-    }
+    componentDidUpdate(prevProps, prevState) {
+        // this.state.favoriteColor = "orange" 
+      }
 
 
     changeColor = () => {
@@ -52,6 +51,7 @@ export default class Color extends React.Component{
         return(
 
             <>
+                <h1>{`My favorite color is : ${this.state.favoriteColor}`}</h1>
                 <button onClick={this.changeToBlue}>CHANGE COLOR</button><br/>
 
 

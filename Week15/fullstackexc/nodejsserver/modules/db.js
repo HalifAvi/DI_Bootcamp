@@ -41,8 +41,18 @@ const getCities = countryId => {
 
 
 
+const addCountry = countryName => {
+
+    return  db('country')
+    .insert({country : countryName})
+    .returning('*')
+} 
+
+
+
 module.exports = {
 
     getCountries,
-    getCities
+    getCities,
+    addCountry
 }
