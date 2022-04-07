@@ -1,0 +1,35 @@
+.secondaryTitle{
+
+    color : red;
+    font-style: italic;
+    text-align : center;
+    text-decoration: underline;
+    margin-top : 30px;
+}
+
+
+.divStyle{
+
+    margin-top : 30px;
+    border : 1px solid black;
+    width : 350px;
+    margin-left : 470px;
+}
+
+.smallTitle{
+
+    font-weight: bold;
+    font-size: 15px;
+    margin-top : 20px;
+}
+
+.liStyle{
+
+    font-size : 20px;
+    margin-left : 20px;
+}
+
+.experienceDetail{
+
+    margin-top: 10px;
+}
