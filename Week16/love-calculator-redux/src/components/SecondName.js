@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {handleChangeSecondName} from '../actions/index';
+import {handleChangeName} from '../actions/index';
 
 class SecondName extends React.Component {
 
@@ -17,11 +17,12 @@ class SecondName extends React.Component {
 }
 
 
+
 const mapDispatchToProps = (dispatch) => {
 
     return {
 
-        setSecondNameInput : (e) => dispatch(handleChangeSecondName(e.target.value))
+        setSecondNameInput : (e) => dispatch(handleChangeName( 'CHANGE_SECOND_INPUT_NAME' , e.target.value))
         
     }
 }

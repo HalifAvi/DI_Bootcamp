@@ -1,26 +1,25 @@
-export const handleChangeFirstName = (inputValue) => {
+
+
+// ONE FUNCTION TO BOTH OF THE FUNCTIONS
+export const handleChangeName = (type, inputValue) => {
 
     return{
 
-        type: 'CHANGE_FIRST_INPUT_NAME',
+        type: type,
         payload: inputValue
     }
 }
 
-export const handleChangeSecondName = (inputValue) => {
 
-    return{
 
-        type: 'CHANGE_SECOND_INPUT_NAME',
-        payload: inputValue
-    }
-}
-
-export const displayMatch = () => {
+export const displayMatch = (resultsObj) => {
 
     return{
 
         type: 'DISPLAY_DATA_FROM_API',
+        payload: resultsObj
     }
 }
+
+
 

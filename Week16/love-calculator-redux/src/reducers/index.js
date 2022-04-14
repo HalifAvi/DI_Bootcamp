@@ -2,21 +2,20 @@ let initState = {
 
     firstName : '',
     secondName : '',
-    percentage : '',
-    result : ''
+    results : { percentage : '', result : ''}
 }
 
 
-const options = {
-    method: 'GET',
-    headers: {
-    'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com',
-    'X-RapidAPI-Key': '35c70882f2msh5bd980c60ba86cep10f251jsn5463b7d7b519'
-    }
-};
+// const options = {
+//     method: 'GET',
+//     headers: {
+//     'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com',
+//     'X-RapidAPI-Key': '35c70882f2msh5bd980c60ba86cep10f251jsn5463b7d7b519'
+//     }
+// };
 
-let percentage;
-let result;
+// let percentage;
+// let result;
 
 
 export const reducer = (state=initState, action={}) => {
@@ -29,13 +28,17 @@ export const reducer = (state=initState, action={}) => {
 
         case 'CHANGE_SECOND_INPUT_NAME': 
 
-            getMatch(state);
-
             return {...state, secondName: action.payload};
 
         case 'DISPLAY_DATA_FROM_API': 
 
-            return {...state, percentage : percentage, result: result};
+        console.log(action.payload)
+
+            return {...state, results: action.payload }
+
+        // getMatch(state);
+
+            // return {...state, percentage : percentage, result: result};
 
         default: return {...state};
     }
@@ -44,15 +47,15 @@ export const reducer = (state=initState, action={}) => {
 
 
 
-const getMatch = (state) => {
+// const getMatch = (state) => {
 
-    fetch(`https://love-calculator.p.rapidapi.com/getPercentage?sname=${state.secondName}&fname=${state.firstName}`, options)
-    .then(response => response.json())
-    .then(data => {
+//     fetch(`https://love-calculator.p.rapidapi.com/getPercentage?sname=${state.secondName}&fname=${state.firstName}`, options)
+//     .then(response => response.json())
+//     .then(data => {
         
-        percentage = `PERCENTAGE : ${data.percentage}`;
-        result = data.result;
-    })
-    .catch(err => console.error(err));
-}
+//         percentage = `PERCENTAGE : ${data.percentage}`;
+//         result = data.result;
+//     })
+//     .catch(err => console.error(err));
+// }
 

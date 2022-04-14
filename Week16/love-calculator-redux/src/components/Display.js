@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 
 class Display extends React.Component{
 
-
     render(){
+
+        const { fname, sname, percentage, result } = this.props
 
         return(
             <>
-                <div>{`${this.props.fname} ${this.props.sname}`}</div>
-                <div>{this.props.per}</div>
-                <div>{this.props.res}</div>
+                <div>{`${fname} ${sname}`}</div>
+                <div>{percentage}</div>
+                <div>{result}</div>
             </>
         )
     }
@@ -18,14 +19,12 @@ class Display extends React.Component{
 
 const mapStateToProps = (state) => {
 
-    const {firstName, secondName, percentage, result} = state;
-
     return{
 
-        fname : firstName,
-        sname : secondName,
-        per : percentage,
-        res : result
+        fname : state.firstName,
+        sname : state.secondName,
+        percentage : state.results.percentage,
+        result : state.results.result
     }
 }
 
