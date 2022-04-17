@@ -1,0 +1,14 @@
+h3 {
+
+    position: absolute;
+    top: 250px;
+    left: 480px;
+}
+
+
+div.photosDiv {
+
+    position: relative;
+    top: 350px; 
+    left: 60px;
+}

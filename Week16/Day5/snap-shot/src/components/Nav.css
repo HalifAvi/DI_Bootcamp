@@ -1,0 +1,19 @@
+.bttsSection{
+
+    font-size: 40px;
+    font-family: 'Square Peg', cursive;
+    position: absolute;
+    left: 28%;
+    top: 200px;
+}
+
+.btt{
+
+    margin: 20px;
+    background-color: lightseagreen;
+    padding: 0px 20px;
+    color: aliceblue;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    text-decoration: none;
+}
