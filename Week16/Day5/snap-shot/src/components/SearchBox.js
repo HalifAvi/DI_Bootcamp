@@ -24,7 +24,7 @@ class SearchBox extends React.Component{
     handleClick = () => {
 
         const query = this.props.catergoryName;
-        const baseURL = `https://api.pexels.com/v1/search?per_page=40&query=${query}`;
+        const baseURL = `https://api.pexels.com/v1/search?per_page=30&query=${query}`;
 
         fetch(baseURL, {
 
@@ -55,8 +55,8 @@ class SearchBox extends React.Component{
                         aria-describedby="basic-addon2"
                         onChange={this.handleChange}
                     />
-                    <Button variant="outline-secondary" id="button-addon2" onClick={this.handleClick}>
-                    <i class="fab fa-magnifying-glass fs-3 me-4"></i>
+                    <Button style={{backgroundColor: "gray"}} variant="outline-secondary" id="button-addon2" onClick={this.handleClick}>
+                        <svg height="32" width="32"><path d="M19.427 21.427a8.5 8.5 0 1 1 2-2l5.585 5.585c.55.55.546 1.43 0 1.976l-.024.024a1.399 1.399 0 0 1-1.976 0l-5.585-5.585zM14.5 21a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z" fill="#ffffff" fill-rule="evenodd"></path></svg>
                     </Button>
                 </InputGroup>  
 
@@ -87,4 +87,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
 
-// <i className='fab fa-instagram fs-3 me-4'/>

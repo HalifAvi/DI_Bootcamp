@@ -1,17 +1,20 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import { displayCustomizedCategory } from '../actions/index';
-import './Category.css';
-
 const API_KEY = '563492ad6f9170000100000152b3afd0806a4373b69250820bbeca57';
 
 
-class PhotoList extends React.Component{
 
-    componentDidMount(){
+
+class Pagination extends React.Component{
+
+
+    handleClick = (e) => {
+
+        console.log(e.target.id)
 
         const query = this.props.catergoryName;
-        const baseURL = `https://api.pexels.com/v1/search?per_page=30&query=${query}`;
+        const baseURL = `https://api.pexels.com/v1/search?per_page=${e.target.id}&query=${query}`;
 
         fetch(baseURL, {
 
@@ -30,31 +33,26 @@ class PhotoList extends React.Component{
     }
 
 
+
     render(){
 
         return(
-            <div className="photosDiv">
-                {
-                    (this.props.currentImagesToDisplay).map(image => {
-
-                        return(
-
-                            <div className="img-area" style={{display: "inline-block", marginLeft: "10px"}}>
-                                <img style={{marginRight: "10px", marginBottom: "10px"}} src={image.src.tiny} /> 
-                            </div>
-                        ) 
-                    })
-                }
+            <div style={{position: "absolute", left: "35%", margin: "20px"}}>
+            
+                <button id='20' onClick={this.handleClick}>20 images</button>
+                <button id='40' onClick={this.handleClick}>40 images</button>
+                <button id='60' onClick={this.handleClick}>60 images</button>
+                <button id='100' onClick={this.handleClick}>100 images</button>
             </div>
         )
     }
 }
 
+
 const mapStateToProps = (state) => {
 
-    return{
+    return {
 
-        currentImagesToDisplay : state.currentImageArr,
         catergoryName : state.catergoryName
     }
 }
@@ -62,10 +60,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-    return{
+    return {
 
         displayCustomizedCategory : (currentImageArr)=> dispatch(displayCustomizedCategory(currentImageArr))
+
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhotoList)
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
+

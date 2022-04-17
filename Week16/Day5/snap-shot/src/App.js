@@ -7,6 +7,7 @@ import Beach from './components/Beach';
 import Bird from './components/Bird';
 import Food from './components/Food';
 import SearchBox from './components/SearchBox';
+import Pagination from './components/Pagination';
 
 
 
@@ -17,6 +18,8 @@ class App extends React.Component{
     return (
 
      <div style={{position: "relative"}}>
+
+       <Pagination />
 
        <div style={{position: "absolute", left: "0vw", top: "20vh"}}>
         <h1 style={{fontFamily: "'Satisfy', cursive", fontSize: "80px", textAlign: "center"}}>Snap Shot</h1>

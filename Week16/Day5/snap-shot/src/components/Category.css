@@ -12,3 +12,22 @@ div.photosDiv {
     top: 350px; 
     left: 60px;
 }
+
+
+.img-area {
+
+    width: 280px;
+    overflow: hidden;
+}
+
+.img-area img {
+
+    width: 280px;
+}
+
+
+.img-area img:hover {
+
+    transform: scale(1.25);
+    transition: transform 1.25s;
+}
