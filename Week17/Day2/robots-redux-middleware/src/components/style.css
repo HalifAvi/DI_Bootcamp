@@ -1,0 +1,35 @@
+
+.card:hover{
+
+    box-shadow: 0 12px 24px #999, 0 12px 24px #999;
+    cursor: pointer;
+}
+
+
+
+
+.card{
+
+    width: 18rem;
+    margin: 15px;
+    box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+    transition: box-shadow .1s ease-in-out;
+    transition-property: box-shadow;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+}
+
+.animate{
+
+    -webkit-animation: shake .5s;
+    animation: shake .5s;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: shake;
+}
