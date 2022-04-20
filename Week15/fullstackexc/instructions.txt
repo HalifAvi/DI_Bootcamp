@@ -6,7 +6,7 @@
 תיקיה חדשה: nodejsserver
 בטרמינל אכונן על הנתיב של התיקיה הזאת עי כתיבה של cd
 npm init -y
-ואז לעשות התקנות של כל הפאקאגים : npm i express cors knex pg 
+ואז לעשות התקנות של כל הפאקאגים : npm i express cors knex pg dotenv
 npm i nodemon --save-dev
 לשנות בקובץ ל "start" : "nodemon server.js"
 יצירת קובץ בתיקיה server.js
