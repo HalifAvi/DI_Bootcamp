@@ -43,8 +43,7 @@ export const fetchCities = (countryID) => async (dispatch) => {
         dispatch({
 
             type: REQUEST_CITIES_SUCCESS,
-            payload: data,
-            deletePrevious: false
+            payload: data
         })
     }
     catch (error){
@@ -52,9 +51,7 @@ export const fetchCities = (countryID) => async (dispatch) => {
             dispatch({
       
             type: REQUEST_CITIES_FAILED,
-            payload: error,
-            deletePrevious: false
-    
+            payload: error    
         })
     }
 }

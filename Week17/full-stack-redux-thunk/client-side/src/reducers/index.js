@@ -17,8 +17,7 @@ const initStateCountries = {
 
 const initStateCities = {
 
-    cities : [],
-    deletePrevious: true
+    cities : []
 }
 
 
@@ -44,15 +43,15 @@ export const citiesReducer = (state=initStateCities, action={}) => {
 
         case REQUEST_CITIES_SUCCESS: 
         
-            return {...state, cities: action.payload, deletePrevious: action.deletePrevious};
+            return {...state, cities: action.payload};
 
         case REQUEST_CITIES_PENDING: 
         
-            return {...state,  cities: [] };
+            return {...state,  cities: [] }; // MAKE THE CITIES SELECT ELEMENT CLEAR BEFORE CHOOSING NEW COUNTRY
 
         case REQUEST_CITIES_FAILED: 
         
-            return {...state, deletePrevious: action.deletePrevious};
+            return {...state};
 
 
         default : 

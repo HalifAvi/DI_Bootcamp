@@ -1,0 +1,6 @@
+country-cities
+react
+redux
+redux-thunk ((featch inside actions))
+clear the cities select element each time you choose an new country
+3 stages in featch action : PENDING, SUCCESS, FAILED

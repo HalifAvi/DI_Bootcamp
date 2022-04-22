@@ -4,14 +4,6 @@ import React from 'react';
 class Cities extends React.Component{
 
 
-    componentDidMount(){
-
-        if(this.props.deletePrevious){
-
-            clearSelectOptions();
-        }
-    }
-
     render(){
 
         return(
@@ -34,24 +26,11 @@ class Cities extends React.Component{
 }
 
 
-const clearSelectOptions = () => {
-
-    const citiesSelectElement = document.querySelector('#cities');
-    let selectLength = citiesSelectElement.options.length;
-    let i;
-
-    for (i = selectLength-1; i >= 0; i--) {
-        citiesSelectElement.options[i] = null;
-    }
-}
-
-
 const mapStateToProps = (state) => {
 
     return{
 
         cities : state.citiesReducer.cities,
-        deletePrevious : state.citiesReducer.deletePrevious
     }
 }
 
