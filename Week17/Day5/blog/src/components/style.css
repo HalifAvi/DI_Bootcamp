@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #eee;
+  }
+  
+  nav a.active{
+    border-bottom: 5px solid #333;
+    transition: all ease 0.5s;
+  }
+
+  nav{
+    background-color: #C62828;
+    padding-right: 170px;
+    padding-left: 170px;
+    margin-top: 20px;
+  }
+
+  h4{
+    text-align: center;
+  }
+  
+  .container{
+    margin-top: 20px;
+  }
+
+  .post{
+    position: relative;
+    margin: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  }
+  
+  .home .post img{
+    position: absolute;
+    top: 20px;
+    left: -100px;
+    opacity: 0.6;
+  }
+  
+  .home .post{
+    overflow: hidden;
+    padding-left: 80px;
+  }
