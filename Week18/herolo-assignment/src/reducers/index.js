@@ -1,15 +1,17 @@
 import {
 
     CURRENT_LOCATION,
-    B
+    CURRENT_WEATHER
+
 } from '../constants';
 
 const selfLocationState = {
-
-    test: false,
-    currentLocation : 'Tel-Aviv'
+/////////////////////////////// CHANGE EVERYTHING TO EMPTY - HERE JUST FOR TEST!!!
+    currentLocation : 'Mass',
+    key: 212546,
+    cWeather: 18.9,
+    fWeather: 66
 }
-
 
 const searchedLocationState = {
 
@@ -20,12 +22,20 @@ const searchedLocationState = {
 
 export const selfLocationReducer = (state=selfLocationState, action={}) => {
 
-
     switch(action.type){
 
-        case CURRENT_LOCATION:
+        case CURRENT_LOCATION: 
 
-            return {...state, currentLocation: action.payload}
+            return { 
+                        ...state, currentLocation: action.payload.cityName,
+                        key: action.payload.key 
+                   }
+
+        case CURRENT_WEATHER: 
+
+            return { 
+                        ...state, cWeather: action.payload.cWeather, fWeather: action.payload.fWeather 
+                   }
 
         default:
 

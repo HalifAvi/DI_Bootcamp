@@ -10,8 +10,8 @@ class Home extends React.Component{
 
         return(
             <div>
-                <SearchBox />
                 <CurrentAreaWeather />
+                <SearchBox />
                 {/* <SearchedAreaWeather /> */}
             </div>
         )
