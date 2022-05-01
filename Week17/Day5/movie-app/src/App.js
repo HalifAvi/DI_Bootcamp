@@ -13,10 +13,10 @@ function App() {
 
             <Navi />
 
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/movie/:id" element={<Movie />} />
-            </Routes>
+            <Route>
+              <Routes path="/" element={<Landing />} />
+              <Routes path="/movie/:id" element={<Movie />} />
+            </Route>
 
           </BrowserRouter>
   );
