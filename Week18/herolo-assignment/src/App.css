@@ -72,3 +72,53 @@ input#searchInput{
   color: red;
 }
 
+
+.allWeekDaysSection {
+
+  display: flex;
+  justify-content: center;
+}
+
+
+.singleDayWeatherSection {
+
+  border: 1px solid black;
+  margin: 20px;
+  width: 150px;
+  height: 180px;
+  padding: 20px;
+  text-align: center;
+}
+
+ion-icon{
+
+  color: whitesmoke;
+  background-color: lightcoral;
+  border-radius: 50px;
+  padding: 20px;
+  width: 60px;
+  height: 60px;
+  margin-right: 50px;
+  position: absolute;
+  top: 100px;
+  right: 0px;
+
+}
+
+
+ion-icon:hover{
+
+  cursor: pointer;
+  color: red;
+  background-color: lightcoral;
+  border-radius: 50px;
+  padding: 20px;
+  width: 60px;
+  height: 60px;
+  margin-right: 50px;
+  position: absolute;
+  top: 100px;
+  right: 0px;
+
+}
+

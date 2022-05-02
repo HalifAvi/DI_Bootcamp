@@ -2,7 +2,6 @@ import {
 
     CURRENT_LOCATION,
     CURRENT_WEATHER,
-    SEARCHED_KEY,
     SEARCHED_WEATHER,
     API_KEY
 
@@ -68,38 +67,55 @@ export const setSearchedLocationKey = (valueToSearch) => (dispatch) => {
        .then(res => res.json())
        .then(data => {
 
-           dispatch({
-   
-               type: SEARCHED_KEY,
-               payload: data[0].Key
-           })
+            const key = data[0].Key;
+
+            // INNER FUNCTION WITH ANOTHER FETCH INSIDE
+            setSearchedWeather(dispatch, key);
        })
        .catch( e => console.log(e) )
 }
 
 
 
-export const setSearchedWeather = () => (dispatch, getStatus) => {
 
-    const {key} = getStatus().searchedLocationReducer;
 
-    // console.log(key)
+
+
+
+
+
+
+// INNER FUNCTION !!!
+
+const setSearchedWeather = (dispatch, key) => {
 
     // API TO FIND THE WEATER FOR 5 DAY BY KEY VALUE LOCATION
     fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${API_KEY}`)
     .then(res => res.json())
     .then(data => {
 
+        const {Category} = data.Headline;
+
         dispatch({
 
             type: SEARCHED_WEATHER,
             payload: {
 
-                description: (data.Headline).Category,
+                description: Category,
                 all5DaysWeather: data.DailyForecasts // An array
             }
         })
     })
     .catch( e => console.log(e) )
 }
+
+
+
+
+
+
+
+
+
+
 

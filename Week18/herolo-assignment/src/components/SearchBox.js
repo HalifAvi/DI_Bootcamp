@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import '../App.css';
 import { setSearchedLocationKey } from '../actions/index';
-import { setSearchedWeather } from '../actions/index';
 
 
 
@@ -12,8 +11,8 @@ class SearchBox extends React.Component{
 
         if (e.charCode == 13) {
 
-            this.props.setSearchedLocationKey(e.target.value);
-            this.props.setSearchedWeather();
+            /////////// REMOVE THE COMMENTS - HERE JUST FOT TEST ! LIMIT TO 50 API REQUEST PER DAY
+            // this.props.setSearchedLocationKey(e.target.value);
         }
     }
 
@@ -43,7 +42,6 @@ const mapDispatchToProps = (dispatch) => {
     return{
 
         setSearchedLocationKey : (valueToSearch) => dispatch(setSearchedLocationKey(valueToSearch)),
-        setSearchedWeather : () => dispatch(setSearchedWeather())
     }
 }
 

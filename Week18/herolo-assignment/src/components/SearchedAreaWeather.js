@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import {setSearchedWeather} from '../actions/index';
+import DailyWeatherCard from "./DailyWeatherCard";
+import '../App.css';
+
 
 
 class SearchedAreaWeather extends React.Component{
@@ -9,8 +11,19 @@ class SearchedAreaWeather extends React.Component{
 
         return(
             <div>
-                {console.log(this.props.description)}
-                {console.log(this.props.all5DaysWeather)}
+
+                <h1 style={{textAlign: "center"}}>{this.props.description}</h1>
+
+                <div className="allWeekDaysSection">
+                {
+                    (this.props.all5DaysWeather).map((day, idx) => {
+                        
+                        // PASS ID BY PROPS !!!
+                        return ( <DailyWeatherCard id={idx} key={idx} /> )
+                    })
+                }
+                </div>
+
             </div>
         )
     }
@@ -21,7 +34,6 @@ const mapStateToProps = (state) => {
 
     return{
 
-        searchedLocationKey : state.searchedLocationReducer.key,
         description : state.searchedLocationReducer.description,
         all5DaysWeather : state.searchedLocationReducer.all5DaysWeather
     }

@@ -2,7 +2,6 @@ import {
 
     CURRENT_LOCATION,
     CURRENT_WEATHER,
-    SEARCHED_KEY,
     SEARCHED_WEATHER
 
 } from '../constants';
@@ -16,10 +15,15 @@ const selfLocationState = {
 }
 
 const searchedLocationState = {
-
-    key: '',
-    description: '',
-    all5DaysWeather: []
+/////////////////////////////// CHANGE EVERYTHING TO EMPTY - HERE JUST FOR TEST!!!
+    description: 'dsfsdfsdf',
+    all5DaysWeather: [{Temperature: {Maximum: { Value: 10}}},
+        {Temperature: {Maximum: { Value: 11}}},
+        {Temperature: {Maximum: { Value: 12}}},
+        {Temperature: {Maximum: { Value: 13}}},
+        {Temperature: {Maximum: { Value: 14}}}
+    ],
+    singleDayIdx: 0
 
 }
 
@@ -54,17 +58,16 @@ export const searchedLocationReducer = (state=searchedLocationState, action={}) 
 
     switch(action.type){ 
 
-        case SEARCHED_KEY:
-
-            return {...state, key: action.payload}
-
         case SEARCHED_WEATHER:
 
             return {...state, description: action.payload.description, all5DaysWeather: action.payload.all5DaysWeather}  
-
+    
         default:
 
             return{...state}
 
     }
 }
+
+
+

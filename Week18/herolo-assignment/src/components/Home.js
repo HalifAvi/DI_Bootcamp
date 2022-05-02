@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import SearchBox from "./SearchBox";
 import CurrentAreaWeather from "./CurrentAreaWeather";
 import SearchedAreaWeather from "./SearchedAreaWeather";
+import '../App.css'
 
 class Home extends React.Component{
 
@@ -13,6 +14,7 @@ class Home extends React.Component{
             <div>
                 <CurrentAreaWeather />
                 <SearchBox />
+                <ion-icon name="heart-outline" ></ion-icon>
                 <SearchedAreaWeather />
             </div>
         )
