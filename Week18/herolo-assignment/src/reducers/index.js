@@ -1,7 +1,9 @@
 import {
 
     CURRENT_LOCATION,
-    CURRENT_WEATHER
+    CURRENT_WEATHER,
+    SEARCHED_KEY,
+    SEARCHED_WEATHER
 
 } from '../constants';
 
@@ -15,7 +17,9 @@ const selfLocationState = {
 
 const searchedLocationState = {
 
-
+    key: '',
+    description: '',
+    all5DaysWeather: []
 
 }
 
@@ -48,12 +52,15 @@ export const selfLocationReducer = (state=selfLocationState, action={}) => {
 
 export const searchedLocationReducer = (state=searchedLocationState, action={}) => {
 
+    switch(action.type){ 
 
-    switch(action.type){
+        case SEARCHED_KEY:
 
-        case 'B':
+            return {...state, key: action.payload}
 
-            return {...state}
+        case SEARCHED_WEATHER:
+
+            return {...state, description: action.payload.description, all5DaysWeather: action.payload.all5DaysWeather}  
 
         default:
 

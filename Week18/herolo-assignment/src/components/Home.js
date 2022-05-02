@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import SearchBox from "./SearchBox";
 import CurrentAreaWeather from "./CurrentAreaWeather";
+import SearchedAreaWeather from "./SearchedAreaWeather";
 
 class Home extends React.Component{
 
@@ -12,7 +13,7 @@ class Home extends React.Component{
             <div>
                 <CurrentAreaWeather />
                 <SearchBox />
-                {/* <SearchedAreaWeather /> */}
+                <SearchedAreaWeather />
             </div>
         )
     }

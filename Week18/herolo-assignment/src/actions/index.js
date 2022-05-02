@@ -1,7 +1,11 @@
 import {
 
     CURRENT_LOCATION,
-    CURRENT_WEATHER
+    CURRENT_WEATHER,
+    SEARCHED_KEY,
+    SEARCHED_WEATHER,
+    API_KEY
+
 } from '../constants';
 
 
@@ -13,7 +17,7 @@ export const setCurrentLocation = () => (dispatch) => {
         const longitude = position.coords.longitude;
 
         // API TO FIND THE PLACE NAME AND THE LOCATION-KEY BY LAT&LON OF THE LOCATION
-        fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=yVjLDUgtb5R3xpkcq9p1kfHvk7l8E17O&q=${latitude},${longitude}`)
+        fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${latitude},${longitude}`)
         .then(res => res.json())
         .then(data => {
     
@@ -38,7 +42,7 @@ export const setCurrentWeather = () => (dispatch, getStatus) => {
     const {key} = getStatus().selfLocationReducer; // TO GET DATA FROM STORE DIRECTLY
 
         // API TO FIND THE WEATER BY LOCATION-KEY
-        fetch(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=yVjLDUgtb5R3xpkcq9p1kfHvk7l8E17O`)
+        fetch(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${API_KEY}`)
         .then(res => res.json())
         .then(data => {
 
@@ -57,10 +61,45 @@ export const setCurrentWeather = () => (dispatch, getStatus) => {
 
 
 
-export const bbbb = (data) => {
+export const setSearchedLocationKey = (valueToSearch) => (dispatch) => {
 
-    return {
+       // API TO FIND THE WEATER BY SEARCHED VALUE
+       fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${valueToSearch}`)
+       .then(res => res.json())
+       .then(data => {
 
-    }
+           dispatch({
+   
+               type: SEARCHED_KEY,
+               payload: data[0].Key
+           })
+       })
+       .catch( e => console.log(e) )
+}
+
+
+
+export const setSearchedWeather = () => (dispatch, getStatus) => {
+
+    const {key} = getStatus().searchedLocationReducer;
+
+    // console.log(key)
+
+    // API TO FIND THE WEATER FOR 5 DAY BY KEY VALUE LOCATION
+    fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+
+        dispatch({
+
+            type: SEARCHED_WEATHER,
+            payload: {
+
+                description: (data.Headline).Category,
+                all5DaysWeather: data.DailyForecasts // An array
+            }
+        })
+    })
+    .catch( e => console.log(e) )
 }
 
