@@ -125,9 +125,7 @@ export const favoritesReducer = (state=favoritesState, action={}) => {
                    addToLoacalStorage('favorites', [...state.favoritesArray]);
 
                    return {...state, favoritesArray:[...state.favoritesArray]}
-
-            return {...state}
-
+                   
         default:
 
             return{...state}
