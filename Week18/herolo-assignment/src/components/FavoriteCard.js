@@ -11,7 +11,8 @@ class FavoriteCard extends React.Component{
 
         return(
             <div className="singleFavoriteSection">
-                <h3>{(favoritesArray[id]).cityName}</h3>
+                <button className="removeBtt">X</button>
+                <h3 style={{marginTop: "20px"}}>{(favoritesArray[id]).cityName}</h3>
                 <h5>{(displayedUnits === 'C' ) ? ((favoritesArray[id]).cWeather + ' C') : ((favoritesArray[id]).fWeather + ' F')}</h5>
                 <h6>{(favoritesArray[id]).description}</h6>
             </div>

@@ -88,6 +88,7 @@ input#searchInput{
   height: 180px;
   padding: 20px;
   text-align: center;
+  position: relative;
 }
 
 ion-icon{
@@ -183,4 +184,14 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.removeBtt {
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: antiquewhite;
+  background-color: red;
+
 }
