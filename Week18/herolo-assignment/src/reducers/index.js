@@ -118,6 +118,14 @@ export const favoritesReducer = (state=favoritesState, action={}) => {
 
                    console.log(action.payload)
 
+                   // REMOVE FROM ARRAY
+                   state.favoritesArray.splice(action.payload, 1);
+
+                   // COPY THE NEW ARRAY(WITHOUT THE ELEMENT) TO LOCALSTORAGE
+                   addToLoacalStorage('favorites', [...state.favoritesArray]);
+
+                   return {...state, favoritesArray:[...state.favoritesArray]}
+
             return {...state}
 
         default:

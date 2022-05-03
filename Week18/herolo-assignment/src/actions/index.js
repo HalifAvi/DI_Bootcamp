@@ -124,12 +124,12 @@ export const changeUnits = (boolValue, page) => {
 }
 
 
-export const removeFavCity = (favCityID) => {
+export const removeFavCity = (favCityPosition) => {
 
     return{
 
         type: REMOVE_FAV_CITY,
-        payload: favCityID
+        payload: favCityPosition
     }
 
 }

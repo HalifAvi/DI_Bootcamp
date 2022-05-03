@@ -12,7 +12,7 @@ class FavoriteCard extends React.Component{
 
         return(
             <div className="singleFavoriteSection">
-                <button onClick={()=> this.props.removeFavCity(favoritesArray[id].key)} className="removeBtt">X</button>
+                <button onClick={()=> this.props.removeFavCity(id)} className="removeBtt">X</button>
                 <h3 style={{marginTop: "20px"}}>{(favoritesArray[id]).cityName}</h3>
                 <h5>{(displayedUnits === 'C' ) ? ((favoritesArray[id]).cWeather + ' C') : ((favoritesArray[id]).fWeather + ' F')}</h5>
                 <h6>{(favoritesArray[id]).description}</h6>
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 
     return{
 
-        removeFavCity : (favCityID) => dispatch(removeFavCity(favCityID))
+        removeFavCity : (favCityPosition) => dispatch(removeFavCity(favCityPosition))
     }
 }
 
