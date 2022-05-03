@@ -92,8 +92,7 @@ input#searchInput{
 
 ion-icon{
 
-  color: whitesmoke;
-  background-color: lightcoral;
+  color: lightcoral;
   border-radius: 50px;
   padding: 20px;
   width: 60px;
@@ -109,7 +108,7 @@ ion-icon{
 ion-icon:hover{
 
   cursor: pointer;
-  color: red;
+  color: whitesmoke;
   background-color: lightcoral;
   border-radius: 50px;
   padding: 20px;

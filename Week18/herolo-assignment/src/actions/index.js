@@ -3,9 +3,13 @@ import {
     CURRENT_LOCATION,
     CURRENT_WEATHER,
     SEARCHED_WEATHER,
-    API_KEY
+    API_KEY,
+    ADD_TO_FAV
 
 } from '../constants';
+
+import {getFromLocalStorage} from '../utils/storage';
+
 
 
 export const setCurrentLocation = () => (dispatch) => {
@@ -62,17 +66,36 @@ export const setCurrentWeather = () => (dispatch, getStatus) => {
 
 export const setSearchedLocationKey = (valueToSearch) => (dispatch) => {
 
-       // API TO FIND THE WEATER BY SEARCHED VALUE
+       // API TO FIND THE KEY BY SEARCHED VALUE
        fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${valueToSearch}`)
        .then(res => res.json())
        .then(data => {
 
             const key = data[0].Key;
+            const cityName = data[0].LocalizedName;
 
             // INNER FUNCTION WITH ANOTHER FETCH INSIDE
-            setSearchedWeather(dispatch, key);
+            setSearchedWeather(dispatch, key, cityName);
        })
        .catch( e => console.log(e) )
+}
+
+
+
+export const addToFavorites = () => (dispatch, getStatus) => {
+
+    const {key} = getStatus().searchedLocationReducer;
+    const {cityName} = getStatus().searchedLocationReducer;
+
+    if(isAlreadyInFav(key)){
+
+        alert("This location is already exist!!!");
+
+    } else {
+
+        // INNER FUNCTION WITH ANOTHER FETCH INSIDE
+        fetchSpecificWeather(dispatch, key, cityName);
+    }
 }
 
 
@@ -87,7 +110,7 @@ export const setSearchedLocationKey = (valueToSearch) => (dispatch) => {
 
 // INNER FUNCTION !!!
 
-const setSearchedWeather = (dispatch, key) => {
+const setSearchedWeather = (dispatch, key, cityName) => {
 
     // API TO FIND THE WEATER FOR 5 DAY BY KEY VALUE LOCATION
     fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${API_KEY}`)
@@ -101,6 +124,8 @@ const setSearchedWeather = (dispatch, key) => {
             type: SEARCHED_WEATHER,
             payload: {
 
+                cityName: cityName,
+                searchedWeatherKey: key,
                 description: Category,
                 all5DaysWeather: data.DailyForecasts // An array
             }
@@ -111,8 +136,33 @@ const setSearchedWeather = (dispatch, key) => {
 
 
 
+const fetchSpecificWeather = (dispatch, key, cityName) => {
+
+    // API TO FIND THE WEATER BY LOCATION-KEY
+    fetch(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+
+        dispatch({
+
+            type: ADD_TO_FAV,
+            payload: {
+
+                cityName: cityName,
+                key: key,
+                cWeather: data[0].Temperature.Metric.Value, // C
+                fWeather: data[0].Temperature.Imperial.Value, // F
+                weatherText: data[0].WeatherText
+            }
+        })
+    })
+    .catch( e => console.log(e) )
+}
 
 
+
+
+const isAlreadyInFav = (keyToCheck) => (getFromLocalStorage('favorites')).some(location => location.key === keyToCheck)
 
 
 

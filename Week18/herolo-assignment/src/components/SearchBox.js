@@ -12,7 +12,7 @@ class SearchBox extends React.Component{
         if (e.charCode == 13) {
 
             /////////// REMOVE THE COMMENTS - HERE JUST FOT TEST ! LIMIT TO 50 API REQUEST PER DAY
-            // this.props.setSearchedLocationKey(e.target.value);
+            this.props.setSearchedLocationKey(e.target.value);
         }
     }
 
