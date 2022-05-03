@@ -16,8 +16,10 @@ class LightToggle extends React.Component{
         return(
             <div>
                 <label class="switch">
+
                     <input type="checkbox" onChange={this.changePageLight}/>
                     <span class="slider"></span>
+                    
                 </label>
             </div>
         )
