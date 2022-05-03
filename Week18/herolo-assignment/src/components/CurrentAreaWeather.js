@@ -19,8 +19,7 @@ class CurrentAreaWeather extends React.Component{
             <div className="currentPositionSection">
                 <h1>{"YOUR CURRENT POSITION :"}</h1>
                 <h2 className="yourCurrentPos">{this.props.currentLocation}</h2>
-                <h4>{this.props.cWeather + "C"}</h4>
-                <h4>{this.props.fWeather + "F"}</h4>
+                <h4>{(this.props.displayedUnits === 'C' ) ? (this.props.cWeather + ' C') : (this.props.fWeather + ' F')}</h4>
             </div>
         )
     }
@@ -31,9 +30,10 @@ const mapStateToProps = (state) => {
 
     return{
 
-        currentLocation : state.selfLocationReducer.currentLocation,
-        cWeather : state.selfLocationReducer.cWeather,
-        fWeather : state.selfLocationReducer.fWeather
+        currentLocation : state.homeReducer.currentLocation,
+        cWeather : state.homeReducer.cWeather,
+        fWeather : state.homeReducer.fWeather,
+        displayedUnits : state.homeReducer.displayedUnits
     }
 }
 

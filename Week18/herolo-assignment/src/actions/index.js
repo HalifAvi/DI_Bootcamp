@@ -4,7 +4,9 @@ import {
     CURRENT_WEATHER,
     SEARCHED_WEATHER,
     API_KEY,
-    ADD_TO_FAV
+    ADD_TO_FAV,
+    CHANGE_UNITS_HOME,
+    CHANGE_UNITS_FAV
 
 } from '../constants';
 
@@ -42,7 +44,7 @@ export const setCurrentLocation = () => (dispatch) => {
 
 export const setCurrentWeather = () => (dispatch, getStatus) => {
 
-    const {key} = getStatus().selfLocationReducer; // TO GET DATA FROM STORE DIRECTLY
+    const {key} = getStatus().homeReducer; // TO GET DATA FROM STORE DIRECTLY
 
         // API TO FIND THE WEATER BY LOCATION-KEY
         fetch(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${API_KEY}`)
@@ -84,8 +86,8 @@ export const setSearchedLocationKey = (valueToSearch) => (dispatch) => {
 
 export const addToFavorites = () => (dispatch, getStatus) => {
 
-    const {key} = getStatus().searchedLocationReducer;
-    const {cityName} = getStatus().searchedLocationReducer;
+    const {key} = getStatus().homeReducer;
+    const {cityName} = getStatus().homeReducer;
 
     if(isAlreadyInFav(key)){
 
@@ -95,7 +97,29 @@ export const addToFavorites = () => (dispatch, getStatus) => {
 
         // INNER FUNCTION WITH ANOTHER FETCH INSIDE
         fetchSpecificWeather(dispatch, key, cityName);
+
+        alert("This location was successfully added!!!");
     }
+}
+
+
+export const changeUnits = (boolValue, page) => {
+    
+    if(page === "homePage"){
+
+        return{
+
+            type: CHANGE_UNITS_HOME,
+            payload: boolValue
+        }
+    }
+
+    return{
+
+        type: CHANGE_UNITS_FAV,
+        payload: boolValue
+    }
+
 }
 
 
@@ -104,11 +128,7 @@ export const addToFavorites = () => (dispatch, getStatus) => {
 
 
 
-
-
-
-
-// INNER FUNCTION !!!
+// INNER FUNCTIONS !!!
 
 const setSearchedWeather = (dispatch, key, cityName) => {
 

@@ -3,40 +3,44 @@ import {
     CURRENT_LOCATION,
     CURRENT_WEATHER,
     SEARCHED_WEATHER,
-    ADD_TO_FAV
+    ADD_TO_FAV,
+    CHANGE_UNITS_HOME,
+    CHANGE_UNITS_FAV
 
 } from '../constants';
 
 import {addToLoacalStorage,getFromLocalStorage} from '../utils/storage';
 
 
-const selfLocationState = {
+const homeState = {
 /////////////////////////////// CHANGE EVERYTHING TO EMPTY - HERE JUST FOR TEST!!!
     currentLocation : 'Mass',
-    key: 212546,
+    currentLocationKey: 212546,
     cWeather: 18.9,
-    fWeather: 66
-}
-
-const searchedLocationState = {
+    fWeather: 66,
 /////////////////////////////// CHANGE EVERYTHING TO EMPTY - HERE JUST FOR TEST!!!
     cityName: '',
     description: '',
-    key: '',
+    keySearchedLocation: '',
+    displayedUnits: 'C',
     all5DaysWeather: [
     ],
     singleDayIdx: 0
-
 }
+
 
 const favoritesState = {
 
-    favoritesArray : getFromLocalStorage('favorites')
+    favoritesArray : getFromLocalStorage('favorites'),
+    displayedUnits: 'C'
 }
 
 
 
-export const selfLocationReducer = (state=selfLocationState, action={}) => {
+
+
+
+export const homeReducer = (state=homeState, action={}) => {
 
     switch(action.type){
 
@@ -44,41 +48,36 @@ export const selfLocationReducer = (state=selfLocationState, action={}) => {
 
             return { 
                         ...state, currentLocation: action.payload.cityName,
-                        key: action.payload.key 
+                        key: action.payload.key
                    }
 
         case CURRENT_WEATHER: 
 
             return { 
-                        ...state, cWeather: action.payload.cWeather, fWeather: action.payload.fWeather 
-                   }
+                        ...state, cWeather: action.payload.cWeather, fWeather: action.payload.fWeather
+                    }
 
-        default:
+        case CHANGE_UNITS_HOME:
 
-            return{...state}
+                const weatherUnits =  action.payload ? 'F' : 'C';
 
-    }
-}
-
-
-
-export const searchedLocationReducer = (state=searchedLocationState, action={}) => {
-
-    switch(action.type){ 
+                return {...state,  displayedUnits: weatherUnits}
 
         case SEARCHED_WEATHER:
 
-            return { ...state,
-                    description: action.payload.description,
-                    all5DaysWeather: action.payload.all5DaysWeather,
-                    key: action.payload.searchedWeatherKey,
-                    cityName: action.payload.cityName }  
-    
+                return { ...state,
+                        description: action.payload.description,
+                        all5DaysWeather: action.payload.all5DaysWeather,
+                        key: action.payload.searchedWeatherKey,
+                        cityName: action.payload.cityName }  
+
         default:
 
             return{...state}
+
     }
 }
+
 
 
 export const favoritesReducer = (state=favoritesState, action={}) => {
@@ -108,11 +107,18 @@ export const favoritesReducer = (state=favoritesState, action={}) => {
                         ...state, cWeather: action.payload.cWeather, fWeather: action.payload.fWeather 
                    }
 
+        case CHANGE_UNITS_FAV:
+
+            const weatherUnits =  action.payload ? 'F' : 'C';
+    
+            return {...state,  displayedUnits: weatherUnits}
+
         default:
 
             return{...state}
 
     }
 }
+
 
 

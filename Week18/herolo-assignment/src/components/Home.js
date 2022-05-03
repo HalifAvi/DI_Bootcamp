@@ -4,6 +4,7 @@ import SearchBox from "./SearchBox";
 import CurrentAreaWeather from "./CurrentAreaWeather";
 import SearchedAreaWeather from "./SearchedAreaWeather";
 import {addToFavorites} from '../actions/index';
+import UnitsToggle from "./UnitsToggle";
 import '../App.css'
 
 class Home extends React.Component{
@@ -14,20 +15,14 @@ class Home extends React.Component{
 
         return(
             <div>
+                <UnitsToggle id={"homePage"}/>
+
                 <CurrentAreaWeather />
                 <SearchBox />
                 <ion-icon name="heart-outline" onClick={addToFavorites}/>
                 <SearchedAreaWeather />
             </div>
         )
-    }
-}
-
-const mapStateToProps = (state) => {
-
-    return{
-
-
     }
 }
 
@@ -43,5 +38,5 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);
 

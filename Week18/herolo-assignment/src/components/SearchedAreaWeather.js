@@ -34,20 +34,13 @@ const mapStateToProps = (state) => {
 
     return{
 
-        description : state.searchedLocationReducer.description,
-        all5DaysWeather : state.searchedLocationReducer.all5DaysWeather
-    }
-}
-
-
-const mapDispatchToProps = (dispatch) => {
-
-    return{
-
+        description : state.homeReducer.description,
+        all5DaysWeather : state.homeReducer.all5DaysWeather
     }
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchedAreaWeather);
+
+export default connect(mapStateToProps, null)(SearchedAreaWeather);
 

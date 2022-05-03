@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { searchedLocationReducer, selfLocationReducer, favoritesReducer } from './reducers';
+import { homeReducer, favoritesReducer } from './reducers';
 
-const rootReducer = combineReducers({searchedLocationReducer, selfLocationReducer, favoritesReducer})
+const rootReducer = combineReducers({homeReducer, favoritesReducer})
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

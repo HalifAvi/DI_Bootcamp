@@ -8,34 +8,35 @@ class DailyWeatherCard extends React.Component{
 
     render(){
 
+        const {all5DaysWeather, id, displayedUnits} = this.props;
+        
+
         return(
             <div className="singleDayWeatherSection">
-                <h1>{WEEK_DAYS[this.props.id]}</h1>
-                <h3>{(this.props.all5DaysWeather[this.props.id]).Temperature.Maximum.Value + 'F'}</h3>
+                <h1>{WEEK_DAYS[id]}</h1>
+                <h3>{(displayedUnits === 'C' ) ? ((((all5DaysWeather[id]).Temperature.Maximum.Value - 32) / 1.8).toFixed(2) + ' C' )
+                    :
+                    ((all5DaysWeather[id]).Temperature.Maximum.Value + ' F')}</h3>
             </div>
         )
     }
 }
 
 
+
 const mapStateToProps = (state) => {
 
     return{
 
-        all5DaysWeather : state.searchedLocationReducer.all5DaysWeather,
-        singleDayIdx : state.searchedLocationReducer.singleDayIdx
-    }
-}
-
-
-const mapDispatchToProps = (dispatch) => {
-
-    return{
-
+        all5DaysWeather : state.homeReducer.all5DaysWeather,
+        singleDayIdx : state.homeReducer.singleDayIdx,
+        displayedUnits : state.homeReducer.displayedUnits
     }
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DailyWeatherCard);
+
+
+export default connect(mapStateToProps, null)(DailyWeatherCard);
 

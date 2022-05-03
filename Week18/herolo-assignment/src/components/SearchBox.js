@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 
     return{
 
-        searchedLocationKey : state.searchedLocationReducer.key
+        searchedLocationKey : state.homeReducer.keySearchedLocation
     }
 }
 
