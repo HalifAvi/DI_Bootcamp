@@ -5,6 +5,8 @@ import CurrentAreaWeather from "./CurrentAreaWeather";
 import SearchedAreaWeather from "./SearchedAreaWeather";
 import {addToFavorites} from '../actions/index';
 import UnitsToggle from "./UnitsToggle";
+import LightToggle from "./LightToggle";
+
 import '../App.css'
 
 class Home extends React.Component{
@@ -16,6 +18,7 @@ class Home extends React.Component{
         return(
             <div>
                 <UnitsToggle id={"homePage"}/>
+                <LightToggle />
 
                 <CurrentAreaWeather />
                 <SearchBox />

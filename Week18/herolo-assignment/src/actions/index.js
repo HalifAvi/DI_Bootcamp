@@ -128,6 +128,7 @@ export const changeUnits = (boolValue, page) => {
 
 
 
+
 // INNER FUNCTIONS !!!
 
 const setSearchedWeather = (dispatch, key, cityName) => {
