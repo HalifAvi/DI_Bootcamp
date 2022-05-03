@@ -6,6 +6,7 @@ export const WEEK_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
 export const ADD_TO_FAV = 'ADD_TO_FAV';
 export const CHANGE_UNITS_HOME = 'CHANGE_UNITS_HOME';
 export const CHANGE_UNITS_FAV = 'CHANGE_UNITS_FAV';
+export const REMOVE_FAV_CITY = 'REMOVE_FAV_CITY';
 
 
 

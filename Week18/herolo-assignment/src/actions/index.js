@@ -6,7 +6,8 @@ import {
     API_KEY,
     ADD_TO_FAV,
     CHANGE_UNITS_HOME,
-    CHANGE_UNITS_FAV
+    CHANGE_UNITS_FAV,
+    REMOVE_FAV_CITY
 
 } from '../constants';
 
@@ -118,6 +119,17 @@ export const changeUnits = (boolValue, page) => {
 
         type: CHANGE_UNITS_FAV,
         payload: boolValue
+    }
+
+}
+
+
+export const removeFavCity = (favCityID) => {
+
+    return{
+
+        type: REMOVE_FAV_CITY,
+        payload: favCityID
     }
 
 }

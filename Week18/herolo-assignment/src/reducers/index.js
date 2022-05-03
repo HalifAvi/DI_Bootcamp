@@ -5,7 +5,8 @@ import {
     SEARCHED_WEATHER,
     ADD_TO_FAV,
     CHANGE_UNITS_HOME,
-    CHANGE_UNITS_FAV
+    CHANGE_UNITS_FAV,
+    REMOVE_FAV_CITY
 
 } from '../constants';
 
@@ -112,6 +113,12 @@ export const favoritesReducer = (state=favoritesState, action={}) => {
             const weatherUnits =  action.payload ? 'F' : 'C';
     
             return {...state,  displayedUnits: weatherUnits}
+
+        case REMOVE_FAV_CITY:
+
+                   console.log(action.payload)
+
+            return {...state}
 
         default:
 
