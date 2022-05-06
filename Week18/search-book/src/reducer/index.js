@@ -6,7 +6,7 @@ import{
 
 const initState = {
 
-
+    books: []
 }
 
 
@@ -15,7 +15,8 @@ export const reducer = (state=initState, action={}) => {
     switch(action.type){
 
         case SET_BOOKS: 
-            return {...state}
+
+            return {...state, books: action.payload}
 
 
 

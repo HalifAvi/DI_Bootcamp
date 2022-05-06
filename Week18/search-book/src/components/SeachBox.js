@@ -5,7 +5,7 @@ import { fetchData } from "../action";
 
 const SearchBox = (props) => {
 
-    // HOOKS !!!
+    // HOOKS !!! 'text' it's a local variable in this component state
     const [text, setText] = useState('');
 
 
@@ -19,14 +19,6 @@ const SearchBox = (props) => {
 }
 
 
-const mapStateToProps = (state) => {
-
-    return{
-
-
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
 
     return{
@@ -35,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
+export default connect(null, mapDispatchToProps)(SearchBox);
