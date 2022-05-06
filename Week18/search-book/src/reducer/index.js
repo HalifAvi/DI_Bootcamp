@@ -14,7 +14,7 @@ export const reducer = (state=initState, action={}) => {
 
     switch(action.type){
 
-        case A: 
+        case SET_BOOKS: 
             return {...state}
 
 
