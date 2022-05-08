@@ -5,6 +5,7 @@ import SearchBox from './components/SearchBox';
 import 'tachyons'
 import { useState, useEffect } from 'react';
 
+export const AppContext = React.createContext(null);
 
 
 const App = () => {
@@ -73,7 +74,10 @@ const App = () => {
 
     <div>
        <header className="App-header">
-         <SearchBox handleChange={handleChange}/>
+
+        <AppContext.Provider value={{handleChange}}>
+          <SearchBox/>
+        </AppContext.Provider>
 
          <div>
           {

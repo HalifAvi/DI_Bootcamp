@@ -1,16 +1,15 @@
-import React from 'react';
+import { useContext } from "react";
+import { AppContext } from "../App";
 
-class SearchBox extends React.Component {
+const SearchBox = () => {
 
-  render(){
-    
+  const {handleChange} = useContext(AppContext);
+
     return(
       <>
-        <input type="text" onChange={this.props.handleChange}/>
-
+        <input type="text" onChange={handleChange}/>
       </>
     )
-  }
-
 }
+
 export default SearchBox;
