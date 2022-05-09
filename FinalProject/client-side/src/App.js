@@ -36,6 +36,17 @@ function App() {
   }, [])
 
 
+  const handleClick = (e) => {
+
+    // stop the movment
+    document.querySelector('div.box').style.animation = "animate1 60s linear infinite";
+    
+    // להמשיך מנקודה שבה אני שומר את המערך שמקבל כדי לא לבצע עוד פאץ
+    // ואז לשנות באנימאיישן1 את המאפס מאה אולי לבטל את האפס וככה הוא יעצר על הנקודה שבה לחצתי על הכרטיס
+    // לנסות אופציה שבה אפשר להזיז את כל הקרוסלה הזאת ימינה או שמאלה בלחיצה על כפתור ושיהיו אופציות נוספות
+  }
+
+
 
   return (
 
@@ -43,8 +54,9 @@ function App() {
       {
         recepies.map((recepie, idx) => {
 
-          return <span key={idx} style={{"--i":`${idx+1}`}}><img src={recepie.image}/></span>
-
+          return <span key={idx} style={{"--i":`${idx+1}`}}>
+                  <img onClick={(e)=>handleClick(e)} src={recepie.image}/>
+                 </span>
         })
       }
     </div>

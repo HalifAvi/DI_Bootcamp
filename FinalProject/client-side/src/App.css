@@ -57,6 +57,19 @@ body{
   animation: animate 60s linear infinite;
 }
 
+/* To stop the movment */
+@keyframes animate1 {
+
+  0%{
+
+    transform: perspective(3000px) rotateY(0deg);
+  }
+  100%{
+
+    transform: perspective(3000px) rotateY(0deg);
+  } 
+}
+
 /*'deg': set the cycle, 'px': distance from screen*/
 @keyframes animate {
 
