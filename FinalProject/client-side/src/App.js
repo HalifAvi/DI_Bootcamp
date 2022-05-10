@@ -9,30 +9,43 @@ function App() {
 
   useEffect( ()=> {
 
-    // MORE THAN 8 WITH THE CURRENT PIC SIZE WE CAN'T SEE IT
-    fetch(`https://api.spoonacular.com/recipes/findByNutrients?apiKey=${YOUR_API_KEY}&number=8&maxCalories=300`)
-    .then(res=>res.json()) 
-    .then(data=>{
+    const data = [
+      {id: 632426, title: 'Anticuchos Of White Seabass With Aji Chile Honey Marinade & Semilla Salsa', image: 'https://spoonacular.com/recipeImages/632426-312x231.jpg', imageType: 'jpg', calories: 133},
+      {id: 634141, title: 'Banana Oatmeal Breakfast Muffins', image: 'https://spoonacular.com/recipeImages/634141-312x231.jpg', imageType: 'jpg', calories: 148},
+      {id: 650499, title: 'Lychee Granita', image: 'https://spoonacular.com/recipeImages/650499-312x231.jpg', imageType: 'jpg', calories: 78},
+      {id: 657359, title: 'Pumpkin Pie Smoothie', image: 'https://spoonacular.com/recipeImages/657359-312x231.jpg', imageType: 'jpg', calories: 150},
+      {id: 660130, title: 'Simple Sage Pesto', image: 'https://spoonacular.com/recipeImages/660130-312x231.jpg', imageType: 'jpg', calories: 238},
+      {id: 660261, title: 'Slow Cooked Applesauce', image: 'https://spoonacular.com/recipeImages/660261-312x231.jpg', imageType: 'jpg', calories: 62},
+      {id: 716195, title: 'Spicy Indian-Style Hummus', image: 'https://spoonacular.com/recipeImages/716195-312x231.jpg', imageType: 'jpg', calories: 134},
+      {id: 1697683, title: 'Garlic Herb Compound Butter', image: 'https://spoonacular.com/recipeImages/1697683-312x231.jpg', imageType: 'jpg', calories: 2}
+      ]
+
+    setRecepies(data);
+
+    // // MORE THAN 8 WITH THE CURRENT PIC SIZE WE CAN'T SEE IT
+    // fetch(`https://api.spoonacular.com/recipes/findByNutrients?apiKey=${YOUR_API_KEY}&number=8&maxCalories=300`)
+    // .then(res=>res.json()) 
+    // .then(data=>{
       
-        console.log(data)
+    //     console.log(data)
 
-        // const {calories, title, image, id} = data[0];
+    //     // const {calories, title, image, id} = data[0];
 
-        // console.log(data)
+    //     // console.log(data)
 
-        setRecepies(data)
+    //     setRecepies(data)
 
-        // fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}&includeNutrition=true`)
-        // .then(res=>res.json()) 
-        // .then(data=>{
+    //     // fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}&includeNutrition=true`)
+    //     // .then(res=>res.json()) 
+    //     // .then(data=>{
           
-        //   console.log(data)
+    //     //   console.log(data)
 
 
-        // })
-        // .catch(e=>console.log(e))
-      })
-      .catch(e=>console.log(e))
+    //     // })
+    //     // .catch(e=>console.log(e))
+    //   })
+    //   .catch(e=>console.log(e))
   }, [])
 
 
