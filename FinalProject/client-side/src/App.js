@@ -45,6 +45,8 @@ function App() {
       {id: 1697683, title: 'Garlic Herb Compound Butter', image: 'https://spoonacular.com/recipeImages/1697683-312x231.jpg', imageType: 'jpg', calories: 2}
       ];
 
+      // לבדוק את העצירה של הקרוסלה בלחיצה. יש מצב שאפשר לעשות את זה עם הוק מסוג יוזראףףףף שככה אאחסן את האלמנט של הקרוסלה ובלחיצה הוא יעצר
+      // וזה יחסוך ממני שימוש בדוקומנט וריאקט דוםםם
       part1 = data.slice(0, 8);
       // part2 = data.slice(8, 15);
       // part3 = data.slice(16, 23);
