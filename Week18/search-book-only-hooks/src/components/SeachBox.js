@@ -1,5 +1,10 @@
 import "./style.css";
-import {useReducer} from 'react';
+import React, {useReducer} from 'react';
+import BookList from "./BookList";
+
+
+// WE WRITE THIS IN THE COMPONENT WE WANT TO SEND HER DATA TO OTHERS
+export const SeachBoxContext = React.createContext(null);
 
 
 const initialState = {
@@ -25,12 +30,9 @@ const reducer = (state, action) => {
 
 
 
-
-
-
 const SearchBox = (props) => {
 
-    const [state, dispatch] = useReducer(reducer, initialState)
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const fetchData = () => {
 
@@ -50,17 +52,19 @@ const SearchBox = (props) => {
             )
             .catch(e=> console.log(e))
         }
-
-
     }
 
+
+    const {books} = state;
 
     return(
 
         <div className="searchBox-section">
             <input onChange={(e)=> dispatch({ type: 'CHANGE_TEXT', payload: e.target.value})} type={"text"}/>
             <button onClick={ fetchData }>Search</button>
-            {console.log(state.books)}
+            <SeachBoxContext.Provider value = {{books}} >
+                <BookList />
+            </SeachBoxContext.Provider>
         </div>
     )
 }
