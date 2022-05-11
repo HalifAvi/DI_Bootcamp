@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { BookListContext } from "./BookList";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import {Link} from 'react-router-dom';
 
 const BookCard = () => {
 
@@ -19,7 +19,9 @@ const BookCard = () => {
                         {book.volumeInfo.authors}<br/>
                         {book.volumeInfo.publishedDate}
                     </Card.Text>
-                    <Button variant="primary">MORE DATA</Button>
+                    <Link to={'/MoreInfo/'+ book.id}>
+                        <Button variant="primary">MORE DATA</Button>
+                    </Link>
                 </Card.Body>
             </Card>
         </div>

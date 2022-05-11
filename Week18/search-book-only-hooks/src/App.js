@@ -1,16 +1,22 @@
 import './App.css';
-import Header from './components/Header';
-import SearchBox from './components/SeachBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MoreInfo from './components/MoreInfo';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Landing from './components/Landing';
 
 
 
 function App() {
+  
   return (
-    <div>
-      <Header />
-      <SearchBox />
-    </div>
+      <BrowserRouter>
+
+          <Routes>
+            <Route path='/' element={<Landing />} />
+            <Route path='/MoreInfo/:id' element={<MoreInfo />} />
+          </Routes>
+
+      </BrowserRouter>
   );
 }
 
