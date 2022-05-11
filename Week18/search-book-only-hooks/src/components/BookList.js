@@ -11,25 +11,25 @@ const BookList = () => {
 
     let toReturn = null;
 
-    if(books.items !== undefined){
+    if(books !== undefined){
 
         toReturn =   
         
-        (books.items).map((book, idx) => {
-                    
-            return (
-                <div>
-                    <BookListContext.Provider value={{book}}>
-                        <BookCard key={idx} />
-                    </BookListContext.Provider>
-                </div>
-            )
-        })
+            (books).map((book, idx) => {
+                        
+                return (
+                    <div style={{display: "inline-block", margin: "20px"}}>
+                        <BookListContext.Provider value={{book}}>
+                            <BookCard key={idx} />
+                        </BookListContext.Provider>
+                    </div>
+                )
+            })
     }
 
     return(
 
-        <div>
+        <div style={{textAlign: "center"}}>
             {
                 toReturn
             }

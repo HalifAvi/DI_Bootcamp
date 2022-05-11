@@ -15,9 +15,7 @@
 
 
 .searchBox-section {
-
-    text-align: center;
-    margin-top: 150px;
+  
     border: 2px solid red;
-
+    text-align: center;
 }
