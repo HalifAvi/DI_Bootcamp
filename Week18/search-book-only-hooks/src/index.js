@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
-import {reducer} from "./reducer/index";
-import thunk from 'redux-thunk';
+// import { Provider } from 'react-redux';
+// import {createStore, applyMiddleware} from 'redux';
+// import {reducer} from "./reducer/index";
+// import thunk from 'redux-thunk';
 
-const store = createStore(reducer, applyMiddleware(thunk))
+// const store = createStore(reducer, applyMiddleware(thunk))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={store}>
+    // <Provider store={store}>
       <App />
-    </Provider>
+    // </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
