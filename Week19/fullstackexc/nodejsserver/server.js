@@ -1,6 +1,5 @@
 
 const express = require('express');
-const DB = require('./modules/db-products.js');
 const cors = require('cors');
 const product_routes = require("./routes/products.js")
 

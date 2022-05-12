@@ -1,15 +1,23 @@
 import './App.css';
-import DropDown from './components/DropDown';
-import AddElement from './components/AddElement'
+import Products from './components/Products';
+import Product from './components/Product';
+
+import {Routes, Route, BrowserRouter} from  "react-router-dom"
 
 
 function App() {
+
   return (
-    <div className="App">
-      <DropDown />
-      <br />
-      <AddElement />
-    </div>
+
+    <BrowserRouter>
+
+      <Routes>
+        <Route path='/' element={<Products />}/>
+        <Route path='/:id' element={<Product />}/>
+      </Routes>
+
+    </BrowserRouter>
+    
   );
 }
 
