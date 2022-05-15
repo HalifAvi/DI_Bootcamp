@@ -1,0 +1,3 @@
+exe with orgnize back end + no local domain in react app fetches (proxy in package.json)
++ no deploy to Heroku 
++ The same with deploy to Heroku on desktop
