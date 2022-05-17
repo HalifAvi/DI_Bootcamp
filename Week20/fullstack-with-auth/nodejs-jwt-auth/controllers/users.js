@@ -1,11 +1,11 @@
-const { 
+import { 
     getAllProducts,
     getProduct,
     searchProduct,
     addProduct,
     deleteProduct,
     updateProduct 
-} = require('../modules/db-products.js');
+} from '../modules/db-users.js';
 
 
 

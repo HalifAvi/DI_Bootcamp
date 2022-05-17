@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 const { 
@@ -8,7 +8,7 @@ const {
     _addProduct,
     _deleteProduct,
     _updateProduct 
-   } = require('../controllers/products.js');
+   } = import('../controllers/users.js');
 
 
 
