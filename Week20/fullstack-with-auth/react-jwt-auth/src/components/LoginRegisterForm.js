@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 
 const LoginRegisterForm = ({title}) => {
@@ -11,10 +12,33 @@ const LoginRegisterForm = ({title}) => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleAction = (title) => {
+    const handleAction = async (title) => {
 
-        if(title == "Register"){
+        if(title == "register"){
 
+            try{ 
+
+                let response = await axios.post("http://localhost:5000/register",{
+                    email: email, 
+                    password: password
+                },{
+
+                    withCredentials: true,
+                    headers: {
+
+                        'Access-Control-Allow-Origin' : '*',
+                        'Content-Type' : 'application/json'
+                    }
+                })
+
+                console.log("register response", response);
+
+            }
+            catch(e) {
+
+                console.log(e);
+
+            }
 
         }else{
 
