@@ -37,12 +37,32 @@ const LoginRegisterForm = ({title}) => {
             catch(e) {
 
                 console.log(e);
-
             }
 
-        }else{
+        }else{ // Login!!!
 
+            try{
 
+                let response = await axios.post("http://localhost:5000/login",{
+                    email: email, 
+                    password: password
+                },{
+
+                    withCredentials: true,
+                    headers: {
+
+                        'Access-Control-Allow-Origin' : '*',
+                        'Content-Type' : 'application/json'
+                    }
+                })
+
+                console.log("login response", response);
+
+            }
+            catch(e){
+
+                console.log(e);
+            }
         }
     }
 
