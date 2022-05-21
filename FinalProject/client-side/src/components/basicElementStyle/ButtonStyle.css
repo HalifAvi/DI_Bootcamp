@@ -1,8 +1,9 @@
 
-#process.env.REACT_APP_LOG_IN_BUTTON{
+#login-btt{
 
     width: 100px;
-    height: 100px;
+    height: 50px;
+    cursor: pointer;
     background-color: brown;
 
 }

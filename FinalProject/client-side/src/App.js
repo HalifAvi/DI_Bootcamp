@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
 import LoginSigninForm from './components/pages/LoginSigninForm';
+import Content from './components/pages/Content';
 
 import './App.css';
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<LoginSigninForm pageToDisplay={process.env.REACT_APP_SIGN_IN_NAME} />} />
         <Route path="/login" element={<LoginSigninForm pageToDisplay={process.env.REACT_APP_LOG_IN_NAME} />} />
+        <Route path="/content" element={<Content />} />
       </Routes>
     </div>
   )

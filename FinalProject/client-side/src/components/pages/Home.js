@@ -8,7 +8,9 @@ const Home = (props) => {
 
         <div>
             <Title titleName={process.env.REACT_APP_HOME_NAME} />
-            <Button id={process.env.REACT_APP_LOG_IN_BUTTON} component={Link} to={'/login'} buttonName={process.env.REACT_APP_LOG_IN_BUTTON}/>
+            <Link to={'/login'}>
+                <Button id={"login-btt"} buttonName={process.env.REACT_APP_LOG_IN_BUTTON}/>
+            </Link>
         </div>
     )
 }
