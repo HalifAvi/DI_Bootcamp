@@ -45,18 +45,26 @@ export const logIn = async (req, res) => {
 
     try{
 
+        // 1: Find if there is same email in db
         const user = await Users.findAll({
             where:{
                 email: req.body.email
             }
         })
 
+        // 2: Check the password is equal to the db's password
         const match = await bcrypt.compare(req.body.password, user[0].password)
 
         if(!match) return res.status(404).json({msg: "Wrong Password"});
         
         const userId = user[0].id;
         const email = user[0].email;
+
+        // 3: Create an accessToken 
+
+        // 4: Add this accessToken to the http cookies
+
+        // 5: Send back this accessToken
 
         // Each time we'll get a different access token cause we'll have different userId and email with our ACCESS_TOKEN_SECRET
         // that we only know so we can verify according to it

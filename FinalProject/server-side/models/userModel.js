@@ -13,11 +13,11 @@ const Users = db.define('users',{
     password: {
         type: DataTypes.STRING
     },
-    createdAt: {
-        field: 'createdat',
+    createdAt: {    // createdAt: false
+        field: 'createdat', 
         type: DataTypes.DATE
     },
-    updatedAt: {
+    updatedAt: {    // updatedAt: false
         field: 'updatedat',
         type: DataTypes.DATE
     }
