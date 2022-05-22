@@ -7,7 +7,7 @@ const router = express.Router();
 
 // PAY ATTENTION TO THE ORDER !!!! 
 router.post('/signIn', _signIn);
-router.post('/login', _logIn);
+router.post('/logIn', _logIn);
 
 // To protect our 'Home' component with token
 // You will get an error or next if everything is good

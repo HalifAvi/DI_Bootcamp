@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import cookieParser from 'cookie-parser';
-import router from "./routes/index.js";
+import users_routes from "./routes/users.js";
 import db from './config/db.js';
 
 dotenv.config();
@@ -31,7 +31,7 @@ app.use(express.urlencoded({extended: true}));
 // Because we using POST methods here
 app.use(express.json());
 
-app.use(router);
+app.use('/users', users_routes)
 
 app.listen(process.env.PORT||8080, ()=> {
 
