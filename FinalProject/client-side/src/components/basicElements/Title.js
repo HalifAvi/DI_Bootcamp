@@ -1,10 +1,11 @@
+import '../basicElementStyle/TitleStyle.css';
 
 const Title = (props) => {
 
     return(
 
         <>
-            <h1>{props.titleName}</h1>
+            <h1 id={props.id}>{props.titleName}</h1>
         </>
     )
 }

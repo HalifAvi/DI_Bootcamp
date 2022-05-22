@@ -2,6 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
 import LoginSigninForm from './components/pages/LoginSigninForm';
 import Content from './components/pages/Content';
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
@@ -10,6 +12,9 @@ function App() {
 
   return (
     <div>
+      
+      <ToastContainer />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signIn" element={<LoginSigninForm pageToDisplay={process.env.REACT_APP_SIGN_IN_NAME} />} />

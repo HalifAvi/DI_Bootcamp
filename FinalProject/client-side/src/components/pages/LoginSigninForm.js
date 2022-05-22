@@ -2,11 +2,11 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
+import {toast} from "react-toastify";
 
 import Title from "../basicElements/Title";
 
@@ -16,7 +16,15 @@ const LoginSigninForm = ({pageToDisplay}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
+
+    useEffect(()=>{
+
+        setMessage(''); // Delete the message when mounting
+
+    }, [])
 
 
     const handleAction = async (pageToDisplay) => {
@@ -47,8 +55,8 @@ const LoginSigninForm = ({pageToDisplay}) => {
             catch(e) {
 
                 console.log(e);
-                // setMessage(e.response.data.msg);
-                // toast.error(e.response.data.msg);
+                setMessage(e.response.data.msg);
+                toast.error(e.response.data.msg);
             }
 
         }else{ // Login!!!
@@ -77,8 +85,8 @@ const LoginSigninForm = ({pageToDisplay}) => {
             catch(e){
 
                 console.log(e);
-                // setMessage(e.response.data.msg);
-                // toast.error(e.response.data.msg);
+                setMessage(e.response.data.msg);
+                toast.error(e.response.data.msg);
             }
         }
     }
