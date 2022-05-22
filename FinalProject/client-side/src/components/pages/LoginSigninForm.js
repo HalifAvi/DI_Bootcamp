@@ -25,7 +25,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
 
             try{ 
 
-                let response = await axios.post(`/${process.env.REACT_APP_SIGN_IN_URL}`,{
+                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SIGN_IN_URL,{
                     email: email, 
                     password: password
                 },{
@@ -55,7 +55,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
 
             try{
 
-                let response = await axios.post(`/${process.env.REACT_APP_LOG_IN_URL}`,{
+                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_LOG_IN_URL,{
                     email: email, 
                     password: password
                 },{

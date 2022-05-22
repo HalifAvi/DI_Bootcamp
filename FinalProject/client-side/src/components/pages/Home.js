@@ -8,8 +8,11 @@ const Home = (props) => {
 
         <div>
             <Title titleName={process.env.REACT_APP_HOME_NAME} />
-            <Link to={'/login'}>
+            <Link to={'/logIn'}>
                 <Button id={"login-btt"} buttonName={process.env.REACT_APP_LOG_IN_BUTTON}/>
+            </Link>
+            <Link to={'/signIn'}>
+                <Button id={"login-btt"} buttonName={process.env.REACT_APP_SIGN_IN_BUTTON}/>
             </Link>
         </div>
     )

@@ -1,4 +1,5 @@
-import {logIn, signIn} from "../models/UserModel.js"; // the 'users' table
+import Users from "../models/userModel.js"; // the 'users' table
+
 
 // Hasing the password - before sending to db
 import bcrypt from 'bcrypt';
@@ -10,41 +11,76 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 
-
 // The fun has here the req & res
 // cause everthing we send from the router
 // has these 
-export const _signIn = (req, res) => {
+export const signIn = async (req, res) => {
+
+    console.log(req.body)
 
     const {email, password} = req.body;
-    const salt = bcrypt.genSalt();
-    const hashPassword = bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt();
+    const hashPassword = await bcrypt.hash(password, salt);
 
-    signIn(email, hashPassword)
-    .then(data => {
+    try{
+
+        await Users.create({
+
+            email: email,
+            password: hashPassword
+        })
 
         res.json({message: 'Register successfuly!'})
-    })
-    .catch(e=> 
+    }
+    catch(error){
 
         // We defined our 'email' as unique in db
         res.status(404).json({msg:'Email already exist'})
-    )
+    }
 }
 
 
 
-export const _logIn = (req, res) => {
+export const logIn = async (req, res) => {
 
-    const {email, password} = req.body;
-    
-    logIn(email, password)
-    .then(data=> {
+    try{
 
+        const user = await Users.findAll({
+            where:{
+                email: req.body.email
+            }
+        })
+
+        const match = await bcrypt.compare(req.body.password, user[0].password)
+
+        if(!match) return res.status(404).json({msg: "Wrong Password"});
+        
+        const userId = user[0].id;
+        const email = user[0].email;
+
+        // Each time we'll get a different access token cause we'll have different userId and email with our ACCESS_TOKEN_SECRET
+        // that we only know so we can verify according to it
+        // We will send this token in the cookie to the front end
+        // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
+        // to expiry time we defined in this token
+        const accessToken = jwt.sign({userId, email}, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: '60s'
+        })
+
+        // Set the cookie in the http response ((we imported it in 'server.js'))
+        // we get here the all encrypted data
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            maxAge: 60 * 1000 // 60 seconds
+        }); 
+
+        // We send back the access token
         res.json({accessToken});
-    })
-    .catch(e=> 
+    }
 
+    catch(error){
+
+        console.log(error);
         res.status(404).json({msg:'Email not found'})
-    );
+    }
 }
