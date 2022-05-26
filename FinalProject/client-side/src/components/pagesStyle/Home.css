@@ -3,23 +3,36 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-
-    background-color: lightseagreen;
 }
 
 section {
 
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
+}
+
+
+#app-name-div{
+
+    padding: 10px;
+    margin-left: 20px;
+    width: 350px;
+}
+
+#btt-section {
+
+    margin-top: 25px;
+    width: 500px;
+    height: 100px;
+    position: fixed;
+    top: 400px;
+    left: 390px;
 }
 
 

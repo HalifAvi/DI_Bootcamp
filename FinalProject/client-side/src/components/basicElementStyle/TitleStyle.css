@@ -1,7 +1,34 @@
 
-#home-title {
+#home-title-p1 {
 
     position: relative;
     color: #fff;
     font-size: 12em;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+    display: inline-block;
+}
+
+#home-title-p2 {
+
+    position: relative;
+    color: #fff;
+    font-size: 12em;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+    display: inline-block;
+}
+
+
+#home-snd-title {
+
+    color: #fff;
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
+    font-family: 'Indie Flower', cursive;
 }
