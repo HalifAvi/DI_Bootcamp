@@ -33,18 +33,19 @@ const Home = (props) => {
     return(
 
         <>
-            <section>
+            <section className={"pattern-vertical-stripes-sm"}>
                 <div id={"app-name-div"}>
+                    <Image dataSpeed={-10} id={"logo-img"} src={"./images/logo.png"}/>
                     <Title dataSpeed={6} id={"home-title-p1"} classN={"layer"} titleName={process.env.REACT_APP_HOME_NAME_P1} />
                     <Title dataSpeed={6} id={"home-title-p2"} classN={"layer"} titleName={process.env.REACT_APP_HOME_NAME_P2} />
                 </div>
 
-                <Title dataSpeed={-6} id={"home-snd-title"} classN={"layer"} titleName={process.env.REACT_APP_HOME_SND_TITLE} />
-
+                <Title dataSpeed={-6} id={"home-snd-title"} classN={"layer logo-img"} titleName={process.env.REACT_APP_HOME_SND_TITLE} />
+{/* 
                 <Image dataSpeed={-10} id={"layer-img"} classN={"layer"} src={"./images/layer-1.png"}/>
                 <Image dataSpeed={5} id={"layer-img"} classN={"layer"} src={"./images/layer-2.png"} />
                 <Image dataSpeed={2} id={"layer-img"} classN={"layer"} src={"./images/layer-3.png"} />
-                {/* <Image dataSpeed={6} id={"layer-img"} classN={"layer"} src={"./images/layer-4.png"} />
+                <Image dataSpeed={6} id={"layer-img"} classN={"layer"} src={"./images/layer-4.png"} />
                 <Image dataSpeed={8} id={"layer-img"} classN={"layer"} src={"./images/layer-5.png"} />
                 <Image dataSpeed={-2} id={"layer-img"} classN={"layer"} src={"./images/layer-6.png"} />
                 <Image dataSpeed={4} id={"layer-img"} classN={"layer"} src={"./images/layer-7.png"} />

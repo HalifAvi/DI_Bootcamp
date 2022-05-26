@@ -1,4 +1,18 @@
 
+#logo-img {
+
+    background-color: black;
+    position: fixed;
+    top: 20px;
+    left: 190px;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
+
 #layer-img {
 
     width: 60px;
