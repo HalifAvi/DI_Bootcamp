@@ -1,5 +1,5 @@
 import Users from "../models/userModel.js"; // the 'users' table
-
+import UsersBody from "../models/bodyModel.js";
 
 // Hasing the password - before sending to db
 import bcrypt from 'bcrypt';
@@ -25,12 +25,11 @@ export const signIn = async (req, res) => {
             password,
             firstName,
             lastName, 
+            gender, 
             age,
             height, 
             weight,
-            gender, 
             activityLevel
-        
         } = req.body;
 
     const salt = await bcrypt.genSalt();
@@ -38,17 +37,29 @@ export const signIn = async (req, res) => {
 
     try{
 
-        await Users.create({
+        const answer = await Users.create({
 
             email: email,
-            password: hashPassword
+            password: hashPassword,
+            firstName: firstName,
+            lastName: lastName, 
+            gender: gender
         })
 
-        console.log("aviiiiiiiiiiiiiiiii")
+        await UsersBody.create({
+
+            userid: answer.dataValues.id,
+            age: age,
+            height: height, 
+            weight: weight,
+            activityLevel: activityLevel
+        })
 
         res.json({message: 'Register successfuly!'})
     }
     catch(error){
+
+        console.log(error)
 
         // We defined our 'email' as unique in db
         res.status(404).json({msg:'Email already exist'})
