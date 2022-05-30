@@ -16,9 +16,23 @@ import jwt from 'jsonwebtoken';
 // has these 
 export const signIn = async (req, res) => {
 
+    console.log("###############")
     console.log(req.body)
+    console.log("###############")
 
-    const {email, password} = req.body;
+    const {
+            email, 
+            password,
+            firstName,
+            lastName, 
+            age,
+            height, 
+            weight,
+            gender, 
+            activityLevel
+        
+        } = req.body;
+
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
 
@@ -29,6 +43,8 @@ export const signIn = async (req, res) => {
             email: email,
             password: hashPassword
         })
+
+        console.log("aviiiiiiiiiiiiiiiii")
 
         res.json({message: 'Register successfuly!'})
     }

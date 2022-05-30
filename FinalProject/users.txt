@@ -1,0 +1,11 @@
+CREATE TABLE users
+(
+    id integer NOT NULL PRIMARY KEY,
+    firstName varchar(255),
+    lastName varchar(255),
+	gender varchar(255),
+	email varchar(255) NOT NULL unique,
+    password varchar(255) DEFAULT NULL,
+    createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedat timestamp without time zone
+)

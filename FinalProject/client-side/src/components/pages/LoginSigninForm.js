@@ -22,15 +22,13 @@ const LoginSigninForm = ({pageToDisplay}) => {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [gender, setGender] = useState('');
-    const [sport, setSport] = useState('');
+    const [activityLevel, setActivityLevel] = useState('');
     const [message, setMessage] = useState('');
 
 
     
 
     const navigate = useNavigate();
-
-    let signInDiv;
 
     useEffect(()=>{
 
@@ -46,8 +44,15 @@ const LoginSigninForm = ({pageToDisplay}) => {
             try{ 
 
                 let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SIGN_IN_URL,{
-                    email: email, 
-                    password: password
+                    email, 
+                    password,
+                    firstName,
+                    lastName, 
+                    age,
+                    height, 
+                    weight,
+                    gender, 
+                    activityLevel
                 },{
 
                     withCredentials: true,
@@ -128,10 +133,11 @@ const LoginSigninForm = ({pageToDisplay}) => {
                     <Button onClick={()=>setGender("male")} variant="contained">Male</Button>       
                     <Button onClick={()=>setGender("female")} variant="contained">Female</Button>     
 
-                    <Button onClick={()=>setSport("")} variant="contained">Lowest</Button>       
-                    <Button onClick={()=>setSport("")} variant="contained">Low</Button>  
-                    <Button onClick={()=>setSport("")} variant="contained">Medium</Button>       
-                    <Button onClick={()=>setSport("")} variant="contained">High</Button>           
+                    <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_LOW)} variant="contained">Low</Button>       
+                    <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_LIGHT)} variant="contained">Light</Button>  
+                    <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_MODERATE)} variant="contained">Moderate</Button>       
+                    <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_HIGH)} variant="contained">High</Button>           
+                    <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_VERY_HIGH)} variant="contained">Very High</Button>           
                 </Box>
                 
                 :
