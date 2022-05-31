@@ -19,13 +19,13 @@
 #login-title-div {
 
     position: fixed;
-    top: -5px;
-    left: 400px;
+    top: 325px;
+    left: 245px;
 }
 
 #login-snd-title-div {
 
     position: fixed;
-    top: 450px;
+    top: 460px;
     left: 450px;
 }

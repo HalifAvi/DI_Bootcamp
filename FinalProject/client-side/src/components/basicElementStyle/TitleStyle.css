@@ -42,7 +42,7 @@
 /******************************* 'Login' Page ********************************/
 
 #login-logo-p1 {
-
+    
     color: var(--clr-white);
     font-size: 5em;
     padding: 0;
@@ -67,12 +67,27 @@
 
 #login-title {
 
-    color: var(--clr-white);
-    font-size: 9em;
+    color: var(--clr-yellow);
+    font-size: 6em;
     margin: 0;
     padding: 0;
     font-family: var(--clr-thin-font);
-    transform: rotate(-10deg);
+    transform: rotate(15deg);
+    cursor: pointer;
+    background-color: var(--clr-white);
+}
+
+#login-title:hover {
+
+    color: var(--clr-yellow);
+    font-size: 6em;
+    margin: 0;
+    padding: 0;
+    font-family: var(--clr-thin-font);
+    transform: rotate(15deg);
+    cursor: pointer;
+    background-color: var(--clr-white);
+    text-shadow: 0 0 3px var(--clr-white);
 }
 
 #login-snd-title {
@@ -84,3 +99,6 @@
     font-family: var(--clr-script-font);
     transform: rotate(15deg);
 }
+
+
+

@@ -119,7 +119,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
 
         <div>
 
-            <Video src={process.env.REACT_APP_BASE_VIDEO_LOGIN_URL} id={"login-back-video"} autoPlay muted loop />
+            <Video poster={process.env.REACT_APP_BASE_POSTER_LOGIN_URL} src={process.env.REACT_APP_BASE_VIDEO_LOGIN_URL} id={"login-back-video"} autoPlay muted loop />
 
             <div id={"login-left-side-div"}>
 
@@ -128,7 +128,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
                 </div>
 
                 <div id={"login-title-div"}>
-                    <Title id={"login-title"} titleName={process.env.REACT_APP_LOGIN_TITLE} />
+                    <Title id={"login-title"} pattern={"pattern-horizontal-stripes-sm text-pattern"} titleName={process.env.REACT_APP_LOGIN_TITLE} />
                 </div>
 
                 <div id={"login-snd-title-div"}>

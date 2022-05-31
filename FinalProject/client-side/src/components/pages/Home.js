@@ -10,9 +10,9 @@ import Video from "../BasicElements/Video";
 const Home = (props) => {
 
     return(
-
+        
         <div>
-            <Video src={process.env.REACT_APP_BASE_VIDEO_HOME_URL} id={"home-back-video"} autoPlay muted loop />
+            <Video poster={process.env.REACT_APP_BASE_POSTER_HOME_URL} src={process.env.REACT_APP_BASE_VIDEO_HOME_URL} id={"home-back-video"} autoPlay muted loop />
 
             <div id={"home-left-side-div"}>
 
