@@ -1,0 +1,31 @@
+#login-left-side-div {
+
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--clr-black);
+    clip-path: polygon(50% 0%, 100% 0, 0 41%, 100% 100%, 100% 100%, 0 100%, 0 0);
+    opacity: 0.8;
+}
+
+#login-logo-div {
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+#login-title-div {
+
+    position: fixed;
+    top: -5px;
+    left: 400px;
+}
+
+#login-snd-title-div {
+
+    position: fixed;
+    top: 450px;
+    left: 450px;
+}

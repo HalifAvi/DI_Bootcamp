@@ -1,2 +1,28 @@
 @import "../constantsCSS.css";
 
+#back-icon {
+
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 10px;
+    right: 400px;
+    background-color: white;
+    transform: rotate(168deg);
+    border-radius: 10%;
+}
+
+#back-icon:hover {
+
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 10px;
+    right: 400px;
+    background-color: white;
+    transform: rotate(168deg);
+    background-color: var(--clr-yellow);
+    box-shadow: 0 0 10px var(--clr-yellow);
+}
+

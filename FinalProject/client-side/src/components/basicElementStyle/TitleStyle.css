@@ -1,9 +1,13 @@
 @import "../constantsCSS.css";
 
-#logo-p1 {
+
+
+/******************************* 'Home' Page ********************************/
+
+#home-logo-p1 {
 
     color: var(--clr-white);
-    font-size: 10em;
+    font-size: 12em;
     padding: 0;
     display: inline-block;
     text-align: center;
@@ -12,10 +16,10 @@
     background-color: var(--clr-yellow);
 }
 
-#logo-p2 {
+#home-logo-p2 {
 
     color: var(--clr-white);
-    font-size: 10em;
+    font-size: 12em;
     padding: 0;
     display: inline-block;
     text-align: center;
@@ -32,4 +36,51 @@
     padding: 0;
     font-family: var(--clr-script-font);
     transform: rotate(-32deg);
+}
+
+
+/******************************* 'Login' Page ********************************/
+
+#login-logo-p1 {
+
+    color: var(--clr-white);
+    font-size: 5em;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    margin-left: 20px;
+    font-family: var(--clr-fat-font);
+    background-color: var(--clr-yellow);
+}
+
+#login-logo-p2 {
+
+    color: var(--clr-white);
+    font-size: 5em;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    font-family: var(--clr-thin-font);
+    text-shadow: 0 0 10px var(--clr-yellow), 0 0 40px var(--clr-yellow);
+}
+
+#login-title {
+
+    color: var(--clr-white);
+    font-size: 9em;
+    margin: 0;
+    padding: 0;
+    font-family: var(--clr-thin-font);
+    transform: rotate(-10deg);
+}
+
+#login-snd-title {
+
+    color: var(--clr-white);
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0;
+    font-family: var(--clr-script-font);
+    transform: rotate(15deg);
 }

@@ -1,24 +1,4 @@
 @import "../constantsCSS.css";
 
 
-.deco-line {
-
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    width: 500px;
-}
-
-.deco-line-1 {
-
-   
-    left: 60px;
-    top: 190px;
-}
-
-.deco-line-2 {
-
-    left: 80px;
-    top: 194px;
-}
 

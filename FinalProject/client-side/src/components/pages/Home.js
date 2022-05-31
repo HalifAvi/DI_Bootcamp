@@ -17,7 +17,7 @@ const Home = (props) => {
             <div id={"home-left-side-div"}>
 
                 <div id={"home-logo-div"}>
-                    <AppLogo />
+                    <AppLogo id={"home-logo"}/>
                 </div>
 
                 <div id={"home-snd-title-div"}>
