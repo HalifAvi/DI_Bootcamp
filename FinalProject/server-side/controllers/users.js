@@ -37,6 +37,8 @@ export const signIn = async (req, res) => {
 
     try{
 
+        // Create new row in 'users' table
+        // Use the 'id' from the answer to the next db request
         const answer = await Users.create({
 
             email: email,
@@ -46,8 +48,10 @@ export const signIn = async (req, res) => {
             gender: gender
         })
 
+        // Create new row in 'usersbody' table
         await UsersBody.create({
 
+            // Here we are using the 'id'
             userid: answer.dataValues.id,
             age: age,
             height: height, 

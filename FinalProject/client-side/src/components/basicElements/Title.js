@@ -5,7 +5,7 @@ const Title = (props) => {
     return(
 
         <>
-            <h1 id={props.id} className={props.classN || null} dataSpeed={props.dataSpeed || null}>{props.titleName}</h1>
+            <h1 id={props.id} className={"pattern-checks-sm bg-mint white text-pattern"}>{props.titleName}</h1>
         </>
     )
 }
