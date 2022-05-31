@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Title from "../basicElements/Title";
-import Button from "../basicElements/Button";
-import Image from "../basicElements/Image";
+import Title from "../BasicElements/Title";
+import Button from "../BasicElements/Button";
+import Image from "../BasicElements/Image";
 
 import '../pagesStyle/Home.css';
 

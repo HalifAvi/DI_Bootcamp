@@ -1,31 +1,27 @@
 
-#home-title-p1 {
+#logo-p1 {
 
-    position: relative;
     color: #fff;
     font-size: 10em;
-    margin-left: 20px;
-    padding: 0px;
-    font-family: 'Erica One', cursive;
+    padding: 0;
     display: inline-block;
     text-align: center;
-    /* text-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966; */
+    margin-left: 20px;
+    font-family: 'Erica One', cursive;
     background-color: #ffd966;
 }
 
-#home-title-p2 {
+#logo-p2 {
 
-    position: relative;
     color: #fff;
     font-size: 10em;
-    margin: 0;
     padding: 0;
-    font-family: 'Bebas Neue', cursive;
     display: inline-block;
     text-align: center;
+    margin: 0;
+    font-family: 'Bebas Neue', cursive;
     text-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966;
 }
-
 
 #home-snd-title {
 

@@ -5,7 +5,7 @@ const Title = (props) => {
     return(
 
         <>
-            <h1 id={props.id} className={props.pattern || null}>{props.titleName}</h1>
+            <h1 id={props.logoPart || props.id} className={props.pattern || null}>{props.titleName}</h1>
         </>
     )
 }
