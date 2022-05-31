@@ -9,8 +9,8 @@
     font-family: 'Erica One', cursive;
     display: inline-block;
     text-align: center;
-    text-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966, 0 0 80px #ffd966;
-
+    /* text-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966; */
+    background-color: #ffd966;
 }
 
 #home-title-p2 {
@@ -23,7 +23,7 @@
     font-family: 'Bebas Neue', cursive;
     display: inline-block;
     text-align: center;
-    text-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966, 0 0 80px #ffd966;
+    text-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966;
 }
 
 

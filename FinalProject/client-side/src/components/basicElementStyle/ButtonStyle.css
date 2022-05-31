@@ -8,15 +8,15 @@
     font-size: 30px;
     background-color: transparent;
     border: #ffd966 4px solid;
-    color: #ffd966;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
 }
 
 button#login-btt:hover, button#signin-btt:hover {
 
     color: black;
-    background-color: #ffd966;
-    box-shadow: 0 0 10px #ffd966, 0 0 40px #ffd966, 0 0 80px #ffd966;
-    font-family: 'Oooh Baby', cursive;
+    background-color: white;
+    box-shadow: 0 0 10px white;
     font-weight: bold;
 }
 
