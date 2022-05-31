@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import Title from "../basicElements/Title";
-import Button from "../basicElements/Button";
-import AppLogo from "../basicElements/AppLogo";
+import Title from "../BasicElements/Title";
+import Button from "../BasicElements/Button";
+import AppLogo from "../BasicElements/AppLogo";
 
-import '../pagesStyle/Home.css';
-import Video from "../basicElements/Video";
+import '../PagesStyle/Home.css';
+import Video from "../BasicElements/Video";
 
 
 const Home = (props) => {

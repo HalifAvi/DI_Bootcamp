@@ -1,4 +1,4 @@
-import '../basicElementStyle/ButtonStyle.css';
+import '../BasicElementStyle/ButtonStyle.css';
 
 const Button = (props) => {
 

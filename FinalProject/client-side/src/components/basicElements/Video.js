@@ -1,4 +1,4 @@
-import '../basicElementStyle/VideoStyle.css';
+import '../BasicElementStyle/VideoStyle.css';
 
 const Video = (props) => {
 

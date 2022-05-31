@@ -1,3 +1,4 @@
+@import "../constantsCSS.css";
 
 #home-login-btt, #home-signin-btt {
 
@@ -7,16 +8,16 @@
     margin-right: 20px;
     font-size: 30px;
     background-color: transparent;
-    border: #ffd966 4px solid;
-    color: white;
-    font-family: 'Bebas Neue', cursive;
+    border: var(--clr-yellow) 4px solid;
+    color: var(--clr-white);
+    font-family: var(--clr-thin-font);
 }
 
 button#home-login-btt:hover, button#home-signin-btt:hover {
 
-    color: black;
-    background-color: white;
-    box-shadow: 0 0 10px white;
+    color: var(--clr-black);
+    background-color: var(--clr-white);
+    box-shadow: 0 0 10px var(--clr-white);
     font-weight: bold;
 }
 

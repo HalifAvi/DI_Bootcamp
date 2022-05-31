@@ -1,5 +1,5 @@
-import '../basicElementStyle/AppLogoStyle.css';
-import Title from "../basicElements/Title";
+import '../BasicElementStyle/AppLogoStyle.css';
+import Title from "../BasicElements/Title";
 
 
 const AppLogo = (props) => {

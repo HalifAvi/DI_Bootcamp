@@ -1,4 +1,4 @@
-import '../basicElementStyle/ImageStyle.css';
+import '../BasicElementStyle/ImageStyle.css';
 
 const Image = (props) => {
 

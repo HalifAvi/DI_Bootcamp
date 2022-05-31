@@ -1,4 +1,4 @@
-import '../basicElementStyle/TitleStyle.css';
+import '../BasicElementStyle/TitleStyle.css';
 
 const Title = (props) => {
 
