@@ -28,10 +28,10 @@ const Home = (props) => {
 
             <div id={"home-btt-div"}>
 
-                <Link to={'/logIn'}>
+                <Link to={process.env.REACT_APP_BASE_LOG_IN_PATH}>
                     <Button id={"home-login-btt"} buttonName={process.env.REACT_APP_LOG_IN_BUTTON}/>
                 </Link>
-                <Link to={'/signIn'}>
+                <Link to={process.env.REACT_APP_BASE_SIGN_IN_PATH}>
                     <Button id={"home-signin-btt"} buttonName={process.env.REACT_APP_SIGN_IN_BUTTON}/>
                 </Link>
 

@@ -100,20 +100,18 @@
     font-family: var(--clr-thin-font);
     transform: rotate(15deg);
     cursor: pointer;
-    background-color: var(--clr-white);
 }
 
 #login-title:hover {
 
-    color: var(--clr-yellow);
+    color: var(--clr-white);
     font-size: 6em;
     margin: 0;
     padding: 0;
     font-family: var(--clr-thin-font);
     transform: rotate(15deg);
     cursor: pointer;
-    background-color: var(--clr-white);
-    text-shadow: 0 0 3px var(--clr-white);
+    text-shadow: 0 0 3px var(--clr-yellow);
 }
 
 #login-snd-title {

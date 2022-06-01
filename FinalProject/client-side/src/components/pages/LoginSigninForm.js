@@ -128,7 +128,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
                 </div>
 
                 <div id={"login-title-div"}>
-                    <Title id={"login-title"} pattern={"pattern-horizontal-stripes-sm text-pattern"} titleName={process.env.REACT_APP_LOGIN_TITLE} />
+                    <Title id={"login-title"} titleName={process.env.REACT_APP_LOGIN_TITLE} />
                 </div>
 
                 <div id={"login-snd-title-div"}>
