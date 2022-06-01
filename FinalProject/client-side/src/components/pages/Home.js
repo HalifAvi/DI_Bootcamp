@@ -28,13 +28,16 @@ const Home = (props) => {
 
             <div id={"home-btt-div"}>
 
-                <Link to={process.env.REACT_APP_BASE_SIGN_IN_PATH}>
+                <Link to={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
+                        process.env.REACT_APP_BASE_SIGN_IN_PATH + "/" +
+                        process.env.REACT_APP_BASE_LOADING_SIGN_IN_TIME}>
                     <Button id={"home-signin-btt"} buttonName={process.env.REACT_APP_SIGN_IN_BUTTON}/>
                 </Link>
-                <Link to={process.env.REACT_APP_BASE_SIGN_UP_PATH}>
+                <Link to={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
+                        process.env.REACT_APP_BASE_SIGN_UP_PATH + "/" +
+                        process.env.REACT_APP_BASE_LOADING_SIGN_UP_TIME}>
                     <Button id={"home-signup-btt"} buttonName={process.env.REACT_APP_SIGN_UP_BUTTON}/>
                 </Link>
-
             </div>
         </div>
     )

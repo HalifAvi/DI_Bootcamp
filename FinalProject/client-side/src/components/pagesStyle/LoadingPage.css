@@ -1,9 +1,9 @@
 @import "../constantsCSS.css";
 
-body {
+#loading-section {
 
     background-color: var(--clr-black);
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@ body {
     font-size: 15em;
 }
 
-.loadingContainer > span {
+#loading-container > span {
 
     animation: glow 4s ease-in-out infinite;
 }
@@ -32,47 +32,47 @@ body {
     }
 }
 
-.loadingContainer > span:nth-child(2) {
+#loading-container > span:nth-child(2) {
 
     animation-delay: 0.25s;
 }
 
-.loadingContainer > span:nth-child(3) {
+#loading-container > span:nth-child(3) {
 
     animation-delay: 0.5s;
 }
 
-.loadingContainer > span:nth-child(4) {
+#loading-container > span:nth-child(4) {
 
     animation-delay: 0.75s;
 }
 
-.loadingContainer > span:nth-child(5) {
+#loading-container > span:nth-child(5) {
 
     animation-delay: 1s;
 }
 
-.loadingContainer > span:nth-child(6) {
+#loading-container  > span:nth-child(6) {
 
     animation-delay: 1.25s;
 }
 
-.loadingContainer > span:nth-child(7) {
+#loading-container > span:nth-child(7) {
 
     animation-delay: 1.5s;
 }
 
-.loadingContainer > span:nth-child(8) {
+#loading-container  > span:nth-child(8) {
 
     animation-delay: 1.75s;
 }
 
-.loadingContainer > span:nth-child(9) {
+#loading-container  > span:nth-child(9) {
 
     animation-delay: 2s;
 }
 
-.loadingContainer > span:nth-child(10) {
+#loading-container  > span:nth-child(10) {
 
     animation-delay: 2.25s;
 }
