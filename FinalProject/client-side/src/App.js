@@ -5,11 +5,22 @@ import Content from './Components/Pages/Content';
 import LoadingPage from './Components/Pages/LoadingPage';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './App.css';
 
 
 function App() {
+
+  const navigate = useNavigate();
+
+  useEffect(()=> {
+
+    navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
+      process.env.REACT_APP_BASE_HOME_PATH + "/" +
+      process.env.REACT_APP_BASE_LOADING_HOME_TIME);
+}, [])
 
   return (
     <div>
@@ -28,6 +39,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

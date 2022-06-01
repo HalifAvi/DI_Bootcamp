@@ -135,7 +135,7 @@ const SigninSignupForm = ({pageToDisplay}) => {
                     <Title id={"signin-snd-title"} typing={"typewriter"} titleName={process.env.REACT_APP_SIGNIN_SND_TITLE} />
                 </div>
 
-                <Link to={'/'}>
+                <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
                     <Image id={"back-icon"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
                 </Link>
 
