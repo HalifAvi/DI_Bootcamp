@@ -1,5 +1,6 @@
-#login-left-side-div {
+#signin-left-side-div {
 
+    position: relative;
     width: 100vw;
     height: 100vh;
     background-color: var(--clr-black);
@@ -7,7 +8,7 @@
     opacity: 0.8;
 }
 
-#login-logo-div {
+#signin-logo-div {
 
     position: fixed;
     top: 0px;
@@ -16,16 +17,27 @@
     margin: 0;
 }
 
-#login-title-div {
+#signin-title-div {
 
     position: fixed;
     top: 325px;
-    left: 245px;
+    left: 200px;
 }
 
-#login-snd-title-div {
+#signin-snd-title-div {
 
     position: fixed;
     top: 470px;
     left: 450px;
+}
+
+#signinSignup-details-div {
+
+    z-index: 9;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100px;
+    height: 100px;
+    background-color: brown;
 }

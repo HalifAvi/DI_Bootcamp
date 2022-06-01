@@ -9,7 +9,7 @@ import axios from 'axios';
 import {toast} from "react-toastify";
 
 import Title from "../BasicElements/Title";
-import '../PagesStyle/LoginSigninForm.css';
+import '../PagesStyle/SigninSignupForm.css';
 import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
 import Image from "../BasicElements/Image";
@@ -17,7 +17,7 @@ import Image from "../BasicElements/Image";
 
 
 
-const LoginSigninForm = ({pageToDisplay}) => {
+const SigninSignupForm = ({pageToDisplay}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,9 +29,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
     const [gender, setGender] = useState('');
     const [activityLevel, setActivityLevel] = useState('');
     const [message, setMessage] = useState('');
-
-
-    
+    const [detailsForm,setDetailsForm] = useState(false);
 
     const navigate = useNavigate();
 
@@ -44,11 +42,11 @@ const LoginSigninForm = ({pageToDisplay}) => {
 
     const handleAction = async (pageToDisplay) => {
 
-        if(pageToDisplay === process.env.REACT_APP_SIGN_IN_NAME){
+        if(pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME){
 
             try{ 
 
-                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SIGN_IN_URL,{
+                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SIGN_UP_URL,{
                     email, 
                     password,
                     firstName,
@@ -68,10 +66,10 @@ const LoginSigninForm = ({pageToDisplay}) => {
                     }
                 })
 
-                console.log("register response", response);
+                console.log("signup response", response);
 
-                // Navigate to login in case the registration successfuly
-                navigate('/login');
+                // Navigate to signin in case the registration successfuly
+                navigate('/signin');
 
             }
             catch(e) {
@@ -81,11 +79,11 @@ const LoginSigninForm = ({pageToDisplay}) => {
                 toast.error(e.response.data.msg);
             }
 
-        }else{ // Login!!!
+        }else{ // signin!!!
 
             try{
 
-                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_LOG_IN_URL,{
+                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SIGN_IN_URL,{
                     email: email, 
                     password: password
                 },{
@@ -98,7 +96,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
                     }
                 })
 
-                console.log("login response", response);
+                console.log("signin response", response);
 
                 // Navigate to home in case login successfuly
                 navigate('/content');
@@ -113,26 +111,28 @@ const LoginSigninForm = ({pageToDisplay}) => {
         }
     }
 
-
-
     return(
 
         <div>
 
-            <Video poster={process.env.REACT_APP_BASE_POSTER_LOGIN_URL} src={process.env.REACT_APP_BASE_VIDEO_LOGIN_URL} id={"login-back-video"} autoPlay muted loop />
+            {
+                detailsForm && <div id={"signinSignup-details-div"}> Aviiii </div>
+            }
 
-            <div id={"login-left-side-div"}>
+            <Video poster={process.env.REACT_APP_BASE_POSTER_SIGNIN_URL} src={process.env.REACT_APP_BASE_VIDEO_SIGNIN_URL} id={"signin-back-video"} autoPlay muted loop />
 
-                <div id={"login-logo-div"}>
-                    <AppLogo id={"login-logo"} />
+            <div id={"signin-left-side-div"}>
+
+                <div id={"signin-logo-div"}>
+                    <AppLogo id={"signin-logo"} />
                 </div>
 
-                <div id={"login-title-div"}>
-                    <Title id={"login-title"} titleName={process.env.REACT_APP_LOGIN_TITLE} />
+                <div id={"signin-title-div"}>
+                    <Title onClickEvent={()=>setDetailsForm(true)} id={"signin-title"} titleName={process.env.REACT_APP_SIGNIN_TITLE} />
                 </div>
 
-                <div id={"login-snd-title-div"}>
-                    <Title id={"login-snd-title"} typing={"typewriter"} titleName={process.env.REACT_APP_LOGIN_SND_TITLE} />
+                <div id={"signin-snd-title-div"}>
+                    <Title id={"signin-snd-title"} typing={"typewriter"} titleName={process.env.REACT_APP_SIGNIN_SND_TITLE} />
                 </div>
 
                 <Link to={'/'}>
@@ -180,4 +180,4 @@ const LoginSigninForm = ({pageToDisplay}) => {
 }     
 
 
-export default LoginSigninForm;
+export default SigninSignupForm;

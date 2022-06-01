@@ -1,13 +1,13 @@
 import express from 'express';
-import {signIn, logIn} from '../controllers/users.js';
+import {signUp, signIn} from '../controllers/users.js';
 
 const router = express.Router();
 
 
 
 // PAY ATTENTION TO THE ORDER !!!! 
+router.post('/signUp', signUp);
 router.post('/signIn', signIn);
-router.post('/logIn', logIn);
 
 // To protect our 'Home' component with token
 // You will get an error or next if everything is good

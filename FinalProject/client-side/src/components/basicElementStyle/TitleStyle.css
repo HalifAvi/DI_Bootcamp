@@ -65,9 +65,9 @@
 }
 
 
-/******************************* 'Login' Page ********************************/
+/******************************* 'SignIn' Page ********************************/
 
-#login-logo-p1 {
+#signin-logo-p1 {
     
     color: var(--clr-white);
     font-size: 5em;
@@ -79,7 +79,7 @@
     background-color: var(--clr-yellow);
 }
 
-#login-logo-p2 {
+#signin-logo-p2 {
 
     color: var(--clr-white);
     font-size: 5em;
@@ -91,7 +91,7 @@
     text-shadow: 0 0 10px var(--clr-yellow), 0 0 40px var(--clr-yellow);
 }
 
-#login-title {
+#signin-title {
 
     color: var(--clr-yellow);
     font-size: 6em;
@@ -102,7 +102,7 @@
     cursor: pointer;
 }
 
-#login-title:hover {
+#signin-title:hover {
 
     color: var(--clr-white);
     font-size: 6em;
@@ -114,7 +114,7 @@
     text-shadow: 0 0 3px var(--clr-yellow);
 }
 
-#login-snd-title {
+#signin-snd-title {
 
     color: var(--clr-white);
     font-size: 2.5em;

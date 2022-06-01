@@ -1,7 +1,8 @@
 @import "../constantsCSS.css";
 
-#home-back-video, #login-back-video {
+#home-back-video, #signin-back-video {
 
+    position: relative;
     object-fit: cover;
     width: 100vw;
     height: 100vh;

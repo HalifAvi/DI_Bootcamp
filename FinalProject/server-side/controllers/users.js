@@ -14,7 +14,7 @@ import jwt from 'jsonwebtoken';
 // The fun has here the req & res
 // cause everthing we send from the router
 // has these 
-export const signIn = async (req, res) => {
+export const signUp = async (req, res) => {
 
     console.log("###############")
     console.log(req.body)
@@ -72,7 +72,7 @@ export const signIn = async (req, res) => {
 
 
 
-export const logIn = async (req, res) => {
+export const signIn = async (req, res) => {
 
     try{
 

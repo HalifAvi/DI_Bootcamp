@@ -1,6 +1,6 @@
 @import "../constantsCSS.css";
 
-#home-login-btt, #home-signin-btt {
+#home-signin-btt, #home-signup-btt {
 
     width: 150px;
     height: 50px;
@@ -13,7 +13,7 @@
     font-family: var(--clr-thin-font);
 }
 
-button#home-login-btt:hover, button#home-signin-btt:hover {
+button#home-signin-btt:hover, button#home-signup-btt:hover {
 
     color: var(--clr-black);
     background-color: var(--clr-white);
