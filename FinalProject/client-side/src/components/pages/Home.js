@@ -21,7 +21,7 @@ const Home = (props) => {
                 </div>
 
                 <div id={"home-snd-title-div"}>
-                    <Title id={"home-snd-title"} titleName={process.env.REACT_APP_HOME_SND_TITLE} />
+                    <Title id={"home-snd-title"} typing={"typewriter"} titleName={process.env.REACT_APP_HOME_SND_TITLE} />
                 </div>
 
             </div>

@@ -132,7 +132,7 @@ const LoginSigninForm = ({pageToDisplay}) => {
                 </div>
 
                 <div id={"login-snd-title-div"}>
-                    <Title id={"login-snd-title"} titleName={process.env.REACT_APP_LOGIN_SND_TITLE} />
+                    <Title id={"login-snd-title"} typing={"typewriter"} titleName={process.env.REACT_APP_LOGIN_SND_TITLE} />
                 </div>
 
                 <Link to={'/'}>
