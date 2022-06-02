@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 // import './App.css';
 import SigninSignupCard from './Components/BasicElements/SigninSignupCard'; ///////////////
-
+import UploadFile from '../src/Components/BasicElements/UploadFile';
 
 function App() {
 
@@ -39,7 +39,9 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + "/:nextPage/:time"} element={<LoadingPage />} />
       </Routes> */}
 
-      <SigninSignupCard />
+      {/* <SigninSignupCard /> */}
+
+      <UploadFile />
 
     </div>
   )
