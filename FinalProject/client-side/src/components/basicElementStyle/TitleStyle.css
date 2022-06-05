@@ -131,10 +131,18 @@
 
     font-family: var(--clr-script-font);
     color: var(--clr-bla);
-    font-size: 2em;
-    font-weight: bolder;
-    margin-bottom: 10px;
-    text-shadow: 0 0 30px var(--clr-white), 0 0 70px var(--clr-white), 0 0 100px var(--clr-white);
+    font-size: 2.3em;
+    /* text-shadow: 0 0 30px var(--clr-white), 0 0 70px var(--clr-white), 0 0 100px var(--clr-white); */
+}
+
+
+/******************************* 'SwappingSignFrontPanel' Page ********************************/
+
+
+#swappingSignFrontPanel-title {
+
+    color: aquamarine;
+
 }
 
 

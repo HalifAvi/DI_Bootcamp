@@ -15,11 +15,11 @@ const SwappingSignFrontPanel = ({formToDisplay}) => {
 
                         <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
                             
-                            <Form formKind={process.env.REACT_APP_SIGN_IN_NAME}/>
+                            <Form formKind={process.env.REACT_APP_SIGN_IN_NAME} id={"swappingSignFrontPanel-title"}/>
                         </div>
 
                         <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signupForm'}>
-                            <Form formKind={process.env.REACT_APP_SIGN_UP_NAME}/>
+                            <Form formKind={process.env.REACT_APP_SIGN_UP_NAME} id={"swappingSignFrontPanel-title"}/>
                         </div>
 
                     </div>
@@ -29,11 +29,11 @@ const SwappingSignFrontPanel = ({formToDisplay}) => {
                     <div className={'swappingSignFrontPanel-formBx pattern-dots-sm slategray h-5'}>
 
                         <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
-                            <Form formKind={process.env.REACT_APP_SIGN_UP_NAME}/>
+                            <Form formKind={process.env.REACT_APP_SIGN_UP_NAME} id={"swappingSignFrontPanel-title"}/>
                         </div>
 
                         <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signupForm'}>
-                            <Form formKind={process.env.REACT_APP_SIGN_IN_NAME}/>
+                            <Form formKind={process.env.REACT_APP_SIGN_IN_NAME} id={"swappingSignFrontPanel-title"}/>
                         </div>
 
                     </div>

@@ -1,11 +1,11 @@
 import Title from "./Title";
 import Input from "./Input";
 
-const Form = ({formKind}) => { 
+const Form = ({formKind, id}) => { 
 
     return(
             <>
-                <Title titleName={formKind}/>
+                <Title id={id} titleName={formKind}/>
                 {
                     formKind === process.env.REACT_APP_SIGN_IN_NAME ? 
 
