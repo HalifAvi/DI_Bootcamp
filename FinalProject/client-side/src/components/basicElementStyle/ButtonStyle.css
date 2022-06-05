@@ -33,12 +33,28 @@ button#home-signin-btt:hover, button#home-signup-btt:hover {
 #signinSignupForm-swipe-signup-btt, #signinSignupForm-swipe-signin-btt {
 
     background-color:  var(--clr-transparent);
-    border: 2px solid var(--clr-white);
+    border: 3px solid var(--clr-white);
     font-family: var(--clr-thin-font);
-    font-size: 20px;
+    font-size: 40px;
+    cursor: pointer;
     padding: 5px;
-    width: 100px;
+    margin-top: 30px;
+    width: 170px;
 }
+
+#signinSignupForm-swipe-signup-btt:hover, #signinSignupForm-swipe-signin-btt:hover {
+
+    background-color:  var(--clr-yellow);
+    font-family: var(--clr-thin-font);
+    color: var(--clr-white);
+    font-size: 40px;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 30px;
+    width: 170px;
+    box-shadow: 0 0 10px var(--clr-white);
+}
+
 
 
 

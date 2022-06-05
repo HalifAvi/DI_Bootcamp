@@ -8,11 +8,13 @@ const SwappingSignFrontPanel = ({formToDisplay}) => {
 
         <>
             {
+                
                 formToDisplay === process.env.REACT_APP_SIGN_IN_NAME ?
 
-                    <div className={'swappingSignFrontPanel-formBx'}>
+                    <div className={'swappingSignFrontPanel-formBx pattern-dots-sm slategray h-5'}>
 
                         <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
+                            
                             <Form formKind={process.env.REACT_APP_SIGN_IN_NAME}/>
                         </div>
 
@@ -24,7 +26,7 @@ const SwappingSignFrontPanel = ({formToDisplay}) => {
 
                 :
 
-                    <div className={'swappingSignFrontPanel-formBx'}>
+                    <div className={'swappingSignFrontPanel-formBx pattern-dots-sm slategray h-5'}>
 
                         <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
                             <Form formKind={process.env.REACT_APP_SIGN_UP_NAME}/>

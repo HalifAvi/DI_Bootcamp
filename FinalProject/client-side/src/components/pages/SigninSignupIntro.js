@@ -30,8 +30,8 @@ const SigninSignupIntro = ({pageToDisplay}) => {
     const [gender, setGender] = useState('');
     const [activityLevel, setActivityLevel] = useState('');
     const [message, setMessage] = useState('');
-    const [detailsForm,setDetailsForm] = useState(false);
 
+    
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -116,11 +116,7 @@ const SigninSignupIntro = ({pageToDisplay}) => {
 
         <div>
 
-            {
-                detailsForm && <SigninSignupForm formToDisplay={pageToDisplay} />
-            }
-
-            <Video poster={process.env.REACT_APP_BASE_POSTER_SIGNIN_URL} src={process.env.REACT_APP_BASE_VIDEO_SIGNIN_URL} id={"signin-back-video"} autoPlay muted loop />
+            <Video poster={process.env.REACT_APP_BASE_POSTER_SIGNIN_URL} src={process.env.REACT_APP_BASE_VIDEO_SIGN_INTRO_URL} id={"signin-back-video"} autoPlay muted loop />
 
             <div id={"signinSignUpIntro-left-side-div"}>
 
@@ -128,10 +124,12 @@ const SigninSignupIntro = ({pageToDisplay}) => {
                     <AppLogo id={"signinSignUpIntro-logo"} />
                 </div>
 
-                <div id={"signinSignUpIntro-title-div"}>
-                    <Title onClickEvent={()=>setDetailsForm(true)} id={"signinSignUpIntro-title"} 
-                            titleName={ pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_SIGNUP_TITLE : process.env.REACT_APP_SIGNIN_TITLE} />
-                </div>
+                <Link to={pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_BASE_SIGN_UP_FORM_PATH : process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH}>
+                    <div id={"signinSignUpIntro-title-div"}>
+                        <Title id={"signinSignUpIntro-title"} 
+                                titleName={ pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_SIGNUP_TITLE : process.env.REACT_APP_SIGNIN_TITLE} />
+                    </div>
+                </Link>
 
                 <div id={"signinSignUpIntro-snd-title-div"}>
                     <Title id={"signinSignUpIntro-snd-title"} typing={"typewriter"} 

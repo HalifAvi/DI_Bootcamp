@@ -1,3 +1,6 @@
+@import "../constantsCSS.css";
+
+
 .SwappingSignBackPanel-container {
 
     position: absolute;
@@ -9,6 +12,7 @@
     align-items: center;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 5px 45px rgba(0, 0, 0, 0.15);
+    clip-path: polygon(0 35%, 40% 0, 100% 37%, 100% 79%, 25% 100%, 0 85%);
 }
 
 .SwappingSignBackPanel-container .swappingSignBackPanel-box {
@@ -22,21 +26,3 @@
     flex-direction: column;
 }
 
-.SwappingSignBackPanel-container .swappingSignBackPanel-box #signinSignupForm-title{
-
-    color: #fff;
-    font-size: 1.2em;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.SwappingSignBackPanel-container .swappingSignBackPanel-box #signinSignupForm-swipe-signin-btt #signinSignupForm-swipe-signin-btt {
-
-    cursor: pointer;
-    padding: 10px 20px;
-    background: #fff;
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-}
