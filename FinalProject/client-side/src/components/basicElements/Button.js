@@ -5,7 +5,7 @@ const Button = (props) => {
     return(
 
         <>
-            <button id={props.id}>{props.buttonName}</button>
+            <button id={props.id} onClick={props.onClickEvent || null}>{props.buttonName}</button>
         </>
     )
 }

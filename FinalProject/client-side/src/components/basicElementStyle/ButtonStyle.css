@@ -1,5 +1,10 @@
 @import "../constantsCSS.css";
 
+
+/******************************* 'Home' Page ********************************/
+
+
+
 #home-signin-btt, #home-signup-btt {
 
     width: 150px;
@@ -20,4 +25,24 @@ button#home-signin-btt:hover, button#home-signup-btt:hover {
     box-shadow: 0 0 10px var(--clr-white);
     font-weight: bold;
 }
+
+
+
+/******************************* 'SigninSignupForm' Page ********************************/
+
+#signinSignupForm-swipe-signup-btt, #signinSignupForm-swipe-signin-btt {
+
+    background-color:  var(--clr-transparent);
+    border: 2px solid var(--clr-white);
+    font-family: var(--clr-thin-font);
+    font-size: 20px;
+    padding: 5px;
+    width: 100px;
+}
+
+
+
+
+
+
 

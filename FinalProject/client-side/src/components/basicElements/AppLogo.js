@@ -4,8 +4,6 @@ import Title from "../BasicElements/Title";
 
 const AppLogo = (props) => {
 
-    console.log(props.id)
-
     return(
 
         <div> 

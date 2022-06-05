@@ -1,43 +1,32 @@
-#signinSignUp-left-side-div {
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#signinSignupForm-section {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #03a9f4;
+    width: 100vw;
+    transition: 0.5s;
+}
+
+#signinSignupForm-section.active {
+
+    background: #f43648;
+ }
+ 
+
+#signinSignupForm-container {
 
     position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--clr-black);
-    clip-path: polygon(50% 0%, 100% 0, 0 41%, 100% 100%, 100% 100%, 0 100%, 0 0);
-    opacity: 0.8;
+    width: 800px;
+    height: 500px;
+    margin: 20px;
 }
 
-#signinSignUp-logo-div {
-
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    padding: 0;
-    margin: 0;
-}
-
-#signinSignUp-title-div {
-
-    position: fixed;
-    top: 325px;
-    left: 200px;
-}
-
-#signinSignUp-snd-title-div {
-
-    position: fixed;
-    top: 470px;
-    left: 450px;
-}
-
-#signinSignup-details-div {
-
-    z-index: 9;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 100px;
-    height: 100px;
-    background-color: brown;
-}
