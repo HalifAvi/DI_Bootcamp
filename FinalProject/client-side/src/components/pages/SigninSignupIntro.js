@@ -124,7 +124,14 @@ const SigninSignupIntro = ({pageToDisplay}) => {
                     <AppLogo id={"signinSignUpIntro-logo"} />
                 </div>
 
-                <Link to={pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_BASE_SIGN_UP_FORM_PATH : process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH}>
+                <Link to={pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ?
+                        process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
+                        process.env.REACT_APP_BASE_SIGN_UP_FORM_PATH + "/" +
+                        process.env.REACT_APP_BASE_LOADING_SIGN_FORM_TIME
+                        :
+                        process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
+                        process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH + "/" +
+                        process.env.REACT_APP_BASE_LOADING_SIGN_FORM_TIME}>
                     <div id={"signinSignUpIntro-title-div"}>
                         <Title id={"signinSignUpIntro-title"} 
                                 titleName={ pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_SIGNUP_TITLE : process.env.REACT_APP_SIGNIN_TITLE} />
@@ -137,7 +144,11 @@ const SigninSignupIntro = ({pageToDisplay}) => {
                 </div>
 
                 <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
-                    <Image id={"back-icon"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
+                    <Image id={"signinSignUpIntro-back-icon"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
+                </Link>
+
+                <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
+                    <Image id={"signinSignUpIntro-home-icon"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
                 </Link>
 
             </div>

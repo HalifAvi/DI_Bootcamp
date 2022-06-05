@@ -1,6 +1,6 @@
 @import "../constantsCSS.css";
 
-#back-icon {
+#signinSignUpIntro-back-icon {
 
     width: 70px;
     height: 70px;
@@ -8,11 +8,11 @@
     top: 10px;
     right: 400px;
     background-color: white;
-    transform: rotate(168deg);
-    border-radius: 10%;
+    transform: rotate(169deg);
+    border-radius: 15%;
 }
 
-#back-icon:hover {
+#signinSignUpIntro-back-icon:hover {
 
     cursor: pointer;
     width: 70px;
@@ -22,7 +22,88 @@
     right: 400px;
     background-color: white;
     transform: rotate(168deg);
+    border-radius: 15%;
     background-color: var(--clr-yellow);
     box-shadow: 0 0 10px var(--clr-yellow);
 }
 
+#signinSignupForm-back-icon {
+
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    transform: rotate(180deg);
+    border-radius: 15%;
+}
+
+#signinSignupForm-back-icon:hover {
+
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    transform: rotate(180deg);
+    border-radius: 15%;
+    background-color: var(--clr-yellow);
+    box-shadow: 0 0 10px var(--clr-yellow);
+}
+
+#signinSignUpIntro-home-icon {
+
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 25px;
+    right: 480px;
+    background-color: white;
+    transform: rotate(-10deg);
+    border-radius: 15%;
+    border: 2px solid var(--clr-black);
+}
+
+#signinSignUpIntro-home-icon:hover {
+
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 25px;
+    right: 480px;
+    background-color: white;
+    transform: rotate(-10deg);
+    border-radius: 15%;
+    border: 2px solid var(--clr-black);
+    background-color: var(--clr-yellow);
+    box-shadow: 0 0 10px var(--clr-yellow);
+}
+
+#signinSignUpForm-home-icon {
+
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 10px;
+    right: 90px;
+    background-color: white;
+    border-radius: 15%;
+    border: 2px solid var(--clr-black);
+}
+
+#signinSignUpForm-home-icon:hover {
+
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 10px;
+    right: 90px;
+    background-color: white;
+    border-radius: 15%;
+    border: 2px solid var(--clr-black);
+    background-color: var(--clr-yellow);
+    box-shadow: 0 0 10px var(--clr-yellow);
+}
