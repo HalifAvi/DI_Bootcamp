@@ -27,12 +27,14 @@ catch (e) {
 
 // Give us into 'dirname' the exact location in our file system
 const __dirname = path.resolve();
+// path : join paths, instead of writing '__dirname' + '/public'
 app.use('uploads', express.static(path.join(__dirname, '/uploads')));
 
 const storage = multer.diskStorage({
 
     destination: (req, file, cb) => {
 
+        // call back
         cb(null, 'uploads');
     },
 
@@ -46,7 +48,7 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
 
-    if(file.mimetype == 'images/jpeg' || file.mimetype == 'images/png') {
+    if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
 
         cb(null, true);
     }

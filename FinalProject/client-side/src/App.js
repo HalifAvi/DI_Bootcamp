@@ -29,7 +29,7 @@ function App() {
   return (
     <div>
       
-      {/* <ToastContainer />
+      <ToastContainer />
 
       <Routes>
         <Route path={process.env.REACT_APP_BASE_HOME_PATH} element={<Home />} />
@@ -37,11 +37,10 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_SIGN_IN_PATH} element={<SigninSignupForm pageToDisplay={process.env.REACT_APP_SIGN_IN_NAME} />} />
         <Route path={process.env.REACT_APP_BASE_CONTENT_PATH} element={<Content />} />
         <Route path={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + "/:nextPage/:time"} element={<LoadingPage />} />
-      </Routes> */}
+      </Routes> 
 
       {/* <SigninSignupCard /> */}
 
-      <UploadFile />
 
     </div>
   )

@@ -91,7 +91,7 @@
     text-shadow: 0 0 10px var(--clr-yellow), 0 0 40px var(--clr-yellow);
 }
 
-#signin-title {
+#signinSignUp-title {
 
     color: var(--clr-yellow);
     font-size: 6em;
@@ -102,7 +102,7 @@
     cursor: pointer;
 }
 
-#signin-title:hover {
+#signinSignUp-title:hover {
 
     color: var(--clr-white);
     font-size: 6em;
@@ -114,7 +114,7 @@
     text-shadow: 0 0 3px var(--clr-yellow);
 }
 
-#signin-snd-title {
+#signinSignUp-snd-title {
 
     color: var(--clr-white);
     font-size: 2.5em;

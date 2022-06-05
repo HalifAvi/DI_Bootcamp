@@ -1,6 +1,7 @@
 import Users from "../models/userModel.js"; // the 'users' table
 import UsersBody from "../models/bodyModel.js";
 
+
 // Hasing the password - before sending to db
 import bcrypt from 'bcrypt';
 

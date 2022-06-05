@@ -37,7 +37,7 @@ const UploadFile = (props) => {
                 name='file' 
                 accept='.jpg,.png'
                 onChange={(e)=> setImgValue(e.target.files[0])} />
-            <button onClick={uploadImage}>Submit</button>
+            <button onClick={uploadImage}>Upload Image</button>
         </div>
     )
 }

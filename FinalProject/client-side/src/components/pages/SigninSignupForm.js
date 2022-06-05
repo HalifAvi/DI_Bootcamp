@@ -121,18 +121,20 @@ const SigninSignupForm = ({pageToDisplay}) => {
 
             <Video poster={process.env.REACT_APP_BASE_POSTER_SIGNIN_URL} src={process.env.REACT_APP_BASE_VIDEO_SIGNIN_URL} id={"signin-back-video"} autoPlay muted loop />
 
-            <div id={"signin-left-side-div"}>
+            <div id={"signinSignUp-left-side-div"}>
 
-                <div id={"signin-logo-div"}>
+                <div id={"signinSignUp-logo-div"}>
                     <AppLogo id={"signin-logo"} />
                 </div>
 
-                <div id={"signin-title-div"}>
-                    <Title onClickEvent={()=>setDetailsForm(true)} id={"signin-title"} titleName={process.env.REACT_APP_SIGNIN_TITLE} />
+                <div id={"signinSignUp-title-div"}>
+                    <Title onClickEvent={()=>setDetailsForm(true)} id={"signinSignUp-title"} 
+                            titleName={ pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_SIGNUP_TITLE : process.env.REACT_APP_SIGNIN_TITLE} />
                 </div>
 
-                <div id={"signin-snd-title-div"}>
-                    <Title id={"signin-snd-title"} typing={"typewriter"} titleName={process.env.REACT_APP_SIGNIN_SND_TITLE} />
+                <div id={"signinSignUp-snd-title-div"}>
+                    <Title id={"signinSignUp-snd-title"} typing={"typewriter"} 
+                            titleName={pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_SIGNUP_SND_TITLE : process.env.REACT_APP_SIGNIN_SND_TITLE} />
                 </div>
 
                 <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
