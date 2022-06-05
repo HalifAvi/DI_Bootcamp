@@ -1,32 +1,42 @@
 import '../BasicElementStyle/SwappingSignFrontPanel.css';
+import Form from "../BasicElements/Form.js";
 
 
-const SwappingSignFrontPanel = (props) => { 
+const SwappingSignFrontPanel = ({formToDisplay}) => { 
 
     return(
 
         <>
-          <div className={'swappingSignFrontPanel-formBx'}>
-                <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
-                    <form>
-                        <h3>Sign In</h3>
-                        <input type={"text"} placeholder={"Username"}/>
-                        <input type={"password"} placeholder={"Password"}/>
-                        <input type={"submit"} value={"Login"}/>
-                    </form>
-                </div>
+            {
+                formToDisplay === process.env.REACT_APP_SIGN_IN_NAME ?
 
-                <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signupForm'}>
-                    <form>
-                        <h3>Sign Up</h3>
-                        <input type={"text"} placeholder={"Username"}/>
-                        <input type={"text"} placeholder={"Email Address"}/>
-                        <input type={"password"} placeholder={"Password"}/>
-                        <input type={"password"} placeholder={"Confirm password"}/>
-                        <input type={"submit"} value={"Register"}/>
-                    </form>
-                </div>
-            </div>
+                    <div className={'swappingSignFrontPanel-formBx'}>
+
+                        <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
+                            <Form formKind={process.env.REACT_APP_SIGN_IN_NAME}/>
+                        </div>
+
+                        <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signupForm'}>
+                            <Form formKind={process.env.REACT_APP_SIGN_UP_NAME}/>
+                        </div>
+
+                    </div>
+
+                :
+
+                    <div className={'swappingSignFrontPanel-formBx'}>
+
+                        <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signinForm'}>
+                            <Form formKind={process.env.REACT_APP_SIGN_UP_NAME}/>
+                        </div>
+
+                        <div className={'swappingSignFrontPanel-form swappingSignFrontPanel-signupForm'}>
+                            <Form formKind={process.env.REACT_APP_SIGN_IN_NAME}/>
+                        </div>
+
+                    </div>
+            }
+
         </>
     )
 }

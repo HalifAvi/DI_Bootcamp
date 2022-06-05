@@ -117,7 +117,7 @@ const SigninSignupIntro = ({pageToDisplay}) => {
         <div>
 
             {
-                detailsForm && <SigninSignupForm />
+                detailsForm && <SigninSignupForm formToDisplay={pageToDisplay} />
             }
 
             <Video poster={process.env.REACT_APP_BASE_POSTER_SIGNIN_URL} src={process.env.REACT_APP_BASE_VIDEO_SIGNIN_URL} id={"signin-back-video"} autoPlay muted loop />
