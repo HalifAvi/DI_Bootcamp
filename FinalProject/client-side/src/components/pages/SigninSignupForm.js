@@ -23,11 +23,11 @@ const SigninSignupForm = ({formToDisplay}) => {
             <Link to={formToDisplay === process.env.REACT_APP_SIGN_UP_NAME  ?
                     process.env.REACT_APP_BASE_SIGN_UP_INTRO_PATH :
                     process.env.REACT_APP_BASE_SIGN_IN_INTRO_PATH}>
-                <Image id={"signinSignupForm-back-icon"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
+                <Image id={"signinSignupForm-back-icon"} classN={"pattern-zigzag-sm slategray h-5"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
             </Link>
 
             <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
-                    <Image id={"signinSignUpForm-home-icon"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
+                    <Image id={"signinSignUpForm-home-icon"} classN={"pattern-dots-lg slategray h-5"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
             </Link>
 
                 <div id={"signinSignUpForm-logo-div"}>

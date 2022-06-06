@@ -1,0 +1,87 @@
+
+h2 {
+    
+    font-family: 'Source Code Pro', monospace;
+}
+
+div.loading-body {
+
+    width: 100vw;
+    height: 100vh;
+}
+
+section.loading-section {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: #0e0e0e;
+}
+
+section .loading-container {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+section .loading-container h2 {
+
+    position: relative;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #222;
+    font-size: 4.5em;
+    line-height: 0.798em;
+    letter-spacing: 4.5px;
+}  
+
+section .loading-container h2 span {
+
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    animation: animate 5s linear infinite;
+}  
+
+section .loading-container h2 span.text2 {
+
+    animation-delay: -0.5s;
+    filter: hue-rotate(4860deg);
+}  
+
+section .loading-container h2 span.text3 {
+
+    animation-delay: -1s;
+    filter: hue-rotate(10deg);
+}  
+
+section .loading-container h2 span.text4 {
+
+    animation-delay: -1.5s;
+    filter: hue-rotate(10deg);
+}  
+
+@keyframes animate {
+
+    0%, 5%, 10.1%, 15.1%, 25.1% , 45%, 70.1%, 90%, 100% {
+
+        color: #222;
+        text-shadow: 0 0 0 #222;
+    }
+
+    5.1%, 10%, 15.2%, 25%, 45.1%, 70%, 90.1%, 95%  {
+
+        color: #fff;
+        text-shadow: 0 0 10px #e8d233, 
+                     0 0 20px #e8d233,
+                     0 0 40px #e8d233,
+                     0 0 80px #e8d233,
+                     0 0 160px #e8d233;
+    }   
+}

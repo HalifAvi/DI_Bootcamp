@@ -7,7 +7,8 @@
     position: fixed;
     top: 10px;
     right: 400px;
-    background-color: white;
+    color: var(--clr-white);
+    background-color: var(--clr-yellow);
     transform: rotate(169deg);
     border-radius: 15%;
 }
@@ -20,10 +21,10 @@
     position: fixed;
     top: 10px;
     right: 400px;
-    background-color: white;
+    color: var(--clr-yellow);
+    background-color: var(--clr-white);
     transform: rotate(168deg);
     border-radius: 15%;
-    background-color: var(--clr-yellow);
     box-shadow: 0 0 10px var(--clr-yellow);
 }
 
@@ -34,7 +35,8 @@
     position: fixed;
     top: 10px;
     right: 10px;
-    background-color: white;
+    color: var(--clr-white);
+    background-color: var(--clr-yellow);
     transform: rotate(180deg);
     border-radius: 15%;
 }
@@ -47,10 +49,10 @@
     position: fixed;
     top: 10px;
     right: 10px;
-    background-color: white;
+    color: var(--clr-yellow);
+    background-color: var(--clr-white);
     transform: rotate(180deg);
     border-radius: 15%;
-    background-color: var(--clr-yellow);
     box-shadow: 0 0 10px var(--clr-yellow);
 }
 
@@ -61,7 +63,8 @@
     position: fixed;
     top: 25px;
     right: 480px;
-    background-color: white;
+    color: var(--clr-yellow);
+    background-color: var(--clr-white);
     transform: rotate(-10deg);
     border-radius: 15%;
     border: 2px solid var(--clr-black);
@@ -74,7 +77,8 @@
     position: fixed;
     top: 25px;
     right: 480px;
-    background-color: white;
+    color: var(--clr-white);
+    background-color: var(--clr-yellow);
     transform: rotate(-10deg);
     border-radius: 15%;
     border: 2px solid var(--clr-black);
@@ -89,7 +93,8 @@
     position: fixed;
     top: 10px;
     right: 90px;
-    background-color: white;
+    color: var(--clr-yellow);
+    background-color: var(--clr-white);
     border-radius: 15%;
     border: 2px solid var(--clr-black);
 }
@@ -101,7 +106,8 @@
     position: fixed;
     top: 10px;
     right: 90px;
-    background-color: white;
+    color: var(--clr-white);
+    background-color: var(--clr-yellow);
     border-radius: 15%;
     border: 2px solid var(--clr-black);
     background-color: var(--clr-yellow);

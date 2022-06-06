@@ -75,8 +75,10 @@ export const handleAction = async (event, formKind, navigate, stateObj) => {
 
             console.log("signin response", response);
 
-            // Navigate to home in case login successfuly
-            navigate(process.env.REACT_APP_BASE_CONTENT_PATH);
+            // Navigate to main page in case login successfuly
+            navigate(process.env.REACT_APP_BASE_LOADING_PAGE2_PATH + 
+                    process.env.REACT_APP_BASE_MAIN_PATH + "/" +
+                    process.env.REACT_APP_BASE_LOADING_MAIN_PAGE_TIME)
 
         }
         catch(e){

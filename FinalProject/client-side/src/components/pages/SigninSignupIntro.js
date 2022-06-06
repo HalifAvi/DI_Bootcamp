@@ -44,11 +44,11 @@ const SigninSignupIntro = ({pageToDisplay}) => {
                 </div>
 
                 <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
-                    <Image id={"signinSignUpIntro-back-icon"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
+                    <Image id={"signinSignUpIntro-back-icon"} classN={"pattern-dots-lg slategray h-5"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
                 </Link>
 
                 <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
-                    <Image id={"signinSignUpIntro-home-icon"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
+                    <Image id={"signinSignUpIntro-home-icon"} classN={"pattern-zigzag-sm slategray h-5"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
                 </Link>
 
             </div>
