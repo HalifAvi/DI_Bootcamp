@@ -1,5 +1,8 @@
 import '../BasicElementStyle/Input.css';
 
+import { useEffect } from "react";
+
+
 
 
 const Input = ({ inputType,
@@ -12,6 +15,16 @@ const Input = ({ inputType,
                 name,
                 checked
             }) => { 
+
+
+    /////////////////////////////////////////////////////
+useEffect (()=> {
+
+    console.log("aviiiiiii", inputValue)
+    
+},[])
+
+
 
     return(
 
