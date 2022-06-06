@@ -1,10 +1,27 @@
+import '../BasicElementStyle/Input.css';
 
-const Input = ({inputType, inputPlaceholder, inputValue, onChangeEvent}) => { 
+
+
+const Input = ({ inputType,
+                inputPlaceholder, 
+                inputValue, 
+                onChangeEvent,
+                minNum,
+                maxNum,
+                classN
+            }) => { 
 
     return(
 
         <>
-            <input onChange={null || onChangeEvent} type={null || inputType} placeholder={null || inputPlaceholder} value={null || inputValue}/>
+            <input required
+                onChange={null || onChangeEvent}
+                type={null || inputType}
+                placeholder={null || inputPlaceholder} 
+                value={null || inputValue}
+                min={null || minNum}
+                max={null || maxNum}
+                className={null || classN}/>
         </>
     )
 }

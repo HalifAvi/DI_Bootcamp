@@ -47,8 +47,13 @@ const Form = ({formKind, id}) => {
                         </form>
                     :
                         <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj)}>
-                            <Input inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={"Email Address"}/>
-                            <Input inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={"Password"}/>
+                            <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
+                            <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
+                            <Input classN={"form-signup-input"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_AGE} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_AGE} onChangeEvent={(e)=>setAge(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_AGE}/>
+                            <Input classN={"form-signup-input"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_HEIGHT} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_HEIGHT} onChangeEvent={(e)=>setHeight(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_HEIGHT}/>
+                            <Input classN={"form-signup-input"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_WEIGHT} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_WEIGHT} onChangeEvent={(e)=>setWeight(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_WEIGHT}/>
+                            <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setFirstName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_FIRST_NAME}/>
+                            <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setLastName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_LAST_NAME}/>
                             <Input inputType={"submit"} inputValue={"Register"}/>
                         </form>
                 }
@@ -59,17 +64,6 @@ const Form = ({formKind, id}) => {
 
 export default Form;
 
-
-
-
-        //             <TextField onChange={(e)=>setFirstName(e.target.value)} sx={{m:1}} id='firstName' label='Enter your first name' />
-        //             <TextField onChange={(e)=>setLastName(e.target.value)} sx={{m:1}} id='lastName' label='Enter your last name' /> 
-        //             <TextField onChange={(e)=>setAge(e.target.value)} sx={{m:1}} id='age' label='Enter your age' /> 
-        //             <TextField onChange={(e)=>setHeight(e.target.value)} sx={{m:1}} id='height' label='Enter your height' /> 
-        //             <TextField onChange={(e)=>setWeight(e.target.value)} sx={{m:1}} id='weight' label='Enter your weight' /> 
-
-        //             <Button onClick={()=>setGender("male")} variant="contained">Male</Button>       
-        //             <Button onClick={()=>setGender("female")} variant="contained">Female</Button>     
 
         //             <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_LOW)} variant="contained">Low</Button>       
         //             <Button onClick={()=>setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_LIGHT)} variant="contained">Light</Button>  
