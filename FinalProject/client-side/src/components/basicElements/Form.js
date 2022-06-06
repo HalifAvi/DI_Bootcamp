@@ -1,5 +1,8 @@
 import Title from "./Title";
 import Input from "./Input";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const Form = ({formKind, id}) => { 
 
@@ -7,7 +10,7 @@ const Form = ({formKind, id}) => {
             <>
                 <Title id={id} titleName={formKind}/>
                 {
-                    formKind === process.env.REACT_APP_SIGN_IN_NAME ? 
+                    formKind === process.env.REACT_APP_SIGN_IN_BUTTON ? 
 
                         <form>
                             <Input inputType={"text"} inputPlaceholder={"Username"}/>
@@ -19,7 +22,6 @@ const Form = ({formKind, id}) => {
                             <Input inputType={"text"} inputPlaceholder={"Username"}/>
                             <Input inputType={"text"} inputPlaceholder={"Email Address"}/>
                             <Input inputType={"password"} inputPlaceholder={"Password"}/>
-                            <Input inputType={"password"} inputPlaceholder={"Confirm password"}/>
                             <Input inputType={"submit"} inputValue={"Register"}/>
                         </form>
                 }

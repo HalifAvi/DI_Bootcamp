@@ -45,14 +45,32 @@ button#home-signin-btt:hover, button#home-signup-btt:hover {
 #signinSignupForm-swipe-signup-btt:hover, #signinSignupForm-swipe-signin-btt:hover {
 
     background-color:  var(--clr-yellow);
-    font-family: var(--clr-thin-font);
     color: var(--clr-white);
-    font-size: 40px;
-    cursor: pointer;
-    padding: 5px;
-    margin-top: 30px;
-    width: 170px;
     box-shadow: 0 0 10px var(--clr-white);
+}
+
+/******************************* 'swappingSignFrontPanel' Element ********************************/
+
+
+.swappingSignFrontPanel-formBx .swappingSignFrontPanel-form form input[type="submit"]{
+
+    background: var(--clr-black);
+    font-size: 30px;
+    padding: 5px;
+    color: var(--clr-white);
+    border: 2px solid var(--clr-white);
+    font-family: var(--clr-thin-font);
+    max-width: 140px;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--clr-white);
+ }
+
+ .swappingSignFrontPanel-formBx .swappingSignFrontPanel-form form input[type="submit"]:hover{
+
+   background-color: var(--clr-white);
+   color: var(--clr-black);
+   border: 2px solid var(--clr-black);
+   box-shadow: 0 0 60px var(--clr-white);
 }
 
 

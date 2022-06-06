@@ -56,19 +56,17 @@
     transition-delay: 0.25s;    
  }
 
+
+
+
+
+ /*************************************************************************/
+ /**************************************/
  .swappingSignFrontPanel-formBx .swappingSignFrontPanel-form form{
 
     width: 100%;
     display: flex;
     flex-direction: column;
- }
-
- .swappingSignFrontPanel-formBx .swappingSignFrontPanel-form form h3{
-
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 500;
  }
 
  .swappingSignFrontPanel-formBx .swappingSignFrontPanel-form form input{
@@ -81,18 +79,7 @@
     border: 1px solid #333;
  }
 
- .swappingSignFrontPanel-formBx.active .swappingSignFrontPanel-signupForm input[type="submit"] {
 
-    background: #f43648;
 
- }
 
- .swappingSignFrontPanel-formBx .swappingSignFrontPanel-form form input[type="submit"]{
-
-    background: #03a9f4;
-    border: none;
-    color: #fff;
-    max-width: 100px;
-    cursor: pointer;
- }
 
