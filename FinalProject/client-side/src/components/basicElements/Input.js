@@ -1,10 +1,10 @@
 
-const Input = ({inputType, inputPlaceholder, inputValue}) => { 
+const Input = ({inputType, inputPlaceholder, inputValue, onChangeEvent}) => { 
 
     return(
 
         <>
-            <input type={null || inputType} placeholder={null || inputPlaceholder} value={null || inputValue}/>
+            <input onChange={null || onChangeEvent} type={null || inputType} placeholder={null || inputPlaceholder} value={null || inputValue}/>
         </>
     )
 }
