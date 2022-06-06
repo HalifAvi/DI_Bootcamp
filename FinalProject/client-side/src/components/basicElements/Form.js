@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { handleAction } from "../Assistants/FormExtFunctions.js";
 import genders from '../Assistants/genders.json';
 import activityLevels from '../Assistants/activityLevels.json';
-import { useEffect } from "react";
 
 
 
@@ -40,11 +39,6 @@ const Form = ({formKind, id}) => {
         activityLevel
     }
 
-/////////////////////////////////////////////////////
-    useEffect (()=> {
-
-            console.log(activityLevel)
-    },[])
 
     return(
             <>
@@ -69,7 +63,7 @@ const Form = ({formKind, id}) => {
                             </span>
                             <span className="form-radioBtt">
                                 <Label classN={"form-sign-label"} labelName={process.env.REACT_APP_BASE_SIGN_FORM_GENDER}/>
-                                <RadioBtt optionsArray={genders} onClickEvent={(e)=>setGender(e.target.value)}/>
+                                <RadioBtt optionsArray={genders} onChangeEvent={(e)=>setGender(e.target.value)}/>
                             </span>
                             <span className={"form-input-signup"}>
                                 <Input classN={"form-signup-input-little"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_AGE} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_AGE} onChangeEvent={(e)=>setAge(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_AGE}/>

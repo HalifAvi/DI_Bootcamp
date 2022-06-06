@@ -5,7 +5,6 @@ import axios from 'axios';
 import {toast} from "react-toastify";
 
 
-
 export const handleAction = async (event, formKind, navigate, stateObj) => {
 
     event.preventDefault();

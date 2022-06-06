@@ -33,6 +33,7 @@ export const signUp = async (req, res) => {
             activityLevel
         } = req.body;
 
+    // Hasing the password
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
 

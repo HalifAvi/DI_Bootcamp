@@ -1,9 +1,5 @@
 import '../BasicElementStyle/Input.css';
 
-import { useEffect } from "react";
-
-
-
 
 const Input = ({ inputType,
                 inputPlaceholder, 
@@ -13,18 +9,9 @@ const Input = ({ inputType,
                 maxNum,
                 classN,
                 name,
-                checked
+                checked,
+                id
             }) => { 
-
-
-    /////////////////////////////////////////////////////
-useEffect (()=> {
-
-    console.log("aviiiiiii", inputValue)
-    
-},[])
-
-
 
     return(
 
@@ -38,7 +25,8 @@ useEffect (()=> {
                 max={null || maxNum}
                 className={null || classN}
                 name={null || name}
-                checked={null || checked}/>
+                checked={null || checked}
+                id={null || id}/>
         </>
     )
 }
