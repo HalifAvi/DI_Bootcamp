@@ -8,7 +8,9 @@ const Input = ({ inputType,
                 onChangeEvent,
                 minNum,
                 maxNum,
-                classN
+                classN,
+                name,
+                checked
             }) => { 
 
     return(
@@ -21,7 +23,9 @@ const Input = ({ inputType,
                 value={null || inputValue}
                 min={null || minNum}
                 max={null || maxNum}
-                className={null || classN}/>
+                className={null || classN}
+                name={null || name}
+                checked={null || checked}/>
         </>
     )
 }

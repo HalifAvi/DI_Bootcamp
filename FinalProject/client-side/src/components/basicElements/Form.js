@@ -1,10 +1,15 @@
 import Title from "./Title";
 import Input from "./Input";
+import Label from "./Label";
+import RadioBtt from "./RadioBtt";
 import '../BasicElementStyle/Form.css';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleAction } from "../Assistants/FormExtFunctions.js";
-import { useEffect } from "react";
+import genders from '../Assistants/genders.json';
+import activityLevels from '../Assistants/activityLevels.json';
+
+
 
 
 const Form = ({formKind, id}) => { 
@@ -16,8 +21,8 @@ const Form = ({formKind, id}) => {
     const [age, setAge] = useState('');
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
-    const [gender, setGender] = useState('');
-    const [activityLevel, setActivityLevel] = useState('');
+    const [gender, setGender] = useState(process.env.REACT_APP_BASE_GENDER_DEFAULT);
+    const [activityLevel, setActivityLevel] = useState(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_DEFAULT);
 
     const navigate = useNavigate();
 
@@ -47,17 +52,31 @@ const Form = ({formKind, id}) => {
                         </form>
                     :
                         <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj)}>
-                            <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
-                            <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
-                            <Input classN={"form-signup-input"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_AGE} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_AGE} onChangeEvent={(e)=>setAge(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_AGE}/>
-                            <Input classN={"form-signup-input"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_HEIGHT} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_HEIGHT} onChangeEvent={(e)=>setHeight(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_HEIGHT}/>
-                            <Input classN={"form-signup-input"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_WEIGHT} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_WEIGHT} onChangeEvent={(e)=>setWeight(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_WEIGHT}/>
-                            <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setFirstName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_FIRST_NAME}/>
-                            <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setLastName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_LAST_NAME}/>
+                            <span className={"form-input-signup"}>
+                                <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
+                                <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
+                            </span>
+                            <span className={"form-input-signup"}>
+                                <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setFirstName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_FIRST_NAME}/>
+                                <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setLastName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_LAST_NAME}/>
+                            </span>
+                            <span className="form-radioBtt">
+                                <Label classN={"form-sign-label"} labelName={process.env.REACT_APP_BASE_SIGN_FORM_GENDER}/>
+                                <RadioBtt optionsArray={genders} onChangeEvent={(e)=>setGender(e.target.value)}/>
+                            </span>
+                            <span className={"form-input-signup"}>
+                                <Input classN={"form-signup-input-little"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_AGE} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_AGE} onChangeEvent={(e)=>setAge(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_AGE}/>
+                                <Input classN={"form-signup-input-little"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_HEIGHT} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_HEIGHT} onChangeEvent={(e)=>setHeight(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_HEIGHT}/>
+                                <Input classN={"form-signup-input-little"} inputType={"number"} minNum={process.env.REACT_APP_BASE_SIGN_FORM_MIN_WEIGHT} maxNum={process.env.REACT_APP_BASE_SIGN_FORM_MAX_WEIGHT} onChangeEvent={(e)=>setWeight(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_WEIGHT}/>
+                            </span>
+                            <span className="form-radioBtt">
+                                <Label classN={"form-sign-label"} labelName={process.env.REACT_APP_BASE_SIGN_FORM_ACTIVITY_LEVEL}/>
+                                <RadioBtt optionsArray={activityLevels} onChangeEvent={(e)=>setActivityLevel(e.target.value)}/>
+                            </span>
+
                             <Input inputType={"submit"} inputValue={"Register"}/>
                         </form>
-                }
-                
+                }     
             </>
     )
 }

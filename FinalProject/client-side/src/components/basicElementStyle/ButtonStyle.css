@@ -56,12 +56,15 @@ button#home-signin-btt:hover, button#home-signup-btt:hover {
 
     background: var(--clr-black);
     font-size: 30px;
-    padding: 5px;
+    padding: 0px;
     color: var(--clr-white);
     border: 2px solid var(--clr-white);
     font-family: var(--clr-thin-font);
     max-width: 140px;
+    height: 40px;
     cursor: pointer;
+    margin-top: 45px;
+    margin-left: 38px;
     box-shadow: 0 0 10px var(--clr-white);
  }
 

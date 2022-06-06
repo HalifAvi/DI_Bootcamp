@@ -1,0 +1,31 @@
+[ 
+    {
+        "inputValue": "level-1",
+        "src": "./images/level-1.png", 
+        "name": "levels"
+    },
+    
+    {
+        "inputValue": "level-2", 
+        "src": "./images/level-2.png",
+        "name": "levels"
+    },
+
+    {
+        "inputValue": "level-3",
+        "src": "./images/level-3.png", 
+        "name": "levels"
+    },
+
+    {
+        "inputValue": "level-4",
+        "src": "./images/level-4.png", 
+        "name": "levels"
+    },
+
+    {
+        "inputValue": "level-5",
+        "src": "./images/level-5.png", 
+        "name": "levels"
+    }
+]
