@@ -2,6 +2,7 @@
 h2 {
     
     font-family: 'Source Code Pro', monospace;
+    /*font-family: var(--clr-thin-font)*/
 }
 
 div.loading-body {

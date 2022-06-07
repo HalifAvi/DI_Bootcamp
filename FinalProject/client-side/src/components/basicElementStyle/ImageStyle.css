@@ -7,8 +7,8 @@
     position: fixed;
     top: 10px;
     right: 400px;
-    color: var(--clr-white);
-    background-color: var(--clr-yellow);
+    color: var(--clr-yellow);
+    background-color: var(--clr-white);
     transform: rotate(169deg);
     border-radius: 15%;
 }
@@ -21,8 +21,8 @@
     position: fixed;
     top: 10px;
     right: 400px;
-    color: var(--clr-yellow);
-    background-color: var(--clr-white);
+    color: var(--clr-white);
+    background-color: var(--clr-yellow);
     transform: rotate(168deg);
     border-radius: 15%;
     box-shadow: 0 0 10px var(--clr-yellow);

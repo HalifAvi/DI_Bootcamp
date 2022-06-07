@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useEffect } from 'react';
 import '../BasicElementStyle/Input.css';
 
 
@@ -13,10 +15,21 @@ const Input = ({ inputType,
                 id
             }) => { 
 
+    const checkedInputRef = useRef();
+
+    useEffect(()=> {
+
+        if(checked === "checked") {
+
+            (checkedInputRef.current).setAttribute("checked", "checked");
+        }
+
+    }, [])
+
     return(
 
         <>
-            <input required
+            <input ref={checkedInputRef} required
                 onChange={null || onChangeEvent}
                 type={null || inputType}
                 placeholder={null || inputPlaceholder} 
@@ -25,7 +38,6 @@ const Input = ({ inputType,
                 max={null || maxNum}
                 className={null || classN}
                 name={null || name}
-                checked={null || checked}
                 id={null || id}/>
         </>
     )

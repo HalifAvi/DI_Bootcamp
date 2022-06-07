@@ -15,10 +15,10 @@ const RadioBtt = ({optionsArray, onChangeEvent}) => {
                         return (<span className={'radioBtt-span'}> 
                                     <Input id={item.inputValue}
                                             classN={"radioBtt-input"} 
-                                            checked={"checked"} 
                                             inputValue={item.inputValue} 
                                             onChangeEvent={onChangeEvent} 
                                             inputType={"radio"} 
+                                            checked={idx===(optionsArray.length)-1 ? "checked" : null}
                                             name={item.name}/>
 
                                     <Image classN={"form-img"} src={item.src}/>
