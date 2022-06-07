@@ -77,7 +77,7 @@ export const signUp = async (req, res) => {
             filetype: fileType
         })
 
-        res.json({msg: 'Register successfuly!'})
+        res.json({msg: 'Registered Successfully!'})
 
     }
     catch(error){
@@ -85,7 +85,7 @@ export const signUp = async (req, res) => {
         console.log(error)
 
         // We defined our 'email' as unique in db
-        res.status(404).json({msg:'Email already exist'})
+        res.status(404).json({msg: 'Email Already Exists'})
     }
 }
 
@@ -105,7 +105,7 @@ export const signIn = async (req, res) => {
         // 2: Check the password is equal to the db's password
         const match = await bcrypt.compare(req.body.password, user[0].password)
 
-        if(!match) return res.status(400).json({msg: "Wrong Password"});
+        if(!match) return res.status(400).json({msg: "Sorry, Email Or Password Is Incorrect!"});
         
         const userId = user[0].id;
         const email = user[0].email;
@@ -140,7 +140,7 @@ export const signIn = async (req, res) => {
     catch(error){
 
         console.log(error);
-        res.status(404).json({msg:'Email not found'})
+        res.status(404).json({msg:'Sorry, Email Address Could Not Be Found!'})
     }
 }
 

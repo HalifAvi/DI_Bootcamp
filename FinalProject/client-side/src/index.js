@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {personalizedReducer} from './Redux/Reducers/personalizedReducer';
+import {signInUpReducer} from './Redux/Reducers/signInUpReducer';
 import {sndReducer} from './Redux/Reducers/sndReducer';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({personalizedReducer, sndReducer});
+const rootReducer = combineReducers({signInUpReducer, sndReducer});
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 

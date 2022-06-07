@@ -9,15 +9,16 @@ import { handleAction } from "../Assistants/FormExtFunctions.js";
 import genders from '../Assistants/genders.json';
 import activityLevels from '../Assistants/activityLevels.json';
 import UploadFile from "./UploadFile";
+import { connect } from "react-redux";
+import { setMessageAfterSign } from "../../Redux/Actions/signInUpActions.js";
 
 
+const Form = ({formKind, id, setMessageAfterSign}) => { 
 
-
-
-const Form = ({formKind, id}) => { 
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [emailSignIn, setEmailSignIn] = useState('');
+    const [passwordSignIn, setPasswordSignIn] = useState('');
+    const [emailSignUp, setEmailSignUp] = useState('');
+    const [passwordSignUp, setPasswordSignUp] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [age, setAge] = useState('');
@@ -32,8 +33,10 @@ const Form = ({formKind, id}) => {
 
     const stateObj = {
 
-        email,
-        password,
+        emailSignIn,
+        emailSignUp,
+        passwordSignIn,
+        passwordSignUp,
         firstName,
         lastName, 
         age,
@@ -45,21 +48,22 @@ const Form = ({formKind, id}) => {
 
 
     return(
+        
             <>
-                <Title id={id} titleName={formKind}/>
+                <Title id={id} titleName={formKind} />
                 {
                     formKind === process.env.REACT_APP_SIGN_IN_BUTTON ? 
 
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue)}>
-                            <Input inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
-                            <Input inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign)}>
+                            <Input inputType={"text"} onChangeEvent={(e)=>setEmailSignIn(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
+                            <Input inputType={"password"} onChangeEvent={(e)=>setPasswordSignIn(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
                             <Input inputType={"submit"} inputValue={process.env.REACT_APP_BASE_SIGN_FORM_LOGIN_BTT}/>
                         </form>
                     :
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign)}>
                             <span className={"form-input-signup"}>
-                                <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
-                                <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
+                                <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmailSignUp(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
+                                <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPasswordSignUp(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
                             </span>
                             <span className={"form-input-signup"}>
                                 <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setFirstName(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_FIRST_NAME}/>
@@ -88,5 +92,22 @@ const Form = ({formKind, id}) => {
     )
 }
 
-export default Form;         
+
+const mapStateToProps = (state) => {
+
+    return{
+
+        messageAfterSign : state.signInUpReducer.messageAfterSign
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return{
+
+        setMessageAfterSign : (messageToSet) => dispatch( setMessageAfterSign(messageToSet) )
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);         
  

@@ -5,14 +5,16 @@ import axios from 'axios';
 import {toast} from "react-toastify";
 
 
-export const handleAction = async (event, formKind, navigate, stateObj, imgValue) => {
+export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign) => {
 
     event.preventDefault();
 
     const { 
 
-            email,
-            password,
+            emailSignIn,
+            emailSignUp,
+            passwordSignIn,
+            passwordSignUp,
             firstName,
             lastName, 
             age,
@@ -33,8 +35,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
             // Because we also sending an image we need to append everything to formData
             const formData = new FormData();
             formData.append('file', imgValue);
-            formData.append('email', email);
-            formData.append('password', password);
+            formData.append('email', emailSignUp);
+            formData.append('password', passwordSignUp);
             formData.append('firstName', firstName);
             formData.append('lastName', lastName);
             formData.append('age', age);
@@ -58,7 +60,10 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 }
             })
 
-            console.log("signup response", response);
+            console.log("signup response", response.data.msg);
+
+            // Dispath the action
+            setMessageAfterSign(response.data.msg);
 
             // Navigate to signin in case the registration successfuly
             navigate(process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH);
@@ -66,7 +71,11 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         }
         catch(e) {
 
-            console.log(e);
+            console.log("signup response", e.response.data.msg);
+
+            // Dispath the action
+            setMessageAfterSign(e.response.data.msg);
+
             // setMessage(e.response.data.msg);
             // toast.error(e.response.data.msg);
         }
@@ -77,8 +86,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
 
             let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SIGN_IN_URL,
                 {
-                    email: email, 
-                    password: password
+                    email: emailSignIn, 
+                    password: passwordSignIn
                 },
                 {
 
@@ -90,8 +99,10 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 }
             })
 
-            console.log(response.data);
-            // setMessage("signin response", response.data.msg);
+            // Dispath the action
+            setMessageAfterSign(response.data.msg);
+
+            console.log("signin response", response.data.msg);
 
             // Navigate to main page in case login successfuly
             navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
@@ -102,6 +113,10 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         catch(e){
 
             console.log(e.response.data.msg);
+
+            // Dispath the action
+            setMessageAfterSign(e.response.data.msg);
+
             // setMessage(e.response.data.msg);
             // toast.error(e.response.data.msg);
         }

@@ -4,13 +4,14 @@ import Video from "../BasicElements/Video.js";
 import AppLogo from '../BasicElements/AppLogo';
 import { Link } from "react-router-dom";
 import Image from "../BasicElements/Image";
-
+import { setMessageAfterSign } from "../../Redux/Actions/signInUpActions.js";
 
 
 
 import '../PagesStyle/SigninSignupForm.css';
+import { connect } from 'react-redux';
 
-const SigninSignupForm = ({formToDisplay}) => {
+const SigninSignupForm = ({formToDisplay, setMessageAfterSign}) => {
 
     return(
         <>
@@ -23,11 +24,11 @@ const SigninSignupForm = ({formToDisplay}) => {
             <Link to={formToDisplay === process.env.REACT_APP_SIGN_UP_NAME  ?
                     process.env.REACT_APP_BASE_SIGN_UP_INTRO_PATH :
                     process.env.REACT_APP_BASE_SIGN_IN_INTRO_PATH}>
-                <Image id={"signinSignupForm-back-icon"} classN={"pattern-zigzag-sm slategray h-5"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
+                <Image onClickEvent={()=>setMessageAfterSign("")} id={"signinSignupForm-back-icon"} classN={"pattern-zigzag-sm slategray h-5"} src={process.env.REACT_APP_BASE_BACK_ICON_URL}/>
             </Link>
 
             <Link to={process.env.REACT_APP_BASE_HOME_PATH}>
-                    <Image id={"signinSignUpForm-home-icon"} classN={"pattern-dots-lg slategray h-5"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
+                    <Image onClickEvent={()=>setMessageAfterSign("")} id={"signinSignUpForm-home-icon"} classN={"pattern-dots-lg slategray h-5"} src={process.env.REACT_APP_BASE_HOME_ICON_URL}/>
             </Link>
 
                 <div id={"signinSignUpForm-logo-div"}>
@@ -44,4 +45,14 @@ const SigninSignupForm = ({formToDisplay}) => {
     )
 }
 
-export default SigninSignupForm;
+
+
+const mapDispatchToProps = (dispatch) => {
+
+    return{
+
+        setMessageAfterSign : (messageToSet) => dispatch( setMessageAfterSign(messageToSet) )        
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SigninSignupForm);
