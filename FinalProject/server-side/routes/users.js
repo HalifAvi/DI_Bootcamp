@@ -1,5 +1,5 @@
 import express from 'express';
-import {signUp, signIn} from '../controllers/users.js';
+import {signUp, signIn, signOut} from '../controllers/users.js';
 import { upload } from '../middlewares/uploads.js';
 
 
@@ -11,6 +11,8 @@ const router = express.Router();
 // First do the middleware : save file in directory and then put the file name into db table
 router.post('/signUp', upload.single('file'), signUp);
 router.post('/signIn', signIn);
+router.get('/signOut', signOut);
+
 
 // To protect our 'Home' component with token
 // You will get an error or next if everything is good

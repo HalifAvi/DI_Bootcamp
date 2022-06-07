@@ -77,7 +77,8 @@ export const signUp = async (req, res) => {
             filetype: fileType
         })
 
-        console.log('Register successfuly!')
+        res.json({msg: 'Register successfuly!'})
+
     }
     catch(error){
 
@@ -104,7 +105,7 @@ export const signIn = async (req, res) => {
         // 2: Check the password is equal to the db's password
         const match = await bcrypt.compare(req.body.password, user[0].password)
 
-        if(!match) return res.status(404).json({msg: "Wrong Password"});
+        if(!match) return res.status(400).json({msg: "Wrong Password"});
         
         const userId = user[0].id;
         const email = user[0].email;
@@ -131,7 +132,8 @@ export const signIn = async (req, res) => {
             maxAge: 60 * 1000 // 60 seconds
         }); 
 
-        // We send back the access token
+        console.log('accessToken', accessToken)
+        // We send back the access token 
         res.json({accessToken});
     }
 
@@ -140,4 +142,13 @@ export const signIn = async (req, res) => {
         console.log(error);
         res.status(404).json({msg:'Email not found'})
     }
+}
+
+
+
+
+export const signOut = async (req, res) => {
+
+    res.json({msg:'logout'})
+
 }

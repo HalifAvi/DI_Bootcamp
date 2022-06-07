@@ -90,7 +90,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 }
             })
 
-            console.log("signin response", response);
+            console.log(response.data);
+            // setMessage("signin response", response.data.msg);
 
             // Navigate to main page in case login successfuly
             navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
@@ -100,7 +101,7 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         }
         catch(e){
 
-            console.log(e);
+            console.log(e.response.data.msg);
             // setMessage(e.response.data.msg);
             // toast.error(e.response.data.msg);
         }

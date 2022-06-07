@@ -2,6 +2,8 @@
 import '../BasicElementStyle/RadioBtt.css';
 import Image from "./Image";
 import Input from './Input';
+import ReactTooltip from 'react-tooltip';
+
 
 const RadioBtt = ({optionsArray, onChangeEvent}) => { 
 
@@ -21,7 +23,22 @@ const RadioBtt = ({optionsArray, onChangeEvent}) => {
                                             checked={idx===(optionsArray.length)-1 ? "checked" : null}
                                             name={item.name}/>
 
-                                    <Image classN={"form-img"} src={item.src}/>
+                                    {
+                                        item.name === "levels" ?
+                                            <>
+                                                <ReactTooltip/>
+                                                <p data-tip={item.dataTip}
+                                                data-text-color={idx%2 ? "black":"white"}
+                                                data-background-color={idx%2 ? "white":"black"} 
+                                                data-place={idx%2 ? "bottom":"top"}>
+                                                <Image classN={"form-img"} src={item.src}/></p>
+                                            </>
+
+                                                            :
+
+                                            <Image classN={"form-img"} src={item.src}/>
+
+                                    }
                                 </span>)
                     })
 

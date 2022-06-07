@@ -10,10 +10,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-
-
 // import './App.css';
 // import UploadFile from '../src/Components/BasicElements/UploadFile';
+import Protected from './Components/Pages/Protected';
 
 function App() {
 
@@ -39,6 +38,9 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH} element={<SigninSignupForm formToDisplay={process.env.REACT_APP_SIGN_IN_NAME} />} />
         <Route path={process.env.REACT_APP_BASE_MAIN_PATH} element={<Main />} />
         <Route path={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + "/:nextPage/:time"} element={<LoadingPage />} />
+
+        <Route path='/protected' element={<Protected />} />
+
       </Routes> 
 
     </div>
