@@ -1,43 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import "../BasicElementStyle/UploadFile.css";
+import Input from "./Input";
 
-const UploadFile = (props) => {
 
-    const [imgValue, setImgValue] = useState('');
-    const [fileData, setFileData] = useState({});
-
-    const uploadImage = async () => {
-
-        const formData = new FormData();
-        formData.append('file', imgValue);
-
-        try{
-
-            const data = await axios.post(process.env.REACT_APP_BASE_URL + "/api/upload",
-            
-            formData
-            
-            );
-
-            // if i'll write 'data.data' i'll have the file name
-            console.log(data);
-
-        }
-        catch(e){
-
-            console.log(e);
-        }
-    }
+const UploadFile = ({onChangeEvent}) => {
+    
 
     return(
 
-        <div>
-            <input 
-                type='file' 
-                name='file' 
-                accept='.jpg,.png'
-                onChange={(e)=> setImgValue(e.target.files[0])} />
-            <button onClick={uploadImage}>Upload Image</button>
+        <div id={"uploadFile-container"}>
+            <Input inputType={'file'} name={'file'} accept={'.jpg,.png'} onChangeEvent={onChangeEvent} classN={"uploadFile-choose-btt"}/>
         </div>
     )
 }

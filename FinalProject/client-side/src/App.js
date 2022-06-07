@@ -4,7 +4,6 @@ import SigninSignupIntro from './Components/Pages/SigninSignupIntro';
 import SigninSignupForm from './Components/Pages/SigninSignupForm';
 import Main from './Components/Pages/Main';
 import LoadingPage from './Components/Pages/LoadingPage';
-import LoadingPageNum2 from './Components/Pages/LoadingPageNum2';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
@@ -14,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 // import './App.css';
-import UploadFile from '../src/Components/BasicElements/UploadFile';
+// import UploadFile from '../src/Components/BasicElements/UploadFile';
 
 function App() {
 
@@ -40,7 +39,6 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH} element={<SigninSignupForm formToDisplay={process.env.REACT_APP_SIGN_IN_NAME} />} />
         <Route path={process.env.REACT_APP_BASE_MAIN_PATH} element={<Main />} />
         <Route path={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + "/:nextPage/:time"} element={<LoadingPage />} />
-        <Route path={process.env.REACT_APP_BASE_LOADING_PAGE2_PATH + "/:nextPage/:time"} element={<LoadingPageNum2 />} />
       </Routes> 
 
     </div>

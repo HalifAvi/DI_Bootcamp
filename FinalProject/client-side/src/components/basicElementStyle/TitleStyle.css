@@ -143,7 +143,7 @@
 #swappingSignFrontPanel-title {
 
     font-size: 3em;
-    margin-top: 20px;
+    margin-top: 0px;
     color: var(--clr-black);
     text-shadow: 0 0 30px var(--clr-white), 0 0 70px var(--clr-white), 0 0 100px var(--clr-white);
     font-family: var(--clr-thin-font);

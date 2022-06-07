@@ -12,7 +12,8 @@ const Input = ({ inputType,
                 classN,
                 name,
                 checked,
-                id
+                id,
+                accept
             }) => { 
 
     const checkedInputRef = useRef();
@@ -38,7 +39,8 @@ const Input = ({ inputType,
                 max={null || maxNum}
                 className={null || classN}
                 name={null || name}
-                id={null || id}/>
+                id={null || id}
+                accept={null || accept} />
         </>
     )
 }

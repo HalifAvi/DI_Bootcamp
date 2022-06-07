@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { handleAction } from "../Assistants/FormExtFunctions.js";
 import genders from '../Assistants/genders.json';
 import activityLevels from '../Assistants/activityLevels.json';
+import UploadFile from "./UploadFile";
 
 
 
@@ -23,6 +24,8 @@ const Form = ({formKind, id}) => {
     const [weight, setWeight] = useState('');
     const [gender, setGender] = useState(process.env.REACT_APP_BASE_GENDER_DEFAULT);
     const [activityLevel, setActivityLevel] = useState(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_DEFAULT);
+    const [imgValue, setImgValue] = useState('');
+
 
     const navigate = useNavigate();
 
@@ -46,13 +49,13 @@ const Form = ({formKind, id}) => {
                 {
                     formKind === process.env.REACT_APP_SIGN_IN_BUTTON ? 
 
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue)}>
                             <Input inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
                             <Input inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
                             <Input inputType={"submit"} inputValue={process.env.REACT_APP_BASE_SIGN_FORM_LOGIN_BTT}/>
                         </form>
                     :
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue)}>
                             <span className={"form-input-signup"}>
                                 <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmail(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
                                 <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPassword(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
@@ -74,6 +77,8 @@ const Form = ({formKind, id}) => {
                                 <Label classN={"form-sign-label"} labelName={process.env.REACT_APP_BASE_SIGN_FORM_ACTIVITY_LEVEL}/>
                                 <RadioBtt optionsArray={activityLevels} onChangeEvent={(e)=>setActivityLevel(e.target.value)}/>
                             </span>
+
+                            <UploadFile onChangeEvent={(e)=> { setImgValue(e.target.files[0]) }}/>
 
                             <Input inputType={"submit"} inputValue={formKind === process.env.REACT_APP_SIGN_IN_BUTTON ? process.env.REACT_APP_BASE_LOGIN_BTT : process.env.REACT_APP_BASE_REGISTER_BTT}/>
                         </form>

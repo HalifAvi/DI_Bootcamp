@@ -1,5 +1,6 @@
 import Users from "../models/userModel.js"; // the 'users' table
 import UsersBody from "../models/bodyModel.js";
+import Upload from '../models/uploadModel.js';
 
 
 // Hasing the password - before sending to db
@@ -17,8 +18,12 @@ import jwt from 'jsonwebtoken';
 // has these 
 export const signUp = async (req, res) => {
 
+    // Here we have all info about the uploaded file
+    // console.log('upload file', req.body.formData);
+
     console.log("###############")
-    console.log(req.body)
+    console.log(req.body);
+    console.log(req.file);
     console.log("###############")
 
     const {
@@ -61,7 +66,18 @@ export const signUp = async (req, res) => {
             activityLevel: activityLevel
         })
 
-        res.json({message: 'Register successfuly!'})
+        // Create new row in 'usersImage' table
+        // The file was uploaded before we came here (made in the middleware by multer)
+        const fileName = req.file ? req.file.filename : res.json({msg: 'NO file to upload'});
+        const fileType = req.file ? req.file.mimetype : null;
+
+        await Upload.create({
+
+            filename: fileName,
+            filetype: fileType
+        })
+
+        console.log('Register successfuly!')
     }
     catch(error){
 
