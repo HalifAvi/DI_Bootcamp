@@ -1,6 +1,7 @@
 import {
 
-    DISPLAY_SIGNIN_UP_MESSAGE
+    DISPLAY_SIGNIN_UP_MESSAGE,
+    SET_ALL_USER_DETAILS
 
 } from '../reduxConstants';
 
@@ -9,12 +10,20 @@ import {
 
 export const setMessageAfterSign = (messageToSet) => {
 
-    console.log(messageToSet)
-
   return{
 
     type : DISPLAY_SIGNIN_UP_MESSAGE,
     payload : messageToSet
+  }
+}
+
+
+export const setAllUserParamsFromDb = (allUserParamsObj) => {
+
+  return{
+
+    type: SET_ALL_USER_DETAILS,
+    payload : allUserParamsObj
   }
 }
 

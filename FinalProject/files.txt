@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS public.files
+(
+    id serial NOT NULL PRIMARY KEY,
+	userid INTEGER,
+	FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE,	
+    filename varchar(255),
+    filetype varchar(255),
+    createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedat timestamp without time zone
+)

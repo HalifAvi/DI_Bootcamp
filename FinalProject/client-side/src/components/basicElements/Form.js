@@ -10,10 +10,10 @@ import genders from '../Assistants/genders.json';
 import activityLevels from '../Assistants/activityLevels.json';
 import UploadFile from "./UploadFile";
 import { connect } from "react-redux";
-import { setMessageAfterSign } from "../../Redux/Actions/signInUpActions.js";
+import { setMessageAfterSign, setAllUserParamsFromDb } from "../../Redux/Actions/signInUpActions.js";
 
 
-const Form = ({formKind, id, setMessageAfterSign}) => { 
+const Form = ({formKind, id, setMessageAfterSign, setAllUserParamsFromDb}) => { 
 
     const [emailSignIn, setEmailSignIn] = useState('');
     const [passwordSignIn, setPasswordSignIn] = useState('');
@@ -26,24 +26,25 @@ const Form = ({formKind, id, setMessageAfterSign}) => {
     const [weight, setWeight] = useState('');
     const [gender, setGender] = useState(process.env.REACT_APP_BASE_GENDER_DEFAULT);
     const [activityLevel, setActivityLevel] = useState(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_DEFAULT);
-    const [imgValue, setImgValue] = useState('');
+    const [imgValue, setImgValue] = useState(process.env.REACT_APP_BASE_DEFAULT_IMAGE_URL);
 
 
     const navigate = useNavigate();
 
     const stateObj = {
 
-        emailSignIn,
-        emailSignUp,
-        passwordSignIn,
-        passwordSignUp,
-        firstName,
-        lastName, 
-        age,
-        height, 
-        weight,
-        gender, 
-        activityLevel
+        emailSignIn, setEmailSignIn,
+        emailSignUp, setEmailSignUp,
+        passwordSignIn, setPasswordSignIn,
+        passwordSignUp, setPasswordSignUp,
+        firstName, setFirstName,
+        lastName, setLastName, 
+        age, setAge,
+        height, setHeight, 
+        weight, setWeight,
+        gender, setGender,
+        activityLevel, setActivityLevel,
+        setImgValue
     }
 
 
@@ -54,13 +55,13 @@ const Form = ({formKind, id, setMessageAfterSign}) => {
                 {
                     formKind === process.env.REACT_APP_SIGN_IN_BUTTON ? 
 
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb)}>
                             <Input inputType={"text"} onChangeEvent={(e)=>setEmailSignIn(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
                             <Input inputType={"password"} onChangeEvent={(e)=>setPasswordSignIn(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
                             <Input inputType={"submit"} inputValue={process.env.REACT_APP_BASE_SIGN_FORM_LOGIN_BTT}/>
                         </form>
                     :
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb)}>
                             <span className={"form-input-signup"}>
                                 <Input classN={"form-signup-input"} inputType={"text"} onChangeEvent={(e)=>setEmailSignUp(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
                                 <Input classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPasswordSignUp(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
@@ -93,21 +94,15 @@ const Form = ({formKind, id, setMessageAfterSign}) => {
 }
 
 
-const mapStateToProps = (state) => {
-
-    return{
-
-        messageAfterSign : state.signInUpReducer.messageAfterSign
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
 
     return{
 
-        setMessageAfterSign : (messageToSet) => dispatch( setMessageAfterSign(messageToSet) )
+        setMessageAfterSign : (messageToSet) => dispatch( setMessageAfterSign(messageToSet) ),
+        setAllUserParamsFromDb : (allUserParamsObj) => dispatch( setAllUserParamsFromDb(allUserParamsObj) )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);         
+
+export default connect(null, mapDispatchToProps)(Form);         
  

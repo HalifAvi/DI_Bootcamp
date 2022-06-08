@@ -1,27 +1,25 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
-//////////////////////////////
-import {toast} from "react-toastify";
-
-
-export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign) => {
+export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb) => {
 
     event.preventDefault();
 
     const { 
 
-            emailSignIn,
-            emailSignUp,
-            passwordSignIn,
-            passwordSignUp,
-            firstName,
-            lastName, 
-            age,
-            height, 
-            weight,
-            gender, 
-            activityLevel
+        emailSignIn, setEmailSignIn,
+        emailSignUp, setEmailSignUp,
+        passwordSignIn, setPasswordSignIn,
+        passwordSignUp, setPasswordSignUp,
+        firstName, setFirstName,
+        lastName, setLastName, 
+        age, setAge,
+        height, setHeight, 
+        weight, setWeight,
+        gender, setGender,
+        activityLevel, setActivityLevel,
+        setImgValue
 
         } = stateObj;
 
@@ -60,12 +58,16 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 }
             })
 
-            console.log("signup response", response.data.msg);
-
             changeMessageBackgroundColor(process.env.REACT_APP_BASE_SUCCESS_STYLE);
 
             // Dispath the action
             setMessageAfterSign(response.data.msg);
+
+            setAllInputsToEmpty(
+
+                setEmailSignIn, setEmailSignUp, setPasswordSignIn, setPasswordSignUp, setFirstName, setLastName,
+                setAge, setHeight, setWeight, setGender, setActivityLevel, setImgValue
+            );
 
             // Navigate to signin in case the registration successfuly
             navigate(process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH);
@@ -73,15 +75,16 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         }
         catch(e) {
 
-            console.log("signup response", e.response.data.msg);
-
             changeMessageBackgroundColor(process.env.REACT_APP_BASE_FAILD_STYLE);
 
             // Dispath the action
             setMessageAfterSign(e.response.data.msg);
 
-            // setMessage(e.response.data.msg);
-            // toast.error(e.response.data.msg);
+            setAllInputsToEmpty(
+
+                setEmailSignIn, setEmailSignUp, setPasswordSignIn, setPasswordSignUp, setFirstName, setLastName,
+                setAge, setHeight, setWeight, setGender, setActivityLevel, setImgValue
+            );
         }
 
     }else{ // signin!!!
@@ -106,9 +109,33 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
 
             // Dispath the action
             setMessageAfterSign(response.data.msg);
-            
 
-            console.log("signin response", response.data.msg);
+            setAllInputsToEmpty(
+
+                setEmailSignIn, setEmailSignUp, setPasswordSignIn, setPasswordSignUp, setFirstName, setLastName,
+                setAge, setHeight, setWeight, setGender, setActivityLevel, setImgValue
+            );
+
+
+            const decode = jwt_decode(response.data.accessToken);
+
+            // Dispath the action
+            setAllUserParamsFromDb({
+
+                userId : decode.userId,
+                email : decode.email,
+                gender : decode.gender,
+                firstName : decode.firstName,
+                lastName : decode.lastName,
+    
+                age : decode.age,
+                height : decode.height,
+                weight : decode.weight,
+                activityLevel : decode.activityLevel,
+    
+                fileName : decode.fileName,
+            })
+
 
             // Navigate to main page in case login successfuly
             navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
@@ -118,15 +145,16 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         }
         catch(e){
 
-            console.log(e.response.data.msg);
-
             changeMessageBackgroundColor(process.env.REACT_APP_BASE_FAILD_STYLE);
 
             // Dispath the action
             setMessageAfterSign(e.response.data.msg);
 
-            // setMessage(e.response.data.msg);
-            // toast.error(e.response.data.msg);
+            setAllInputsToEmpty(
+
+                setEmailSignIn, setEmailSignUp, setPasswordSignIn, setPasswordSignUp, setFirstName, setLastName,
+                setAge, setHeight, setWeight, setGender, setActivityLevel, setImgValue
+            );
         }
     }
 }
@@ -140,5 +168,34 @@ const changeMessageBackgroundColor = (style) => {
 
         item.setAttribute("style", style);
     })
+
+}
+
+
+const setAllInputsToEmpty = ( setEmailSignIn, setEmailSignUp, setPasswordSignIn, setPasswordSignUp, setFirstName, setLastName,
+                            setAge, setHeight, setWeight, setGender, setActivityLevel, setImgValue) => {
+
+    setEmailSignIn('');
+    setEmailSignUp('');
+    setPasswordSignIn('');
+    setPasswordSignUp('');
+    setFirstName('');
+    setLastName(''); 
+    setAge('');
+    setHeight('');
+    setWeight('');
+    setGender(process.env.REACT_APP_BASE_GENDER_DEFAULT);
+    setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_DEFAULT);
+    setImgValue('');
+
+    const allInputsSign = document.querySelectorAll('input');
+
+    [...allInputsSign].forEach(element => {
+
+        element.value = "";
+    });     
+
+    (document.querySelectorAll('input[type=radio]')[1]).checked = "checked";
+    (document.querySelectorAll('input[type=radio]')[6]).checked = "checked";
 
 }

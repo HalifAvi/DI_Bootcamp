@@ -4,7 +4,9 @@ import db from "../config/db.js";
 const {DataTypes} = Sequelize;
 
 const Upload = db.define('files',{
-
+    userid: {
+        type: DataTypes.INTEGER
+    },
     filename: {
         type: DataTypes.STRING
     },

@@ -30,7 +30,7 @@ const Input = ({ inputType,
     return(
 
         <>
-            <input ref={checkedInputRef} required
+            <input ref={checkedInputRef} required={inputType!=="file"? true : false}
                 onChange={null || onChangeEvent}
                 type={null || inputType}
                 placeholder={null || inputPlaceholder} 

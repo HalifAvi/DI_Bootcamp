@@ -1,6 +1,7 @@
 import Users from "../models/userModel.js"; // the 'users' table
 import UsersBody from "../models/bodyModel.js";
-import Upload from '../models/uploadModel.js';
+import Upload from '../models/ImageModel.js';
+
 
 
 // Hasing the password - before sending to db
@@ -68,11 +69,15 @@ export const signUp = async (req, res) => {
 
         // Create new row in 'usersImage' table
         // The file was uploaded before we came here (made in the middleware by multer)
-        const fileName = req.file ? req.file.filename : res.json({msg: 'NO file to upload'});
-        const fileType = req.file ? req.file.mimetype : null;
+        const fileName = req.file ? req.file.filename : process.env.DEFAULT_IMAGE_URL;
+        const fileType = req.file ? req.file.mimetype : process.env.DEFAULT_IMAGE_TYPE;
+
+        console.log("fileName",fileName)
+        console.log("fileType",fileType)
 
         await Upload.create({
 
+            userid: answer.dataValues.id,
             filename: fileName,
             filetype: fileType
         })
@@ -107,8 +112,39 @@ export const signIn = async (req, res) => {
 
         if(!match) return res.status(400).json({msg: "Sorry, Email Or Password Is Incorrect!"});
         
+        // Retrive the data from db response
         const userId = user[0].id;
         const email = user[0].email;
+        const gender = user[0].gender;
+        const firstName = user[0].firstName;
+        const lastName = user[0].lastName;
+
+
+        // Get the data from files table + body table
+        const userBody = await UsersBody.findAll({
+            where:{
+                userid: userId
+            }
+        })
+
+        // Retrive the data from db response
+        const age = userBody[0].age;
+        const height = userBody[0].height;
+        const weight = userBody[0].weight;
+        const activityLevel = userBody[0].activityLevel;
+
+
+        // Get the data from files table + body table
+        const userImage = await Upload.findAll({
+            where:{
+                userid: userId
+            }
+        })
+
+        // Retrive the data from db response
+        const fileName = userImage[0].filename;
+
+        
 
         // 3: Create an accessToken 
 
@@ -121,8 +157,12 @@ export const signIn = async (req, res) => {
         // We will send this token in the cookie to the front end
         // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
         // to expiry time we defined in this token
-        const accessToken = jwt.sign({userId, email}, process.env.ACCESS_TOKEN_SECRET, {
+        const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
+                                        age, height, weight, activityLevel, fileName},
+        process.env.ACCESS_TOKEN_SECRET, {
+
             expiresIn: '60s'
+
         })
 
         // Set the cookie in the http response ((we imported it in 'server.js'))

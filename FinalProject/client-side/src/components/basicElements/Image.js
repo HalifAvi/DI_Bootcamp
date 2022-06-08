@@ -2,8 +2,6 @@ import '../BasicElementStyle/ImageStyle.css';
 
 const Image = (props) => {
 
-    console.log(props.onClickEvent)
-
     return(
 
         <>

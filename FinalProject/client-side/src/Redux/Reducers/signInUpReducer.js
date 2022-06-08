@@ -1,6 +1,7 @@
 import {
 
-    DISPLAY_SIGNIN_UP_MESSAGE
+    DISPLAY_SIGNIN_UP_MESSAGE,
+    SET_ALL_USER_DETAILS
 
 } from '../reduxConstants';
 
@@ -9,8 +10,17 @@ import {
 
 const initState = {
 
-    messageAfterSign : ''
-
+    messageAfterSign : '',
+    userId : '',
+    email : '',
+    gender : '',
+    firstName : '',
+    lastName : '',
+    age : '',
+    height : '',
+    weight : '',
+    activityLevel : '',
+    fileName : ''
 }
 
 
@@ -22,6 +32,13 @@ export const signInUpReducer = (state=initState, action={}) => {
         case DISPLAY_SIGNIN_UP_MESSAGE: 
 
             return {...state, messageAfterSign: action.payload}
+
+        case SET_ALL_USER_DETAILS:
+
+            return {...state, userId: action.payload.userId, email: action.payload.email, gender: action.payload.gender,
+                    firstName: action.payload.firstName, lastName: action.payload.lastName, age: action.payload.age,
+                    height: action.payload.height, weight: action.payload.weight, activityLevel: action.payload.activityLevel,
+                    fileName: action.payload.fileName}
 
         default: 
 
