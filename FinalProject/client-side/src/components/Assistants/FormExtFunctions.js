@@ -62,6 +62,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
 
             console.log("signup response", response.data.msg);
 
+            changeMessageBackgroundColor(process.env.REACT_APP_BASE_SUCCESS_STYLE);
+
             // Dispath the action
             setMessageAfterSign(response.data.msg);
 
@@ -72,6 +74,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         catch(e) {
 
             console.log("signup response", e.response.data.msg);
+
+            changeMessageBackgroundColor(process.env.REACT_APP_BASE_FAILD_STYLE);
 
             // Dispath the action
             setMessageAfterSign(e.response.data.msg);
@@ -99,8 +103,10 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 }
             })
 
+
             // Dispath the action
             setMessageAfterSign(response.data.msg);
+            
 
             console.log("signin response", response.data.msg);
 
@@ -114,6 +120,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
 
             console.log(e.response.data.msg);
 
+            changeMessageBackgroundColor(process.env.REACT_APP_BASE_FAILD_STYLE);
+
             // Dispath the action
             setMessageAfterSign(e.response.data.msg);
 
@@ -121,4 +129,16 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
             // toast.error(e.response.data.msg);
         }
     }
+}
+
+
+const changeMessageBackgroundColor = (style) => {
+
+    const messageTitles = (document.querySelectorAll('#swappingSignBackPanel-signMessage-title'));
+
+    [...messageTitles].map(item=>{
+
+        item.setAttribute("style", style);
+    })
+
 }
