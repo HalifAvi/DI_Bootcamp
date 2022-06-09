@@ -6,14 +6,19 @@ import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
 import Title from "../BasicElements/Title";
 import PersonalDetailsCard from "../BasicElements/PersonalDetailsCard";
+import { setDailyAmountOfCalories } from "../../Redux/Actions/caloriesActions.js";
 
 import '../PagesStyle/Main.css';
+import { useEffect } from 'react';
 
 
-const Main = ({firstName}) => {
+const Main = ({firstName, setDailyAmountOfCalories, dailyAmountOfCalories}) => {
 
-    const navigate = useNavigate();
-    const [accessToken, setAccessToken] = useState('');
+    useEffect(()=> {
+
+        setDailyAmountOfCalories();
+
+    }, [])
 
     return(
 
@@ -44,11 +49,21 @@ const mapStateToProps = (state) => {
 
     return{
 
-        firstName : state.signInUpReducer.firstName
+        firstName : state.signInUpReducer.firstName,
+        dailyAmountOfCalories : state.caloriesReducer.dailyAmountOfCalories
     }
 }
 
-export default connect(mapStateToProps, null)(Main);
+const mapDispatchToProps = (dispatch) => {
+
+    return{
+
+        setDailyAmountOfCalories : () => dispatch( setDailyAmountOfCalories() )  
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 
 
