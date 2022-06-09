@@ -17,14 +17,14 @@
     margin: 0;
 }
 
-#signinSignUpIntro-title-div {
+#signinSignUpIntro-title-div, #main-title-div {
 
     position: fixed;
     top: 325px;
     left: 200px;
 }
 
-#signinSignUpIntro-snd-title-div {
+#signinSignUpIntro-snd-title-div, #main-snd-title-div  {
 
     position: fixed;
     top: 470px;

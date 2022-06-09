@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 // import './App.css';
 // import UploadFile from '../src/Components/BasicElements/UploadFile';
 import Protected from './Components/Pages/Protected';
+import PersonalDetailsCard from './Components/BasicElements/PersonalDetailsCard';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div>
+
       
       <ToastContainer />
 

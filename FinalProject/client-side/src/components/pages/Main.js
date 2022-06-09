@@ -5,11 +5,12 @@ import React from "react";
 import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
 import Title from "../BasicElements/Title";
+import PersonalDetailsCard from "../BasicElements/PersonalDetailsCard";
 
 import '../PagesStyle/Main.css';
 
 
-const Main = (props) => {
+const Main = ({firstName}) => {
 
     const navigate = useNavigate();
     const [accessToken, setAccessToken] = useState('');
@@ -17,17 +18,20 @@ const Main = (props) => {
     return(
 
         <div>  
+
             <Video src={process.env.REACT_APP_BASE_VIDEO_MAIN_URL} id={"signin-back-video"} autoPlay muted loop />
         
             <div id={"main-left-side-div"}>
         
-                <div id={"signinSignUpIntro-logo-div"}>
+                <div id={"main-logo-div"}>
                     <AppLogo id={"signinSignUpIntro-logo"} />
                 </div>
+
+                <PersonalDetailsCard />
         
-                <div id={"signinSignUpIntro-snd-title-div"}>
-                    <Title id={"signinSignUpIntro-snd-title"} typing={"typewriter"} 
-                            titleName={process.env.REACT_APP_SIGNUP_SND_TITLE} />
+                <div id={"main-snd-title-div"}>
+                    <Title id={"main-snd-title"} typing={"typewriter"} 
+                            titleName={`${firstName} , ${process.env.REACT_APP_MAIN_SND_TITLE}`} />
                 </div>    
             </div>
     </div>
@@ -36,23 +40,11 @@ const Main = (props) => {
 
 
 
-
-
-
 const mapStateToProps = (state) => {
 
     return{
 
-        // userId : state.signInUpReducer.userId,
-        // email : state.signInUpReducer.email,
-        // gender : state.signInUpReducer.gender,
-        // firstName : state.signInUpReducer.firstName,
-        // lastName : state.signInUpReducer.lastName,
-        // age : state.signInUpReducer.age,
-        // height : state.signInUpReducer.height,
-        // weight : state.signInUpReducer.weight,
-        // activityLevel : state.signInUpReducer.activityLevel,
-        // fileName : state.signInUpReducer.fileName
+        firstName : state.signInUpReducer.firstName
     }
 }
 

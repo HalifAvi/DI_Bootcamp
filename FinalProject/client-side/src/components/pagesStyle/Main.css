@@ -4,11 +4,11 @@
     width: 100vw;
     height: 100vh;
     background-color: var(--clr-black);
-    clip-path: polygon(48% 0, 100% 0, 100% 60%, 0 14%, 46% 100%, 0 100%, 0 0);
+    clip-path: polygon(48% 0, 100% 0, 100% 60%, 0 14%, 41% 100%, 0 100%, 0 0);
     opacity: 0.8;
 }
 
-#signinSignUpIntro-logo-div {
+#main-logo-div {
 
     position: fixed;
     top: -20px;
@@ -17,16 +17,11 @@
     margin: 0;
 }
 
-#signinSignUpIntro-title-div {
+
+#main-snd-title-div {
 
     position: fixed;
-    top: 325px;
-    left: 200px;
+    top: 30px;
+    left: 270px;
 }
 
-#signinSignUpIntro-snd-title-div {
-
-    position: fixed;
-    top: 470px;
-    left: 450px;
-}
