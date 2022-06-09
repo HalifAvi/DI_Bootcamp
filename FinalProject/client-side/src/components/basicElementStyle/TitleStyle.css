@@ -193,12 +193,12 @@
 #personalDetailsCard-nameAndAge-title {
 
     color: var(--clr-black);
-    font-size: 40px;
+    font-size: 30px;
     text-shadow: 0 0 30px var(--clr-yellow);
     font-family: var(--clr-script-font);
     position: fixed;
     bottom: 20px;
-    left: 100px;
+    left: 70px;
     text-shadow: 0 0 30px var(--clr-white);
 }
 

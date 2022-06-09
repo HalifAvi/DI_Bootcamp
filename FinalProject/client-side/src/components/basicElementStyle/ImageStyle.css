@@ -127,3 +127,20 @@
     margin-top:130px ;
 }
 
+#personalDetailsCard-gender-div {
+
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+    left: 200px;
+}
+
+.personalDetailsCard-icon {
+
+    width: 70px;
+    height: 70px;
+}
+
+
+
