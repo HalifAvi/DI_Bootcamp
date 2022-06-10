@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 // import './App.css';
 // import UploadFile from '../src/Components/BasicElements/UploadFile';
 import Protected from './Components/Pages/Protected';
-import CaloriesScale from './Components/BasicElements/CaloriesScale';
+
 
 function App() {
 
@@ -29,9 +29,6 @@ function App() {
   return (
     <div>
 
-      {/* <CaloriesScale /> */}
-
-      
       <ToastContainer />
 
       <Routes>

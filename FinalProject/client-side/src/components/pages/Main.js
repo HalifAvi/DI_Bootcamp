@@ -5,9 +5,8 @@ import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
 import Title from "../BasicElements/Title";
 import PersonalDetailsCard from "../BasicElements/PersonalDetailsCard";
-
 import '../PagesStyle/Main.css';
-import { useEffect } from 'react';
+import {getCurrentDate} from "../Assistants/MainExtFunctions.js";
 
 
 const Main = (props) => {
@@ -23,6 +22,8 @@ const Main = (props) => {
                 <div id={"main-logo-div"}>
                     <AppLogo id={"signinSignUpIntro-logo"} />
                 </div>
+
+                <Title id={"date-currentDate-title"} titleName={getCurrentDate()} />
 
                 <PersonalDetailsCard />
         

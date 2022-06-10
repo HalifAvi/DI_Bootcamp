@@ -219,6 +219,19 @@
     transform: rotate(45deg);
 }
 
+#date-currentDate-title {
+
+    position: absolute;
+    top: 135px;
+    left: 270px;
+    color: var(--clr-white);
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-family: var(--clr-thin-font);
+    transform: rotate(12deg);
+    text-shadow: 0 0 30px var(--clr-yellow), 0 0 40px var(--clr-yellow), 0 0 100px var(--clr-yellow);
+}
+
 
 
 
