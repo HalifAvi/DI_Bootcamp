@@ -1,24 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-import { useState, createContext } from 'react';
+
 import { connect } from 'react-redux';
 import React from "react";
 import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
 import Title from "../BasicElements/Title";
 import PersonalDetailsCard from "../BasicElements/PersonalDetailsCard";
-import { setDailyAmountOfCalories } from "../../Redux/Actions/caloriesActions.js";
 
 import '../PagesStyle/Main.css';
 import { useEffect } from 'react';
 
 
-const Main = ({firstName, setDailyAmountOfCalories, dailyAmountOfCalories}) => {
-
-    useEffect(()=> {
-
-        setDailyAmountOfCalories();
-
-    }, [])
+const Main = (props) => {
 
     return(
 
@@ -36,7 +28,7 @@ const Main = ({firstName, setDailyAmountOfCalories, dailyAmountOfCalories}) => {
         
                 <div id={"main-snd-title-div"}>
                     <Title id={"main-snd-title"} typing={"typewriter"} 
-                            titleName={`${firstName} , ${process.env.REACT_APP_MAIN_SND_TITLE}`} />
+                            titleName={process.env.REACT_APP_MAIN_SND_TITLE} />
                 </div>    
             </div>
     </div>
@@ -54,16 +46,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-
-    return{
-
-        setDailyAmountOfCalories : () => dispatch( setDailyAmountOfCalories() )  
-    }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, null)(Main);
 
 
 

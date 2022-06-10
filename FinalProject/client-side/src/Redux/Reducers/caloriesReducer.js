@@ -9,12 +9,15 @@ import {
 
 const initState = {
 
-    dailyAmountOfCalories : 0
+    dailyAmountOfCalories : 0,
+    currentAmountOfCalories : 0,
 }
 
 
 
 export const caloriesReducer = (state=initState, action={}) => {
+
+    console.log(action.payload)
 
     switch(action.type){
 

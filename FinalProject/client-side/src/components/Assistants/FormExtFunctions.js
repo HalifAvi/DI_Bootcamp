@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 
-export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb) => {
+export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setDailyAmountOfCalories) => {
 
     event.preventDefault();
 
@@ -135,6 +135,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
     
                 fileName : decode.fileName,
             })
+
+            setDailyAmountOfCalories();
 
 
             // Navigate to main page in case login successfuly
