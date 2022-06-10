@@ -190,13 +190,13 @@ const setAllInputsToEmpty = ( setEmailSignIn, setEmailSignUp, setPasswordSignIn,
     setActivityLevel(process.env.REACT_APP_BASE_ACTIVITY_LEVEL_DEFAULT);
     setImgValue('');
 
-    const allInputsSign = document.querySelectorAll('input');
+    const allInputsSign = document.querySelectorAll('input[id="form-input"]');
 
     [...allInputsSign].forEach(element => {
 
         element.value = "";
-    });     
-
+    });         
+    
     (document.querySelectorAll('input[type=radio]')[1]).checked = "checked";
     (document.querySelectorAll('input[type=radio]')[6]).checked = "checked";
 

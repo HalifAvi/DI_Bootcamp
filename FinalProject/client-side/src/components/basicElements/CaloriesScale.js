@@ -4,10 +4,12 @@ import { useEffect } from 'react';
 import { getColor, setCircleInterval } from "../Assistants/CaloriesScaleExtFunctions.js";
 import Image from "../BasicElements/Image";
 
+
+
 const CaloriesScale = ({dailyAmountOfCalories, currentAmountOfCalories}) => {
 
     /////////////////////////////////////
-    currentAmountOfCalories = 2700;
+    currentAmountOfCalories = 1300;
     /////////////////////////////////////
 
     const percentCaloriesAmount = currentAmountOfCalories/dailyAmountOfCalories;
@@ -54,5 +56,6 @@ const mapStateToProps = (state) => {
         currentAmountOfCalories : state.caloriesReducer.currentAmountOfCalories
     }
 }
+
 
 export default connect(mapStateToProps, null)(CaloriesScale);

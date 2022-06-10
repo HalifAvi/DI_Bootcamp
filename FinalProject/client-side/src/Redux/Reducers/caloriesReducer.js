@@ -11,6 +11,7 @@ const initState = {
 
     dailyAmountOfCalories : 0,
     currentAmountOfCalories : 0,
+    timerID : 0
 }
 
 

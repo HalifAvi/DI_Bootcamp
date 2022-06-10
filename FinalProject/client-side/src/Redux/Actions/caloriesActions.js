@@ -1,6 +1,6 @@
 import {
 
-    SET_DAILY_CALORIES_AMOUNT
+    SET_DAILY_CALORIES_AMOUNT,
 
 } from '../reduxConstants';
 
@@ -22,11 +22,11 @@ export const setDailyAmountOfCalories = () => (dispatch, getStatus) => {
 
 const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
 
-    console.log(gender)
-    console.log(age)
-    console.log(height)
-    console.log(weight)
-    console.log(activityLevel)
+    // console.log(gender)
+    // console.log(age)
+    // console.log(height)
+    // console.log(weight)
+    // console.log(activityLevel)
 
     
     let BMR = gender===process.env.REACT_APP_BASE_GENDER_FST_OPTION ? 
@@ -43,10 +43,11 @@ const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
                 Number(process.env.REACT_APP_BASE_ADDITIONAL_PARAM_WOMEN_BMR)-
                 Number(age)*(process.env.REACT_APP_BASE_FOR_AGE_WOMEN_BMR)
 
-                console.log(BMR)
+                // console.log(BMR)
                 
     return  (Number(activityLevel)*BMR*(Number(process.env.REACT_APP_BASE_TERMI_EFFECT_FACTOR))).toFixed(0);
 }
+
 
 
 

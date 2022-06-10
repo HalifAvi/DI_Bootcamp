@@ -52,5 +52,5 @@ export const setCircleInterval = (dailyAmountOfCalories, currentAmountOfCalories
             currentCaloriesAmountDiv.innerHTML = `${counter}/${dailyAmountOfCalories}`; 
         }
     
-    }, 6)
+    }, 0.009)
 }
