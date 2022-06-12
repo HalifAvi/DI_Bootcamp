@@ -21,12 +21,12 @@ const GeneralRecepies = (props) => {
                 </div> 
 
                 <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+100} positionOnNavBar={1}/> 
-
+            
+                <SliderCards/>
+{/* 
                 <div className={"generalRecepies-caloriesScale-div"}>
                     <CaloriesScale/>
-                </div> 
-            
-                {/* <SliderCards/> */}
+                </div>    */}
             </div>
         )
     }
