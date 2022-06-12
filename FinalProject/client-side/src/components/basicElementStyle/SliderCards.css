@@ -28,14 +28,22 @@
 
 }
 
-.swiper-slide {
+.swiper-slide { /* The card itself */
 
 background-position: center;
 background-size: cover;
 width: 300px;
-height: 300px;
-border: 3px solid pink;
+height: 400px;
+background: var(--clr-white);
+box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+filter: blur(4px);
+border-radius: 10px;
 }
+
+.swiper-slide-active { /* The card itself */
+
+  filter: blur(0px);
+  }
 
 
 
