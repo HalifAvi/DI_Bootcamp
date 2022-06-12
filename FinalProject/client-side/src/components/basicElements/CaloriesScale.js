@@ -1,6 +1,6 @@
 import '../BasicElementStyle/CaloriesScale.css';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getColor, setCircleInterval } from "../Assistants/CaloriesScaleExtFunctions.js";
 import Image from "../BasicElements/Image";
 
@@ -9,15 +9,24 @@ import Image from "../BasicElements/Image";
 const CaloriesScale = ({dailyAmountOfCalories, currentAmountOfCalories}) => {
 
     /////////////////////////////////////
-    currentAmountOfCalories = 1300;
+    currentAmountOfCalories = 2600;
     /////////////////////////////////////
 
     const percentCaloriesAmount = currentAmountOfCalories/dailyAmountOfCalories;
+    const [color, setColor] = useState('');
 
 
     useEffect(()=> {
 
         setCircleInterval(dailyAmountOfCalories, currentAmountOfCalories, percentCaloriesAmount);
+
+        let calNum = document.querySelector('div#caloriesScale-number-div');
+
+        let color = getColor(percentCaloriesAmount);
+
+        calNum.setAttribute("style", `color: ${color}`);
+
+        setColor(color);
 
     }, [])
 
@@ -30,11 +39,12 @@ const CaloriesScale = ({dailyAmountOfCalories, currentAmountOfCalories}) => {
                     </div>
                 </div>
             </div>
+            {console.log("1")}
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width={"1600px"} height={"1600px"}>
                 <defs>
                     <linearGradient id="GradientColor">
-                        <stop offset="0%" stop-color={getColor(percentCaloriesAmount)}/>
-                        <stop offset="100%" stop-color={getColor(percentCaloriesAmount)}/>
+                        <stop offset="0%" stop-color={color}/>
+                        <stop offset="100%" stop-color={color}/>
                     </linearGradient>  
                 </defs>
                 <circle cx="80" cy="80" r="70" stroke-linecap="round" />

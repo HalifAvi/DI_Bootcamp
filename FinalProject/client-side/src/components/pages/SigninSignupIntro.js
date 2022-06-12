@@ -25,13 +25,11 @@ const SigninSignupIntro = ({pageToDisplay}) => {
                 </div>
 
                 <Link to={pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ?
-                        process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
-                        process.env.REACT_APP_BASE_SIGN_UP_FORM_PATH + "/" +
-                        process.env.REACT_APP_BASE_LOADING_SIGN_FORM_TIME
-                        :
-                        process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
-                        process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH + "/" +
-                        process.env.REACT_APP_BASE_LOADING_SIGN_FORM_TIME}>
+                     
+                            process.env.REACT_APP_BASE_SIGN_UP_FORM_PATH
+                            :
+                            process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH
+                        }>
                     <div id={"signinSignUpIntro-title-div"}>
                         <Title id={"signinSignUpIntro-title"} 
                                 titleName={ pageToDisplay === process.env.REACT_APP_SIGN_UP_NAME ? process.env.REACT_APP_SIGNUP_TITLE : process.env.REACT_APP_SIGNIN_TITLE} />

@@ -46,9 +46,9 @@ const NavBar = ({positionOnNavBar, numOfPxOnNavBar}) => {
             <div className={"navBar-container"}>
                 <nav>
                     <ul>
-                        <li id={0}><Link to ={process.env.REACT_APP_BASE_MAIN_PATH} id={"navBar-link-logo"}><ion-icon name={"person"}></ion-icon></Link></li>
+                        <li id={0}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_MAIN_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><ion-icon name={"person"}></ion-icon></Link></li>
                         <li id={1}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_GENERAL_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><ion-icon name={"book"}></ion-icon></Link></li>
-                        <li id={2}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_SPECIFIC_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><ion-icon name={"pizza"}></ion-icon></Link></li>
+                        <li id={2}><Link to ={process.env.REACT_APP_BASE_SPECIFIC_RECEPIES_PATH} id={"navBar-link-logo"}><ion-icon name={"pizza"}></ion-icon></Link></li>
                         <li id={3}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_FAV_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><ion-icon name={"heart-empty"}></ion-icon></Link></li>
                         <li id={4}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_PREV_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><ion-icon name={"calendar"}></ion-icon></Link></li>
                         <li id={5}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_INGREDIENTS_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><ion-icon name={"cart"}></ion-icon></Link></li>

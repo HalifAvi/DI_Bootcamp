@@ -42,7 +42,7 @@ const SliderCards = (props) => {
 
 
     return(
-        <section>
+        <section className={"swiper-section"}>
             { swiperVariable ? setSwiperVariable(false) : null }
             <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>

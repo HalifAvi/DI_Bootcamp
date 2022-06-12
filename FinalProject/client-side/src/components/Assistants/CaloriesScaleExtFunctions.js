@@ -2,6 +2,7 @@
 
 export const getColor = (percentCaloriesAmount) => {
 
+
     if (percentCaloriesAmount < 0.33) {
 
         return "var(--clr-red)";

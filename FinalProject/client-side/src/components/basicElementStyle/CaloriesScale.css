@@ -33,7 +33,9 @@
 
 #caloriesScale-number-div {
 
-    font-size: 30px; 
+    position: absolute;
+    top: 55px;
+    font-size:28px; 
     color: var(--clr-white);
     font-family: var(--clr-thin-font);
     text-shadow: 0 0 10px var(--clr-black), 0 0 20px var(--clr-black);

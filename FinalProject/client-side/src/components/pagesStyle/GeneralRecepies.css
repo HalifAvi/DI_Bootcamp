@@ -1,63 +1,15 @@
 @import "../constantsCSS.css";
 
 
+.generalRecepies-div {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .body-section{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  background-color: var(--clr-black);
 }
 
 
-section {
+.generalRecepies-caloriesScale-div {
 
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #2196f3;
-    overflow: hidden;
+  position: absolute;
+  top: 100px;
+  right: 100px;
 }
-
-
-.swiper-container {
-    
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-
-.swiper-slide {
-
-  background-position: center;
-  background-size: cover;
-  width: 300px;
-  height: 300px;
-}
- */
-
-
