@@ -13,7 +13,6 @@ import IngredientsToBuy from './Components/Pages/IngredientsToBuy';
 import PreviousRecepies from './Components/Pages/PreviousRecepies';
 import Settings from './Components/Pages/Settings';
 import SpecificRecepies from './Components/Pages/SpecificRecepies';
-import SliderCards from './Components/BasicElements/SliderCards';
 
 
 // import './App.css';

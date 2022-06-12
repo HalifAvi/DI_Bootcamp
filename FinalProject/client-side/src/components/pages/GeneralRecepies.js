@@ -9,7 +9,7 @@ import SliderCards from '../BasicElements/SliderCards';
 
 
 
-const GeneralRecepies = (props) => {
+const GeneralRecepies = ({allDefaultRecepiesArray}) => {
 
 
 
@@ -22,7 +22,7 @@ const GeneralRecepies = (props) => {
 
                 <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+100} positionOnNavBar={1}/> 
             
-                <SliderCards/>
+                <SliderCards recepiesToDisplay={allDefaultRecepiesArray}/>
 {/* 
                 <div className={"generalRecepies-caloriesScale-div"}>
                     <CaloriesScale/>
@@ -37,6 +37,7 @@ const mapStateToProps = (state) => {
 
     return{
 
+        allDefaultRecepiesArray : state.recepiesReducer.allDefaultRecepiesArray
     }
 }
 

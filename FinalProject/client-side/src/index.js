@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import {signInUpReducer} from './Redux/Reducers/signInUpReducer';
 import {caloriesReducer} from './Redux/Reducers/caloriesReducer';
+import {recepiesReducer} from './Redux/Reducers/recepiesReducer';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({signInUpReducer, caloriesReducer});
+const rootReducer = combineReducers({signInUpReducer, caloriesReducer, recepiesReducer});
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
