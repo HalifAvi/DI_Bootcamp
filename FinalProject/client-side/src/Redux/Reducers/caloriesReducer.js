@@ -18,8 +18,6 @@ const initState = {
 
 export const caloriesReducer = (state=initState, action={}) => {
 
-    console.log(action.payload)
-
     switch(action.type){
 
         case SET_DAILY_CALORIES_AMOUNT: 

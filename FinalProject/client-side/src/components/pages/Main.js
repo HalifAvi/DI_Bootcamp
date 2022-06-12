@@ -7,6 +7,7 @@ import Title from "../BasicElements/Title";
 import PersonalDetailsCard from "../BasicElements/PersonalDetailsCard";
 import '../PagesStyle/Main.css';
 import {getCurrentDate} from "../Assistants/MainExtFunctions.js";
+import NavBar from "../BasicElements/NavBar";
 
 
 const Main = (props) => {
@@ -30,8 +31,11 @@ const Main = (props) => {
                 <div id={"main-snd-title-div"}>
                     <Title id={"main-snd-title"} typing={"typewriter"} 
                             titleName={process.env.REACT_APP_MAIN_SND_TITLE} />
-                </div>    
+                </div> 
+   
             </div>
+
+            <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR} positionOnNavBar={0}/>
     </div>
     )
 }
@@ -50,28 +54,6 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, null)(Main);
-
-
-
-    //     <>
-    //     <h1>MAIN</h1>
-    //     <button>Logout</button>
-    //     <button onClick={()=>{navigate("/protected")}}>Protected</button>
-
-        
-    //         {props.userId}<br/>
-    //         {props.email}<br/>
-    //         {props.gender}<br/>
-    //         {props.firstName}<br/>
-    //         {props.lastName}<br/>
-    //         {props.age}<br/>
-    //         {props.height}<br/>
-    //         {props.weight}<br/>
-    //         {props.activityLevel}<br/>
-    //         {props.fileName}<br/>
-    //         <img style={{width: "100px", height: "100px"}} src={`http://localhost:5000/uploads/${props.fileName}`}/>
-
-    // </>
 
 
 
