@@ -1,21 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import '../BasicElementStyle/SliderCards.css';
 
 
 
 const SliderCards = (props) => { 
 
+    const [swiperVariable, setSwiperVariable] = useState(true);
+
     useEffect(()=> {
 
-        // var isS = (function() { return !this; })();
-        // console.log(isS)
-
+        // We put the Swiper CND script in index.js cause we'll come accross row 17 we'll need Swiper 
         var script = document.createElement("script");
-        script.src = "https://unpkg.com/swiper@8/swiper-bundle.min.js";
-        script.async = true;
-
-        var script2 = document.createElement("script");
-        script2.innerText = `var swiper = new Swiper('.swiper-container', {
+        script.innerText = `var swiper = new Swiper('.swiper-container', {
                         pagination: '.swiper-pagination',
                         effect: 'coverflow',
                         grabCursor: true,
@@ -32,23 +28,22 @@ const SliderCards = (props) => {
                             el: '.swiper-pagination',
                         },
                     });`;
-        script2.async = true;
+        script.async = true;
 
         document.body.appendChild(script);
-        document.body.appendChild(script2);
 
         return () => {
 
             document.body.removeChild(script);
-            document.body.removeChild(script2);
         }
 
-    }, [])
+    }, [swiperVariable])
 
 
 
     return(
         <section>
+            { swiperVariable ? setSwiperVariable(false) : null }
             <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>
                     <div className={"swiper-slide"}></div>
@@ -61,5 +56,3 @@ const SliderCards = (props) => {
 }
 
 export default SliderCards;
-
-
