@@ -32,7 +32,7 @@ const PersonalDetailsCard = ({firstName, lastName, age, fileName, gender, weight
                 <Title id={"personalDetailsCard-activity-title"} titleName={`${getLevel(activityLevel)}/5 LEVEL`}/>
             </div>
             <div id={"personalDetailsCard-caloriesScale-div"}>
-                <CaloriesScale/>
+                <CaloriesScale movementNumbers={true}/>
             </div>
         </div>  
     )

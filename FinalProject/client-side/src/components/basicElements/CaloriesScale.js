@@ -6,7 +6,7 @@ import Image from "../BasicElements/Image";
 
 
 
-const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount}) => {
+const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount, movementNumbers}) => {
 
 
     const percentCaloriesAmount = currentCaloriesAmount/dailyCaloriesAmount;
@@ -14,7 +14,7 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount}) => {
 
     useEffect(()=> {
 
-        setCircleInterval(dailyCaloriesAmount, currentCaloriesAmount, percentCaloriesAmount);
+        setCircleInterval(dailyCaloriesAmount, currentCaloriesAmount, percentCaloriesAmount, movementNumbers);
 
         let calNum = document.querySelector('div#caloriesScale-number-div');
 
@@ -24,7 +24,9 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount}) => {
 
         setColor(color);
 
-    }, [])
+    },) // make this every render, not just on the first time!
+    // To make this just on the first time : []
+    // To make this on the first time + everytime we change state : [stateToChange]
 
 
     return(

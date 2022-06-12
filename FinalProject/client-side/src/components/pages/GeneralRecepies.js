@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux';
-import React from "react";
+import React, { useState } from "react";
 import '../PagesStyle/GeneralRecepies.css';
 import NavBar from "../BasicElements/NavBar";
 import CaloriesScale from "../BasicElements/CaloriesScale";
@@ -11,6 +11,8 @@ import SliderCards from '../BasicElements/SliderCards';
 
 const GeneralRecepies = ({allDefaultRecipesArray}) => {
 
+    const [paintAgainCaloriesBar, setPaintAgainCaloriesBar] = useState(true)
+
     return(
             <div className={"generalRecepies-div"}>
 
@@ -20,11 +22,12 @@ const GeneralRecepies = ({allDefaultRecipesArray}) => {
 
                 <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+100} positionOnNavBar={1}/> 
             
-                <SliderCards recipesToDisplay={allDefaultRecipesArray}/>
+                {/*Sending this in the props just for set the state and make to CaloriesScale render again*/}
+                <SliderCards paramToChange={{setPaintAgainCaloriesBar, paintAgainCaloriesBar}} recipesToDisplay={allDefaultRecipesArray}/>
 
-                {/* <div className={"generalRecepies-caloriesScale-div"}>
-                    <CaloriesScale/>
-                </div>    */}
+                <div className={"generalRecepies-caloriesScale-div"}>
+                    <CaloriesScale movementNumbers={false}/>
+                </div>   
             </div>
         )
     }
