@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 
-export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecepiesArray) => {
+export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray) => {
 
     event.preventDefault();
 
@@ -24,7 +24,7 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         } = stateObj;
 
         // Here we have the file with all the details
-        console.log("imgValue", imgValue)
+        // console.log("imgValue", imgValue)
 
     if(formKind === process.env.REACT_APP_SIGN_UP_BUTTON){
 
@@ -145,7 +145,7 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
             });
 
 
-            setAllDefaultRecepiesArray()
+            setAllDefaultRecipesArray()
 
 
             // Navigate to main page in case login successfuly

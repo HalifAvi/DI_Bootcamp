@@ -35,7 +35,6 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount}) => {
                     </div>
                 </div>
             </div>
-            {console.log("1")}
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width={"1600px"} height={"1600px"}>
                 <defs>
                     <linearGradient id="GradientColor">

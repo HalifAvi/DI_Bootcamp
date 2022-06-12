@@ -43,7 +43,14 @@ border-radius: 10px;
 .swiper-slide-active { /* The card itself */
 
   filter: blur(0px);
-  }
+}
+
+.sliderCards-caloriesScale-div {
+
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
 
 
 

@@ -1,6 +1,7 @@
 import {
 
-    SET_CALORIES_AMOUNT
+    SET_CALORIES_AMOUNT,
+    DECREASE_CURRENT_CALORIES_AMOUNT
 
 } from '../reduxConstants';
 
@@ -16,6 +17,15 @@ export const setAmountOfCalories = ({dailyCaloriesAmount, currentCaloriesAmount}
     }
 }
 
+
+export const decreaseCaloriesFromCurrent = (caloriesAmount) => {
+
+    return{
+
+        type: DECREASE_CURRENT_CALORIES_AMOUNT,
+        payload: caloriesAmount
+    }
+}
 
 
 

@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {signInUpReducer} from './Redux/Reducers/signInUpReducer';
-import {caloriesReducer} from './Redux/Reducers/caloriesReducer';
-import {recepiesReducer} from './Redux/Reducers/recepiesReducer';
+import {signInUpReducer} from './Redux/Reducers/signInUpReducer.js';
+import {caloriesReducer} from './Redux/Reducers/caloriesReducer.js';
+import {recipesReducer} from './Redux/Reducers/recipesReducer.js';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({signInUpReducer, caloriesReducer, recepiesReducer});
+const rootReducer = combineReducers({signInUpReducer, caloriesReducer, recipesReducer});
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 

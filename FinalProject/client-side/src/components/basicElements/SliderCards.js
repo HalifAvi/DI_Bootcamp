@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import '../BasicElementStyle/SliderCards.css';
 import Image from "../BasicElements/Image";
+import { decreaseCaloriesFromCurrent } from "../../Redux/Actions/caloriesActions.js";
+import { connect } from 'react-redux';
+import CaloriesScale from "../BasicElements/CaloriesScale";
 
 
 
-const SliderCards = ({recepiesToDisplay}) => { 
+const SliderCards = ({recipesToDisplay, decreaseCaloriesFromCurrent}) => { 
         
 
     const [swiperVariable, setSwiperVariable] = useState(true);
+    // const [caloriesBar, setCaloriesBar] = useState(false);
 
     useEffect(()=> {
 
@@ -41,19 +45,34 @@ const SliderCards = ({recepiesToDisplay}) => {
 
 
 
+
+    const addRecipeToPlate = (caloriesToDecreaseFromCurrent) => {
+
+        decreaseCaloriesFromCurrent(caloriesToDecreaseFromCurrent);
+
+        // setCaloriesBar(!caloriesBar);
+    }
+
     return(
         <section className={"swiper-section"}>
+
             { swiperVariable ? setSwiperVariable(false) : null }
+
+            <div className={"sliderCards-caloriesScale-div"}>
+                {/* {!caloriesBar && <CaloriesScale/>} */}
+            </div>   
+
             <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>
                     {
-                        recepiesToDisplay.map(recepieObj=>{
+                        recipesToDisplay.map(recipeObj=>{
 
                             return (
 
-                                <div key={recepieObj.id} className={"swiper-slide"}>
-                                    {recepieObj.calories}
-                                    <Image src={recepieObj.image}/>
+                                <div key={recipeObj.id} className={"swiper-slide"}>
+                                    {recipeObj.calories}
+                                    <Image id={"recipe-img"} src={recipeObj.image}/>
+                                    <Image onClickEvent={()=>addRecipeToPlate(recipeObj.calories)} id={"addToPlate-icon"} src={process.env.REACT_APP_BASE_ADD_TO_PLATE_ICON_URL}/>
                                 </div>
                             )
                         })
@@ -64,4 +83,20 @@ const SliderCards = ({recepiesToDisplay}) => {
     )
 }
 
-export default SliderCards;
+const mapStateToProps = (state) => {
+
+    return{
+
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+
+    return{
+
+        decreaseCaloriesFromCurrent : (caloriesAmount) => dispatch(decreaseCaloriesFromCurrent(caloriesAmount))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SliderCards);

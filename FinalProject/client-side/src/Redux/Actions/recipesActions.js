@@ -1,26 +1,26 @@
 import axios from 'axios';
 import {
-
-    SET_ALL_DEFAULT_RECEPIES_ARRAY
+    
+    SET_ALL_DEFAULT_RECIPES_ARRAY
 
 } from '../reduxConstants';
 
 
 ///////////////////////////////// DEMO FETCH!!!
-import defaultRecepiesFetch from '../../Components/Assistants/defaultRecepiesFetch.json';
+import defaultRecipesFetch from '../../Components/Assistants/defaultRecipesFetch.json';
 
 
 
 
 
-export const setAllDefaultRecepiesArray = () => async (dispatch, getStatus) => {
+export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
 
     const {currentCaloriesAmount} = getStatus().caloriesReducer;
 
             dispatch({
     
-                type: SET_ALL_DEFAULT_RECEPIES_ARRAY,
-                payload: defaultRecepiesFetch
+                type: SET_ALL_DEFAULT_RECIPES_ARRAY,
+                payload: defaultRecipesFetch
             })
 
 
@@ -30,7 +30,7 @@ export const setAllDefaultRecepiesArray = () => async (dispatch, getStatus) => {
     // .then(res => res.json())
     // .then(data => {
 
-    //         console.log("recepies actions:", data);
+    //         console.log("recipes actions:", data);
 
     //         dispatch({
     

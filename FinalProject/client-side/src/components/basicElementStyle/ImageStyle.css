@@ -160,5 +160,23 @@
     margin-left: 55px;
 }
 
+#addToPlate-icon {
+
+    position: absolute;
+    top: 270px;
+    left: 30px;
+    width: 100px;
+    height: 100px;
+}
+
+#recipe-img {
+
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 250px;
+    height: 180px;
+}
+
 
 

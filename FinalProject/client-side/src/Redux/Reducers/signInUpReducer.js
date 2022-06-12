@@ -8,7 +8,7 @@ import {
 
 
 
-const initState = {
+const initStateSignInUp = {
 
     messageAfterSign : '',
     userId : '',
@@ -25,7 +25,7 @@ const initState = {
 
 
 
-export const signInUpReducer = (state=initState, action={}) => {
+export const signInUpReducer = (state=initStateSignInUp, action={}) => {
 
     switch(action.type){
 
