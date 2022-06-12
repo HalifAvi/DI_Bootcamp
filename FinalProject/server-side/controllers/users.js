@@ -1,5 +1,6 @@
 import Users from "../models/userModel.js"; // the 'users' table
 import UsersBody from "../models/bodyModel.js";
+import UsersCalories from  "../models/calorieModel.js";
 import Upload from '../models/ImageModel.js';
 
 
@@ -39,6 +40,7 @@ export const signUp = async (req, res) => {
             activityLevel
         } = req.body;
 
+
     // Hasing the password
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
@@ -56,7 +58,7 @@ export const signUp = async (req, res) => {
             gender: gender
         })
 
-        // Create new row in 'usersbody' table
+        // 1. Create new row in 'usersbody' table
         await UsersBody.create({
 
             // Here we are using the 'id'
@@ -67,7 +69,7 @@ export const signUp = async (req, res) => {
             activityLevel: activityLevel
         })
 
-        // Create new row in 'usersImage' table
+        // 2. Create new row in 'usersImage' table
         // The file was uploaded before we came here (made in the middleware by multer)
         const fileName = req.file ? req.file.filename : process.env.DEFAULT_IMAGE_URL;
         const fileType = req.file ? req.file.mimetype : process.env.DEFAULT_IMAGE_TYPE;
@@ -80,6 +82,19 @@ export const signUp = async (req, res) => {
             userid: answer.dataValues.id,
             filename: fileName,
             filetype: fileType
+        })
+
+        let calories = (getDailyCaloriesAmount(gender, age, height, weight, activityLevel)).toFixed(0);
+
+        let caloriesNum =  Number(calories);
+
+        // 3. Create new row in 'usersCalories' table
+        await UsersCalories.create({
+
+            // Here we are using the 'id'
+            userid: answer.dataValues.id,
+            currentcaloriesamount: caloriesNum,
+            dailycaloriesamount: caloriesNum
         })
 
         res.json({msg: 'Registered Successfully!'})
@@ -120,7 +135,7 @@ export const signIn = async (req, res) => {
         const lastName = user[0].lastName;
 
 
-        // Get the data from files table + body table
+        // Get the data from body table
         const userBody = await UsersBody.findAll({
             where:{
                 userid: userId
@@ -134,7 +149,7 @@ export const signIn = async (req, res) => {
         const activityLevel = userBody[0].activityLevel;
 
 
-        // Get the data from files table + body table
+        // Get the data from files
         const userImage = await Upload.findAll({
             where:{
                 userid: userId
@@ -144,6 +159,20 @@ export const signIn = async (req, res) => {
         // Retrive the data from db response
         const fileName = userImage[0].filename;
 
+
+        // Get the data from calories table
+        const usersCalories = await UsersCalories.findAll({
+            where:{
+                userid: userId
+            }
+        })
+
+        // Retrive the data from db response
+        const currentCaloriesAmount = usersCalories[0].currentcaloriesamount;
+        const dailyCaloriesAmount = usersCalories[0].dailycaloriesamount;
+
+
+        
         
 
         // 3: Create an accessToken 
@@ -158,7 +187,8 @@ export const signIn = async (req, res) => {
         // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
         // to expiry time we defined in this token
         const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
-                                        age, height, weight, activityLevel, fileName},
+                                        age, height, weight, activityLevel, fileName,
+                                        currentCaloriesAmount, dailyCaloriesAmount},
         process.env.ACCESS_TOKEN_SECRET, {
 
             expiresIn: '60s'
@@ -191,4 +221,32 @@ export const signOut = async (req, res) => {
 
     res.json({msg:'logout'})
 
+}
+
+
+const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
+
+    // console.log(gender)
+    // console.log(age)
+    // console.log(height)
+    // console.log(weight)
+    // console.log(activityLevel)
+    
+    let BMR = gender===process.env.GENDER_FST_OPTION ? 
+
+                Number(height)*(Number(process.env.FOR_HEIGHT_MEN_BMR))+
+                Number(weight)*(Number(process.env.FOR_WEIGHT_MEN_BMR))+
+                Number(process.env.ADDITIONAL_PARAM_MEN_BMR)-
+                Number(age)*(Number(process.env.FOR_AGE_MEN_BMR))
+
+                :
+
+                Number(height)*(Number(process.env.FOR_HEIGHT_WOMEN_BMR))+
+                Number(weight)*(Number(process.env.FOR_WEIGHT_WOMEN_BMR))+
+                Number(process.env.ADDITIONAL_PARAM_WOMEN_BMR)-
+                Number(age)*(Number(process.env.FOR_AGE_WOMEN_BMR))
+
+                console.log("BMR", BMR)
+                
+    return  Number(activityLevel)*BMR*(Number(process.env.TERMI_EFFECT_FACTOR));
 }

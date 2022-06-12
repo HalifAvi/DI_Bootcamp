@@ -8,7 +8,6 @@ import db from './config/db.js';
 import path from 'path';
 
 
-
 dotenv.config();
 const app = express();
 
@@ -41,7 +40,6 @@ app.use(express.json());
 
 
 app.use('/users', users_routes);
-
 
 app.listen(process.env.PORT||8080, ()=> {
 
