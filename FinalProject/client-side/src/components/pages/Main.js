@@ -1,5 +1,4 @@
 
-import { connect } from 'react-redux';
 import React from "react";
 import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
@@ -42,18 +41,7 @@ const Main = (props) => {
 
 
 
-const mapStateToProps = (state) => {
-
-    return{
-
-        firstName : state.signInUpReducer.firstName,
-        dailyAmountOfCalories : state.caloriesReducer.dailyAmountOfCalories
-    }
-}
-
-
-
-export default connect(mapStateToProps, null)(Main);
+export default Main;
 
 
 

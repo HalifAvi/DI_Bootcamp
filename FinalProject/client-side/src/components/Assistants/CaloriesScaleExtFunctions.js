@@ -17,7 +17,7 @@ export const getColor = (percentCaloriesAmount) => {
     }
 }
 
-export const setCircleInterval = (dailyAmountOfCalories, currentAmountOfCalories, percentCaloriesAmount) => {
+export const setCircleInterval = (dailyCaloriesAmount, currentCaloriesAmount, percentCaloriesAmount) => {
 
     const strokeDashoffset = process.env.REACT_APP_BASE_FULL_CIRCLE_VALUE-process.env.REACT_APP_BASE_FULL_CIRCLE_VALUE*(percentCaloriesAmount);
 
@@ -43,14 +43,14 @@ export const setCircleInterval = (dailyAmountOfCalories, currentAmountOfCalories
     let counter = 0;
     setInterval(()=> {
 
-        if(counter == currentAmountOfCalories) {
+        if(counter == currentCaloriesAmount) {
 
             clearInterval();
         }
         else {
 
             counter += 1;
-            currentCaloriesAmountDiv.innerHTML = `${counter}/${dailyAmountOfCalories}`; 
+            currentCaloriesAmountDiv.innerHTML = `${counter}/${dailyCaloriesAmount}`; 
         }
     
     }, 0.009)

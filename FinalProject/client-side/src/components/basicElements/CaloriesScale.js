@@ -6,19 +6,15 @@ import Image from "../BasicElements/Image";
 
 
 
-const CaloriesScale = ({dailyAmountOfCalories, currentAmountOfCalories}) => {
+const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount}) => {
 
-    /////////////////////////////////////
-    currentAmountOfCalories = 2600;
-    /////////////////////////////////////
 
-    const percentCaloriesAmount = currentAmountOfCalories/dailyAmountOfCalories;
+    const percentCaloriesAmount = currentCaloriesAmount/dailyCaloriesAmount;
     const [color, setColor] = useState('');
-
 
     useEffect(()=> {
 
-        setCircleInterval(dailyAmountOfCalories, currentAmountOfCalories, percentCaloriesAmount);
+        setCircleInterval(dailyCaloriesAmount, currentCaloriesAmount, percentCaloriesAmount);
 
         let calNum = document.querySelector('div#caloriesScale-number-div');
 
@@ -62,8 +58,8 @@ const mapStateToProps = (state) => {
 
     return {
 
-        dailyAmountOfCalories : state.caloriesReducer.dailyAmountOfCalories,
-        currentAmountOfCalories : state.caloriesReducer.currentAmountOfCalories
+        dailyCaloriesAmount : state.caloriesReducer.dailyCaloriesAmount,
+        currentCaloriesAmount : state.caloriesReducer.currentCaloriesAmount
     }
 }
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 
-export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setDailyAmountOfCalories) => {
+export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories) => {
 
     event.preventDefault();
 
@@ -27,6 +27,8 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         console.log("imgValue", imgValue)
 
     if(formKind === process.env.REACT_APP_SIGN_UP_BUTTON){
+
+        console.log(gender)
 
         try{ 
 
@@ -133,10 +135,14 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 weight : decode.weight,
                 activityLevel : decode.activityLevel,
     
-                fileName : decode.fileName,
+                fileName : decode.fileName
             })
 
-            setDailyAmountOfCalories();
+            setAmountOfCalories({
+
+                dailyCaloriesAmount: decode.dailyCaloriesAmount,
+                currentCaloriesAmount: decode.currentCaloriesAmount
+            });
 
 
             // Navigate to main page in case login successfuly
