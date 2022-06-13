@@ -24,7 +24,7 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount, movementNumb
 
         setColor(color);
 
-    },) // make this every render, not just on the first time!
+    }) // make this every render, not just on the first time!
     // To make this just on the first time : []
     // To make this on the first time + everytime we change state : [stateToChange]
 

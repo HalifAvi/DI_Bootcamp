@@ -24,8 +24,6 @@ export const caloriesReducer = (state=initStateCalories, action={}) => {
         case DECREASE_CURRENT_CALORIES_AMOUNT: 
 
             const updatedCurrentCalories = state.currentCaloriesAmount - action.payload >= 0 ? state.currentCaloriesAmount - action.payload : state.currentCaloriesAmount;
-
-            console.log(updatedCurrentCalories)
             
             return {...state, currentCaloriesAmount : updatedCurrentCalories} 
 

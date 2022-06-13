@@ -3,7 +3,7 @@ import '../BasicElementStyle/SliderCards.css';
 import Image from "../BasicElements/Image";
 import { decreaseCaloriesFromCurrent } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
-// import CaloriesScale from "../BasicElements/CaloriesScale";
+import PopUpMessage from './PopUpMessage';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
@@ -11,7 +11,9 @@ const SliderCards = ({recipesToDisplay, decreaseCaloriesFromCurrent, paramToChan
         
 
     const [swiperVariable, setSwiperVariable] = useState(true);
-    // const [caloriesBar, setCaloriesBar] = useState(false);
+    const [popUp, setPopUp] = useState(false);
+    const [wantToAdd, setWantToAdd] = useState(false);
+    const [clickedCalories, setClickedCalories] = useState(0);
 
     useEffect(()=> {
 
@@ -44,18 +46,29 @@ const SliderCards = ({recipesToDisplay, decreaseCaloriesFromCurrent, paramToChan
     }, [swiperVariable])
 
 
+    // In case the answer from the popUp is true : user wants to add
+    useEffect(()=>{
+
+        if(wantToAdd){
+
+            setWantToAdd(false)
+
+            decreaseCaloriesFromCurrent(clickedCalories);
+
+            // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
+            // of the component that contains the caloriesBar and because the useEffect of caloriesBar
+            // is not define with [] so eveytime we render it'll render again 
+            const {paintAgainCaloriesBar, setPaintAgainCaloriesBar} = paramToChange;
+    
+            setPaintAgainCaloriesBar(!paintAgainCaloriesBar);
+        }
+    })
 
 
-    const addRecipeToPlate = (caloriesToDecreaseFromCurrent) => {
+    const addRecipeToPlate = (calories) => {
 
-        decreaseCaloriesFromCurrent(caloriesToDecreaseFromCurrent);
-
-        // After click on 'addTopLate' we want to render the caloriesBar so we set the state
-        // of the component that contains the caloriesBar and because the useEffect of caloriesBar
-        // is not define with [] so eveytime we render it'll render again 
-        const {paintAgainCaloriesBar, setPaintAgainCaloriesBar} = paramToChange;
-
-        setPaintAgainCaloriesBar(!paintAgainCaloriesBar);
+        setClickedCalories(calories);
+        setPopUp(true);
     }
 
     return(
@@ -79,16 +92,12 @@ const SliderCards = ({recipesToDisplay, decreaseCaloriesFromCurrent, paramToChan
                         })
                     }
                 </div>
-            </div>            
+            </div>  
+
+            {popUp && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={process.env.REACT_APP_MESSAGE_BEFORE_ADD_RECIPE}/>}
+          
         </section>
     )
-}
-
-const mapStateToProps = (state) => {
-
-    return{
-
-    }
 }
 
 
@@ -100,4 +109,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SliderCards);
+export default connect(null, mapDispatchToProps)(SliderCards);
