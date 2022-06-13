@@ -1,8 +1,10 @@
 import axios from 'axios';
+
 import {
     
     SET_ALL_DEFAULT_RECIPES_ARRAY,
-    SET_TODAY_RECIPES_ARRAY
+    GET_TODAY_RECIPES_ARRAY,
+    ADD_TO_TODAY_RECIPES_ARRAY
 
 } from '../reduxConstants';
 
@@ -69,12 +71,44 @@ export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
 
 export const setTodayRecipesArray = (allRecipesArray) => {
 
-    console.log("ACTIONS ALL TODAY RECIPES", allRecipesArray)
+    // console.log("ACTIONS ALL TODAY RECIPES", allRecipesArray)
 
     return {
 
-        type: SET_TODAY_RECIPES_ARRAY,
+        type: GET_TODAY_RECIPES_ARRAY,
         payload: allRecipesArray
+    }
+}
+
+
+export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch) => {
+
+    try{
+        
+        let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_INSERT_RECIPE_URL,
+            {
+                recipeObj,
+                id : userId
+            },
+            {
+    
+            withCredentials: true,
+            headers: {
+    
+                'Access-Control-Allow-Origin' : '*',
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        dispatch({
+    
+            type: ADD_TO_TODAY_RECIPES_ARRAY,
+            payload: response.data
+        })
+    }
+    catch(e){
+
+        console.log(e);
     }
 }
 

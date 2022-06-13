@@ -8,9 +8,9 @@ CREATE TABLE usersRecipe
 	recipetitle varchar(255),
 	recipeimage varchar(255),
 	recipecalories INTEGER,
-	recipeprotein INTEGER,
-	recipefat INTEGER,
-	recipecarbs INTEGER,
+	recipeprotein varchar(255),
+	recipefat varchar(255),
+	recipecarbs varchar(255),
     createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedat timestamp without time zone
 )

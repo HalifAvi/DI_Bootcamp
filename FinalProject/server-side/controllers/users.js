@@ -59,7 +59,7 @@ export const signUp = async (req, res) => {
             gender: gender
         })
 
-        // 1. Create new row in 'usersbody' table
+        // 1. Create new row in 'usersbody' table   
         await UsersBody.create({
 
             // Here we are using the 'id'
@@ -184,10 +184,8 @@ export const signIn = async (req, res) => {
         })
 
         // Retrive the data from db         
-        let userTodayRecipes = usersRecipes[0]; ///////////////// כנראה יביא את כל העמודות
-        userTodayRecipes == undefined ? userTodayRecipes=[] : userTodayRecipes = userTodayRecipes.dataValues;
+        const userTodayRecipes = usersRecipes.map(item => item.dataValues)
     
-
         // 3: Create an accessToken 
 
         // 4: Add this accessToken to the http cookies

@@ -149,8 +149,6 @@ export const handleAction = async (event,
 
             setAllDefaultRecipesArray();
 
-            console.log("ON ENTERING--TODAY RECIPES:", decode.userTodayRecipes)
-
             setTodayRecipesArray(decode.userTodayRecipes);
 
             // Navigate to main page in case login successfuly
