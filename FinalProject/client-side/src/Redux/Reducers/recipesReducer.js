@@ -1,6 +1,7 @@
 import {
 
-    SET_ALL_DEFAULT_RECIPES_ARRAY
+    SET_ALL_DEFAULT_RECIPES_ARRAY,
+    SET_TODAY_RECIPES_ARRAY
 
 } from '../reduxConstants';
 
@@ -9,7 +10,8 @@ import {
 
 const initStateRecipes = {
 
-    allDefaultRecipesArray: []
+    allDefaultRecipesArray: [],
+    todayRecipes: []
 }
 
 
@@ -19,9 +21,13 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
         case SET_ALL_DEFAULT_RECIPES_ARRAY: 
 
-        console.log(action.payload)
-
             return {...state, allDefaultRecipesArray: action.payload}
+
+        case SET_TODAY_RECIPES_ARRAY: 
+
+        console.log("REDUCER--TODAY RECIPES:", action.payload)
+
+            return {...state, todayRecipes: action.payload}
 
         default: 
 

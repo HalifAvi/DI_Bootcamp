@@ -2,7 +2,11 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 
-export const handleAction = async (event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray) => {
+export const handleAction = async (event,
+    formKind, navigate, stateObj, imgValue,
+    setMessageAfterSign, setAllUserParamsFromDb,
+    setAmountOfCalories, setAllDefaultRecipesArray,
+    setTodayRecipesArray) => {
 
     event.preventDefault();
 
@@ -27,8 +31,6 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
         // console.log("imgValue", imgValue)
 
     if(formKind === process.env.REACT_APP_SIGN_UP_BUTTON){
-
-        console.log(gender)
 
         try{ 
 
@@ -136,7 +138,7 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
                 activityLevel : decode.activityLevel,
     
                 fileName : decode.fileName
-            })
+            }) 
 
             setAmountOfCalories({
 
@@ -145,8 +147,11 @@ export const handleAction = async (event, formKind, navigate, stateObj, imgValue
             });
 
 
-            setAllDefaultRecipesArray()
+            setAllDefaultRecipesArray();
 
+            console.log("ON ENTERING--TODAY RECIPES:", decode.userTodayRecipes)
+
+            setTodayRecipesArray(decode.userTodayRecipes);
 
             // Navigate to main page in case login successfuly
             navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 

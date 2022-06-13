@@ -1,0 +1,16 @@
+
+CREATE TABLE usersRecipe
+(
+    id serial NOT NULL PRIMARY KEY,
+	userId INTEGER,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+	recipesn INTEGER,
+	recipetitle varchar(255),
+	recipeimage varchar(255),
+	recipecalories INTEGER,
+	recipeprotein INTEGER,
+	recipefat INTEGER,
+	recipecarbs INTEGER,
+    createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedat timestamp without time zone
+)

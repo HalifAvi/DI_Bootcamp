@@ -1,7 +1,8 @@
 import Users from "../models/userModel.js"; // the 'users' table
 import UsersBody from "../models/bodyModel.js";
 import UsersCalories from  "../models/calorieModel.js";
-import Upload from '../models/ImageModel.js';
+import Upload from '../models/imageModel.js';
+import UsersRecipe from '../models/recipeModel.js';
 
 
 
@@ -172,8 +173,20 @@ export const signIn = async (req, res) => {
         const dailyCaloriesAmount = usersCalories[0].dailycaloriesamount;
 
 
+        const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
         
-        
+        // Get the data from calories table
+        const usersRecipes = await UsersRecipe.findAll({
+            where:{
+                userid: userId,
+                updatedAt: todayDate
+            }
+        })
+
+        // Retrive the data from db         
+        let userTodayRecipes = usersRecipes[0]; ///////////////// כנראה יביא את כל העמודות
+        userTodayRecipes == undefined ? userTodayRecipes=[] : userTodayRecipes = userTodayRecipes.dataValues;
+    
 
         // 3: Create an accessToken 
 
@@ -188,7 +201,7 @@ export const signIn = async (req, res) => {
         // to expiry time we defined in this token
         const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
                                         age, height, weight, activityLevel, fileName,
-                                        currentCaloriesAmount, dailyCaloriesAmount},
+                                        currentCaloriesAmount, dailyCaloriesAmount, userTodayRecipes},
         process.env.ACCESS_TOKEN_SECRET, {
 
             expiresIn: '60s'
@@ -249,4 +262,28 @@ const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
                 console.log("BMR", BMR)
                 
     return  Number(activityLevel)*BMR*(Number(process.env.TERMI_EFFECT_FACTOR));
+}
+
+
+const getCurrentDate = () => {
+
+    let date = new Date();
+    let dayDate = date.getDate();
+
+    let month = date.getMonth();
+    let year = date.getYear();
+
+    dayDate--;
+    month++;
+
+    if(year<1000)
+        year+=1900;
+
+    if(month<10)
+    month = "0" + month;
+    
+    if(dayDate<10)
+    dayDate = "0" + dayDate;
+
+    return `${year}-${month}-${dayDate}`;
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
     
-    SET_ALL_DEFAULT_RECIPES_ARRAY
+    SET_ALL_DEFAULT_RECIPES_ARRAY,
+    SET_TODAY_RECIPES_ARRAY
 
 } from '../reduxConstants';
 
@@ -62,6 +63,22 @@ export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
     //     console.log(e);
     // }
 }
+
+
+
+
+export const setTodayRecipesArray = (allRecipesArray) => {
+
+    console.log("ACTIONS ALL TODAY RECIPES", allRecipesArray)
+
+    return {
+
+        type: SET_TODAY_RECIPES_ARRAY,
+        payload: allRecipesArray
+    }
+}
+
+
 
 
 
