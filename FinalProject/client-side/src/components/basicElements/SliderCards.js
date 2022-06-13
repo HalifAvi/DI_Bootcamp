@@ -15,6 +15,7 @@ const SliderCards = ({recipesToDisplay, changeCurrentCaloriesAmount, paramToChan
     const [popUp, setPopUp] = useState(false);
     const [wantToAdd, setWantToAdd] = useState(false);
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
+    const [message, setMessage] = useState('');
 
     useEffect(()=> {
 
@@ -70,11 +71,20 @@ const SliderCards = ({recipesToDisplay, changeCurrentCaloriesAmount, paramToChan
     })
 
 
-    const addRecipeToPlate = (recipeObj) => {
+    const addRecipeToPlate = (recipeObj, e) => {
+
+        isAlreadyAdded(e.target.id) ? setMessage(process.env.REACT_APP_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_MESSAGE_BEFORE_ADD_RECIPE);
 
         setClickedRecipeObj(recipeObj);
         setPopUp(true);
     }
+
+    const isAlreadyAdded = (clickedRecipeId) => {
+
+        return todayRecipes.some(recipe=> recipe.recipesn == Number(clickedRecipeId));
+
+    }
+    
 
     return(
         <section className={"swiper-section"}>
@@ -90,8 +100,8 @@ const SliderCards = ({recipesToDisplay, changeCurrentCaloriesAmount, paramToChan
 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     {recipeObj.calories}
-                                    <Image id={"recipe-img"} src={recipeObj.image}/>
-                                    <Image onClickEvent={()=>addRecipeToPlate(recipeObj)} id={"addToPlate-icon"} src={process.env.REACT_APP_BASE_ADD_TO_PLATE_ICON_URL}/>
+                                    <Image className={"recipe-img"} src={recipeObj.image}/>
+                                    <Image id={recipeObj.id} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} classN={"addToPlate-icon"} src={process.env.REACT_APP_BASE_ADD_TO_PLATE_ICON_URL}/>
                                 </div>
                             )
                         })
@@ -99,11 +109,12 @@ const SliderCards = ({recipesToDisplay, changeCurrentCaloriesAmount, paramToChan
                 </div>
             </div>  
 
-            {popUp && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={process.env.REACT_APP_MESSAGE_BEFORE_ADD_RECIPE}/>}
+            {popUp && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={message}/>}
           
         </section>
     )
 }
+
 
 const mapStateToProps = (state) => {
 
