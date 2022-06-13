@@ -34,21 +34,6 @@ export const insertRecipe = async (req, res) => {
             recipecarbs: carbs
         })
 
-
-        // // Get the data from calories table
-        // const usersRecipes = await UsersRecipe.findAll({
-        //     where:{
-        //         userid: userId,
-        //         updatedAt: todayDate
-        //     }
-        // })
-
-        // // Retrive the data from db         
-        // const userTodayRecipes = usersRecipes.map(item => item.dataValues)
-
-
-        console.log("SERVERRRRRRRR", answer.dataValues)
-
         // Return the whole new recipe object
         res.json(answer.dataValues)
     }

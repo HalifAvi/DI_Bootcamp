@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import '../BasicElementStyle/SliderCards.css';
 import Image from "../BasicElements/Image";
-import { decreaseCaloriesFromCurrent } from "../../Redux/Actions/caloriesActions.js";
+import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
 import { insertNewAddedRecipe } from "../../Redux/Actions/recipesActions.js";
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({recipesToDisplay, decreaseCaloriesFromCurrent, paramToChange, insertNewAddedRecipe, userId, todayRecipes}) => { 
+const SliderCards = ({recipesToDisplay, changeCurrentCaloriesAmount, paramToChange, insertNewAddedRecipe, userId, todayRecipes}) => { 
         
 
     const [swiperVariable, setSwiperVariable] = useState(true);
@@ -56,7 +56,7 @@ const SliderCards = ({recipesToDisplay, decreaseCaloriesFromCurrent, paramToChan
 
             insertNewAddedRecipe(clickedRecipeObj, userId);
 
-            decreaseCaloriesFromCurrent(clickedRecipeObj.calories);
+            changeCurrentCaloriesAmount(clickedRecipeObj.calories, "-");
 
             // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
             // of the component that contains the caloriesBar and because the useEffect of caloriesBar
@@ -119,7 +119,7 @@ const mapDispatchToProps = (dispatch) => {
 
     return{
 
-        decreaseCaloriesFromCurrent : (caloriesAmount) => dispatch(decreaseCaloriesFromCurrent(caloriesAmount)),
+        changeCurrentCaloriesAmount : (clickedRecipeObj, operation) => dispatch(changeCurrentCaloriesAmount(clickedRecipeObj, operation)),
         insertNewAddedRecipe : (recipeObj, userId) => dispatch(insertNewAddedRecipe(recipeObj, userId))
     }
 }

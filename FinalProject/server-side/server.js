@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import users_routes from "./routes/users.js";
 import recipes_routes from "./routes/recipes.js";
+import calories_routes from "./routes/calories.js";
 import db from './config/db.js';
 import path from 'path';
 
@@ -42,6 +43,8 @@ app.use(express.json());
 
 app.use('/users', users_routes);
 app.use('/recipes', recipes_routes);
+app.use('/calories', calories_routes); 
+
 
 app.listen(process.env.PORT||8080, ()=> {
 
