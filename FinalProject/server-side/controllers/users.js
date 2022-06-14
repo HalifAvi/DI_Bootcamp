@@ -3,6 +3,8 @@ import UsersBody from "../models/bodyModel.js";
 import UsersCalories from  "../models/calorieModel.js";
 import Upload from '../models/imageModel.js';
 import UsersRecipe from '../models/recipeModel.js';
+import db from '../config/db.js';
+
 
 
 
@@ -95,7 +97,8 @@ export const signUp = async (req, res) => {
             // Here we are using the 'id'
             userid: answer.dataValues.id,
             currentcaloriesamount: caloriesNum,
-            dailycaloriesamount: caloriesNum
+            dailycaloriesamount: caloriesNum,
+            updateserialnumber : 1
         })
 
         res.json({msg: 'Registered Successfully!'})
@@ -161,61 +164,81 @@ export const signIn = async (req, res) => {
         const fileName = userImage[0].filename;
 
 
-        // Get the data from calories table
-        const usersCalories = await UsersCalories.findAll({
-            where:{
-                userid: userId
-            }
-        })
+        // First find the max updateserialnumber in table and then enter with this value
+        UsersCalories.findAll({
 
-        // Retrive the data from db response
-        const currentCaloriesAmount = usersCalories[0].currentcaloriesamount;
-        const dailyCaloriesAmount = usersCalories[0].dailycaloriesamount;
+            attributes: [[db.fn('max', db.col('updateserialnumber')), 'max']],
+            where: [{userid: userId}]
 
+        }).then(updateserialnumber => {
 
-        const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
-        
-        // Get the data from calories table
-        const usersRecipes = await UsersRecipe.findAll({
-            where:{
-                userid: userId,
-                updatedAt: todayDate
-            }
-        })
-
-        // Retrive the data from db         
-        const userTodayRecipes = usersRecipes.map(item => item.dataValues)
+            console.log("LAST UPDATED CALORIES:", updateserialnumber[0].dataValues.max);
+            
+            // Get the data from calories table
+            UsersCalories.findAll({
     
-        // 3: Create an accessToken 
+                where:{
+    
+                    userid: userId,
+                    updateserialnumber: updateserialnumber[0].dataValues.max
+                }
+            }).then(usersCalories=>{
 
-        // 4: Add this accessToken to the http cookies
+                // Retrive the data from db response
+                const currentCaloriesAmount = usersCalories[0].currentcaloriesamount;
+                const dailyCaloriesAmount = usersCalories[0].dailycaloriesamount;
+                const updateserialnumber = usersCalories[0].updateserialnumber;
+        
+        
+                const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
+                
+                // Get the data from recipes table
+                UsersRecipe.findAll({
+                    where:{
+                        userid: userId,
+                        updatedAt: todayDate
+                    }
+                }).then(usersRecipes=>{
 
-        // 5: Send back this accessToken
+                    // Retrive the data from db         
+                    const userTodayRecipes = usersRecipes.map(item => item.dataValues)
+                
+                    // 3: Create an accessToken 
+            
+                    // 4: Add this accessToken to the http cookies
+            
+                    // 5: Send back this accessToken
+            
+                    // Each time we'll get a different access token cause we'll have different userId and email with our ACCESS_TOKEN_SECRET
+                    // that we only know so we can verify according to it
+                    // We will send this token in the cookie to the front end
+                    // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
+                    // to expiry time we defined in this token
+                    const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
+                                                    age, height, weight, activityLevel, fileName,
+                                                    currentCaloriesAmount, dailyCaloriesAmount, userTodayRecipes, updateserialnumber},
+                    process.env.ACCESS_TOKEN_SECRET, {
+            
+                        expiresIn: '60s'
+            
+                    })
+            
+                    // Set the cookie in the http response ((we imported it in 'server.js'))
+                    // we get here the all encrypted data
+                    res.cookie('accessToken', accessToken, {
+                        httpOnly: true,
+                        maxAge: 60 * 1000 // 60 seconds
+                    }); 
+            
+                    console.log('accessToken', accessToken)
+                    // We send back the access token 
+                    res.json({accessToken});
 
-        // Each time we'll get a different access token cause we'll have different userId and email with our ACCESS_TOKEN_SECRET
-        // that we only know so we can verify according to it
-        // We will send this token in the cookie to the front end
-        // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
-        // to expiry time we defined in this token
-        const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
-                                        age, height, weight, activityLevel, fileName,
-                                        currentCaloriesAmount, dailyCaloriesAmount, userTodayRecipes},
-        process.env.ACCESS_TOKEN_SECRET, {
-
-            expiresIn: '60s'
-
-        })
-
-        // Set the cookie in the http response ((we imported it in 'server.js'))
-        // we get here the all encrypted data
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            maxAge: 60 * 1000 // 60 seconds
-        }); 
-
-        console.log('accessToken', accessToken)
-        // We send back the access token 
-        res.json({accessToken});
+                }).catch(e=>console.log(e))
+    
+            }).catch(e=>console.log(e))
+    
+        }).catch(e=> console.log(e))
     }
 
     catch(error){

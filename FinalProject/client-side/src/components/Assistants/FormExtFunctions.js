@@ -143,7 +143,8 @@ export const handleAction = async (event,
             setAmountOfCalories({
 
                 dailyCaloriesAmount: decode.dailyCaloriesAmount,
-                currentCaloriesAmount: decode.currentCaloriesAmount
+                currentCaloriesAmount: decode.currentCaloriesAmount,
+                updateserialnumber: decode.updateserialnumber
             });
 
 

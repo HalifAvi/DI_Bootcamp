@@ -9,7 +9,8 @@ import {
 const initStateCalories = {
 
     dailyCaloriesAmount : 0,
-    currentCaloriesAmount : 0
+    currentCaloriesAmount : 0,
+    updateserialnumber : 1
 }
 
 
@@ -19,7 +20,7 @@ export const caloriesReducer = (state=initStateCalories, action={}) => {
 
         case SET_CALORIES_AMOUNT: 
 
-            return {...state, dailyCaloriesAmount: action.payload.dailyCaloriesAmount, currentCaloriesAmount: action.payload.currentCaloriesAmount}
+            return {...state, dailyCaloriesAmount: action.payload.dailyCaloriesAmount, currentCaloriesAmount: action.payload.currentCaloriesAmount, updateserialnumber: action.payload.updateserialnumber}
 
         case CHANGE_CURRENT_CALORIES_AMOUNT:   
         

@@ -13,6 +13,9 @@ const UsersCalories = db.define('userscalories',{
     dailycaloriesamount: {
         type: DataTypes.INTEGER
     },
+    updateserialnumber: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {    // createdAt: false
         field: 'createdat', 
         type: DataTypes.DATE

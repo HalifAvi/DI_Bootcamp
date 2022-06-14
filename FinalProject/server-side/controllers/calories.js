@@ -10,7 +10,8 @@ export const updateCurrentCaloriesAmount = async (req, res) => {
 
     const {
             userid,
-            updatedCalories
+            updatedCalories,
+            updateserialnumber
       
         } = req.body;
 
@@ -23,7 +24,10 @@ export const updateCurrentCaloriesAmount = async (req, res) => {
                 currentcaloriesamount : updatedCalories
             },
             {
-                where: { userid: userid }
+                where: { 
+                            userid: userid,
+                            updateserialnumber: updateserialnumber
+                        }
             });
 
 

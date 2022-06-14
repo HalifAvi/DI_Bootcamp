@@ -11,12 +11,12 @@ import axios from 'axios';
 
 
 
-export const setAmountOfCalories = ({dailyCaloriesAmount, currentCaloriesAmount}) => {
+export const setAmountOfCalories = ({dailyCaloriesAmount, currentCaloriesAmount, updateserialnumber}) => {
 
     return{
     
         type: SET_CALORIES_AMOUNT,
-        payload: {dailyCaloriesAmount, currentCaloriesAmount}
+        payload: {dailyCaloriesAmount, currentCaloriesAmount, updateserialnumber}
     }
 }
 
@@ -24,7 +24,7 @@ export const setAmountOfCalories = ({dailyCaloriesAmount, currentCaloriesAmount}
 export const changeCurrentCaloriesAmount = (clickedObjCalories, operation)  => async (dispatch, getStatus) => {
 
     const {userId} = getStatus().signInUpReducer;
-    const {currentCaloriesAmount, dailyCaloriesAmount} = getStatus().caloriesReducer;
+    const {currentCaloriesAmount, dailyCaloriesAmount, updateserialnumber} = getStatus().caloriesReducer;
     let updatedCaloriesAmount;
 
     if(operation == "-"){
@@ -43,7 +43,8 @@ export const changeCurrentCaloriesAmount = (clickedObjCalories, operation)  => a
             let response = await axios.put(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_CHANGE_CURR_CALORIES_URL,
                 {
                     userid : userId,
-                    updatedCalories : updatedCaloriesAmount
+                    updatedCalories : updatedCaloriesAmount,
+                    updateserialnumber : updateserialnumber
                 },
                 {
         

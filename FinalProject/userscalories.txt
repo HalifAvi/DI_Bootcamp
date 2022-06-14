@@ -5,6 +5,7 @@ CREATE TABLE userscalories
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
 	currentcaloriesamount INTEGER,
 	dailycaloriesamount INTEGER,
+	updateserialnumber INTEGER,
     createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedat timestamp without time zone
 )
