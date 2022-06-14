@@ -14,16 +14,24 @@ import defaultRecipesFetch from '../../Components/Assistants/defaultRecipesFetch
 
 
 
-
-
-export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
+export const setAllDefaultRecipesArray = (firstTime) => async (dispatch, getStatus) => {
 
     const {currentCaloriesAmount} = getStatus().caloriesReducer;
+    const {allDefaultRecipesArray} = getStatus().recipesReducer;
+
+    
+    let shuffledRecepiesArray = shuffle(allDefaultRecipesArray);
+
+    let updatedRecepiesArray = shuffledRecepiesArray.filter(recipe => (recipe.calories) <= currentCaloriesAmount);
+
+
+    console.log("ACTIONS:",currentCaloriesAmount)
+    console.log("ACTIONS:",updatedRecepiesArray.map(recipe => (recipe.calories)))
 
             dispatch({
     
                 type: SET_ALL_DEFAULT_RECIPES_ARRAY,
-                payload: defaultRecipesFetch
+                payload: updatedRecepiesArray
             })
 
 
@@ -112,6 +120,25 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch) => {
     }
 }
 
+
+const shuffle = (array) => {
+
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
 
 

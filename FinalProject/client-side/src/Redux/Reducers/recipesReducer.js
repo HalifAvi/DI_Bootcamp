@@ -7,11 +7,13 @@ import {
 } from '../reduxConstants';
 
 
+///////////////////////////////// DEMO FETCH!!!
+import defaultRecipesFetch from '../../Components/Assistants/defaultRecipesFetch.json';
 
 
 const initStateRecipes = {
 
-    allDefaultRecipesArray: [],
+    allDefaultRecipesArray: defaultRecipesFetch, 
     todayRecipes: []
 }
 
@@ -21,6 +23,8 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
     switch(action.type){
 
         case SET_ALL_DEFAULT_RECIPES_ARRAY: 
+
+        console.log("REDUCER:",action.payload)
 
             return {...state, allDefaultRecipesArray: action.payload}
 

@@ -6,7 +6,6 @@ import {
 } from '../reduxConstants';
 
 import axios from 'axios';
-import e from 'cors';
 
 
 

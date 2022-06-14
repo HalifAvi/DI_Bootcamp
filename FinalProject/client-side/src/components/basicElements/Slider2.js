@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../BasicElementStyle/SliderCards.css';
+import '../BasicElementStyle/Slider2.css';
 import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import { insertNewAddedRecipe, setAllDefaultRecipesArray } from "../../Redux/Act
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, allDefaultRecipesArray}) => { 
+const Slider2 = ({changeCurrentCaloriesAmount, paramToChange, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, allDefaultRecipesArray}) => { 
         
 
     const [swiperVariable, setSwiperVariable] = useState(true);
@@ -17,35 +17,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
     const [message, setMessage] = useState('');
 
-    useEffect(()=> {
-
-        // We put the Swiper CND script in index.js cause we'll come accross row 17 we'll need Swiper 
-        var script = document.createElement("script");
-        script.innerText = `var swiper = new Swiper('.swiper-container', {
-                        pagination: '.swiper-pagination',
-                        effect: 'coverflow',
-                        grabCursor: true,
-                        centeredSlides: true,
-                        slidesPerView: 'auto',
-                        coverflowEffect: {
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 2,
-                        slideShadows : true
-                        },
-                        loop: true,
-                    });`;
-        script.async = true;
-
-        document.body.appendChild(script);
-
-        return () => {
-
-            document.body.removeChild(script);
-        }
-
-    }, [swiperVariable])
 
 
 
@@ -106,26 +77,24 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
     return(
         <section className={"swiper-section"}>
 
-            { swiperVariable ? setSwiperVariable(false) : null }
-
-            <div className={"swiper-container"}>
-                <div className={"swiper-wrapper"}>
                     {
+
                         allDefaultRecipesArray.map(recipeObj=>{
 
                             return (
 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     {recipeObj.calories}
-                                    <Image className={"recipe-img"} src={recipeObj.image}/>
-                                    <Image id={recipeObj.id} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} classN={"addToPlate-icon"} src={process.env.REACT_APP_BASE_ADD_TO_PLATE_ICON_URL}/>
+                                    {/* {console.log(recipeObj.calories)} */}
+                                    <Image id={"recipe-img"} src={recipeObj.image}/>
+                                    <Image onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} classN={"addToPlate-icon2"} src={process.env.REACT_APP_BASE_ADD_TO_PLATE_ICON_URL}/>
                                 </div>
                             )
                         })
-                    }
-                </div>
-            </div>  
 
+                    }            
+                       
+                
             {popUp && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={message}/>}
           
         </section>
@@ -154,4 +123,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SliderCards);
+export default connect(mapStateToProps, mapDispatchToProps)(Slider2);

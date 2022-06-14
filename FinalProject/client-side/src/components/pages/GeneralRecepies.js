@@ -9,7 +9,7 @@ import SliderCards from '../BasicElements/SliderCards';
 
 
 
-const GeneralRecepies = ({allDefaultRecipesArray}) => {
+const GeneralRecepies = () => {
 
     const [paintAgainCaloriesBar, setPaintAgainCaloriesBar] = useState(true)
 
@@ -23,7 +23,7 @@ const GeneralRecepies = ({allDefaultRecipesArray}) => {
                 <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+100} positionOnNavBar={1}/> 
             
                 {/*Sending this in the props just for set the state and make to CaloriesScale render again*/}
-                <SliderCards paramToChange={{setPaintAgainCaloriesBar, paintAgainCaloriesBar}} recipesToDisplay={allDefaultRecipesArray}/>
+                <SliderCards paramToChange={{setPaintAgainCaloriesBar, paintAgainCaloriesBar}}/>
 
                 <div className={"generalRecepies-caloriesScale-div"}>
                     <CaloriesScale movementNumbers={false}/>
@@ -34,17 +34,10 @@ const GeneralRecepies = ({allDefaultRecipesArray}) => {
 
 
 
-const mapStateToProps = (state) => {
-
-    return{
-
-        allDefaultRecipesArray : state.recipesReducer.allDefaultRecipesArray
-    }
-}
 
 
 
-export default connect(mapStateToProps, null)(GeneralRecepies);
+export default connect(null, null)(GeneralRecepies);
 
 
 
