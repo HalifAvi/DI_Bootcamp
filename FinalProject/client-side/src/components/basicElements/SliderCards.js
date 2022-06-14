@@ -34,7 +34,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
                         modifier: 2,
                         slideShadows : true
                         },
-                        loop: true,
+                        loop: false,
                     });`;
         script.async = true;
 
@@ -45,7 +45,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
             document.body.removeChild(script);
         }
 
-    }, [swiperVariable])
+    })
 
 
 
@@ -79,13 +79,13 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
     }, [popUp])
 
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        setSwiperVariable(true);
+    //     setSwiperVariable(true);
 
-        console.log("'wantToAdd has been changed after we set the filtered recipes so go to renger and draw again the silder")
+    //     console.log("'wantToAdd has been changed after we set the filtered recipes so go to renger and draw again the silder")
 
-    }, [wantToAdd])
+    // }, [wantToAdd])
 
 
     const addRecipeToPlate = (recipeObj, e) => {

@@ -14,7 +14,7 @@ import defaultRecipesFetch from '../../Components/Assistants/defaultRecipesFetch
 
 
 
-export const setAllDefaultRecipesArray = (firstTime) => async (dispatch, getStatus) => {
+export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
 
     const {currentCaloriesAmount} = getStatus().caloriesReducer;
     const {allDefaultRecipesArray} = getStatus().recipesReducer;
