@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import Video from "../BasicElements/Video";
 import AppLogo from "../BasicElements/AppLogo";
 import Title from "../BasicElements/Title";
@@ -7,9 +7,15 @@ import PersonalDetailsCard from "../BasicElements/PersonalDetailsCard";
 import '../PagesStyle/Main.css';
 import {getCurrentDate} from "../Assistants/MainExtFunctions.js";
 import NavBar from "../BasicElements/NavBar";
+import { connect } from "react-redux";
 
 
-const Main = (props) => {
+const Main = ({todayRecipes}) => {
+
+    useEffect(()=>{
+
+        console.log("TODAY RECIPES - MAIN:", todayRecipes)
+    })
 
     return(
 
@@ -39,9 +45,18 @@ const Main = (props) => {
     )
 }
 
+const mapStateToProps = (state) => {
+
+    return{
+
+        todayRecipes : state.recipesReducer.todayRecipes
+
+    }
+}
 
 
-export default Main;
+
+export default connect(mapStateToProps, null)(Main);
 
 
 

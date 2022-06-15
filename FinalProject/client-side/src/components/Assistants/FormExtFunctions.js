@@ -152,6 +152,8 @@ export const handleAction = async (event,
 
             setTodayRecipesArray(decode.userTodayRecipes);
 
+            console.log("TODAY RECIPES - LOGIN:", decode.userTodayRecipes)
+
             // Navigate to main page in case login successfuly
             navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
                     process.env.REACT_APP_BASE_MAIN_PATH + "/" +

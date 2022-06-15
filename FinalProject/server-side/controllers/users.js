@@ -196,7 +196,7 @@ export const signIn = async (req, res) => {
                 UsersRecipe.findAll({
                     where:{
                         userid: userId,
-                        updatedAt: todayDate
+                        createdat: todayDate
                     }
                 }).then(usersRecipes=>{
 

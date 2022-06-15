@@ -160,23 +160,37 @@
     margin-left: 55px;
 }
 
-.addToPlate-icon {
-
-    position: absolute;
-    top: 270px;
-    left: 30px;
-    width: 100px;
-    height: 100px;
-}
 
 #recipe-img {
 
     position: absolute;
     top: 0px;
-    left: 30px;
-    width: 250px;
-    height: 180px;
+    left: 0px;
+    width: 290px;
+    height: 200px;
 }
 
+#caloriesScale-small-img {
 
+    position: absolute;
+    top: 90px;
+    left: -22px;
+    width: 50px;
+    height: 50px;
+    margin-left: 55px;
+}
 
+#calories-icon-img {
+
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    margin-left: 55px;
+}
+
+#calories-icon-img:hover {
+
+    box-shadow: 0 0 20px var(--clr-white);
+}

@@ -39,6 +39,12 @@ export const setCircleInterval = (dailyCaloriesAmount, currentCaloriesAmount, pe
 
 
     let currentCaloriesAmountDiv = document.getElementById("caloriesScale-number-div");
+
+    if(currentCaloriesAmountDiv === null) {
+
+        currentCaloriesAmountDiv = document.getElementById("caloriesScale-small-number-div");
+    }
+
     let counter = 0;
 
     if(movementNumbers) {

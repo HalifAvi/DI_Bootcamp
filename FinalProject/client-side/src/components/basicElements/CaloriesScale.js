@@ -18,6 +18,11 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount, movementNumb
 
         let calNum = document.querySelector('div#caloriesScale-number-div');
 
+        if(calNum === null) {
+
+            calNum = document.querySelector("div#caloriesScale-small-number-div");
+        }
+
         let color = getColor(percentCaloriesAmount);
 
         calNum.setAttribute("style", `color: ${color}`);
@@ -30,10 +35,10 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount, movementNumb
 
 
     return(
-        <div className={"caloriesScale-skill-div"}>
-            <div className={"caloriesScale-outer-div"}>
-                <div className={"caloriesScale-inner-div"}>
-                    <div id={"caloriesScale-number-div"}>
+        <div className={movementNumbers?"caloriesScale-skill-div":"caloriesScale-small-skill-div"}>
+            <div className={movementNumbers?"caloriesScale-outer-div":"caloriesScale-small-outer-div"}>
+                <div className={movementNumbers?"caloriesScale-inner-div":"caloriesScale-small-inner-div"}>
+                    <div id={movementNumbers?"caloriesScale-number-div":"caloriesScale-small-number-div"}>
                     </div>
                 </div>
             </div>
@@ -44,9 +49,9 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount, movementNumb
                         <stop offset="100%" stop-color={color}/>
                     </linearGradient>  
                 </defs>
-                <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+                <circle cx={movementNumbers?"80":"60"} cy={movementNumbers?"80":"60"} r={movementNumbers?"70":"50"} stroke-linecap="round" />
             </svg>
-            <Image id={"caloriesScale-img"} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+            <Image id={movementNumbers?"caloriesScale-img":"caloriesScale-small-img"} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
         </div>
     )
 }

@@ -232,6 +232,63 @@
     text-shadow: 0 0 30px var(--clr-yellow), 0 0 40px var(--clr-yellow), 0 0 100px var(--clr-yellow);
 }
 
+/******************************* 'SliderCards' Element ********************************/
+
+#sliderCards-recipe-title {
+
+    position: absolute;
+    text-align: left;
+    top: 200px;
+    margin-left: 10px;
+    color: var(--clr-white);
+    font-size: 25px;
+    width: 200px;
+    letter-spacing: 1px;
+    font-family: var(--clr-thin-font);
+}
+
+#sliderCards-recipe-calories {
+
+    position: absolute;
+    bottom: 0px;
+    right: 35px;
+    margin-left: 10px;
+    color: var(--clr-white);
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-family: var(--clr-thin-font);
+}
+
+#sliderCards-recipe-moreDetails {
+
+    position: absolute;
+    bottom: 30px;
+    right: 180px;
+    margin-left: 10px;
+    color: var(--clr-yellow);
+    font-size: 25px;
+    transform: rotate(35deg);
+    font-family: var(--clr-thin-font);
+}
+
+#sliderCards-recipe-moreDetails:hover {
+
+    color: var(--clr-white);
+}
+
+
+/******************************* 'GeneralRecipes' Page ********************************/
+
+#generalRecipes-page-title {
+
+    font-family: var(--clr-script-font);
+    position: absolute;
+    left: 250px;
+    top: 106px;
+    font-size: 50px;
+    color: var(--clr-black);
+    z-index: 2000;
+}
 
 
 

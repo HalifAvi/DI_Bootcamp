@@ -5,6 +5,7 @@ import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
 import { insertNewAddedRecipe, setAllDefaultRecipesArray } from "../../Redux/Actions/recipesActions.js";
+import Title from './Title';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
@@ -90,7 +91,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
 
     const addRecipeToPlate = (recipeObj, e) => {
 
-        isAlreadyAdded(e.target.id) ? setMessage(process.env.REACT_APP_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_MESSAGE_BEFORE_ADD_RECIPE);
+        isAlreadyAdded(e.target.id) ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_RECIPE);
 
         setClickedRecipeObj(recipeObj);
         setPopUp(true);
@@ -104,24 +105,25 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
     
 
     return(
-        <section className={"swiper-section"}>
+        <section className={"swiper-section pattern-dots-sm slategray h-5"}>
 
             { swiperVariable ? setSwiperVariable(false) : null }
 
-            <div className={"swiper-container"}>
+            <div className={"swiper-container pattern-zigzag-sm slategray h-5"}>
                 <div className={"swiper-wrapper"}>
                     {
                         allDefaultRecipesArray.map(recipeObj=>{
 
                             return (
-
                                 <div key={recipeObj.id} className={"swiper-slide"}>
-                                    {recipeObj.calories}
-                                    <Image className={"recipe-img"} src={recipeObj.image}/>
-                                    <Image id={recipeObj.id} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} classN={"addToPlate-icon"} src={process.env.REACT_APP_BASE_ADD_TO_PLATE_ICON_URL}/>
+                                    <Image id={"recipe-img"} src={recipeObj.image}/>
+                                    <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title}/>
+                                    <Image id={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+                                    <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories}/>
+                                    <Title id={"sliderCards-recipe-moreDetails"} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                 </div>
                             )
-                        })
+                        }) 
                     }
                 </div>
             </div>  

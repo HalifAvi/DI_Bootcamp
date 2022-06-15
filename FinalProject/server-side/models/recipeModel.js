@@ -30,11 +30,11 @@ const UsersRecipe = db.define('usersrecipe',{
     },
     createdAt: {    // createdAt: false
         field: 'createdat', 
-        type: DataTypes.DATE
+        type: DataTypes.DATEONLY
     },
     updatedAt: {    // updatedAt: false
         field: 'updatedat',
-        type: DataTypes.DATEONLY
+        type: DataTypes.DATE
     }
 }, {freezeTableName: true})
 

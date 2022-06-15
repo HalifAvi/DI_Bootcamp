@@ -18,7 +18,7 @@ const initStateRecipes = {
 }
 
 
-export const recipesReducer = (state=initStateRecipes, action={}) => {
+export const recipesReducer = (state=initStateRecipes, action={}) => { 
     
     switch(action.type){
 
