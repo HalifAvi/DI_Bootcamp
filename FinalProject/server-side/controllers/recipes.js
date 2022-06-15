@@ -5,30 +5,32 @@ import UsersRecipe from "../models/recipeModel.js";
 export const insertRecipe = async (req, res) => {
 
     console.log("###############")
-    // console.log(req.body.recipeObj, req.body);
+    console.log(req.body)
     console.log("###############")
 
     const {
-            id,
-            title,
-            image,
-            calories,
-            protein,
-            fat,
-            carbs
-        } = req.body.recipeObj;
 
+        userid,
+        calories,
+        title,
+        image,
+        recipesn,
+        protein,
+        fat,
+        carbs
+
+    } = req.body
 
     try{
 
         // Create new row in 'usersRecipe' table
         const answer = await UsersRecipe.create({
 
-            userid: req.body.id,
-            recipesn: id,
+            userid: userid,
+            recipecalories: calories,
             recipetitle: title,
             recipeimage: image,
-            recipecalories: calories,
+            recipesn: recipesn,
             recipeprotein: protein,
             recipefat: fat,
             recipecarbs: carbs
