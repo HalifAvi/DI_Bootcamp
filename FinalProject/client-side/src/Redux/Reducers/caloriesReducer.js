@@ -24,8 +24,6 @@ export const caloriesReducer = (state=initStateCalories, action={}) => {
 
         case CHANGE_CURRENT_CALORIES_AMOUNT:   
         
-        console.log(action.payload)
-
             return {...state, currentCaloriesAmount : action.payload} 
 
         default: 

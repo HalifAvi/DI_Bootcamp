@@ -286,10 +286,9 @@
     left: -180px;
     top: 333px;
     font-size: 50px;
-    color: var(--clr-black);
+    color: var(--clr-yellow);
     z-index: 2000;
     transform: rotate(-90deg);
-    background-color: var(--clr-white);
     letter-spacing: 1px;
 }
 

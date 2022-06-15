@@ -7,6 +7,7 @@ import CaloriesScale from "../BasicElements/CaloriesScale";
 import AppLogo from '../BasicElements/AppLogo';
 import SliderCards from '../BasicElements/SliderCards';
 import Title from '../BasicElements/Title';
+import FilterSection from '../BasicElements/FiltersSection';
 
 
 
@@ -24,23 +25,25 @@ const GeneralRecepies = () => {
                 <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+100} positionOnNavBar={1}/> 
 
                 <Title id={"generalRecipes-page-title"} titleName={process.env.REACT_APP_BASE_TITLE_GENERAL_RECIPES}/>
+
+                <FilterSection />
             
-                {/*Sending this in the props just for set the state and make to CaloriesScale render again*/}
+                {/* Sending this in the props just for set the state and make to CaloriesScale render again */}
                 <SliderCards paramToChange={{setPaintAgainCaloriesBar, paintAgainCaloriesBar}}/>
 
                 <div className={"generalRecepies-caloriesScale-div"}>
-                    <CaloriesScale movementNumbers={false}/>
+                    <CaloriesScale movementNumbers={false}/> 
                 </div>    
+
             </div>
         )
     }
 
 
 
-
-
-
 export default connect(null, null)(GeneralRecepies);
+
+
 
 
 

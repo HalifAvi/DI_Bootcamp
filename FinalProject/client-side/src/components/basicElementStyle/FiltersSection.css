@@ -1,0 +1,30 @@
+@import "../constantsCSS.css";
+
+.filterSection-container {
+
+    position: absolute;
+    font-size: 40px;
+    top: 160px;
+    left: 40px;
+    z-index: 10000;
+    height: 400px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-black);
+    border: 10px solid var(--clr-yellow);
+    clip-path: polygon(0 0, 24% 0, 100% 44%, 100% 99%, 45% 100%, 0 75%);
+
+}
+
+/* .popUpMessage-container {
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+} */
+

@@ -10,12 +10,7 @@ import NavBar from "../BasicElements/NavBar";
 import { connect } from "react-redux";
 
 
-const Main = ({todayRecipes}) => {
-
-    useEffect(()=>{
-
-        console.log("TODAY RECIPES - MAIN:", todayRecipes)
-    })
+const Main = ({props}) => {
 
     return(
 
@@ -45,18 +40,26 @@ const Main = ({todayRecipes}) => {
     )
 }
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
 
-    return{
+//     return{
 
-        todayRecipes : state.recipesReducer.todayRecipes
+//         todayRecipes : state.recipesReducer.todayRecipes,
+//         currentDisplayedRecepies : state.recipesReducer.currentDisplayedRecepies
+//     }
+// }
 
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+
+//     return{
+
+//         setAllDefaultRecipesArray : ()=> dispatch(setAllDefaultRecipesArray())
+//     }
+// }
 
 
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(null, null)(Main);
 
 
 

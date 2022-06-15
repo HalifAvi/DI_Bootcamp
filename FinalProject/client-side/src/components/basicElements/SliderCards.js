@@ -4,12 +4,12 @@ import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, allDefaultRecipesArray}) => { 
+const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCaloriesAmount, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
         
 
     const [swiperVariable, setSwiperVariable] = useState(true);
@@ -56,24 +56,36 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
 
         async function handleAddRecipe() {
 
-            if(wantToAdd){
+                if(wantToAdd){
     
-                await insertNewAddedRecipe(clickedRecipeObj, userId);
-    
-                // WAIT !!!!! here till you update the currentCalories cause we want to use it immediatly after to update the displyed recipes
-                await changeCurrentCaloriesAmount(clickedRecipeObj.calories, "-");
-    
-                // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
-                // of the component that contains the caloriesBar and because the useEffect of caloriesBar
-                // is not define with [] so eveytime we render it'll render again 
-                const {paintAgainCaloriesBar, setPaintAgainCaloriesBar} = paramToChange;
+                    await insertNewAddedRecipe(clickedRecipeObj, userId);
         
-                setPaintAgainCaloriesBar(!paintAgainCaloriesBar);
+                    // WAIT !!!!! here till you update the currentCalories cause we want to use it immediatly after to update the displyed recipes
+                    const calories = clickedRecipeObj.calories == null ? 
+                    
+                        (clickedRecipeObj.nutrition.nutrients[0].amount).toFixed(0)
+
+                        :
+
+                        clickedRecipeObj.calories
+
+                    
+                    await changeCurrentCaloriesAmount(calories, "-");
+        
+                    // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
+                    // of the component that contains the caloriesBar and because the useEffect of caloriesBar
+                    // is not define with [] so eveytime we render it'll render again 
+                    const {paintAgainCaloriesBar, setPaintAgainCaloriesBar} = paramToChange;
+            
+                    setPaintAgainCaloriesBar(!paintAgainCaloriesBar);
+        
+                    setWantToAdd(false);
+        
+                    await setToSpecialRecipesArray(); // Set the recipes array to the current calories limitation
     
-                setWantToAdd(false);
-    
-                await setAllDefaultRecipesArray(); // Set the recipes array to the current calories limitation
-            }
+                    console.log(currentCaloriesAmount)
+                    console.log(currentDisplayedRecepies)
+                }
         }
 
         handleAddRecipe();
@@ -102,6 +114,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
         isAlreadyAdded(e.target.id) ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_RECIPE);
 
         setClickedRecipeObj(recipeObj);
+        
         setPopUp(true);
     }
 
@@ -117,17 +130,17 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
 
             { swiperVariable ? setSwiperVariable(false) : null }
 
-            <div className={"swiper-container pattern-zigzag-sm slategray h-5"}>
+            <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>
                     {
-                        allDefaultRecipesArray.map(recipeObj=>{
+                        currentDisplayedRecepies.map(recipeObj=>{
 
-                            return (
+                            return ( 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     <Image id={"recipe-img"} src={recipeObj.image}/>
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title}/>
                                     <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
-                                    <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories}/>
+                                    <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
                                     <Title id={"sliderCards-recipe-moreDetails"} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                 </div>
                             )
@@ -160,7 +173,8 @@ const mapStateToProps = (state) => {
 
         userId : state.signInUpReducer.userId,
         todayRecipes : state.recipesReducer.todayRecipes,
-        allDefaultRecipesArray : state.recipesReducer.allDefaultRecipesArray
+        currentDisplayedRecepies : state.recipesReducer.currentDisplayedRecepies,
+        currentCaloriesAmount : state.caloriesReducer.currentCaloriesAmount
     }
 }
 
@@ -171,7 +185,8 @@ const mapDispatchToProps = (dispatch) => {
 
         changeCurrentCaloriesAmount : (clickedRecipeObj, operation) => dispatch(changeCurrentCaloriesAmount(clickedRecipeObj, operation)),
         insertNewAddedRecipe : (recipeObj, userId) => dispatch(insertNewAddedRecipe(recipeObj, userId)),
-        setAllDefaultRecipesArray : () => dispatch(setAllDefaultRecipesArray())
+        setAllDefaultRecipesArray : () => dispatch(setAllDefaultRecipesArray()),
+        setToSpecialRecipesArray : () => dispatch(setToSpecialRecipesArray())
     }
 }
 
