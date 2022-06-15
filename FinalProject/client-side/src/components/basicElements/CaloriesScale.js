@@ -42,14 +42,14 @@ const CaloriesScale = ({dailyCaloriesAmount, currentCaloriesAmount, movementNumb
                     </div>
                 </div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width={"1600px"} height={"1600px"}>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width={"200px"} height={"200px"}>
                 <defs>
                     <linearGradient id="GradientColor">
                         <stop offset="0%" stop-color={color}/>
                         <stop offset="100%" stop-color={color}/>
                     </linearGradient>  
                 </defs>
-                <circle cx={movementNumbers?"80":"60"} cy={movementNumbers?"80":"60"} r={movementNumbers?"70":"50"} stroke-linecap="round" />
+                <circle id={movementNumbers? "circle":"circle-small"} cx={movementNumbers?"80":"60"} cy={movementNumbers?"80":"60"} r={movementNumbers?"70":"50"} stroke-linecap="round" />
             </svg>
             <Image id={movementNumbers?"caloriesScale-img":"caloriesScale-small-img"} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
         </div>

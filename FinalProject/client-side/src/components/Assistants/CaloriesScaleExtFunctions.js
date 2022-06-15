@@ -19,7 +19,12 @@ export const getColor = (percentCaloriesAmount) => {
 
 export const setCircleInterval = (dailyCaloriesAmount, currentCaloriesAmount, percentCaloriesAmount, movementNumbers) => {
 
-    const strokeDashoffset = process.env.REACT_APP_BASE_FULL_CIRCLE_VALUE-process.env.REACT_APP_BASE_FULL_CIRCLE_VALUE*(percentCaloriesAmount);
+    const strokeDashoffset = movementNumbers? 
+    
+    process.env.REACT_APP_BASE_FULL_CIRCLE_VALUE-process.env.REACT_APP_BASE_FULL_CIRCLE_VALUE*(percentCaloriesAmount) 
+    :
+    process.env.REACT_APP_BASE_FULL_SMALL_CIRCLE_VALUE-process.env.REACT_APP_BASE_FULL_SMALL_CIRCLE_VALUE*(percentCaloriesAmount) 
+
 
     // Creating a style element
     const styleSheet = document.createElement('style');

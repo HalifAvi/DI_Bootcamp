@@ -52,13 +52,23 @@
     text-shadow: 0 0 10px var(--clr-black), 0 0 20px var(--clr-black);
 }
 
-circle {
+#circle {
 
     fill: none;
     stroke: url(#GradientColor); /*Set the color*/
-    stroke-width: 18px;
-    stroke-dasharray: 430; 
-    stroke-dashoffset: 430; /*Set the length of strip '0' = 100% full*/
+    stroke-width: 12px;
+    stroke-dasharray: 440; 
+    stroke-dashoffset: 440; /*Set the length of strip '0' = 100% full*/ 
+    animation: anim 10s linear forwards;
+}
+
+#circle-small {
+
+    fill: none;
+    stroke: url(#GradientColor); /*Set the color*/
+    stroke-width: 12px;
+    stroke-dasharray: 320; 
+    stroke-dashoffset: 320; /*Set the length of strip '0' = 100% full*/ 
     animation: anim 10s linear forwards;
 }
 

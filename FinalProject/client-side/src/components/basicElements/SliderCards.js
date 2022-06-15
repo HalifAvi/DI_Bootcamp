@@ -18,6 +18,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
     const [message, setMessage] = useState('');
 
+
     useEffect(()=> {
 
         // We put the Swiper CND script in index.js cause we'll come accross row 17 we'll need Swiper 
@@ -77,6 +78,11 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
 
         handleAddRecipe();
 
+        if(!popUp) {
+
+            setClickableIcons("painted");
+        }
+
     }, [popUp])
 
 
@@ -90,6 +96,8 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
 
 
     const addRecipeToPlate = (recipeObj, e) => {
+
+        setClickableIcons("none");
 
         isAlreadyAdded(e.target.id) ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_RECIPE);
 
@@ -118,7 +126,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     <Image id={"recipe-img"} src={recipeObj.image}/>
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title}/>
-                                    <Image id={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+                                    <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
                                     <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories}/>
                                     <Title id={"sliderCards-recipe-moreDetails"} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                 </div>
@@ -133,6 +141,17 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, insertNewAdded
         </section>
     )
 }
+
+
+const setClickableIcons = (status) => {
+
+    const caloriesIcons = document.querySelectorAll('.calories-icon-img');
+
+    [...caloriesIcons].forEach(element => {
+
+        element.style.pointerEvents = status;
+    });
+} 
 
 
 const mapStateToProps = (state) => {

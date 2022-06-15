@@ -3,14 +3,16 @@
 .popUpMessage-section {
 
     position: absolute;
-    font-size: 30px;
+    font-size: 40px;
     top: 100px;
     z-index: 10000;
-    height: 400px;
+    height: 320px;
+    width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #091921;
+    background-color: var(--clr-black);
+    border: 5px solid var(--clr-white);
 }
 
 .popUpMessage-container {
@@ -26,7 +28,11 @@
 .popUpMessage-container #popUpMessage-title{
 
     color: var(--clr-yellow);
-    margin-bottom: 70px;
+    font-family: var(--clr-thin-font);
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    font-size: 45px;
 }
 
 .popUpMessage-container label{
@@ -68,10 +74,10 @@
 
 .popUpMessage-container label input:hover ~ .fa{
 
-    color: #00fff1;
+    color: #ffea00;
     box-shadow: inset -1px -1px 3px rgba(255, 255, 255, 0.1),
                 inset 2px 2px 66px rgba(0, 0, 0, 1);
 
-    text-shadow: 0 0 5px #00fff1,
-                 0 0 20px #00fff1;
+    text-shadow: 0 0 5px #ffea00,
+                 0 0 20px #ffea00;
 }
