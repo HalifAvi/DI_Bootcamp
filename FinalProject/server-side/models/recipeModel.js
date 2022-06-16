@@ -4,6 +4,7 @@ import db from "../config/db.js";
 const {DataTypes} = Sequelize;
 
 const UsersRecipe = db.define('usersrecipe',{
+
     userid: {
         type: DataTypes.INTEGER
     },
@@ -22,11 +23,14 @@ const UsersRecipe = db.define('usersrecipe',{
     recipeprotein: {
         type: DataTypes.INTEGER
     },
-    recipefat: {
+    recipeiron: {
         type: DataTypes.INTEGER
     },
-    recipecarbs: {
+    recipevitaminc: {
         type: DataTypes.INTEGER
+    },
+    recipeinstructions: {
+        type: DataTypes.STRING
     },
     createdAt: {    // createdAt: false
         field: 'createdat', 

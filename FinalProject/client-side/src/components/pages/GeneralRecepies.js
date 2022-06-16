@@ -8,34 +8,12 @@ import AppLogo from '../BasicElements/AppLogo';
 import SliderCards from '../BasicElements/SliderCards';
 import Title from '../BasicElements/Title';
 import FilterSection from '../BasicElements/FiltersSection';
-import axios from 'axios';
 
 
 
 const GeneralRecepies = () => {
 
     const [paintAgainCaloriesBar, setPaintAgainCaloriesBar] = useState(true)
-
-
-
-    const fetchSpecInfo = async () => {
-
-        try{
-
-       let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}663845/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
-   
-       console.log("recepies actions:", response.data);
-   
-   
-   
-   }
-   catch(e){
-   
-       console.log(e);
-   }
-   }
-
-   
 
     return(
             <div className={"generalRecepies-div pattern-dots-sm slategray h-5"}>
@@ -56,8 +34,6 @@ const GeneralRecepies = () => {
                 <div className={"generalRecepies-caloriesScale-div"}>
                     <CaloriesScale movementNumbers={false}/> 
                 </div>    
-
-                <button style={{position: "absolute", bottom: "0px" }} onClick={fetchSpecInfo}>{"Click me"}</button>
 
             </div>
         )

@@ -6,14 +6,15 @@ import {
     GET_TODAY_RECIPES_ARRAY,
     ADD_TO_TODAY_RECIPES_ARRAY,
     SET_SPECIAL_RECIPES_ARRAY,
-    SET_CHOOSEN_RECIPES_ARRAY_IDX
+    SET_CHOOSEN_RECIPES_ARRAY_IDX,
+    MORE_RECPIE_DETAILS
 
 } from '../reduxConstants';
 
 
 ///////////////////////////////// DEMO FETCH!!!
 import defaultRecipesFetch from '../../Components/Assistants/defaultRecipesFetch.json';
-
+import objExample from '../../Components/Assistants/ObjExample.json';
 
 
 export const setToSpecialRecipesArray = () => async (dispatch, getStatus) => {
@@ -118,36 +119,29 @@ export const setTodayRecipesArray = (allRecipesArray) => {
 }
 
 
-export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch) => {
+export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getStatus) => {
 
-    console.log(recipeObj)
+    let {caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie, instructionsCurrRecpie, ingredientsCurrRecpie,
+        titleCurrRecpie, recipesnCurrRecpie, imageCurrRecpie} = getStatus().recipesReducer;
 
     try{ 
 
-        let objToSend = recipeObj.calories == null ? 
-        
-            {
-                calories : (recipeObj.nutrition.nutrients[0].amount).toFixed(0),
-                userid: userId,
-                title: recipeObj.title,
-                image : recipeObj.image,
-                recipesn: recipeObj.id
-            }
-
-            :
+        let objToSend = 
 
             {
-                calories : recipeObj.calories,
                 userid: userId,
-                title: recipeObj.title,
-                image : recipeObj.image,
                 recipesn: recipeObj.id,
-                protein: recipeObj.protein,
-                fat: recipeObj.fat,
-                carbs: recipeObj.carbs
+                title: titleCurrRecpie,
+                image : imageCurrRecpie,
+                instructions : instructionsCurrRecpie,
+                calories : caloriesCurrRecpie,
+                protein: proteinCurrRecpie,
+                iron: ironCurrRecpie,
+                vitaminC: vitaminCCurrRecpie
             }
 
-        
+            console.log(objToSend)
+
         let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_INSERT_RECIPE_URL,
             
             objToSend,
@@ -173,6 +167,70 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch) => {
         console.log(e);
     }
 }
+
+
+
+
+    // try{
+
+    //     let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}findByNutrients?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&number=${process.env.REACT_APP_BASE_NUM_OF_RECEPIES}&maxCalories=${currentCaloriesAmount}`);
+    
+    //     console.log("recepies actions:", response.data);
+    
+    //     dispatch({
+    
+    //         type: SET_ALL_DEFAULT_RECEPIES_ARRAY,
+    //         payload: response.data
+    //     })
+    
+    
+    // }
+    // catch(e){
+    
+    //     console.log(e);
+    // }
+
+
+export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
+
+    console.log(recipeObj)
+
+        try{
+
+            let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
+         
+
+            console.log("recepies actions:", response.data);
+
+            let objToUpdateReducer;
+
+            objToUpdateReducer = {
+
+                calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
+                protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
+                iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
+                vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
+                instructions: response.data.instructions,
+                ingredients: response.data.nutrition.ingredients,
+                title: response.data.title,
+                recipesn: response.data.id,
+                image: response.data.image
+            }
+
+            dispatch({
+    
+                type: MORE_RECPIE_DETAILS,
+                payload: objToUpdateReducer
+            })
+        }
+
+        catch(e){
+    
+            console.log(e);
+        }
+}
+
+
 
 
 const shuffle = (array) => {

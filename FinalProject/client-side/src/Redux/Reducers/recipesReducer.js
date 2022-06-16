@@ -4,7 +4,8 @@ import {
     GET_TODAY_RECIPES_ARRAY,
     ADD_TO_TODAY_RECIPES_ARRAY,
     SET_SPECIAL_RECIPES_ARRAY,
-    SET_CHOOSEN_RECIPES_ARRAY_IDX
+    SET_CHOOSEN_RECIPES_ARRAY_IDX,
+    MORE_RECPIE_DETAILS
 
 } from '../reduxConstants';
 
@@ -36,7 +37,16 @@ const initStateRecipes = {
     MexicanRecipes: MexicanRecipes,
     currentDisplayedRecepies : defaultRecipesFetch,
     todayRecipes: [],
-    choosenDisplayedRecepies : 0
+    choosenDisplayedRecepies : 0,
+    caloriesCurrRecpie: 0,
+    proteinCurrRecpie: 0,
+    ironCurrRecpie: 0, 
+    vitaminCCurrRecpie: 0, 
+    instructionsCurrRecpie: '', 
+    ingredientsCurrRecpie: [],
+    titleCurrRecpie: '',
+    recipesnCurrRecpie: 0,
+    imageCurrRecpie: ''
 }
 
 
@@ -65,6 +75,16 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
         case SET_CHOOSEN_RECIPES_ARRAY_IDX:
 
             return {...state, choosenDisplayedRecepies: action.payload}
+
+        case MORE_RECPIE_DETAILS:
+
+            const { calories, protein, iron, vitaminC, instructions, ingredients, title, recipesn, image } = action.payload;
+
+            console.log(action.payload)
+
+            return {...state, caloriesCurrRecpie: calories, proteinCurrRecpie: protein, ironCurrRecpie: iron, vitaminCCurrRecpie: vitaminC,
+                    instructionsCurrRecpie: instructions, ingredientsCurrRecpie: ingredients, titleCurrRecpie: title, recipesnCurrRecpie: recipesn,
+                    imageCurrRecpie: image}
         
         default: 
 

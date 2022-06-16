@@ -4,12 +4,12 @@ import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCaloriesAmount, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
+const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
@@ -57,6 +57,8 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
         async function handleAddRecipe() {
 
                 if(wantToAdd){
+
+                    await getMoreRecpieDetails(clickedRecipeObj);
     
                     await insertNewAddedRecipe(clickedRecipeObj, userId);
         
@@ -126,8 +128,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
         
         <section className={"swiper-section pattern-dots-sm slategray h-5"}>
 
-            {console.log("im in render")}
-
             {/* { swiperVariable ? setSwiperVariable(false) : null } */}
 
             <div className={"swiper-container"}>
@@ -143,7 +143,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title}/>
                                     <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
                                     <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
-                                    <Title id={"sliderCards-recipe-moreDetails"} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
+                                    <Title id={"sliderCards-recipe-moreDetails"} onClickEvent={()=>getMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                 </div>
                             )
                         }) 
@@ -192,7 +192,8 @@ const mapDispatchToProps = (dispatch) => {
         changeCurrentCaloriesAmount : (clickedRecipeObj, operation) => dispatch(changeCurrentCaloriesAmount(clickedRecipeObj, operation)),
         insertNewAddedRecipe : (recipeObj, userId) => dispatch(insertNewAddedRecipe(recipeObj, userId)),
         setAllDefaultRecipesArray : () => dispatch(setAllDefaultRecipesArray()),
-        setToSpecialRecipesArray : () => dispatch(setToSpecialRecipesArray())
+        setToSpecialRecipesArray : () => dispatch(setToSpecialRecipesArray()),
+        getMoreRecpieDetails : (recipeObj) => dispatch(getMoreRecpieDetails(recipeObj))
     }
 }
 
