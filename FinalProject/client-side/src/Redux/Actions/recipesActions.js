@@ -126,6 +126,18 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
 
     try{ 
 
+        let justNameAndAmountIngredientsArray = ingredientsCurrRecpie.map(item=> {
+
+            return {
+
+                'name': item.name,
+                'amount': item.amount, 
+                'unit': item.unit
+            }
+        })
+
+        let JSONIngredientsCurrRecpie = JSON.stringify(justNameAndAmountIngredientsArray);
+
         let objToSend = 
 
             {
@@ -137,7 +149,8 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
                 calories : caloriesCurrRecpie,
                 protein: proteinCurrRecpie,
                 iron: ironCurrRecpie,
-                vitaminC: vitaminCCurrRecpie
+                vitaminC: vitaminCCurrRecpie,
+                ingredients: JSONIngredientsCurrRecpie
             }
 
             console.log(objToSend)
@@ -197,24 +210,48 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 
         try{
 
-            let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
+            // let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
          
 
-            console.log("recepies actions:", response.data);
+            // console.log("recepies actions:", response.data);
+
+            // let objToUpdateReducer;
+
+            // objToUpdateReducer = {
+
+            //     calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
+            //     protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
+            //     iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
+            //     vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
+            //     instructions: response.data.instructions,
+            //     ingredients: response.data.nutrition.ingredients,
+            //     title: response.data.title,
+            //     recipesn: response.data.id,
+            //     image: response.data.image
+            // }
+
+            // dispatch({
+    
+            //     type: MORE_RECPIE_DETAILS,
+            //     payload: objToUpdateReducer
+            // })
+
+
+            console.log("recepies actions:", objExample);
 
             let objToUpdateReducer;
 
             objToUpdateReducer = {
 
-                calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
-                protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
-                iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
-                vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
-                instructions: response.data.instructions,
-                ingredients: response.data.nutrition.ingredients,
-                title: response.data.title,
-                recipesn: response.data.id,
-                image: response.data.image
+                calories : ((objExample.nutrition.nutrients)[0].amount).toFixed(0),
+                protein: ((objExample.nutrition.nutrients)[8].amount).toFixed(0),
+                iron: ((objExample.nutrition.nutrients)[16].amount).toFixed(0),
+                vitaminC: ((objExample.nutrition.nutrients)[12].amount).toFixed(0),
+                instructions: objExample.instructions,
+                ingredients: objExample.nutrition.ingredients,
+                title: objExample.title,
+                recipesn: objExample.id,
+                image: objExample.image
             }
 
             dispatch({

@@ -19,10 +19,12 @@ export const insertRecipe = async (req, res) => {
         calories,
         protein,
         iron,
-        vitaminC
+        vitaminC,
+        ingredients
 
     } = req.body
 
+    console.log(ingredients)
 
 
     try{
@@ -38,7 +40,9 @@ export const insertRecipe = async (req, res) => {
             recipeprotein: protein,
             recipeiron: iron,
             recipevitaminc: vitaminC,
-            recipeinstructions: instructions
+            recipeinstructions: instructions,
+            recipeingredients: ingredients
+
         })
 
         // Return the whole new recipe object

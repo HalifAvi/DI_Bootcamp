@@ -32,6 +32,9 @@ const UsersRecipe = db.define('usersrecipe',{
     recipeinstructions: {
         type: DataTypes.STRING
     },
+    recipeingredients: {
+        type: DataTypes.JSON
+    },
     createdAt: {    // createdAt: false
         field: 'createdat', 
         type: DataTypes.DATEONLY
