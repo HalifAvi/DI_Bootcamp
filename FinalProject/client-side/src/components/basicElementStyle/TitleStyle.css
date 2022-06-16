@@ -276,6 +276,14 @@
     color: var(--clr-white);
 }
 
+#sliderCards-noRecpies-message {
+
+    text-align: center;
+    font-family: var(--clr-thin-font);
+    letter-spacing: 1px;
+    font-size: 70px;
+  }
+
 
 /******************************* 'GeneralRecipes' Page ********************************/
 

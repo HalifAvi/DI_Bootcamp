@@ -12,7 +12,7 @@ import Title from './Title';
 const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCaloriesAmount, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
         
 
-    const [swiperVariable, setSwiperVariable] = useState(true);
+    // const [swiperVariable, setSwiperVariable] = useState(true);
     const [popUp, setPopUp] = useState(false);
     const [wantToAdd, setWantToAdd] = useState(false);
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
@@ -47,7 +47,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
             document.body.removeChild(script);
         }
 
-    })
+    }, [wantToAdd])  
 
 
 
@@ -82,9 +82,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
                     setWantToAdd(false);
         
                     await setToSpecialRecipesArray(); // Set the recipes array to the current calories limitation
-    
-                    console.log(currentCaloriesAmount)
-                    console.log(currentDisplayedRecepies)
                 }
         }
 
@@ -126,13 +123,18 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
     
 
     return(
+        
         <section className={"swiper-section pattern-dots-sm slategray h-5"}>
 
-            { swiperVariable ? setSwiperVariable(false) : null }
+            {console.log("im in render")}
+
+            {/* { swiperVariable ? setSwiperVariable(false) : null } */}
 
             <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>
                     {
+                        currentDisplayedRecepies.length !== 0 ?
+
                         currentDisplayedRecepies.map(recipeObj=>{
 
                             return ( 
@@ -145,6 +147,10 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, currentCalorie
                                 </div>
                             )
                         }) 
+
+                        :
+
+                        <Title id={"sliderCards-noRecpies-message"} titleName={process.env.REACT_APP_BASE_NO_RECPIES_MESSAGE} /> 
                     }
                 </div>
             </div>  

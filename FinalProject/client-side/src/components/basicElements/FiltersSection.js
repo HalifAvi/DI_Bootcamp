@@ -2,6 +2,8 @@ import "../BasicElementStyle/FiltersSection.css";
 import Image from "./Image";
 import { connect } from 'react-redux';
 import { setToSpecialRecipesArray, setChoosenRecepiesArrayIdx } from '../../Redux/Actions/recipesActions.js';
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 const FilterSection = ({setToSpecialRecipesArray, setChoosenRecepiesArrayIdx}) => {
@@ -11,10 +13,10 @@ const FilterSection = ({setToSpecialRecipesArray, setChoosenRecepiesArrayIdx}) =
         setChoosenRecepiesArrayIdx(e.target.id);
         setToSpecialRecipesArray();
     }
-
    
     return(
         <section className={"filterSection-container"}>
+            
             <Image id={0} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_MEX_ICON_URL}/>
             <Image id={2} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_ITA_ICON_URL}/>
             <Image id={1} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_FRE_ICON_URL}/>

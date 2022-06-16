@@ -271,6 +271,8 @@ const shuffle = (array) => {
 
 
 
+// For specific recpie information
+// https://api.spoonacular.com/recipes/663845/information?apiKey=d58baefbd9bf4263946475c94f999e9d&includeNutrition
 
 
 

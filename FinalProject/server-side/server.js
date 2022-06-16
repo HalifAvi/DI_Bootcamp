@@ -28,7 +28,7 @@ catch (e) {
 }
 
 
-cron.schedule('0 12 * * * *', async () => {
+cron.schedule('0 46 * * * *', async () => {
 
     // First: Get the all unique usersid
     UsersCalories.aggregate('userid', 'DISTINCT', { plain: false })
