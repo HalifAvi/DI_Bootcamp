@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../PagesStyle/GeneralRecepies.css';
 import NavBar from "../BasicElements/NavBar";
 import CaloriesScale from "../BasicElements/CaloriesScale";
@@ -11,9 +11,10 @@ import FilterSection from '../BasicElements/FiltersSection';
 
 
 
-const GeneralRecepies = () => {
+const GeneralRecepies = ({choosenDisplayedRecepies}) => {
 
     const [paintAgainCaloriesBar, setPaintAgainCaloriesBar] = useState(true)
+
 
     return(
             <div className={"generalRecepies-div pattern-dots-sm slategray h-5"}>
@@ -35,15 +36,68 @@ const GeneralRecepies = () => {
                     <CaloriesScale movementNumbers={false}/> 
                 </div>    
 
+                {<Title id={"generalRecipes-page-filter-name"} titleName={getTheFilterName(choosenDisplayedRecepies)}/>}
             </div>
         )
+    }
+
+    const mapStateToProps = (state) => {
+
+        return{
+
+            choosenDisplayedRecepies : state.recipesReducer.choosenDisplayedRecepies
+        }
     }
 
 
 
 
-export default connect(null, null)(GeneralRecepies);
+export default connect(mapStateToProps, null)(GeneralRecepies);
 
+
+
+const getTheFilterName = (choosenDisplayedRecepiesIdx) => {
+
+
+    switch(choosenDisplayedRecepiesIdx.toString()){
+
+        case '0' : 
+
+            return "NO-FILTER";
+
+        case '1' : 
+
+            return "MEXICAN FOOD";
+
+        case '2' :
+
+            return "ITALIAN FOOD";
+
+        case '3' :
+
+            return "FRENCH FOOD";
+
+        case '4' :
+
+            return "CHINESE FOOD";
+        
+        case '5' :
+
+            return "BREAKFASTS";
+
+        case '6' : 
+
+            return "SOUPS";
+
+        case '7' :
+
+            return "SALADS";
+
+        case '8' :
+
+            return "DESSERTS";
+    }
+}
 
 
 

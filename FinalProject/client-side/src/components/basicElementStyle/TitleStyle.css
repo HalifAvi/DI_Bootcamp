@@ -301,6 +301,20 @@
     letter-spacing: 1px;
 }
 
+#generalRecipes-page-filter-name {
+
+    font-family: var(--clr-thin-font);
+    position: absolute;
+    left: 10px;
+    top: 100px;
+    text-align: center;
+    font-size: 50px;
+    color: var(--clr-white);
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 20px var(--clr-yellow);
+}
+
 
 
 /******************************* 'FilterSection' Element ********************************/
@@ -336,7 +350,8 @@
 
 #favoritesRecepies-page-count-title {
 
-    font-family: var(--clr-script-font);
+    font-family: var(--clr-thin-font);
+    letter-spacing: 1px;
     position: absolute;
     right: 30px;
     top: 110px;
@@ -344,4 +359,5 @@
     font-size: 40px;
     color: var(--clr-white);
     opacity: 0.9;
+    text-shadow: 0 0 20px var(--clr-yellow);
 }
