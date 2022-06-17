@@ -276,34 +276,33 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 
         try{
 
-    //         let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
+            // let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
          
 
-    //         console.log("recepies actions:", response.data);
+            // console.log("recepies actions:", response.data);
 
-    //         let objToUpdateReducer;
+            // let objToUpdateReducer;
 
-    //         objToUpdateReducer = {
+            // objToUpdateReducer = {
 
-    //             calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
-    //             protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
-    //             iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
-    //             vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
-    //             instructions: response.data.instructions,
-    //             ingredients: response.data.nutrition.ingredients,
-    //             title: response.data.title,
-    //             recipesn: response.data.id,
-    //             image: response.data.image
-    //         }
+            //     calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
+            //     protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
+            //     iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
+            //     vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
+            //     instructions: response.data.instructions,
+            //     ingredients: response.data.nutrition.ingredients,
+            //     title: response.data.title,
+            //     recipesn: response.data.id,
+            //     image: response.data.image
+            // }
 
-    //         dispatch({
+            // dispatch({
     
-    //             type: MORE_RECPIE_DETAILS,
-    //             payload: objToUpdateReducer
-    //         })
+            //     type: MORE_RECPIE_DETAILS,
+            //     payload: objToUpdateReducer
+            // })
 
 
-            console.log("recepies actions:", objExample);
 
             let objToUpdateReducer;
 

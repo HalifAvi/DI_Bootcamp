@@ -77,8 +77,6 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
         case ADD_TO_FAVORITS_ARRAY: 
 
-            console.log("REDUCER ADD TO FAV:", action.payload)
-
             (state.allFavoriteRecpies).push(action.payload)
 
             return {...state, allFavoriteRecpies: [...state.allFavoriteRecpies]}

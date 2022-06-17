@@ -9,7 +9,8 @@ import Title from './Title';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
+const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites,
+                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
@@ -125,11 +126,24 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
     const handlePressOnLike = async (e, recipeObj) => {
 
-        e.target.style.color = "#e97e7e";
 
-        await getMoreRecpieDetails(recipeObj);
+        if(!(allFavoriteRecpies.some(item=> recipeObj.id === item.recipesn))) {
 
-        await addRecipeToFavorites(recipeObj);
+            e.target.style.color = "#e97e7e";
+
+            await getMoreRecpieDetails(recipeObj);
+
+            addRecipeToFavorites(recipeObj);
+
+            console.log(allFavoriteRecpies)
+            console.log(todayRecipes)
+
+        }
+
+        else{
+
+            console.log("EXISTTTTT!!!")
+        }
     }
     
 
@@ -190,7 +204,8 @@ const mapStateToProps = (state) => {
         userId : state.signInUpReducer.userId,
         todayRecipes : state.recipesReducer.todayRecipes,
         currentDisplayedRecepies : state.recipesReducer.currentDisplayedRecepies,
-        currentCaloriesAmount : state.caloriesReducer.currentCaloriesAmount
+        currentCaloriesAmount : state.caloriesReducer.currentCaloriesAmount,
+        allFavoriteRecpies : state.recipesReducer.allFavoriteRecpies
     }
 }
 
