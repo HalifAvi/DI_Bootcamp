@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
 import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
+import RecpieDescriptionCard from "../BasicElements/RecpieDescriptionCard";
 
 
                                                     // paramToChange - an obj to change the state of pervious component
@@ -167,6 +168,16 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
         setPopUp(true);
     }
+
+    const handleMoreRecpieDetails = async (recipeObj) => {
+
+        await getMoreRecpieDetails(recipeObj);
+
+
+
+
+
+    }
     
 
     return(
@@ -193,7 +204,8 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title || recipeObj.recipetitle}/>
                                     <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
                                     <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || recipeObj.recipecalories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
-                                    <Title id={"sliderCards-recipe-moreDetails"} onClickEvent={()=>getMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
+                                    <Title id={"sliderCards-recipe-moreDetails"} classN={"open-button"} onClickEvent={()=>handleMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
+                                    <RecpieDescriptionCard />
                                 </div>
                             )
                         }) 
@@ -205,7 +217,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                 </div>
             </div>  
 
-            {(popUp) && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} popUpAnswerFav={setWantToRemove} kindOfPage={kindOfPage} message={message}/>}
+            {(popUp) && <PopUpMessage  closePopUp={setPopUp} popUpAnswer={setWantToAdd} popUpAnswerFav={setWantToRemove} kindOfPage={kindOfPage} message={message}/>}
           
         </section>
     )

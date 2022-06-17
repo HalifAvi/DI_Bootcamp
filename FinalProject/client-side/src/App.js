@@ -4,8 +4,6 @@ import SigninSignupIntro from './Components/Pages/SigninSignupIntro';
 import SigninSignupForm from './Components/Pages/SigninSignupForm';
 import Main from './Components/Pages/Main';
 import LoadingPage from './Components/Pages/LoadingPage';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import FavoritesRecepies from './Components/Pages/FavoritesRecepies';
 import GeneralRecepies from './Components/Pages/GeneralRecepies';
 import GraphPage from './Components/Pages/GraphPage';
@@ -17,18 +15,10 @@ import Settings from './Components/Pages/Settings';
 
 function App() {
 
-  const navigate = useNavigate();
-
-  useEffect(()=> {
-
-    navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 
-      process.env.REACT_APP_BASE_HOME_PATH + "/" +
-      process.env.REACT_APP_BASE_LOADING_HOME_TIME);
-}, [])
-
   return (
     <div>
       <Routes>
+        <Route path={process.env.REACT_APP_BASE_PATH} element={<Home />} />
         <Route path={process.env.REACT_APP_BASE_HOME_PATH} element={<Home />} />
         <Route path={process.env.REACT_APP_BASE_SIGN_UP_INTRO_PATH} element={<SigninSignupIntro pageToDisplay={process.env.REACT_APP_SIGN_UP_NAME} />} />
         <Route path={process.env.REACT_APP_BASE_SIGN_IN_INTRO_PATH} element={<SigninSignupIntro pageToDisplay={process.env.REACT_APP_SIGN_IN_NAME} />} />

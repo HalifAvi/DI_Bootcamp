@@ -206,7 +206,7 @@ export const signIn = async (req, res) => {
         
         const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
 
-        console.log(todayDate)
+        console.log("DATEEEEEEEEEEE:", todayDate)
                 
         // Get the data from recipes table
         const usersRecipes = await UsersRecipe.findAll({
@@ -217,6 +217,16 @@ export const signIn = async (req, res) => {
             createdat: todayDate
         }
         })
+
+        // const usersRecipes = await UsersRecipe.findAll({
+
+        //     where: {                
+                    
+        //         [Op.eq]:  db.fn('date_trunc', 'day', db.col('createdat'))
+        //     }
+        // })
+
+        console.log(usersRecipes)
 
         // Retrive the data from db         
         const userTodayRecipes = usersRecipes.map(item => item.dataValues)
