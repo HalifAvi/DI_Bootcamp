@@ -278,7 +278,8 @@
 
 #sliderCards-noRecpies-message {
 
-    text-align: center;
+    /* text-align: center; */
+    margin-left: 80px;
     font-family: var(--clr-thin-font);
     letter-spacing: 1px;
     font-size: 70px;
@@ -331,4 +332,16 @@
     z-index: 2000;
     transform: rotate(-90deg);
     letter-spacing: 1px;
+}
+
+#favoritesRecepies-page-count-title {
+
+    font-family: var(--clr-script-font);
+    position: absolute;
+    right: 30px;
+    top: 110px;
+    text-align: center;
+    font-size: 40px;
+    color: var(--clr-white);
+    opacity: 0.9;
 }

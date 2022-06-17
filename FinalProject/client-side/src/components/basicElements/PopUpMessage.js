@@ -2,11 +2,22 @@ import '../BasicElementStyle/PopUpMessage.css';
 import Title from "../BasicElements/Title"
 
 
-const PopUpMessage = ({message, closePopUp, popUpAnswer}) => {
+const PopUpMessage = ({message, closePopUp, popUpAnswer, popUpAnswerFav, kindOfPage}) => {
 
     const handlePopUp = (setPopUpValue, setWantToAddValue) => {
+
         closePopUp(setPopUpValue);
-        popUpAnswer(setWantToAddValue);
+
+        if( kindOfPage !== "fav"){
+
+            popUpAnswer(setWantToAddValue); 
+            popUpAnswerFav(false);
+        }
+        else {
+
+            popUpAnswerFav(setWantToAddValue);
+            popUpAnswer(false);
+        }
     }
 
     return(

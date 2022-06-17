@@ -9,7 +9,8 @@ import {
     SET_SPECIAL_RECIPES_ARRAY,
     SET_CHOOSEN_RECIPES_ARRAY_IDX,
     MORE_RECPIE_DETAILS,
-    SET_FAVORITES_RECIPES_ARRAY
+    SET_FAVORITES_RECIPES_ARRAY,
+    REMOVE_RECPIE_FROM_FAVORITES_ARRAY
 
 } from '../reduxConstants';
 
@@ -276,47 +277,24 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 
         try{
 
-            // let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
+            let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
          
 
-            // console.log("recepies actions:", response.data);
-
-            // let objToUpdateReducer;
-
-            // objToUpdateReducer = {
-
-            //     calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
-            //     protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
-            //     iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
-            //     vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
-            //     instructions: response.data.instructions,
-            //     ingredients: response.data.nutrition.ingredients,
-            //     title: response.data.title,
-            //     recipesn: response.data.id,
-            //     image: response.data.image
-            // }
-
-            // dispatch({
-    
-            //     type: MORE_RECPIE_DETAILS,
-            //     payload: objToUpdateReducer
-            // })
-
-
+            console.log("recepies actions:", response.data);
 
             let objToUpdateReducer;
 
             objToUpdateReducer = {
 
-                calories : ((objExample.nutrition.nutrients)[0].amount).toFixed(0),
-                protein: ((objExample.nutrition.nutrients)[8].amount).toFixed(0),
-                iron: ((objExample.nutrition.nutrients)[16].amount).toFixed(0),
-                vitaminC: ((objExample.nutrition.nutrients)[12].amount).toFixed(0),
-                instructions: objExample.instructions,
-                ingredients: objExample.nutrition.ingredients,
-                title: objExample.title,
-                recipesn: objExample.id,
-                image: objExample.image
+                calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
+                protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
+                iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
+                vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
+                instructions: response.data.instructions,
+                ingredients: response.data.nutrition.ingredients,
+                title: response.data.title,
+                recipesn: response.data.id,
+                image: response.data.image
             }
 
             dispatch({
@@ -324,6 +302,29 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
                 type: MORE_RECPIE_DETAILS,
                 payload: objToUpdateReducer
             })
+
+
+
+        //     let objToUpdateReducer;
+
+        //     objToUpdateReducer = {
+
+        //         calories : ((objExample.nutrition.nutrients)[0].amount).toFixed(0),
+        //         protein: ((objExample.nutrition.nutrients)[8].amount).toFixed(0),
+        //         iron: ((objExample.nutrition.nutrients)[16].amount).toFixed(0),
+        //         vitaminC: ((objExample.nutrition.nutrients)[12].amount).toFixed(0),
+        //         instructions: objExample.instructions,
+        //         ingredients: objExample.nutrition.ingredients,
+        //         title: objExample.title,
+        //         recipesn: objExample.id,
+        //         image: objExample.image
+        //     }
+
+        //     dispatch({
+    
+        //         type: MORE_RECPIE_DETAILS,
+        //         payload: objToUpdateReducer
+        //     })
         }
 
         catch(e){
@@ -351,7 +352,42 @@ export const setFavoritesRecpies = (favoritesArray) => (dispatch) => {
 }
 
 
+export const removeRecpieFromFavorites = (recpieToRemove) => async (dispatch, getStatus) => {
 
+    const {allFavoriteRecpies} = getStatus().recipesReducer;
+
+    console.log(recpieToRemove.recipesn)
+
+    try{
+
+        let response = await axios.delete(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_REMOVE_FAV_RECIPE_URL}`, { data : {recipeSnToRemove : recpieToRemove.recipesn} },
+            {
+    
+            withCredentials: true,
+            headers: {
+    
+                'Access-Control-Allow-Origin' : '*',
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        const favArrayAfterRemove =  deleteObjFromArr(allFavoriteRecpies, recpieToRemove.recipesn);
+
+        dispatch({
+    
+            type: REMOVE_RECPIE_FROM_FAVORITES_ARRAY,
+            payload: favArrayAfterRemove
+        })
+    }
+    catch(e){
+
+        console.log(e);
+    }
+}
+
+
+
+const deleteObjFromArr = (array, value) => array.filter(data => data.recipesn != value);
 
 
 

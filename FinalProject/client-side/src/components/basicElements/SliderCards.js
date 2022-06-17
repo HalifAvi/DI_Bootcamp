@@ -4,20 +4,24 @@ import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails, addRecipeToFavorites } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
 const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites,
-                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage}) => { 
+                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage, removeRecpieFromFavorites}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
     const [popUp, setPopUp] = useState(false);
     const [wantToAdd, setWantToAdd] = useState(false);
+    const [wantToRemove, setWantToRemove] = useState(false);
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
     const [message, setMessage] = useState('');
+
+    const arrayToDisplay = kindOfPage!=="fav"?currentDisplayedRecepies : allFavoriteRecpies;
+
 
 
     useEffect(()=> {
@@ -84,6 +88,15 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                     setWantToAdd(false);
         
                     await setToSpecialRecipesArray(); // Set the recipes array to the current calories limitation
+
+                } else if(wantToRemove){
+
+
+                    console.log(wantToRemove);
+
+                    await removeRecpieFromFavorites(clickedRecipeObj);
+
+                    // setWantToRemove(false);
                 }
         }
 
@@ -125,7 +138,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
     const handlePressOnLike = async (e, recipeObj) => {
 
-
         if(!(allFavoriteRecpies.some(item=> recipeObj.id === item.recipesn))) {
 
             e.target.style.color = "#e97e7e";
@@ -146,6 +158,15 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
             setPopUp(true);
         }
     }
+
+    const handlePressOnRemoveLike = (recipeObj) => {
+
+        setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_REMOVE_LIKE);
+
+        setClickedRecipeObj(recipeObj);
+
+        setPopUp(true);
+    }
     
 
     return(
@@ -157,18 +178,16 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
             <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>
                     {
-                        currentDisplayedRecepies.length !== 0 ?
+                        arrayToDisplay.length !== 0 ?
 
-                        (kindOfPage!=="fav"?currentDisplayedRecepies : allFavoriteRecpies).map(recipeObj=>{
-
-                            {console.log(recipeObj)}
+                        (arrayToDisplay).map(recipeObj=>{
 
                             return ( 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     { kindOfPage!=="fav"?
                                         <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
                                         :
-                                        null 
+                                        <Image onClickEvent={()=>handlePressOnRemoveLike(recipeObj)} classN={"remove-like-icon-img"} src={process.env.REACT_APP_BASE_REMOVE_FAV_ICON_URL}/>  
                                     }
                                     <Image id={"recipe-img"} src={recipeObj.image || recipeObj.recipeimage}/>
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title || recipeObj.recipetitle}/>
@@ -181,12 +200,12 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                         :
 
-                        <Title id={"sliderCards-noRecpies-message"} titleName={process.env.REACT_APP_BASE_NO_RECPIES_MESSAGE} /> 
+                        <Title id={"sliderCards-noRecpies-message"} titleName={kindOfPage!=="fav"?process.env.REACT_APP_BASE_NO_RECPIES_MESSAGE:process.env.REACT_APP_BASE_NO_FAVS_MESSAGE} /> 
                     }
                 </div>
             </div>  
 
-            {(popUp) && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={message}/>}
+            {(popUp) && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} popUpAnswerFav={setWantToRemove} kindOfPage={kindOfPage} message={message}/>}
           
         </section>
     )
@@ -226,7 +245,8 @@ const mapDispatchToProps = (dispatch) => {
         setAllDefaultRecipesArray : () => dispatch(setAllDefaultRecipesArray()),
         setToSpecialRecipesArray : () => dispatch(setToSpecialRecipesArray()),
         getMoreRecpieDetails : (recipeObj) => dispatch(getMoreRecpieDetails(recipeObj)),
-        addRecipeToFavorites : (recipeObj) => dispatch(addRecipeToFavorites(recipeObj))
+        addRecipeToFavorites : (recipeObj) => dispatch(addRecipeToFavorites(recipeObj)),
+        removeRecpieFromFavorites : (recipeObj) => dispatch(removeRecpieFromFavorites(recipeObj))
     }
 }
 

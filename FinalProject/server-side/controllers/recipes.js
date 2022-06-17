@@ -108,3 +108,31 @@ export const insertFavRecpie = async (req, res) => {
         res.status(404).json({msg: 'Fault adding new recipe!!!'})
     }
 }
+
+
+export const removeFavRecpie = async (req, res) => {
+
+    console.log("###############")
+    console.log(req.body.recipeSnToRemove)
+    console.log("###############")
+
+    try{
+
+        const answer = await UsersFavRecipe.destroy({
+
+            where: { recipesn: req.body.recipeSnToRemove }
+
+          });
+      
+        res.json(answer)
+    }
+    catch(error){
+
+        console.log(error)
+
+        res.status(404).json({msg: 'Fault delete recipe from favorites!!!'})
+    }
+}
+
+
+
