@@ -12,7 +12,6 @@ import Title from '../BasicElements/Title';
 const FavoritesRecepies = ({allFavoriteRecpies}) => {
 
     let howManyFavorites = allFavoriteRecpies.length;
-    let paint1 = false;
 
     return(
             <div className={"favoritesRecepies-div pattern-dots-sm slategray h-5"}>
@@ -23,7 +22,7 @@ const FavoritesRecepies = ({allFavoriteRecpies}) => {
 
                 <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+200} positionOnNavBar={2}/> 
 
-                <Title id={"favoritesRecepies-page-title"} titleName={process.env.REACT_APP_BASE_TITLE_FAV_RECIPES}/>
+                {howManyFavorites !==0 ?<Title id={"favoritesRecepies-page-title"} titleName={process.env.REACT_APP_BASE_TITLE_FAV_RECIPES}/>:null}
             
                 <SliderCards kindOfPage={"fav"}/> 
 
