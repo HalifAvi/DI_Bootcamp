@@ -9,15 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import FavoritesRecepies from './Components/Pages/FavoritesRecepies';
 import GeneralRecepies from './Components/Pages/GeneralRecepies';
 import GraphPage from './Components/Pages/GraphPage';
-import IngredientsToBuy from './Components/Pages/IngredientsToBuy';
 import PreviousRecepies from './Components/Pages/PreviousRecepies';
 import Settings from './Components/Pages/Settings';
-import SpecificRecepies from './Components/Pages/SpecificRecepies';
-
-
-// import './App.css';
-// import UploadFile from '../src/Components/BasicElements/UploadFile';
-// import CaloriesScale from './Components/BasicElements/CaloriesScale';
 
 
 
@@ -46,10 +39,8 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_FAV_RECEPIES_PATH} element={<FavoritesRecepies />} />
         <Route path={process.env.REACT_APP_BASE_GENERAL_RECEPIES_PATH} element={<GeneralRecepies />} />
         <Route path={process.env.REACT_APP_BASE_GRAPH_PATH} element={<GraphPage />} />
-        <Route path={process.env.REACT_APP_BASE_INGREDIENTS_PATH} element={<IngredientsToBuy />} />
         <Route path={process.env.REACT_APP_BASE_PREV_RECEPIES_PATH} element={<PreviousRecepies />} />
         <Route path={process.env.REACT_APP_BASE_SETTINGS_PATH} element={<Settings />} />
-        <Route path={process.env.REACT_APP_BASE_SPECIFIC_RECEPIES_PATH} element={<SpecificRecepies />} />
       </Routes> 
     </div>
   )

@@ -14,13 +14,18 @@ const PopUpMessage = ({message, closePopUp, popUpAnswer}) => {
             <div className={"popUpMessage-container"}>
                 <Title id={"popUpMessage-title"} titleName={message}/> 
                 <div>
+                    {
+                        message !== process.env.REACT_APP_BASE_MESSAGE_ALREADY_EXIST_TO_FAVORITES ? 
+                        <label>
+                            <input type={"radio"} name={"question"}/>
+                            <i onClick={()=>handlePopUp(false, true)} className={"fa fa-check"} aria-hidden={"true"}></i>
+                        </label>
+                        :
+                        null
+                    }
                     <label>
                         <input type={"radio"} name={"question"}/>
-                        <i onClick={()=>handlePopUp(false, true)} class="fa fa-check" aria-hidden="true"></i>
-                    </label>
-                    <label>
-                        <input type={"radio"} name={"question"}/>
-                        <i onClick={()=>handlePopUp(false, false)} class="fa fa-times" aria-hidden="false"></i>
+                        <i onClick={()=>handlePopUp(false, false)} className={"fa fa-times"} aria-hidden={"false"}></i>
                     </label>
                 </div>
             </div>

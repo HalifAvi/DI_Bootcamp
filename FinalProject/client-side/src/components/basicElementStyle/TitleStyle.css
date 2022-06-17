@@ -316,3 +316,19 @@
     top: 145px;
     left: 100px;
 }
+
+/******************************* 'FavoritesRecipes' Page ********************************/
+
+
+#favoritesRecepies-page-title {
+
+    font-family: var(--clr-script-font);
+    position: absolute;
+    left: -180px;
+    top: 333px;
+    font-size: 50px;
+    color: var(--clr-yellow);
+    z-index: 2000;
+    transform: rotate(-90deg);
+    letter-spacing: 1px;
+}

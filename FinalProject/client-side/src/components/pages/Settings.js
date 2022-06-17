@@ -14,7 +14,7 @@ const Settings = (props) => {
 <h1>{"Settings"}</h1>
 
 
-            <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+700} positionOnNavBar={7}/>
+            <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+500} positionOnNavBar={7}/>
         </div>
     )
 }

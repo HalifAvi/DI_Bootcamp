@@ -10,7 +10,7 @@ import Title from './Title';
 
                                                     // paramToChange - an obj to change the state of pervious component
 const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites,
-                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies}) => { 
+                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
@@ -72,7 +72,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                         clickedRecipeObj.calories
 
-                    
                     await changeCurrentCaloriesAmount(calories, "-");
         
                     // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
@@ -142,7 +141,9 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
         else{
 
-            console.log("EXISTTTTT!!!")
+            setMessage(process.env.REACT_APP_BASE_MESSAGE_ALREADY_EXIST_TO_FAVORITES);
+
+            setPopUp(true);
         }
     }
     
@@ -158,15 +159,21 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                     {
                         currentDisplayedRecepies.length !== 0 ?
 
-                        currentDisplayedRecepies.map(recipeObj=>{
+                        (kindOfPage!=="fav"?currentDisplayedRecepies : allFavoriteRecpies).map(recipeObj=>{
+
+                            {console.log(recipeObj)}
 
                             return ( 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
-                                    <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
-                                    <Image id={"recipe-img"} src={recipeObj.image}/>
-                                    <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title}/>
-                                    <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
-                                    <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
+                                    { kindOfPage!=="fav"?
+                                        <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
+                                        :
+                                        null 
+                                    }
+                                    <Image id={"recipe-img"} src={recipeObj.image || recipeObj.recipeimage}/>
+                                    <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title || recipeObj.recipetitle}/>
+                                    <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+                                    <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || recipeObj.recipecalories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
                                     <Title id={"sliderCards-recipe-moreDetails"} onClickEvent={()=>getMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                 </div>
                             )
@@ -179,7 +186,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                 </div>
             </div>  
 
-            {popUp && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={message}/>}
+            {(popUp) && <PopUpMessage closePopUp={setPopUp} popUpAnswer={setWantToAdd} message={message}/>}
           
         </section>
     )

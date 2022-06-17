@@ -14,7 +14,7 @@ const PreviousRecepies = (props) => {
 <h1>{"PreviousRecepies"}</h1>
 
 
-            <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+400} positionOnNavBar={4}/>
+            <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+300} positionOnNavBar={4}/>
         </div>
     )
 }
