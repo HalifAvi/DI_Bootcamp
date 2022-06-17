@@ -2,29 +2,33 @@
 
 .filterSection-container {
 
-    position: absolute;
+    position: fixed;
+    /* top: 160px;
+    left: -188px;     */
     font-size: 40px;
     top: 160px;
     left: 40px;
     z-index: 10000;
-    height: 400px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 10px;
+    width: 0px;
     background-color: var(--clr-black);
     border: 10px solid var(--clr-yellow);
-    clip-path: polygon(0 0, 24% 0, 100% 44%, 100% 99%, 45% 100%, 0 75%);
+    /* visibility: hidden; */
+    content-visibility: hidden;
 
+    /* opacity: 0.7; */
 }
 
-/* .popUpMessage-container {
 
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 40px;
-} */
+.filterSection-container:hover {
+
+    visibility: visible;
+    content-visibility: visible;
+    height: 400px;
+    width: 600px;
+    transition: all 01s ease-in-out;
+    opacity: 1;
+}
+
+
 

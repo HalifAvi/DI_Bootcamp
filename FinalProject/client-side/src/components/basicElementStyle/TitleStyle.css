@@ -302,4 +302,17 @@
 
 
 
+/******************************* 'FilterSection' Element ********************************/
 
+
+#filterSection-snd-title {
+
+    color: var(--clr-white);
+    font-family: var(--clr-thin-font);
+    font-size: 75px;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 145px;
+    left: 100px;
+}

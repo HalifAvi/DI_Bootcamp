@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { setToSpecialRecipesArray, setChoosenRecepiesArrayIdx } from '../../Redux/Actions/recipesActions.js';
 import { useState } from "react";
 import { useEffect } from "react";
+import Title from "../BasicElements/Title";
+import ReactTooltip from 'react-tooltip';
+
 
 
 const FilterSection = ({setToSpecialRecipesArray, setChoosenRecepiesArrayIdx}) => {
@@ -16,18 +19,19 @@ const FilterSection = ({setToSpecialRecipesArray, setChoosenRecepiesArrayIdx}) =
    
     return(
         <section className={"filterSection-container"}>
-            
-            <Image id={0} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_MEX_ICON_URL}/>
-            <Image id={2} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_ITA_ICON_URL}/>
-            <Image id={1} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_FRE_ICON_URL}/>
-            <Image id={3} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_CHI_ICON_URL}/>
-            <Image id={4} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_BRAKFAST_ICON_URL}/>
-            <Image id={5} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_SOUP_ICON_URL}/>
-            <Image id={6} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_SALAD_ICON_URL}/>
-            <Image id={7} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_DESSERT_ICON_URL}/>        
+            <Image id={'1'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_MEX_ICON_URL}/>
+            <Image id={'2'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_ITA_ICON_URL}/>
+            <Image id={'3'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_FRE_ICON_URL}/>
+            <Image id={'4'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_CHI_ICON_URL}/>
+            <Image id={'5'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_BRAKFAST_ICON_URL}/>
+            <Image id={'6'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_SOUP_ICON_URL}/>
+            <Image id={'7'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_SALAD_ICON_URL}/>
+            <Image id={'8'} classN={"filter-icon-img"} onClickEvent={handleIconClick} src={process.env.REACT_APP_BASE_FILTER_DESSERT_ICON_URL}/> 
+            <Title id={"filterSection-snd-title"} titleName={process.env.REACT_APP_BASE_FILTERS_SECTOIN_SND_TITLE}/>
         </section>
     )
 }
+
 
 
 const mapDispatchToProps = (dispatch) => {

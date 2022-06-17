@@ -6,7 +6,7 @@ export const handleAction = async (event,
     formKind, navigate, stateObj, imgValue,
     setMessageAfterSign, setAllUserParamsFromDb,
     setAmountOfCalories, setAllDefaultRecipesArray,
-    setTodayRecipesArray) => {
+    setTodayRecipesArray, setFavoritesRecpies) => {
 
     event.preventDefault();
 
@@ -124,7 +124,7 @@ export const handleAction = async (event,
             const decode = jwt_decode(response.data.accessToken);
 
             // Dispath the action
-            setAllUserParamsFromDb({
+            await setAllUserParamsFromDb({
 
                 userId : decode.userId,
                 email : decode.email,
@@ -140,7 +140,7 @@ export const handleAction = async (event,
                 fileName : decode.fileName
             }) 
 
-            setAmountOfCalories({
+            await setAmountOfCalories({
 
                 dailyCaloriesAmount: decode.dailyCaloriesAmount,
                 currentCaloriesAmount: decode.currentCaloriesAmount,
@@ -148,9 +148,14 @@ export const handleAction = async (event,
             });
 
 
-            setAllDefaultRecipesArray();
+            await setFavoritesRecpies(decode.userFavRecipes);
 
-            setTodayRecipesArray(decode.userTodayRecipes);
+            console.log("FAV RECIPES - LOGIN !:", decode.userFavRecipes)
+
+
+            await setAllDefaultRecipesArray();
+
+            await setTodayRecipesArray(decode.userTodayRecipes);
 
             console.log("TODAY RECIPES - LOGIN ======= CHECK IN MORNING IT'S EMPTY!:", decode.userTodayRecipes)
 

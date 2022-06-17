@@ -4,10 +4,12 @@ import {
     
     SET_ALL_DEFAULT_RECIPES_ARRAY,
     GET_TODAY_RECIPES_ARRAY,
+    ADD_TO_FAVORITS_ARRAY,
     ADD_TO_TODAY_RECIPES_ARRAY,
     SET_SPECIAL_RECIPES_ARRAY,
     SET_CHOOSEN_RECIPES_ARRAY_IDX,
-    MORE_RECPIE_DETAILS
+    MORE_RECPIE_DETAILS,
+    SET_FAVORITES_RECIPES_ARRAY
 
 } from '../reduxConstants';
 
@@ -119,6 +121,70 @@ export const setTodayRecipesArray = (allRecipesArray) => {
 }
 
 
+export const addRecipeToFavorites = (recipeObj) => async (dispatch, getStatus) => {
+
+    let {caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie, instructionsCurrRecpie, ingredientsCurrRecpie,
+        titleCurrRecpie, recipesnCurrRecpie, imageCurrRecpie} = getStatus().recipesReducer;
+
+    const {userId} = getStatus().signInUpReducer;
+
+
+        try{ 
+
+            let justNameAndAmountIngredientsArray = ingredientsCurrRecpie.map(item=> {
+    
+                return {
+    
+                    'name': item.name,
+                    'amount': item.amount, 
+                    'unit': item.unit
+                }
+            })
+    
+            let JSONIngredientsCurrRecpie = JSON.stringify(justNameAndAmountIngredientsArray);
+    
+            let objToSend = 
+    
+                {
+                    userid: userId,
+                    recipesn: recipeObj.id,
+                    title: titleCurrRecpie,
+                    image : imageCurrRecpie,
+                    instructions : instructionsCurrRecpie,
+                    calories : caloriesCurrRecpie,
+                    protein: proteinCurrRecpie,
+                    iron: ironCurrRecpie,
+                    vitaminC: vitaminCCurrRecpie,
+                    ingredients: JSONIngredientsCurrRecpie
+                }
+        
+                let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_INSERT_FAV_RECIPE_URL,
+                
+                objToSend,
+    
+                {
+        
+                withCredentials: true,
+                headers: {
+        
+                    'Access-Control-Allow-Origin' : '*',
+                    'Content-Type' : 'application/json'
+                }
+            })
+    
+            dispatch({
+        
+                type: ADD_TO_FAVORITS_ARRAY,
+                payload: response.data
+            })
+        }
+        catch(e){
+    
+            console.log(e.message);
+        }
+}
+
+
 export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getStatus) => {
 
     let {caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie, instructionsCurrRecpie, ingredientsCurrRecpie,
@@ -206,35 +272,35 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
 
 export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 
-    console.log(recipeObj)
+     console.log(recipeObj)
 
         try{
 
-            // let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
+    //         let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
          
 
-            // console.log("recepies actions:", response.data);
+    //         console.log("recepies actions:", response.data);
 
-            // let objToUpdateReducer;
+    //         let objToUpdateReducer;
 
-            // objToUpdateReducer = {
+    //         objToUpdateReducer = {
 
-            //     calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
-            //     protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
-            //     iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
-            //     vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
-            //     instructions: response.data.instructions,
-            //     ingredients: response.data.nutrition.ingredients,
-            //     title: response.data.title,
-            //     recipesn: response.data.id,
-            //     image: response.data.image
-            // }
+    //             calories : ((response.data.nutrition.nutrients)[0].amount).toFixed(0),
+    //             protein: ((response.data.nutrition.nutrients)[8].amount).toFixed(0),
+    //             iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
+    //             vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
+    //             instructions: response.data.instructions,
+    //             ingredients: response.data.nutrition.ingredients,
+    //             title: response.data.title,
+    //             recipesn: response.data.id,
+    //             image: response.data.image
+    //         }
 
-            // dispatch({
+    //         dispatch({
     
-            //     type: MORE_RECPIE_DETAILS,
-            //     payload: objToUpdateReducer
-            // })
+    //             type: MORE_RECPIE_DETAILS,
+    //             payload: objToUpdateReducer
+    //         })
 
 
             console.log("recepies actions:", objExample);
@@ -266,6 +332,26 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
             console.log(e);
         }
 }
+
+export const setFavoritesRecpies = (favoritesArray) => (dispatch) => {
+
+    try{ 
+
+        console.log("FAV ARRAY FROM ACTIONS TO UPDATE REDUCER", favoritesArray)
+
+        dispatch({
+    
+            type: SET_FAVORITES_RECIPES_ARRAY,
+            payload: favoritesArray
+        })
+    }
+    catch(e){
+
+        console.log(e);
+    }
+}
+
+
 
 
 

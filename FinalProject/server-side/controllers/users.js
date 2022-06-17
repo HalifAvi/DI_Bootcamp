@@ -3,8 +3,8 @@ import UsersBody from "../models/bodyModel.js";
 import UsersCalories from  "../models/calorieModel.js";
 import Upload from '../models/imageModel.js';
 import UsersRecipe from '../models/recipeModel.js';
+import UsersFavRecipe from "../models/favRecipeModel.js";
 import db from '../config/db.js';
-
 
 
 
@@ -151,7 +151,7 @@ export const signIn = async (req, res) => {
         const height = userBody[0].height;
         const weight = userBody[0].weight;
         const activityLevel = userBody[0].activityLevel;
-
+    
 
         // Get the data from files
         const userImage = await Upload.findAll({
@@ -163,82 +163,96 @@ export const signIn = async (req, res) => {
         // Retrive the data from db response
         const fileName = userImage[0].filename;
 
+        // Get the data from favoriteRecipe table
+        const favRecpiesArr = await UsersFavRecipe.findAll({
+            where:{
+
+                userid: userId
+            }
+
+        })
+
+        const userFavRecipes = favRecpiesArr.map(item => item.dataValues)
+
+        console.log("FAV REC SERVER LOG IN", userFavRecipes)
+
 
         // First find the max updateserialnumber in table and then enter with this value
-        UsersCalories.findAll({
+        const serialnumber = await UsersCalories.findAll({
 
             attributes: [[db.fn('max', db.col('updateserialnumber')), 'max']],
             where: [{userid: userId}]
 
-        }).then(updateserialnumber => {
+        })
 
-            console.log("LAST UPDATED CALORIES:", updateserialnumber[0].dataValues.max);
+        console.log("LAST UPDATED CALORIES:", serialnumber[0].dataValues.max);
             
-            // Get the data from calories table
-            UsersCalories.findAll({
-    
-                where:{
-    
-                    userid: userId,
-                    updateserialnumber: updateserialnumber[0].dataValues.max
-                }
-            }).then(usersCalories=>{
 
-                // Retrive the data from db response
-                const currentCaloriesAmount = usersCalories[0].currentcaloriesamount;
-                const dailyCaloriesAmount = usersCalories[0].dailycaloriesamount;
-                const updateserialnumber = usersCalories[0].updateserialnumber;
+        // Get the data from calories table
+        const usersCalories = await UsersCalories.findAll({
+    
+            where:{
+    
+                userid: userId,
+                updateserialnumber: serialnumber[0].dataValues.max
+            }
+        })
+
+        // Retrive the data from db response
+        const currentCaloriesAmount = usersCalories[0].currentcaloriesamount;
+        const dailyCaloriesAmount = usersCalories[0].dailycaloriesamount;
+        const updateserialnumber = usersCalories[0].updateserialnumber;
         
         
-                const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
-                
-                // Get the data from recipes table
-                UsersRecipe.findAll({
-                    where:{
-                        userid: userId,
-                        createdat: todayDate
-                    }
-                }).then(usersRecipes=>{
+        const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
 
-                    // Retrive the data from db         
-                    const userTodayRecipes = usersRecipes.map(item => item.dataValues)
+        console.log(todayDate)
                 
-                    // 3: Create an accessToken 
-            
-                    // 4: Add this accessToken to the http cookies
-            
-                    // 5: Send back this accessToken
-            
-                    // Each time we'll get a different access token cause we'll have different userId and email with our ACCESS_TOKEN_SECRET
-                    // that we only know so we can verify according to it
-                    // We will send this token in the cookie to the front end
-                    // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
-                    // to expiry time we defined in this token
-                    const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
-                                                    age, height, weight, activityLevel, fileName,
-                                                    currentCaloriesAmount, dailyCaloriesAmount, userTodayRecipes, updateserialnumber},
-                    process.env.ACCESS_TOKEN_SECRET, {
-            
-                        expiresIn: '60s'
-            
-                    })
-            
-                    // Set the cookie in the http response ((we imported it in 'server.js'))
-                    // we get here the all encrypted data
-                    res.cookie('accessToken', accessToken, {
-                        httpOnly: true,
-                        maxAge: 60 * 1000 // 60 seconds
-                    }); 
-            
-                    console.log('accessToken', accessToken)
-                    // We send back the access token 
-                    res.json({accessToken});
+        // Get the data from recipes table
+        const usersRecipes = await UsersRecipe.findAll({
 
-                }).catch(e=>console.log(e))
-    
-            }).catch(e=>console.log(e))
-    
-        }).catch(e=> console.log(e))
+        where:{
+
+            userid: userId,
+            createdat: todayDate
+        }
+        })
+
+        // Retrive the data from db         
+        const userTodayRecipes = usersRecipes.map(item => item.dataValues)
+                
+        // 3: Create an accessToken 
+                
+        // 4: Add this accessToken to the http cookies
+                
+        // 5: Send back this accessToken
+                
+        // Each time we'll get a different access token cause we'll have different userId and email with our ACCESS_TOKEN_SECRET
+        // that we only know so we can verify according to it
+        // We will send this token in the cookie to the front end
+        // And we can wrap 'Home' component with that token - and the user'll have access to this page according 
+        // to expiry time we defined in this token
+        const accessToken = jwt.sign({userId, email, gender, firstName, lastName,
+                                    age, height, weight, activityLevel, fileName, userFavRecipes,
+                                    currentCaloriesAmount, dailyCaloriesAmount, userTodayRecipes, updateserialnumber},
+        process.env.ACCESS_TOKEN_SECRET, {
+                
+            expiresIn: '60s'
+                
+        })
+                
+        // Set the cookie in the http response ((we imported it in 'server.js'))
+        // we get here the all encrypted data
+        res.cookie('accessToken', accessToken, {
+            
+            httpOnly: true,
+            maxAge: 60 * 1000 // 60 seconds
+        }); 
+                
+        console.log('accessToken', accessToken)
+        // We send back the access token 
+        res.json({accessToken});
+        
     }
 
     catch(error){
@@ -251,6 +265,8 @@ export const signIn = async (req, res) => {
 
 
 
+
+
 export const signOut = async (req, res) => {
 
     res.json({msg:'logout'})
@@ -258,13 +274,8 @@ export const signOut = async (req, res) => {
 }
 
 
-const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
 
-    // console.log(gender)
-    // console.log(age)
-    // console.log(height)
-    // console.log(weight)
-    // console.log(activityLevel)
+const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
     
     let BMR = gender===process.env.GENDER_FST_OPTION ? 
 
@@ -308,8 +319,6 @@ const getCurrentDate = () => {
 
     return `${year}-${month}-${dayDate}`;
 }
-
-
 
 
 

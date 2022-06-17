@@ -3,9 +3,11 @@ import {
     SET_ALL_DEFAULT_RECIPES_ARRAY,
     GET_TODAY_RECIPES_ARRAY,
     ADD_TO_TODAY_RECIPES_ARRAY,
+    ADD_TO_FAVORITS_ARRAY,
     SET_SPECIAL_RECIPES_ARRAY,
     SET_CHOOSEN_RECIPES_ARRAY_IDX,
-    MORE_RECPIE_DETAILS
+    MORE_RECPIE_DETAILS,
+    SET_FAVORITES_RECIPES_ARRAY
 
 } from '../reduxConstants';
 
@@ -46,7 +48,8 @@ const initStateRecipes = {
     ingredientsCurrRecpie: [],
     titleCurrRecpie: '',
     recipesnCurrRecpie: 0,
-    imageCurrRecpie: ''
+    imageCurrRecpie: '',
+    allFavoriteRecpies: [] 
 }
 
 
@@ -72,6 +75,14 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
             return {...state, todayRecipes: [...state.todayRecipes]}
 
+        case ADD_TO_FAVORITS_ARRAY: 
+
+            console.log("REDUCER ADD TO FAV:", action.payload)
+
+            (state.allFavoriteRecpies).push(action.payload)
+
+            return {...state, allFavoriteRecpies: [...state.allFavoriteRecpies]}
+
         case SET_CHOOSEN_RECIPES_ARRAY_IDX:
 
             return {...state, choosenDisplayedRecepies: action.payload}
@@ -80,12 +91,16 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
             const { calories, protein, iron, vitaminC, instructions, ingredients, title, recipesn, image } = action.payload;
 
-            console.log(action.payload)
-
             return {...state, caloriesCurrRecpie: calories, proteinCurrRecpie: protein, ironCurrRecpie: iron, vitaminCCurrRecpie: vitaminC,
                     instructionsCurrRecpie: instructions, ingredientsCurrRecpie: ingredients, titleCurrRecpie: title, recipesnCurrRecpie: recipesn,
                     imageCurrRecpie: image}
         
+        case SET_FAVORITES_RECIPES_ARRAY:    
+
+            console.log("FAV ARRAY FROM REDUCER TO UPDATE REDUCER", action.payload);
+
+            return{...state, allFavoriteRecpies: action.payload}
+
         default: 
 
             return {...state}

@@ -1,0 +1,2 @@
+select updatedat at time zone 'utc' at time zone 'Israel'
+from usersrecipe;

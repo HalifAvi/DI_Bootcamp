@@ -13,11 +13,11 @@ import { connect } from "react-redux";
 import { setMessageAfterSign, setAllUserParamsFromDb } from "../../Redux/Actions/signInUpActions.js";
 import { setAmountOfCalories } from "../../Redux/Actions/caloriesActions.js";
 import { setAllDefaultRecipesArray } from "../../Redux/Actions/recipesActions.js";
-import { setTodayRecipesArray }  from "../../Redux/Actions/recipesActions.js";
+import { setTodayRecipesArray, setFavoritesRecpies }  from "../../Redux/Actions/recipesActions.js";
 
 
 
-const Form = ({formKind, id, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray, setTodayRecipesArray}) => { 
+const Form = ({formKind, id, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray, setTodayRecipesArray, setFavoritesRecpies}) => { 
 
     const [emailSignIn, setEmailSignIn] = useState('');
     const [passwordSignIn, setPasswordSignIn] = useState('');
@@ -59,13 +59,13 @@ const Form = ({formKind, id, setMessageAfterSign, setAllUserParamsFromDb, setAmo
                 {
                     formKind === process.env.REACT_APP_SIGN_IN_BUTTON ? 
 
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray, setTodayRecipesArray)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray, setTodayRecipesArray, setFavoritesRecpies)}>
                             <Input id={"form-input"} inputType={"email"} onChangeEvent={(e)=>setEmailSignIn(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
                             <Input id={"form-input"} inputType={"password"} onChangeEvent={(e)=>setPasswordSignIn(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
                             <Input inputType={"submit"} inputValue={process.env.REACT_APP_BASE_SIGN_FORM_LOGIN_BTT}/>
                         </form>
                     :
-                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray, setTodayRecipesArray)}>
+                        <form onSubmit={(event)=>handleAction(event, formKind, navigate, stateObj, imgValue, setMessageAfterSign, setAllUserParamsFromDb, setAmountOfCalories, setAllDefaultRecipesArray, setTodayRecipesArray, setFavoritesRecpies)}>
                             <span className={"form-input-signup"}>
                                 <Input id={"form-input"} classN={"form-signup-input"} inputType={"email"} onChangeEvent={(e)=>setEmailSignUp(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_EMAIL}/>
                                 <Input id={"form-input"} classN={"form-signup-input"} inputType={"password"} onChangeEvent={(e)=>setPasswordSignUp(e.target.value)} inputPlaceholder={process.env.REACT_APP_BASE_SIGN_FORM_PASSWORD}/>
@@ -106,7 +106,8 @@ const mapDispatchToProps = (dispatch) => {
         setAllUserParamsFromDb : (allUserParamsObj) => dispatch( setAllUserParamsFromDb(allUserParamsObj) ),
         setAmountOfCalories : (caloriesObj) => dispatch( setAmountOfCalories(caloriesObj) ),
         setAllDefaultRecipesArray : () => dispatch( setAllDefaultRecipesArray() ),
-        setTodayRecipesArray : (allTodayRecipes) => dispatch( setTodayRecipesArray(allTodayRecipes) )
+        setTodayRecipesArray : (allTodayRecipes) => dispatch( setTodayRecipesArray(allTodayRecipes) ),
+        setFavoritesRecpies : (favoritesRecpiesArr) => dispatch( setFavoritesRecpies(favoritesRecpiesArr) )
     }
 }
 

@@ -4,12 +4,12 @@ import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails, addRecipeToFavorites } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, setAllDefaultRecipesArray, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
+const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites, currentDisplayedRecepies, setToSpecialRecipesArray}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
@@ -122,6 +122,15 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         return todayRecipes.some(recipe=> recipe.recipesn == Number(clickedRecipeId));
 
     }
+
+    const handlePressOnLike = async (e, recipeObj) => {
+
+        e.target.style.color = "#e97e7e";
+
+        await getMoreRecpieDetails(recipeObj);
+
+        await addRecipeToFavorites(recipeObj);
+    }
     
 
     return(
@@ -139,6 +148,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                             return ( 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
+                                    <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
                                     <Image id={"recipe-img"} src={recipeObj.image}/>
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title}/>
                                     <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={(e)=>addRecipeToPlate(recipeObj, e)} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
@@ -193,7 +203,8 @@ const mapDispatchToProps = (dispatch) => {
         insertNewAddedRecipe : (recipeObj, userId) => dispatch(insertNewAddedRecipe(recipeObj, userId)),
         setAllDefaultRecipesArray : () => dispatch(setAllDefaultRecipesArray()),
         setToSpecialRecipesArray : () => dispatch(setToSpecialRecipesArray()),
-        getMoreRecpieDetails : (recipeObj) => dispatch(getMoreRecpieDetails(recipeObj))
+        getMoreRecpieDetails : (recipeObj) => dispatch(getMoreRecpieDetails(recipeObj)),
+        addRecipeToFavorites : (recipeObj) => dispatch(addRecipeToFavorites(recipeObj))
     }
 }
 
