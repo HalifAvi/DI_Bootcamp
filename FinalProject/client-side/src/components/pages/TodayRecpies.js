@@ -1,16 +1,16 @@
 
 import { connect } from 'react-redux';
 import React from "react";
-import '../PagesStyle/GraphPage.css';
+import '../PagesStyle/todayRecipes.css';
 import NavBar from "../BasicElements/NavBar";
 
 
-const GraphPage = (props) => {
+const todayRecipes = (props) => {
 
     return(
 
         <div id={"aaa"}>  
-                     <h1>{"GraphPage"}</h1>
+                     <h1>{"TodayPage"}</h1>
 
     
 
@@ -29,5 +29,4 @@ const mapStateToProps = (state) => {
 }
 
 
-
-export default connect(mapStateToProps, null)(GraphPage);
+export default connect(mapStateToProps, null)(todayRecipes);

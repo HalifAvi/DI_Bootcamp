@@ -361,3 +361,20 @@
     opacity: 0.9;
     text-shadow: 0 0 20px var(--clr-yellow);
 }
+
+
+/******************************* 'Grid' Element ********************************/
+
+.grid-small-title {
+
+    color: var(--clr-black);
+    font-size: 10px;
+}
+
+.grid-small-amount {
+
+    color: var(--clr-yellow);
+    background-color: var(--clr-black);
+    font-size: 10px;
+    width: fit-content;
+}

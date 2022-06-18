@@ -91,12 +91,9 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                 } else if(wantToRemove){
 
-
-                    console.log(wantToRemove);
-
                     await removeRecpieFromFavorites(clickedRecipeObj);
 
-                    // setWantToRemove(false);
+                    setWantToRemove(false);
                 }
         }
 
@@ -136,7 +133,16 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
     }
 
-    const handlePressOnLike = async (e, recipeObj) => {
+    const handleMoreRecpieDetails = async (recipeObj) => { //////////////////////////
+
+        await getMoreRecpieDetails(recipeObj);
+
+        const modal = document.querySelector(".modal");
+
+        modal.showModal();
+    }
+    
+    const handlePressOnLike = async (e, recipeObj) => {  ////////////////////////
 
         if(!(allFavoriteRecpies.some(item=> recipeObj.id === item.recipesn))) {
 
@@ -144,11 +150,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
             await getMoreRecpieDetails(recipeObj);
 
-            addRecipeToFavorites(recipeObj);
-
-            console.log(allFavoriteRecpies)
-            console.log(todayRecipes)
-
+            await addRecipeToFavorites(recipeObj);
         }
 
         else{
@@ -168,20 +170,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         setPopUp(true);
     }
 
-    const handleMoreRecpieDetails = async (recipeObj) => {
-
-        await getMoreRecpieDetails(recipeObj);
-
-        const modal = document.querySelector(".modal");
-
-        modal.showModal();
-
-
-
-
-
-    }
-    
 
     return(
         

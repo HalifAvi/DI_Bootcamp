@@ -28,9 +28,9 @@ export const setToSpecialRecipesArray = () => async (dispatch, getStatus) => {
 
     const {currentCaloriesAmount} = getStatus().caloriesReducer;
 
-    let shuffledRecepiesArray = shuffle(specialArrayToDisplay);
+    // let shuffledRecepiesArray = shuffle(specialArrayToDisplay);
 
-    let updatedRecepiesArray = shuffledRecepiesArray.filter(recipe => recipe.calories === undefined? (recipe.nutrition.nutrients[0].amount).toFixed(0)<= currentCaloriesAmount : recipe.calories <= currentCaloriesAmount);
+    let updatedRecepiesArray = specialArrayToDisplay.filter(recipe => recipe.calories === undefined? (recipe.nutrition.nutrients[0].amount).toFixed(0)<= currentCaloriesAmount : recipe.calories <= currentCaloriesAmount);
 
     dispatch({
     
@@ -59,9 +59,9 @@ export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
     let {allDefaultRecipesArray} = getStatus().recipesReducer;
 
     
-    let shuffledRecepiesArray = shuffle(allDefaultRecipesArray);
+    // let shuffledRecepiesArray = shuffle(allDefaultRecipesArray);
 
-    let updatedRecepiesArray = shuffledRecepiesArray.filter(recipe => recipe.calories === undefined? (0)<= currentCaloriesAmount : recipe.calories <= currentCaloriesAmount);
+    let updatedRecepiesArray = allDefaultRecipesArray.filter(recipe => recipe.calories === undefined? (0)<= currentCaloriesAmount : recipe.calories <= currentCaloriesAmount);
 
     dispatch({
     
@@ -199,7 +199,8 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
 
                 'name': item.name,
                 'amount': item.amount, 
-                'unit': item.unit
+                'unit': item.unit,
+                'image': item.image
             }
         })
 
@@ -273,10 +274,12 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
 
 export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 
-     console.log(recipeObj)
+    console.log(recipeObj);
+
+    const recipeID = recipeObj.recipesn === undefined ? recipeObj.id : recipeObj.recipesn;
 
         try{
-            // let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeObj.id}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
+            // let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeID}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
          
 
             // console.log("recepies actions:", response.data);
@@ -290,7 +293,7 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
             //     iron: ((response.data.nutrition.nutrients)[16].amount).toFixed(0),
             //     vitaminC: ((response.data.nutrition.nutrients)[12].amount).toFixed(0),
             //     instructions: response.data.instructions,
-            //     ingredients: response.data.nutrition.ingredients,
+            //     ingredients: response.data.extendedIngredients,
             //     title: response.data.title,
             //     recipesn: response.data.id,
             //     image: response.data.image
@@ -313,7 +316,7 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
                 iron: ((objExample.nutrition.nutrients)[16].amount).toFixed(0),
                 vitaminC: ((objExample.nutrition.nutrients)[12].amount).toFixed(0),
                 instructions: objExample.instructions,
-                ingredients: objExample.nutrition.ingredients,
+                ingredients: objExample.extendedIngredients,
                 title: objExample.title,
                 recipesn: objExample.id,
                 image: objExample.image

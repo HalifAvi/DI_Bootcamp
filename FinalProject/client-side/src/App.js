@@ -6,7 +6,7 @@ import Main from './Components/Pages/Main';
 import LoadingPage from './Components/Pages/LoadingPage';
 import FavoritesRecepies from './Components/Pages/FavoritesRecepies';
 import GeneralRecepies from './Components/Pages/GeneralRecepies';
-import GraphPage from './Components/Pages/GraphPage';
+import TodayRecpies from './Components/Pages/TodayRecpies';
 import PreviousRecepies from './Components/Pages/PreviousRecepies';
 import Settings from './Components/Pages/Settings';
 
@@ -28,7 +28,7 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + "/:nextPage/:time"} element={<LoadingPage />} />
         <Route path={process.env.REACT_APP_BASE_FAV_RECEPIES_PATH} element={<FavoritesRecepies />} />
         <Route path={process.env.REACT_APP_BASE_GENERAL_RECEPIES_PATH} element={<GeneralRecepies />} />
-        <Route path={process.env.REACT_APP_BASE_GRAPH_PATH} element={<GraphPage />} />
+        <Route path={process.env.REACT_APP_BASE_GRAPH_PATH} element={<TodayRecpies />} />
         <Route path={process.env.REACT_APP_BASE_PREV_RECEPIES_PATH} element={<PreviousRecepies />} />
         <Route path={process.env.REACT_APP_BASE_SETTINGS_PATH} element={<Settings />} />
       </Routes> 

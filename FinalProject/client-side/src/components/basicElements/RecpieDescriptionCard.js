@@ -1,7 +1,20 @@
 import '../BasicElementStyle/RecpieDescriptionCard.css';
+import { connect } from "react-redux";
+import Title from './Title';
+import { useEffect } from 'react';
+import Grid from './Grid';
 
-const RecpieDescriptionCard = (props) => {
+const RecpieDescriptionCard = ({caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie,instructionsCurrRecpie,
+                                ingredientsCurrRecpie,titleCurrRecpie,imageCurrRecpie}) => {
 
+
+
+    useEffect(()=>{
+
+        (document.querySelector("div.recpieDescriptionCard-instructions")).innerHTML = instructionsCurrRecpie;
+
+    }, )
+    
 
     const handleClick = () => {
 
@@ -26,14 +39,53 @@ const RecpieDescriptionCard = (props) => {
 
     return(
 
-        <dialog className={"modal"}>
-            <h2>An interesting title</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum esse nisi, laboriosam illum temporibus ipsam?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, quo.</p>
-            <button className={"button close-button"} onClick={handleClick}>close modal</button>
+        <dialog className={"modal pattern-dots-sm slategray h-5"}>
+            <div className={"recpieDescriptionCard-main-title"}>
+                <Title titleName={titleCurrRecpie}/>
+            </div>
+
+            <div className={"recpieDescriptionCard-container"}>
+                <div className={"recpieDescriptionCard-info1-recpie-div"}>
+                    <div className={"recpieDescriptionCard-snd1-title"}>
+                        <Title titleName={"INSTRUCTIONS"}/>
+                    </div>
+                    <div className={"recpieDescriptionCard-instructions"}></div>
+                </div>
+                <div className={"recpieDescriptionCard-info2-recpie-div pattern-dots-sm slategray h-5"}>
+                    <div className={"recpieDescriptionCard-snd2-title"}>
+                        <Title titleName={"NUTRITION VALUES"}/>
+                    </div>
+                </div>
+                <div className={"recpieDescriptionCard-info3-recpie-div"}>
+                    <div className={"recpieDescriptionCard-snd3-title"}>
+                        <Title titleName={"INGREDIENTS"}/>
+                    </div>
+                    <div className={"recpieDescriptionCard-ingredients"}>
+                        <Grid itemsToDisplay={ingredientsCurrRecpie}/>
+                    </div>   
+                </div>
+            <button className={"recpieDescriptionCard-button close-button"} onClick={handleClick}>BACK</button>
+            </div>
         </dialog>
     )
 }
 
-export default RecpieDescriptionCard;
+
+const mapStateToProps = (state) => {
+
+    return{
+
+        caloriesCurrRecpie : state.recipesReducer.caloriesCurrRecpie,
+        proteinCurrRecpie : state.recipesReducer.proteinCurrRecpie,
+        ironCurrRecpie : state.recipesReducer.ironCurrRecpie,
+        vitaminCCurrRecpie : state.recipesReducer.vitaminCCurrRecpie,
+        instructionsCurrRecpie : state.recipesReducer.instructionsCurrRecpie,
+        ingredientsCurrRecpie : state.recipesReducer.ingredientsCurrRecpie,
+        titleCurrRecpie : state.recipesReducer.titleCurrRecpie,
+        imageCurrRecpie : state.recipesReducer.imageCurrRecpie
+    }
+}
+
+
+export default connect(mapStateToProps, null)(RecpieDescriptionCard);
 

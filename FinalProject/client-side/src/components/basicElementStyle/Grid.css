@@ -1,0 +1,18 @@
+
+
+.grid-container {
+
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px;
+    padding: 10px;
+    grid-gap: 20px 20px;
+  }
+
+
+  .grid-item {
+
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
