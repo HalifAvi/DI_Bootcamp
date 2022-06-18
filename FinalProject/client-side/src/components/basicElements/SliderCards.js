@@ -56,7 +56,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     }, [wantToAdd])  
 
 
-
     // In case the answer from the popUp is true : user wants to add
     useEffect(()=>{
 
@@ -172,6 +171,10 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     const handleMoreRecpieDetails = async (recipeObj) => {
 
         await getMoreRecpieDetails(recipeObj);
+
+        const modal = document.querySelector(".modal");
+
+        modal.showModal();
 
 
 

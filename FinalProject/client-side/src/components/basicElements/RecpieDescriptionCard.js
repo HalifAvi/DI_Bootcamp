@@ -1,45 +1,39 @@
-import { useEffect } from 'react';
 import '../BasicElementStyle/RecpieDescriptionCard.css';
 
 const RecpieDescriptionCard = (props) => {
 
-    useEffect(()=> {
 
-        const modal = document.querySelector("#modal");
-        const openModal = document.querySelector(".open-button");
-        const closeModal = document.querySelector(".close-button");
+    const handleClick = () => {
 
-        openModal.addEventListener("click", () => {
-            
-            modal.showModal();
-        });
+        var modal = document.querySelector(".modal");
 
-        closeModal.addEventListener("click", () => {
-        
-            modal.setAttribute("closing", "");
+        modal.setAttribute("closing", "");
 
         modal.addEventListener(
-            
+         
             "animationend",
+
             () => {
-            modal.removeAttribute("closing");
-            modal.close();
+
+                modal.removeAttribute("closing");
+                modal.close();
+
             },
+
             { once: true }
         );
-        });
-
-    })
+    }
 
     return(
 
-        <dialog class="modal" id="modal">
+        <dialog className={"modal"}>
             <h2>An interesting title</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum esse nisi, laboriosam illum temporibus ipsam?</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, quo.</p>
-            <button class="button close-button">close modal</button>
+            <button className={"button close-button"} onClick={handleClick}>close modal</button>
         </dialog>
     )
 }
 
 export default RecpieDescriptionCard;
+
