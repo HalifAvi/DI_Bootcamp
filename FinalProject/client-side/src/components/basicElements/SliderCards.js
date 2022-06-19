@@ -4,7 +4,7 @@ import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount, setOperation } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray, insertNotNewRecipeToDaily, setToSpecialRecipesArray, setChoosenRecepiesArrayIdx, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites, removeRecpieFromDaily } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, insertNotNewRecipeToDaily, decreaseRecpieAmountFromDaily, setToSpecialRecipesArray, setChoosenRecepiesArrayIdx, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites, removeRecpieFromDaily } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 import RecpieDescriptionCard from "../BasicElements/RecpieDescriptionCard";
 
@@ -12,7 +12,7 @@ import RecpieDescriptionCard from "../BasicElements/RecpieDescriptionCard";
                                                     // paramToChange - an obj to change the state of pervious component
 const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites, setOperation,
                       currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage, removeRecpieFromFavorites, removeRecpieFromDaily,
-                      setChoosenRecepiesArrayIdx, insertNotNewRecipeToDaily}) => { 
+                      setChoosenRecepiesArrayIdx, insertNotNewRecipeToDaily, decreaseRecpieAmountFromDaily}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
@@ -82,7 +82,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
 
     // In case the answer from the popUp is true : user wants to add
-    useEffect(()=>{                                                                      ////////////////////////////////
+    useEffect(()=>{                                                                     
 
         async function handleAddRecipe() {
 
@@ -134,9 +134,17 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                 } else if(wantToRemoveDaily){
 
-                    console.log(clickedRecipeObj);
+                    // console.log(clickedRecipeObj);
 
-                    await removeRecpieFromDaily(clickedRecipeObj);
+                    if(clickedRecipeObj.recipehowmanyadded > 1) {
+
+                        await decreaseRecpieAmountFromDaily(clickedRecipeObj);
+
+                    } else {
+
+                        await removeRecpieFromDaily(clickedRecipeObj);
+
+                    }
 
                     await setOperation("+");
 
@@ -172,7 +180,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     // }, [wantToAdd])
 
 
-    const addRecipeToPlate = (recipeObj, e) => { ////////////////////////////////
+    const addRecipeToPlate = (recipeObj, e) => { 
 
         setClickableIcons("none");
 
@@ -230,7 +238,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         }
     }
 
-    const handlePressOnRemove = (recipeObj) => {
+    const handlePressOnRemove = (recipeObj) => {       
 
         kindOfPage=="fav" ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_REMOVE_LIKE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_REMOVE_FROM_DAILY)
 
@@ -323,7 +331,8 @@ const mapDispatchToProps = (dispatch) => {
         removeRecpieFromFavorites : (recipeObj) => dispatch(removeRecpieFromFavorites(recipeObj)),
         removeRecpieFromDaily : (recipeObj) => dispatch(removeRecpieFromDaily(recipeObj)),
         setOperation : (operation) => dispatch(setOperation(operation)),
-        insertNotNewRecipeToDaily : (recipeObj, userId) => dispatch(insertNotNewRecipeToDaily(recipeObj, userId))
+        insertNotNewRecipeToDaily : (recipeObj, userId) => dispatch(insertNotNewRecipeToDaily(recipeObj, userId)),
+        decreaseRecpieAmountFromDaily : (recipeObj) => dispatch(decreaseRecpieAmountFromDaily(recipeObj))
     }
 }
 

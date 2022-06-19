@@ -443,6 +443,50 @@ export const removeRecpieFromFavorites = (recpieToRemove) => async (dispatch, ge
 }
 
 
+
+
+export const decreaseRecpieAmountFromDaily = (recpieToDecrease) => async (dispatch, getStatus) => {
+
+    const {todayRecipes} = getStatus().recipesReducer;
+    const {userId} = getStatus().signInUpReducer;
+
+    // console.log(recpieToDecrease)
+
+    try{
+
+        let response = await axios.put(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_DECREASE_DAILY_RECIPE_AMOUNT_URL}`, 
+        
+            { 
+                recpieSNtoDecrease : recpieToDecrease.recipesn,
+                userId : userId,
+                howmanyadded : recpieToDecrease.recipehowmanyadded  
+            },
+            {
+    
+            withCredentials: true,
+            headers: {
+    
+                'Access-Control-Allow-Origin' : '*',
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        console.log(response)
+
+        dispatch({
+    
+            type: UPDATE_HOW_MANY_ADDED_IN_SPECIFIC_RECIPE,
+            payload: {recipesnCurrRecpie : recpieToDecrease.recipesn, howManyAdded: recpieToDecrease.recipehowmanyadded  - 1}
+        })
+    }
+    catch(e){
+
+        console.log(e);
+    }
+}
+
+
+
 export const removeRecpieFromDaily = (recpieToRemove) => async (dispatch, getStatus) => {
 
     const {todayRecipes} = getStatus().recipesReducer;

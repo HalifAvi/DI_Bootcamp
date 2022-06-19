@@ -56,6 +56,48 @@ export const insertRecipe = async (req, res) => {
 }
 
 
+export const decreaseAmountDailyRecipe = async (req, res) => {
+
+    console.log("###############")
+    // console.log(req.body);
+    console.log("###############")
+
+    const {
+            recpieSNtoDecrease,
+            userId,
+            howmanyadded 
+      
+        } = req.body;
+
+    try{
+
+        const todayDate = getCurrentDate()+'T'+"21:00:00.000Z"
+
+        // Update row in 'usersrecpies' table
+        let updatedRow = await UsersRecipe.update(
+            {
+
+                recipehowmanyadded : howmanyadded - 1
+            },
+            {
+                where: { 
+                            userid: userId,
+                            recipesn: recpieSNtoDecrease,
+                            createdat: todayDate
+                        }
+            });
+
+        res.json({updatedRow});
+    }
+    catch(error){
+
+        console.log(error)
+
+        res.status(404).json({msg: 'Fault adding new recipe!!!'})
+    }
+}
+
+
 export const insertExistDailyRecipe = async (req, res) => {
 
     console.log("###############")
