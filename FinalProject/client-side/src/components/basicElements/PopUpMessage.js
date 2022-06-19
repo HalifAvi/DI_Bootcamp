@@ -2,23 +2,33 @@ import '../BasicElementStyle/PopUpMessage.css';
 import Title from "../BasicElements/Title"
 
 
-const PopUpMessage = ({message, closePopUp, popUpAnswer, popUpAnswerFav, kindOfPage}) => {
+const PopUpMessage = ({message, closePopUp, popUpAnswer, popUpAnswerFav, popUpAnswerDaily, kindOfPage}) => {
 
     const handlePopUp = (setPopUpValue, setWantToAddValue) => {
 
         closePopUp(setPopUpValue);
 
-        if( kindOfPage !== "fav"){
+        if(kindOfPage == "fav"){
 
-            popUpAnswer(setWantToAddValue); 
-            popUpAnswerFav(false);
-        }
-        else {
-
+            popUpAnswerDaily(false);
             popUpAnswerFav(setWantToAddValue);
             popUpAnswer(false);
         }
+        else if(kindOfPage == "today") {
+
+            popUpAnswerDaily(setWantToAddValue);
+            popUpAnswerFav(false);
+            popUpAnswer(false);
+        }
+        else { // General recpies
+
+            popUpAnswerDaily(false);
+            popUpAnswerFav(false);
+            popUpAnswer(setWantToAddValue); 
+        }
     }
+
+
 
     return(
         <section className={"popUpMessage-section"}>

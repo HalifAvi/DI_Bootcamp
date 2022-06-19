@@ -8,13 +8,22 @@ import AppLogo from '../BasicElements/AppLogo';
 import SliderCards from '../BasicElements/SliderCards';
 import Title from '../BasicElements/Title';
 import FilterSection from '../BasicElements/FiltersSection';
+import {setChoosenRecepiesArrayIdx, setToSpecialRecipesArray} from "../../Redux/Actions/recipesActions.js";
+
 
 
 
 const GeneralRecepies = ({choosenDisplayedRecepies}) => {
 
-    const [paintAgainCaloriesBar, setPaintAgainCaloriesBar] = useState(true)
+    const [paintAgainCaloriesBar, setPaintAgainCaloriesBar] = useState(true);
 
+        // Each time you arrive to 'GeneralRecepies' : back to the default recipes array
+        useEffect(()=>{
+
+            setChoosenRecepiesArrayIdx(0);
+            setToSpecialRecipesArray();
+    
+        })
 
     return(
             <div className={"generalRecepies-div pattern-dots-sm slategray h-5"}>
@@ -49,10 +58,18 @@ const GeneralRecepies = ({choosenDisplayedRecepies}) => {
         }
     }
 
+    const mapDispatchToProps = (dispatch) => {
+
+        return{
+    
+            setChoosenRecepiesArrayIdx : (idxArr)=> dispatch(setChoosenRecepiesArrayIdx(idxArr)),
+            setToSpecialRecipesArray : ()=> dispatch(setToSpecialRecipesArray())
+        }
+    }
 
 
 
-export default connect(mapStateToProps, null)(GeneralRecepies);
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralRecepies);
 
 
 

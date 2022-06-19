@@ -29,7 +29,7 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + "/:nextPage/:time"} element={<LoadingPage />} />
         <Route path={process.env.REACT_APP_BASE_FAV_RECEPIES_PATH} element={<FavoritesRecepies />} />
         <Route path={process.env.REACT_APP_BASE_GENERAL_RECEPIES_PATH} element={<GeneralRecepies />} />
-        <Route path={process.env.REACT_APP_BASE_GRAPH_PATH} element={<TodayRecpies />} />
+        <Route path={process.env.REACT_APP_BASE_TODAY_PATH} element={<TodayRecpies />} />
         <Route path={process.env.REACT_APP_BASE_PREV_RECEPIES_PATH} element={<PreviousRecepies />} />
         <Route path={process.env.REACT_APP_BASE_SETTINGS_PATH} element={<Settings />} />
       </Routes> 

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import React, { useState } from "react";
 import '../PagesStyle/FavoritesRecepies.css';
 import NavBar from "../BasicElements/NavBar";
 import CaloriesScale from "../BasicElements/CaloriesScale";
@@ -27,7 +26,7 @@ const FavoritesRecepies = ({allFavoriteRecpies}) => {
                 <SliderCards kindOfPage={"fav"}/> 
 
                 {howManyFavorites !==0 && howManyFavorites !==1 ? <Title id={"favoritesRecepies-page-count-title"} titleName={`You Have ${howManyFavorites} Saved Recpies In Favorites`}/> : null}
-                {howManyFavorites ===1 ? <Title id={"favoritesRecepies-page-count-title"} titleName={`You Have Just One Recpie In Favorites`}/> : null} 
+                {howManyFavorites ===1 ? <Title id={"favoritesRecepies-page-count-title"} titleName={process.env.REACT_APP_BASE_TITLE_ONE_RECIPE_FAV}/> : null} 
 
                 <div className={"favoritesRecepies-caloriesScale-div"}>
                     <CaloriesScale movementNumbers={false}/> 

@@ -10,7 +10,8 @@ import {
     SET_CHOOSEN_RECIPES_ARRAY_IDX,
     MORE_RECPIE_DETAILS,
     SET_FAVORITES_RECIPES_ARRAY,
-    REMOVE_RECPIE_FROM_FAVORITES_ARRAY
+    REMOVE_RECPIE_FROM_FAVORITES_ARRAY,
+    REMOVE_RECPIE_FROM_DAILY_ARRAY
 
 } from '../reduxConstants';
 
@@ -364,12 +365,13 @@ export const setFavoritesRecpies = (favoritesArray) => (dispatch) => {
 export const removeRecpieFromFavorites = (recpieToRemove) => async (dispatch, getStatus) => {
 
     const {allFavoriteRecpies} = getStatus().recipesReducer;
+    const {userId} = getStatus().signInUpReducer;
 
     console.log(recpieToRemove.recipesn)
 
     try{
 
-        let response = await axios.delete(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_REMOVE_FAV_RECIPE_URL}`, { data : {recipeSnToRemove : recpieToRemove.recipesn} },
+        let response = await axios.delete(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_REMOVE_FAV_RECIPE_URL}`, { data : {recipeSnToRemove : recpieToRemove.recipesn, userId : userId} },
             {
     
             withCredentials: true,
@@ -386,6 +388,41 @@ export const removeRecpieFromFavorites = (recpieToRemove) => async (dispatch, ge
     
             type: REMOVE_RECPIE_FROM_FAVORITES_ARRAY,
             payload: favArrayAfterRemove
+        })
+    }
+    catch(e){
+
+        console.log(e);
+    }
+}
+
+
+export const removeRecpieFromDaily = (recpieToRemove) => async (dispatch, getStatus) => {
+
+    const {todayRecipes} = getStatus().recipesReducer;
+    const {userId} = getStatus().signInUpReducer;
+
+    console.log(recpieToRemove.recipesn)
+
+    try{
+
+        let response = await axios.delete(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_REMOVE_DAILY_RECIPE_URL}`, { data : {recipeSnToRemove : recpieToRemove.recipesn, userId : userId} },
+            {
+    
+            withCredentials: true,
+            headers: {
+    
+                'Access-Control-Allow-Origin' : '*',
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        const dailyArrayAfterRemove =  deleteObjFromArr(todayRecipes, recpieToRemove.recipesn);
+
+        dispatch({
+    
+            type: REMOVE_RECPIE_FROM_DAILY_ARRAY,
+            payload: dailyArrayAfterRemove
         })
     }
     catch(e){

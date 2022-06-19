@@ -113,14 +113,19 @@ export const insertFavRecpie = async (req, res) => {
 export const removeFavRecpie = async (req, res) => {
 
     console.log("###############")
-    console.log(req.body.recipeSnToRemove)
+    console.log(req.body.userId)
     console.log("###############")
 
     try{
 
         const answer = await UsersFavRecipe.destroy({
 
-            where: { recipesn: req.body.recipeSnToRemove }
+            where: { 
+                
+                recipesn: req.body.recipeSnToRemove,
+                userid: req.body.userId
+            
+            }
 
           });
       
@@ -132,6 +137,65 @@ export const removeFavRecpie = async (req, res) => {
 
         res.status(404).json({msg: 'Fault delete recipe from favorites!!!'})
     }
+}
+
+
+export const removeDailyRecipe = async (req, res) => {
+
+    console.log("###############")
+    console.log(req.body.recipeSnToRemove)
+    console.log("###############")
+
+    const todayDate = getCurrentDate()+'T'+"21:00:00.000Z"
+
+    try{
+
+        const answer = await UsersRecipe.destroy({
+
+            where: { 
+                
+                recipesn: req.body.recipeSnToRemove,
+                createdat: todayDate,
+                userid: req.body.userId
+
+            }
+
+          });
+      
+        res.json(answer)
+    }
+    catch(error){
+
+        console.log(error)
+
+        res.status(404).json({msg: 'Fault delete recipe from favorites!!!'})
+    }
+}
+
+
+
+
+const getCurrentDate = () => {
+
+    let date = new Date();
+    let dayDate = date.getDate();
+
+    let month = date.getMonth();
+    let year = date.getYear();
+
+    dayDate--;
+    month++;
+
+    if(year<1000)
+        year+=1900;
+
+    if(month<10)
+    month = "0" + month;
+    
+    if(dayDate<10)
+    dayDate = "0" + dayDate;
+
+    return `${year}-${month}-${dayDate}`;
 }
 
 

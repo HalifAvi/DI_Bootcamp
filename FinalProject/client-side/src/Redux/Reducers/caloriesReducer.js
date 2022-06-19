@@ -1,7 +1,8 @@
 import {
 
     SET_CALORIES_AMOUNT,
-    CHANGE_CURRENT_CALORIES_AMOUNT
+    CHANGE_CURRENT_CALORIES_AMOUNT,
+    SET_OPERATION
 
 } from '../reduxConstants';
 
@@ -10,7 +11,8 @@ const initStateCalories = {
 
     dailyCaloriesAmount : 0,
     currentCaloriesAmount : 0,
-    updateserialnumber : 1
+    updateserialnumber : 1,
+    currentOperation : '-'
 }
 
 
@@ -25,6 +27,10 @@ export const caloriesReducer = (state=initStateCalories, action={}) => {
         case CHANGE_CURRENT_CALORIES_AMOUNT:   
         
             return {...state, currentCaloriesAmount : action.payload} 
+
+        case SET_OPERATION:   
+        
+            return {...state, currentOperation : action.payload} 
 
         default: 
 

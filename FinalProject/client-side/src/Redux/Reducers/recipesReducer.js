@@ -8,7 +8,8 @@ import {
     SET_CHOOSEN_RECIPES_ARRAY_IDX,
     MORE_RECPIE_DETAILS,
     SET_FAVORITES_RECIPES_ARRAY,
-    REMOVE_RECPIE_FROM_FAVORITES_ARRAY
+    REMOVE_RECPIE_FROM_FAVORITES_ARRAY,
+    REMOVE_RECPIE_FROM_DAILY_ARRAY
 
 } from '../reduxConstants';
 
@@ -102,7 +103,12 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
         case REMOVE_RECPIE_FROM_FAVORITES_ARRAY:
 
-                return {...state, allFavoriteRecpies: action.payload}
+            return {...state, allFavoriteRecpies: action.payload}
+
+        case REMOVE_RECPIE_FROM_DAILY_ARRAY:
+
+            return {...state, todayRecipes: action.payload}
+
 
         default: 
 

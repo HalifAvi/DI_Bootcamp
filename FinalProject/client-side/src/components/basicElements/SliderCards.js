@@ -1,27 +1,51 @@
 import { useEffect, useState } from 'react';
 import '../BasicElementStyle/SliderCards.css';
 import Image from "../BasicElements/Image";
-import { changeCurrentCaloriesAmount } from "../../Redux/Actions/caloriesActions.js";
+import { changeCurrentCaloriesAmount, setOperation } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, setChoosenRecepiesArrayIdx, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites, removeRecpieFromDaily } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 import RecpieDescriptionCard from "../BasicElements/RecpieDescriptionCard";
 
 
                                                     // paramToChange - an obj to change the state of pervious component
-const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites,
-                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage, removeRecpieFromFavorites}) => { 
+const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites, setOperation,
+                      currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage, removeRecpieFromFavorites, removeRecpieFromDaily,
+                      setChoosenRecepiesArrayIdx}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
     const [popUp, setPopUp] = useState(false);
     const [wantToAdd, setWantToAdd] = useState(false);
-    const [wantToRemove, setWantToRemove] = useState(false);
+    const [wantToRemoveFav, setWantToRemoveFav] = useState(false);
+    const [wantToRemoveDaily, setWantToRemoveDaily] = useState(false);
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
     const [message, setMessage] = useState('');
 
-    const arrayToDisplay = kindOfPage!=="fav"?currentDisplayedRecepies : allFavoriteRecpies;
+    let arrayToDisplay;
+
+    if(kindOfPage=="fav") {
+
+        arrayToDisplay = allFavoriteRecpies;
+
+    } else if(kindOfPage=="today") {
+
+        arrayToDisplay = todayRecipes;
+
+    } else {
+
+        arrayToDisplay = currentDisplayedRecepies;
+    }
+
+    
+    // To refresh again the displayed cards when back to general recpies
+    useEffect(()=>{
+
+        setChoosenRecepiesArrayIdx(0);
+        setToSpecialRecipesArray();
+
+    }, [])
 
 
 
@@ -76,8 +100,10 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                         clickedRecipeObj.calories
 
-                    await changeCurrentCaloriesAmount(calories, "-");
-        
+                    await setOperation("-");
+
+                    await changeCurrentCaloriesAmount(calories);
+
                     // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
                     // of the component that contains the caloriesBar and because the useEffect of caloriesBar
                     // is not define with [] so eveytime we render it'll render again 
@@ -89,11 +115,30 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         
                     await setToSpecialRecipesArray(); // Set the recipes array to the current calories limitation
 
-                } else if(wantToRemove){
+                } else if(wantToRemoveFav){
 
-                    await removeRecpieFromFavorites(clickedRecipeObj);
+                    await removeRecpieFromFavorites(clickedRecipeObj)
 
-                    setWantToRemove(false);
+                    setWantToRemoveFav(false);
+
+                } else if(wantToRemoveDaily){
+
+                    console.log(clickedRecipeObj);
+
+                    await removeRecpieFromDaily(clickedRecipeObj);
+
+                    await setOperation("+");
+
+                    await changeCurrentCaloriesAmount(clickedRecipeObj.recipecalories);
+
+                    // After click on 'addTopPlate' we want to render the caloriesBar so we set the state
+                    // of the component that contains the caloriesBar and because the useEffect of caloriesBar
+                    // is not define with [] so eveytime we render it'll render again 
+                    const {paintAgainCaloriesBar, setPaintAgainCaloriesBar} = paramToChange;
+            
+                    setPaintAgainCaloriesBar(!paintAgainCaloriesBar);
+
+                    setWantToRemoveDaily(false);
                 }
         }
 
@@ -161,9 +206,9 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         }
     }
 
-    const handlePressOnRemoveLike = (recipeObj) => {
+    const handlePressOnRemove = (recipeObj) => {
 
-        setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_REMOVE_LIKE);
+        kindOfPage=="fav" ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_REMOVE_LIKE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_REMOVE_FROM_DAILY)
 
         setClickedRecipeObj(recipeObj);
 
@@ -186,14 +231,14 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                             return ( 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
-                                    { kindOfPage!=="fav"?
+                                    { kindOfPage!=="fav" && kindOfPage!=="today"?
                                         <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
                                         :
-                                        <Image onClickEvent={()=>handlePressOnRemoveLike(recipeObj)} classN={"remove-like-icon-img"} src={process.env.REACT_APP_BASE_REMOVE_FAV_ICON_URL}/>  
+                                        <Image onClickEvent={()=>handlePressOnRemove(recipeObj)} classN={"remove-like-icon-img"} src={process.env.REACT_APP_BASE_REMOVE_FAV_ICON_URL}/>  
                                     }
                                     <Image id={"recipe-img"} src={recipeObj.image || recipeObj.recipeimage}/>
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title || recipeObj.recipetitle}/>
-                                    <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+                                    <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav" && kindOfPage!=="today"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
                                     <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || recipeObj.recipecalories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
                                     <Title id={"sliderCards-recipe-moreDetails"} classN={"open-button"} onClickEvent={()=>handleMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                     <RecpieDescriptionCard />
@@ -203,12 +248,12 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                         :
 
-                        <Title id={"sliderCards-noRecpies-message"} titleName={kindOfPage!=="fav"?process.env.REACT_APP_BASE_NO_RECPIES_MESSAGE:process.env.REACT_APP_BASE_NO_FAVS_MESSAGE} /> 
+                        <Title id={"sliderCards-noRecpies-message"} titleName={kindOfPage!=="fav" && kindOfPage!=="today"?process.env.REACT_APP_BASE_NO_RECPIES_GENERAL_MESSAGE:process.env.REACT_APP_BASE_NO_RECPIES_MESSAGE} /> 
                     }
                 </div>
             </div>  
 
-            {(popUp) && <PopUpMessage  closePopUp={setPopUp} popUpAnswer={setWantToAdd} popUpAnswerFav={setWantToRemove} kindOfPage={kindOfPage} message={message}/>}
+            {(popUp) && <PopUpMessage  closePopUp={setPopUp} popUpAnswer={setWantToAdd} popUpAnswerFav={setWantToRemoveFav} popUpAnswerDaily={setWantToRemoveDaily} kindOfPage={kindOfPage} message={message}/>}
           
         </section>
     )
@@ -243,13 +288,16 @@ const mapDispatchToProps = (dispatch) => {
 
     return{
 
-        changeCurrentCaloriesAmount : (clickedRecipeObj, operation) => dispatch(changeCurrentCaloriesAmount(clickedRecipeObj, operation)),
+        changeCurrentCaloriesAmount : (clickedRecipeObj) => dispatch(changeCurrentCaloriesAmount(clickedRecipeObj)),
         insertNewAddedRecipe : (recipeObj, userId) => dispatch(insertNewAddedRecipe(recipeObj, userId)),
         setAllDefaultRecipesArray : () => dispatch(setAllDefaultRecipesArray()),
         setToSpecialRecipesArray : () => dispatch(setToSpecialRecipesArray()),
+        setChoosenRecepiesArrayIdx : (idxArr)=> dispatch(setChoosenRecepiesArrayIdx(idxArr)),
         getMoreRecpieDetails : (recipeObj) => dispatch(getMoreRecpieDetails(recipeObj)),
         addRecipeToFavorites : (recipeObj) => dispatch(addRecipeToFavorites(recipeObj)),
-        removeRecpieFromFavorites : (recipeObj) => dispatch(removeRecpieFromFavorites(recipeObj))
+        removeRecpieFromFavorites : (recipeObj) => dispatch(removeRecpieFromFavorites(recipeObj)),
+        removeRecpieFromDaily : (recipeObj) => dispatch(removeRecpieFromDaily(recipeObj)),
+        setOperation : (operation) => dispatch(setOperation(operation))
     }
 }
 

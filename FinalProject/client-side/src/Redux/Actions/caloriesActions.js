@@ -1,7 +1,8 @@
 import {
 
     SET_CALORIES_AMOUNT,
-    CHANGE_CURRENT_CALORIES_AMOUNT
+    CHANGE_CURRENT_CALORIES_AMOUNT,
+    SET_OPERATION
 
 } from '../reduxConstants';
 
@@ -13,7 +14,7 @@ import axios from 'axios';
 
 export const setAmountOfCalories = ({dailyCaloriesAmount, currentCaloriesAmount, updateserialnumber}) => {
 
-    return{
+    return {
     
         type: SET_CALORIES_AMOUNT,
         payload: {dailyCaloriesAmount, currentCaloriesAmount, updateserialnumber}
@@ -21,13 +22,23 @@ export const setAmountOfCalories = ({dailyCaloriesAmount, currentCaloriesAmount,
 }
 
 
-export const changeCurrentCaloriesAmount = (clickedObjCalories, operation)  => async (dispatch, getStatus) => {
+export const setOperation = (operation) => {
+
+    return {
+
+        type: SET_OPERATION,
+        payload: operation
+    }
+}
+
+
+export const changeCurrentCaloriesAmount = (clickedObjCalories)  => async (dispatch, getStatus) => {
 
     const {userId} = getStatus().signInUpReducer;
-    const {currentCaloriesAmount, dailyCaloriesAmount, updateserialnumber} = getStatus().caloriesReducer;
+    const {currentCaloriesAmount, dailyCaloriesAmount, updateserialnumber, currentOperation} = getStatus().caloriesReducer;
     let updatedCaloriesAmount;
 
-    if(operation == "-"){
+    if(currentOperation == "-"){
 
         updatedCaloriesAmount = currentCaloriesAmount - clickedObjCalories 
     }
