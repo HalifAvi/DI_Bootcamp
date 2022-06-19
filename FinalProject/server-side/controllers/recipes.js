@@ -39,7 +39,8 @@ export const insertRecipe = async (req, res) => {
             recipeiron: iron,
             recipevitaminc: vitaminC,
             recipeinstructions: instructions,
-            recipeingredients: ingredients
+            recipeingredients: ingredients,
+            recipehowmanyadded: 1
 
         })
 
@@ -54,6 +55,51 @@ export const insertRecipe = async (req, res) => {
     }
 }
 
+
+export const insertExistDailyRecipe = async (req, res) => {
+
+    console.log("###############")
+    // console.log(req.body);
+    console.log("###############")
+
+    const {
+            userid,
+            recipesn,
+            howManyAdded
+      
+        } = req.body;
+
+        console.log("AVIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+        console.log(userid)
+        console.log(recipesn)
+        console.log(howManyAdded)
+    try{
+
+        const todayDate = getCurrentDate()+'T'+"21:00:00.000Z"
+
+        // Update row in 'usersrecpies' table
+        let updatedRow = await UsersRecipe.update(
+            {
+
+                recipehowmanyadded : howManyAdded
+            },
+            {
+                where: { 
+                            userid: userid,
+                            recipesn: recipesn,
+                            createdat: todayDate
+                        }
+            });
+
+        res.json({updatedRow});
+    }
+    catch(error){
+
+        console.log(error)
+
+        res.status(404).json({msg: 'Fault adding new recipe!!!'})
+    }
+}
 
 
 export const insertFavRecpie = async (req, res) => {

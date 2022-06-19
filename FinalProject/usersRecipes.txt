@@ -13,6 +13,7 @@ CREATE TABLE usersRecipe
 	recipevitaminc INTEGER,
 	recipeinstructions varchar(10000),
 	recipeingredients json, 
+	recipehowmanyadded INTEGER,
 
     createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedat timestamp without time zone

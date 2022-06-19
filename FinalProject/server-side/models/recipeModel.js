@@ -35,6 +35,9 @@ const UsersRecipe = db.define('usersrecipe',{
     recipeingredients: {
         type: DataTypes.JSON
     },
+    recipehowmanyadded: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {    // createdAt: false
         field: 'createdat', 
         type: DataTypes.DATEONLY

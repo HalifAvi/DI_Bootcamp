@@ -5,7 +5,7 @@ import UsersCalories from "../models/calorieModel.js";
 export const updateCurrentCaloriesAmount = async (req, res) => {
 
     console.log("###############")
-    console.log("PARAMS-UPDATE-CALORIES:", req.body);
+    // console.log("PARAMS-UPDATE-CALORIES:", req.body);
     console.log("###############")
 
     const {

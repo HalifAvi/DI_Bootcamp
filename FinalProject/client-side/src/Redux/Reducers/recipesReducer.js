@@ -9,7 +9,8 @@ import {
     MORE_RECPIE_DETAILS,
     SET_FAVORITES_RECIPES_ARRAY,
     REMOVE_RECPIE_FROM_FAVORITES_ARRAY,
-    REMOVE_RECPIE_FROM_DAILY_ARRAY
+    REMOVE_RECPIE_FROM_DAILY_ARRAY,
+    UPDATE_HOW_MANY_ADDED_IN_SPECIFIC_RECIPE
 
 } from '../reduxConstants';
 
@@ -45,7 +46,8 @@ const initStateRecipes = {
     caloriesCurrRecpie: 0,
     proteinCurrRecpie: 0,
     ironCurrRecpie: 0, 
-    vitaminCCurrRecpie: 0, 
+    vitaminCCurrRecpie: 0,
+    howManyAddedCurrRecpie: 1, 
     instructionsCurrRecpie: '', 
     ingredientsCurrRecpie: [],
     titleCurrRecpie: '',
@@ -97,8 +99,6 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
         
         case SET_FAVORITES_RECIPES_ARRAY:    
 
-            console.log("FAV ARRAY FROM REDUCER TO UPDATE REDUCER", action.payload);
-
             return{...state, allFavoriteRecpies: action.payload}
 
         case REMOVE_RECPIE_FROM_FAVORITES_ARRAY:
@@ -109,7 +109,14 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
             return {...state, todayRecipes: action.payload}
 
+        case UPDATE_HOW_MANY_ADDED_IN_SPECIFIC_RECIPE:
 
+            let indexInArrToUpdate = (state.todayRecipes).findIndex(item => item.recipesn == action.payload.recipesnCurrRecpie);
+
+            (state.todayRecipes)[indexInArrToUpdate].recipehowmanyadded = action.payload.howManyAdded;
+
+            return {...state, todayRecipes: [...state.todayRecipes]}
+            
         default: 
 
             return {...state}

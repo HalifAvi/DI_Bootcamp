@@ -11,7 +11,8 @@ import {
     MORE_RECPIE_DETAILS,
     SET_FAVORITES_RECIPES_ARRAY,
     REMOVE_RECPIE_FROM_FAVORITES_ARRAY,
-    REMOVE_RECPIE_FROM_DAILY_ARRAY
+    REMOVE_RECPIE_FROM_DAILY_ARRAY,
+    UPDATE_HOW_MANY_ADDED_IN_SPECIFIC_RECIPE
 
 } from '../reduxConstants';
 
@@ -242,6 +243,51 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
     
             type: ADD_TO_TODAY_RECIPES_ARRAY,
             payload: response.data
+        })
+    }
+    catch(e){
+
+        console.log(e);
+    }
+}
+
+
+export const insertNotNewRecipeToDaily = (recpieSN, howManyAdded) => async (dispatch, getStatus) => {   
+    
+    const {userId} = getStatus().signInUpReducer;
+
+    try{ 
+
+        // console.log(howManyAdded)
+        // console.log(userId)
+        // console.log(recpieSN)
+
+        let objToSend = 
+
+            {
+                userid: userId,
+                recipesn: recpieSN,
+                howManyAdded: howManyAdded + 1
+            }
+
+        let response = await axios.put(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_INSERT_NOT_NEW_RECIPE_URL,
+            
+            objToSend,
+
+            {
+    
+            withCredentials: true,
+            headers: {
+    
+                'Access-Control-Allow-Origin' : '*',
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        dispatch({
+    
+            type: UPDATE_HOW_MANY_ADDED_IN_SPECIFIC_RECIPE,
+            payload: {recipesnCurrRecpie : recpieSN, howManyAdded: howManyAdded + 1}
         })
     }
     catch(e){
@@ -501,6 +547,10 @@ const shuffle = (array) => {
             return DessertsRecpies;
     }
 }
+
+
+
+
 
 
 

@@ -259,6 +259,18 @@
     font-family: var(--clr-thin-font);
 }
 
+#sliderCards-recipe-howmanyadded {
+
+    position: absolute;
+    bottom: 30px;
+    right: 180px;
+    margin-left: 10px;
+    color: var(--clr-red);
+    font-size: 30px;
+    transform: rotate(35deg);
+    font-family: var(--clr-thin-font);
+}
+
 #sliderCards-recipe-moreDetails {
 
     position: absolute;

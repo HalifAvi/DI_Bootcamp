@@ -4,7 +4,7 @@ import Image from "../BasicElements/Image";
 import { changeCurrentCaloriesAmount, setOperation } from "../../Redux/Actions/caloriesActions.js";
 import { connect } from 'react-redux';
 import PopUpMessage from './PopUpMessage';
-import { insertNewAddedRecipe, setAllDefaultRecipesArray, setToSpecialRecipesArray, setChoosenRecepiesArrayIdx, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites, removeRecpieFromDaily } from "../../Redux/Actions/recipesActions.js";
+import { insertNewAddedRecipe, setAllDefaultRecipesArray, insertNotNewRecipeToDaily, setToSpecialRecipesArray, setChoosenRecepiesArrayIdx, getMoreRecpieDetails, addRecipeToFavorites, removeRecpieFromFavorites, removeRecpieFromDaily } from "../../Redux/Actions/recipesActions.js";
 import Title from './Title';
 import RecpieDescriptionCard from "../BasicElements/RecpieDescriptionCard";
 
@@ -12,7 +12,7 @@ import RecpieDescriptionCard from "../BasicElements/RecpieDescriptionCard";
                                                     // paramToChange - an obj to change the state of pervious component
 const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieDetails, insertNewAddedRecipe, userId, todayRecipes, addRecipeToFavorites, setOperation,
                       currentDisplayedRecepies, setToSpecialRecipesArray, allFavoriteRecpies, kindOfPage, removeRecpieFromFavorites, removeRecpieFromDaily,
-                      setChoosenRecepiesArrayIdx}) => { 
+                      setChoosenRecepiesArrayIdx, insertNotNewRecipeToDaily}) => { 
         
 
     // const [swiperVariable, setSwiperVariable] = useState(true);
@@ -22,6 +22,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     const [wantToRemoveDaily, setWantToRemoveDaily] = useState(false);
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
     const [message, setMessage] = useState('');
+    const [isAlreadyExistInDaily, setIsAlreadyExistInDaily] = useState(0);
 
     let arrayToDisplay;
 
@@ -81,15 +82,25 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
 
     // In case the answer from the popUp is true : user wants to add
-    useEffect(()=>{
+    useEffect(()=>{                                                                      ////////////////////////////////
 
         async function handleAddRecipe() {
 
                 if(wantToAdd){
 
-                    await getMoreRecpieDetails(clickedRecipeObj);
+                    if(isAlreadyExistInDaily==0){ // Want to add to daily + not found in daily already
+
+                        await getMoreRecpieDetails(clickedRecipeObj);
     
-                    await insertNewAddedRecipe(clickedRecipeObj, userId);
+                        await insertNewAddedRecipe(clickedRecipeObj, userId);
+
+                    } else { // Want to add to daily + already found in daily
+
+
+                        insertNotNewRecipeToDaily(clickedRecipeObj.id, isAlreadyExistInDaily);
+
+                        setIsAlreadyExistInDaily(0);
+                    }
         
                     // WAIT !!!!! here till you update the currentCalories cause we want to use it immediatly after to update the displyed recipes
                     const calories = clickedRecipeObj.calories == null ? 
@@ -161,11 +172,15 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     // }, [wantToAdd])
 
 
-    const addRecipeToPlate = (recipeObj, e) => {
+    const addRecipeToPlate = (recipeObj, e) => { ////////////////////////////////
 
         setClickableIcons("none");
 
-        isAlreadyAdded(e.target.id) ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_RECIPE);
+        let answer = isAlreadyAdded(recipeObj.id)
+
+        setIsAlreadyExistInDaily( answer );
+        
+        answer !==0 ? setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_EXIST_RECIPE) : setMessage(process.env.REACT_APP_BASE_MESSAGE_BEFORE_ADD_RECIPE);
 
         setClickedRecipeObj(recipeObj);
         
@@ -174,11 +189,20 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
     const isAlreadyAdded = (clickedRecipeId) => {
 
-        return todayRecipes.some(recipe=> recipe.recipesn == Number(clickedRecipeId));
+        let answer = 0;
 
+        todayRecipes.forEach(recipe=> { 
+            
+            if(recipe.recipesn == Number(clickedRecipeId)){
+
+                answer = recipe.recipehowmanyadded;
+            }            
+        });
+
+        return answer;
     }
 
-    const handleMoreRecpieDetails = async (recipeObj) => { //////////////////////////
+    const handleMoreRecpieDetails = async (recipeObj) => { 
 
         await getMoreRecpieDetails(recipeObj);
 
@@ -187,7 +211,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         modal.showModal();
     }
     
-    const handlePressOnLike = async (e, recipeObj) => {  ////////////////////////
+    const handlePressOnLike = async (e, recipeObj) => {  
 
         if(!(allFavoriteRecpies.some(item=> recipeObj.id === item.recipesn))) {
 
@@ -241,6 +265,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                                     <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav" && kindOfPage!=="today"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
                                     <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || recipeObj.recipecalories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
                                     <Title id={"sliderCards-recipe-moreDetails"} classN={"open-button"} onClickEvent={()=>handleMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
+                                    { kindOfPage=="today" && recipeObj.recipehowmanyadded > 1 ?<Title id={"sliderCards-recipe-howmanyadded"} titleName={`x${recipeObj.recipehowmanyadded}`}/> : null}
                                     <RecpieDescriptionCard />
                                 </div>
                             )
@@ -297,7 +322,8 @@ const mapDispatchToProps = (dispatch) => {
         addRecipeToFavorites : (recipeObj) => dispatch(addRecipeToFavorites(recipeObj)),
         removeRecpieFromFavorites : (recipeObj) => dispatch(removeRecpieFromFavorites(recipeObj)),
         removeRecpieFromDaily : (recipeObj) => dispatch(removeRecpieFromDaily(recipeObj)),
-        setOperation : (operation) => dispatch(setOperation(operation))
+        setOperation : (operation) => dispatch(setOperation(operation)),
+        insertNotNewRecipeToDaily : (recipeObj, userId) => dispatch(insertNotNewRecipeToDaily(recipeObj, userId))
     }
 }
 

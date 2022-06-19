@@ -27,10 +27,10 @@ const TodayRecipes = ({todayRecipes}) => {
         
             <SliderCards kindOfPage={"today"} paramToChange={{setPaintAgainCaloriesBar, paintAgainCaloriesBar}}/> 
 
-            {howManyInDaily !==0 && howManyInDaily !==1 ? <Title id={"todayRecipes-page-count-title"} titleName={`You Added ${howManyInDaily} Recpies Today`}/> : null}
+            {howManyInDaily !==0 && howManyInDaily !==1 ? <Title id={"todayRecipes-page-count-title"} titleName={`You Added ${howManyInDaily} Different Kind Of Recipes Today`}/> : null}
             {howManyInDaily ===1 ? <Title id={"todayRecipes-page-count-title"} titleName={process.env.REACT_APP_BASE_TITLE_ONE_RECIPE_TODAY}/> : null} 
 
-            <div className={"todayRecipes-caloriesScale-div"}>
+            <div className={"todayRecipes-caloriesScale-div"}>   
                 <CaloriesScale movementNumbers={false}/> 
             </div>    
 
