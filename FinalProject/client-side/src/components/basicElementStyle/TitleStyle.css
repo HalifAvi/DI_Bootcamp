@@ -368,13 +368,15 @@
 .grid-small-title {
 
     color: var(--clr-black);
-    font-size: 10px;
+    font-size: 12px;
+    font-family: var(--clr-thin-font);
 }
 
 .grid-small-amount {
 
     color: var(--clr-yellow);
     background-color: var(--clr-black);
-    font-size: 10px;
+    font-size: 12px;
     width: fit-content;
+    font-family: var(--clr-thin-font);
 }

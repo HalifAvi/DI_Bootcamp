@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Title from './Title';
 import { useEffect } from 'react';
 import Grid from './Grid';
+import DoughnutChart from "../BasicElements/DoughnutChart";
+
 
 const RecpieDescriptionCard = ({caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie,instructionsCurrRecpie,
                                 ingredientsCurrRecpie,titleCurrRecpie,imageCurrRecpie}) => {
@@ -54,6 +56,9 @@ const RecpieDescriptionCard = ({caloriesCurrRecpie, proteinCurrRecpie, ironCurrR
                 <div className={"recpieDescriptionCard-info2-recpie-div pattern-dots-sm slategray h-5"}>
                     <div className={"recpieDescriptionCard-snd2-title"}>
                         <Title titleName={"NUTRITION VALUES"}/>
+                    </div>
+                    <div>
+                        <DoughnutChart className={"recpieDescriptionCard-doughnutChart"}/> 
                     </div>
                 </div>
                 <div className={"recpieDescriptionCard-info3-recpie-div"}>

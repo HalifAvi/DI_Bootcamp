@@ -88,11 +88,11 @@ export const recipesReducer = (state=initStateRecipes, action={}) => {
 
         case MORE_RECPIE_DETAILS:
 
-            const { calories, protein, iron, vitaminC, instructions, ingredients, title, recipesn, image } = action.payload;
+            const { calories, protein, iron, vitaminC, instructions, ingredients, title, recipesn, image, unitProtein, unitIron, unitVitaminC } = action.payload;
 
             return {...state, caloriesCurrRecpie: calories, proteinCurrRecpie: protein, ironCurrRecpie: iron, vitaminCCurrRecpie: vitaminC,
                     instructionsCurrRecpie: instructions, ingredientsCurrRecpie: ingredients, titleCurrRecpie: title, recipesnCurrRecpie: recipesn,
-                    imageCurrRecpie: image}
+                    imageCurrRecpie: image, unitProtein: unitProtein, unitIron: unitIron, unitVitaminC: unitVitaminC}
         
         case SET_FAVORITES_RECIPES_ARRAY:    
 

@@ -13,6 +13,7 @@ import Settings from './Components/Pages/Settings';
 
 
 
+
 function App() {
 
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path={process.env.REACT_APP_BASE_PREV_RECEPIES_PATH} element={<PreviousRecepies />} />
         <Route path={process.env.REACT_APP_BASE_SETTINGS_PATH} element={<Settings />} />
       </Routes> 
+
     </div>
   )
 }

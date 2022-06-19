@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux';
 import React from "react";
-import '../PagesStyle/todayRecipes.css';
+import '../PagesStyle/TodayRecipes.css';
 import NavBar from "../BasicElements/NavBar";
 
 
