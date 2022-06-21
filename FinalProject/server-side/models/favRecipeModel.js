@@ -29,6 +29,15 @@ const UsersFavRecipe = db.define('favoriterecpies',{
     recipevitaminc: {
         type: DataTypes.INTEGER
     },
+    recipeunitprotein: {
+        type: DataTypes.STRING
+    },
+    recipeunitiron: {
+        type: DataTypes.STRING
+    },
+    recipeunitvitaminc: {
+        type: DataTypes.STRING
+    },
     recipeinstructions: {
         type: DataTypes.STRING
     },

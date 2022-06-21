@@ -11,6 +11,9 @@ CREATE TABLE usersRecipe
 	recipeprotein INTEGER,
 	recipeiron INTEGER,
 	recipevitaminc INTEGER,
+	recipeunitprotein varchar(255),
+	recipeunitiron varchar(255),
+	recipeunitvitaminc varchar(255),
 	recipeinstructions varchar(10000),
 	recipeingredients json, 
 	recipehowmanyadded INTEGER,
@@ -18,5 +21,6 @@ CREATE TABLE usersRecipe
     createdat timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedat timestamp without time zone
 )
-
+            
+    
      

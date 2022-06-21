@@ -7,11 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 import {signInUpReducer} from './Redux/Reducers/signInUpReducer.js';
 import {caloriesReducer} from './Redux/Reducers/caloriesReducer.js';
 import {recipesReducer} from './Redux/Reducers/recipesReducer.js';
+import {calendarReducer} from './Redux/Reducers/calendarReducer.js';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({signInUpReducer, caloriesReducer, recipesReducer});
+const rootReducer = combineReducers({signInUpReducer, caloriesReducer, recipesReducer, calendarReducer});
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 

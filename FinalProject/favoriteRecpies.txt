@@ -10,6 +10,9 @@ CREATE TABLE favoriterecpies
 	recipeprotein INTEGER,
 	recipeiron INTEGER,
 	recipevitaminc INTEGER,
+	recipeunitprotein varchar(255),
+	recipeunitiron varchar(255),
+	recipeunitvitaminc varchar(255),
 	recipeinstructions varchar(10000),
 	recipeingredients json, 
 

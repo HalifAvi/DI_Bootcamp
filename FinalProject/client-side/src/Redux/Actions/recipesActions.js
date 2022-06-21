@@ -127,7 +127,7 @@ export const setTodayRecipesArray = (allRecipesArray) => {
 export const addRecipeToFavorites = (recipeObj) => async (dispatch, getStatus) => {
 
     let {caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie, instructionsCurrRecpie, ingredientsCurrRecpie,
-        titleCurrRecpie, recipesnCurrRecpie, imageCurrRecpie} = getStatus().recipesReducer;
+        titleCurrRecpie, imageCurrRecpie, unitProtein, unitIron, unitVitaminC} = getStatus().recipesReducer;
 
     const {userId} = getStatus().signInUpReducer;
 
@@ -158,7 +158,10 @@ export const addRecipeToFavorites = (recipeObj) => async (dispatch, getStatus) =
                     protein: proteinCurrRecpie,
                     iron: ironCurrRecpie,
                     vitaminC: vitaminCCurrRecpie,
-                    ingredients: JSONIngredientsCurrRecpie
+                    ingredients: JSONIngredientsCurrRecpie,
+                    unitProtein: unitProtein, 
+                    unitIron: unitIron, 
+                    unitVitaminC: unitVitaminC
                 }
         
                 let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_INSERT_FAV_RECIPE_URL,
@@ -191,7 +194,7 @@ export const addRecipeToFavorites = (recipeObj) => async (dispatch, getStatus) =
 export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getStatus) => {
 
     let {caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie, instructionsCurrRecpie, ingredientsCurrRecpie,
-        titleCurrRecpie, recipesnCurrRecpie, imageCurrRecpie} = getStatus().recipesReducer;
+        titleCurrRecpie, recipesnCurrRecpie, imageCurrRecpie, unitProtein, unitIron, unitVitaminC} = getStatus().recipesReducer;
 
     try{ 
 
@@ -208,6 +211,8 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
 
         let JSONIngredientsCurrRecpie = JSON.stringify(justNameAndAmountIngredientsArray);
 
+        console.log(recipeObj)
+
         let objToSend = 
 
             {
@@ -220,7 +225,10 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
                 protein: proteinCurrRecpie,
                 iron: ironCurrRecpie,
                 vitaminC: vitaminCCurrRecpie,
-                ingredients: JSONIngredientsCurrRecpie
+                ingredients: JSONIngredientsCurrRecpie,
+                unitProtein: unitProtein, 
+                unitIron: unitIron, 
+                unitVitaminC: unitVitaminC 
             }
 
             console.log(objToSend)
@@ -257,10 +265,6 @@ export const insertNotNewRecipeToDaily = (recpieSN, howManyAdded) => async (disp
     const {userId} = getStatus().signInUpReducer;
 
     try{ 
-
-        // console.log(howManyAdded)
-        // console.log(userId)
-        // console.log(recpieSN)
 
         let objToSend = 
 
@@ -392,8 +396,6 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 export const setFavoritesRecpies = (favoritesArray) => (dispatch) => {
 
     try{ 
-
-        console.log("FAV ARRAY FROM ACTIONS TO UPDATE REDUCER", favoritesArray)
 
         dispatch({
     

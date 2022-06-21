@@ -18,7 +18,10 @@ export const insertRecipe = async (req, res) => {
         protein,
         iron,
         vitaminC,
-        ingredients
+        ingredients,
+        unitProtein, 
+        unitIron, 
+        unitVitaminC 
 
     } = req.body
 
@@ -38,6 +41,9 @@ export const insertRecipe = async (req, res) => {
             recipeprotein: protein,
             recipeiron: iron,
             recipevitaminc: vitaminC,
+            recipeunitprotein: unitProtein,
+            recipeunitiron: unitIron,
+            recipeunitvitaminc: unitVitaminC,
             recipeinstructions: instructions,
             recipeingredients: ingredients,
             recipehowmanyadded: 1
@@ -100,10 +106,6 @@ export const decreaseAmountDailyRecipe = async (req, res) => {
 
 export const insertExistDailyRecipe = async (req, res) => {
 
-    console.log("###############")
-    // console.log(req.body);
-    console.log("###############")
-
     const {
             userid,
             recipesn,
@@ -111,10 +113,6 @@ export const insertExistDailyRecipe = async (req, res) => {
       
         } = req.body;
 
-        console.log("AVIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-        console.log(userid)
-        console.log(recipesn)
-        console.log(howManyAdded)
     try{
 
         const todayDate = getCurrentDate()+'T'+"21:00:00.000Z"
@@ -161,11 +159,12 @@ export const insertFavRecpie = async (req, res) => {
         protein,
         iron,
         vitaminC,
-        ingredients
+        ingredients,
+        unitProtein, 
+        unitIron, 
+        unitVitaminC 
 
     } = req.body
-
-    console.log(ingredients)
 
 
     try{
@@ -181,8 +180,11 @@ export const insertFavRecpie = async (req, res) => {
             recipeprotein: protein,
             recipeiron: iron,
             recipevitaminc: vitaminC,
+            recipeunitprotein: unitProtein,
+            recipeunitiron: unitIron,
+            recipeunitvitaminc: unitVitaminC,
             recipeinstructions: instructions,
-            recipeingredients: ingredients
+            recipeingredients: ingredients,
 
         })
 
@@ -259,6 +261,37 @@ export const removeDailyRecipe = async (req, res) => {
         res.status(404).json({msg: 'Fault delete recipe from favorites!!!'})
     }
 }
+
+
+export const getAllSpecificDateUserRecpies = async (req, res) => {
+
+    console.log("###############")
+    console.log(req.query)
+    console.log("###############")
+
+    try{
+
+        const answer = await UsersRecipe.findAll({
+
+            where: { 
+                
+                createdat: req.query.date,
+                userid: req.query.userId
+            }
+
+          });
+      
+        res.json(answer)
+    }
+    catch(error){
+
+        console.log(error)
+
+        res.status(404).json({msg: 'Fault delete recipe from favorites!!!'})
+    }
+}
+
+
 
 
 

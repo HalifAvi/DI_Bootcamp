@@ -1,5 +1,5 @@
 import express from 'express';
-import {insertRecipe, insertFavRecpie, decreaseAmountDailyRecipe, removeFavRecpie, removeDailyRecipe, insertExistDailyRecipe} from '../controllers/recipes.js';
+import {insertRecipe, insertFavRecpie, decreaseAmountDailyRecipe, removeFavRecpie, getAllSpecificDateUserRecpies, removeDailyRecipe, insertExistDailyRecipe} from '../controllers/recipes.js';
 
 
 const router = express.Router();
@@ -13,6 +13,7 @@ router.delete('/removeFavRecipe', removeFavRecpie);
 router.delete('/removeDailyRecipe', removeDailyRecipe);
 router.put('/insertExistDailyRecipe', insertExistDailyRecipe);
 router.put('/decreaseAmountDailyRecipe', decreaseAmountDailyRecipe);
+router.get('/allSpeDateUserRecpies', getAllSpecificDateUserRecpies)
 
 
 

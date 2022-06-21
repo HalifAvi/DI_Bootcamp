@@ -2,11 +2,13 @@
 
     position: relative;
     top: 100px;
+    left: 50px;
     height: 470px;
     padding-top: 50px;
     padding-left: 50px;
     background-color: var(--clr-black);
     color:  var(--clr-white);
+    width: 600px;
   }
 
 

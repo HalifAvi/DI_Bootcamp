@@ -14,17 +14,21 @@ const DoughnutChart = ({
     vitaminCCurrRecpie
 
 }) => {
+
+    let num1 = convertToGramUnit(proteinCurrRecpie, unitProtein);
+    let num2 = convertToGramUnit(ironCurrRecpie, unitIron);
+    let num3 = convertToGramUnit(vitaminCCurrRecpie, unitVitaminC);
+
     
     const options = {
 
         series: [
 
-            unitProtein == "mg"? Number(proteinCurrRecpie)/1000 : Number(proteinCurrRecpie),
-            unitIron == "mg"? Number(ironCurrRecpie)/1000 : Number(ironCurrRecpie),
-            unitVitaminC == "mg"? Number(vitaminCCurrRecpie)/1000 : Number(vitaminCCurrRecpie) 
-
+            num1,
+            num2,
+            num3        
         ],
-        labels: ["IRON [g]", "VITAMIN C [g]", "PROTEIN [g]"],
+        labels: ["PROTEIN [g]", "IRON [g]", "VITAMIN C [g]"],
         colors: ["VAR(--clr-black)", "VAR(--clr-yellow)", "VAR(--clr-turquoise)"],
         plotOptions: {
 
@@ -43,11 +47,13 @@ const DoughnutChart = ({
         }
     };
 
+
+
     const series = [
 
-        unitProtein == "mg"? Number(proteinCurrRecpie)/1000 : Number(proteinCurrRecpie),
-        unitIron == "mg"? Number(ironCurrRecpie)/1000 : Number(ironCurrRecpie),
-        unitVitaminC == "mg"? Number(vitaminCCurrRecpie)/1000 : Number(vitaminCCurrRecpie) 
+        num1,
+        num2,
+        num3 
     ]
 
     return(
@@ -92,3 +98,18 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(DoughnutChart);
 
 
+const convertToGramUnit = (amount, unit) => {
+
+    let amountToRet = Number(amount);
+
+    if(unit == "µg") {
+
+        amountToRet = amountToRet/1000000;
+
+    } else if(unit == "mg") {
+
+        amountToRet = amountToRet/1000;
+    } 
+
+    return amountToRet;
+}

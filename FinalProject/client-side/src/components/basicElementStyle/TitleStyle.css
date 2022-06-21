@@ -423,3 +423,20 @@
     opacity: 0.9;
     text-shadow: 0 0 20px var(--clr-yellow);
 }
+
+
+/******************************* 'PreviousRecipes' Page ********************************/
+
+
+#previousRecepies-page-title {
+
+    font-family: var(--clr-script-font);
+    position: absolute;
+    left: -200px;
+    top: 315px;
+    font-size: 45px;
+    color: var(--clr-yellow);
+    z-index: 2000;
+    transform: rotate(-90deg);
+    letter-spacing: 1px;
+}

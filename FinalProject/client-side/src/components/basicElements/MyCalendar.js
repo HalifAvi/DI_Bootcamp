@@ -16,10 +16,11 @@ const MyCalendar = (props) => {
 
         <div className={"calendar-section pattern-dots-sm slategray h-5"}>
                 <Calendar onChange={onChange} value={date} />
-                {/* {date.toString()} */}
         </div>
 
     )
 }
 
 export default MyCalendar;
+
+

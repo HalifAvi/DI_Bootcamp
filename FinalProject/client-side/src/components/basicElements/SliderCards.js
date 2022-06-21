@@ -90,7 +90,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                     if(isAlreadyExistInDaily==0){ // Want to add to daily + not found in daily already
 
-                        await getMoreRecpieDetails(clickedRecipeObj);
+                        await getMoreRecpieDetails(clickedRecipeObj);  
     
                         await insertNewAddedRecipe(clickedRecipeObj, userId);
 
