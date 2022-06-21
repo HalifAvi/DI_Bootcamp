@@ -1,8 +1,18 @@
 @import "../constantsCSS.css";
 
-div#aaa {
-    background-color: black;
-    width: 100%;
+
+.previousRecepies-div {
+
+    color: var(--clr-white);
+    background-color: var(--clr-black);
     height: 100vh;
-    color: azure;
-}
+  }
+  
+  .previousRecepies-calendar {
+
+    position: relative;
+    top: 150px;
+    left: 100px;
+    background-color: aqua;
+    width: fit-content;
+  }
