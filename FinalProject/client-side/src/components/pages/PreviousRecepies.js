@@ -1,33 +1,41 @@
-
 import { connect } from 'react-redux';
-import React from "react";
 import '../PagesStyle/PreviousRecepies.css';
 import NavBar from "../BasicElements/NavBar";
+import CaloriesScale from "../BasicElements/CaloriesScale";
+import AppLogo from '../BasicElements/AppLogo';
+import Title from '../BasicElements/Title';
+
 
 
 const PreviousRecepies = (props) => {
 
     return(
+            <div className={"favoritesRecepies-div pattern-dots-sm slategray h-5"}>
 
-        <div id={"aaa"}> 
+                <div id={"main-logo-div"}>
+                    <AppLogo id={"signinSignUpIntro-logo"} />
+                </div> 
 
-<h1>{"PreviousRecepies"}</h1>
+                <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+200} positionOnNavBar={2}/> 
+            
+                <div className={"favoritesRecepies-caloriesScale-div"}>
+                    <CaloriesScale movementNumbers={false}/> 
+                </div>    
 
-
-            <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+300} positionOnNavBar={3}/>
-        </div>
-    )
-}
-
-
-
-const mapStateToProps = (state) => {
-
-    return{
-
+            </div>
+        )
     }
-}
+
+    const mapStateToProps = (state) => {
+
+        return{
+
+        }
+    }
 
 
 
 export default connect(mapStateToProps, null)(PreviousRecepies);
+
+
+
