@@ -15,8 +15,8 @@ const PreviousRecepies = ({setSpecificDayUserValuesNutrition, currDisplayedProte
 
         const date = formatDate(new Date());
 
-        setSpecificDayUserValuesNutrition(date)
-    })
+        setSpecificDayUserValuesNutrition(date);
+    },[])
 
     return(
             <div className={"previousRecepies-div pattern-dots-sm slategray h-5"}>

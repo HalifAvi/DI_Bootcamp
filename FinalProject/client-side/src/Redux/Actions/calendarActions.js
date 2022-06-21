@@ -35,8 +35,6 @@ export const setSpecificDayUserValuesNutrition = (date) => async (dispatch, getS
             }
         })
 
-        console.log(response.data)
-
         const sumValuesNutritionObj = getUserSumValuesNutrition(response.data);
 
         dispatch({
@@ -49,7 +47,6 @@ export const setSpecificDayUserValuesNutrition = (date) => async (dispatch, getS
                 currDisplayedVitaminC : sumValuesNutritionObj.currDisplayedVitaminC
             }
         })
-
     }
     catch(e){
 
