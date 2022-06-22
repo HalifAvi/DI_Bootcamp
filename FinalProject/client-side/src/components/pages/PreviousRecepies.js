@@ -5,17 +5,36 @@ import AppLogo from '../BasicElements/AppLogo';
 import MyCalendar from '../BasicElements/MyCalendar';
 import Title from '../BasicElements/Title';
 import { useEffect } from 'react';
-import {setSpecificDayUserValuesNutrition} from "../../Redux/Actions/calendarActions.js"
+import {setSpecificDayUserValuesNutrition} from "../../Redux/Actions/calendarActions.js";
+import {setRecommendedConsumption} from "../../Redux/Actions/signInUpActions.js";
+import CandleGraph from '../BasicElements/CandleGraph';
 
 
 
-const PreviousRecepies = ({setSpecificDayUserValuesNutrition, currDisplayedProtein, currDisplayedIron, currDisplayedVitaminC}) => {
+const PreviousRecepies = ({
+                            setSpecificDayUserValuesNutrition,
+                            recommendedConsumptionProtein,
+                            recommendedConsumptionIron,
+                            recommendedConsumptionVitaminC, 
+                            setRecommendedConsumption,
+                            currDisplayedProtein,
+                            currDisplayedIron,
+                            currDisplayedVitaminC,
+                            isExistData,
+                            displayedDate
+
+                        }) => {
+
+    let date;
 
     useEffect(()=> {
 
-        const date = formatDate(new Date());
+        date = formatDate(new Date());
 
-        setSpecificDayUserValuesNutrition(date);
+        setSpecificDayUserValuesNutrition(formatDate(date), date);
+
+        setRecommendedConsumption();
+
     },[])
 
     return(
@@ -25,16 +44,25 @@ const PreviousRecepies = ({setSpecificDayUserValuesNutrition, currDisplayedProte
                     <AppLogo id={"signinSignUpIntro-logo"} />
                 </div> 
 
-                <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+400} positionOnNavBar={4}/> 
+                <Title titleName={displayedDate} id={"previousRecepies-date-title"}/>
 
-                {console.log(currDisplayedProtein)}
-                {console.log(currDisplayedIron)}
-                {console.log(currDisplayedVitaminC)}
+                <Title titleName={isExistData ? null : "No Data - You Didn't visit Our App" } id={"previousRecepies-snd-page-title"}/>
+
+                <NavBar numOfPxOnNavBar={process.env.REACT_APP_BASE_PX_POS_ICON_1_NAVBAR+400} positionOnNavBar={4}/> 
 
                 <Title id={"previousRecepies-page-title"} titleName={process.env.REACT_APP_BASE_TITLE_PREV_RECIPES}/>
 
                 <MyCalendar />
 
+                <CandleGraph dataToDisplay={{
+                                                currDisplayedProtein,
+                                                currDisplayedIron,
+                                                currDisplayedVitaminC,
+                                                recommendedConsumptionVitaminC,
+                                                recommendedConsumptionIron,
+                                                recommendedConsumptionProtein,
+                                                isExistData
+                                            }}/>
             </div>
         )
     }
@@ -46,7 +74,12 @@ const PreviousRecepies = ({setSpecificDayUserValuesNutrition, currDisplayedProte
 
             currDisplayedProtein : state.calendarReducer.currDisplayedProtein,
             currDisplayedIron : state.calendarReducer.currDisplayedIron,
-            currDisplayedVitaminC : state.calendarReducer.currDisplayedVitaminC
+            currDisplayedVitaminC : state.calendarReducer.currDisplayedVitaminC,
+            recommendedConsumptionProtein : state.signInUpReducer.recommendedConsumptionProtein,
+            recommendedConsumptionIron : state.signInUpReducer.recommendedConsumptionIron,
+            recommendedConsumptionVitaminC : state.signInUpReducer.recommendedConsumptionVitaminC,
+            isExistData : state.calendarReducer.isExistData,
+            displayedDate : state.calendarReducer.displayedDate
         }
     }
 
@@ -54,8 +87,8 @@ const PreviousRecepies = ({setSpecificDayUserValuesNutrition, currDisplayedProte
 
         return{
 
-            setSpecificDayUserValuesNutrition : (date) => dispatch(setSpecificDayUserValuesNutrition(date))
-
+            setSpecificDayUserValuesNutrition : (formatDate, date) => dispatch(setSpecificDayUserValuesNutrition(formatDate, date)),
+            setRecommendedConsumption : () => dispatch(setRecommendedConsumption())
         }
     }
 

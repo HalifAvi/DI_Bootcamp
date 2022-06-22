@@ -9,7 +9,9 @@ const initStateCalendar = {
 
     currDisplayedProtein : 0,
     currDisplayedIron : 0,
-    currDisplayedVitaminC : 0
+    currDisplayedVitaminC : 0,
+    isExistData : false,
+    displayedDate : ''
 }
 
 
@@ -19,7 +21,16 @@ export const calendarReducer = (state=initStateCalendar, action={}) => {
 
         case SET_SPECIFIC_VALUES_NUTRITION_DATE: 
 
-            return {...state, currDisplayedProtein: action.payload.currDisplayedProtein, currDisplayedIron: action.payload.currDisplayedIron,  currDisplayedVitaminC: action.payload.currDisplayedVitaminC}
+        console.log(action.payload.displayedDate)
+
+            return {
+                    ...state,
+                    currDisplayedProtein: action.payload.currDisplayedProtein,
+                    currDisplayedIron: action.payload.currDisplayedIron,
+                    currDisplayedVitaminC: action.payload.currDisplayedVitaminC,
+                    isExistData: action.payload.isExistData,
+                    displayedDate : action.payload.displayedDate
+                }
 
         default: 
 

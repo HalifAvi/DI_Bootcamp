@@ -10,7 +10,7 @@ import genders from '../Assistants/genders.json';
 import activityLevels from '../Assistants/activityLevels.json';
 import UploadFile from "./UploadFile";
 import { connect } from "react-redux";
-import { setMessageAfterSign, setAllUserParamsFromDb } from "../../Redux/Actions/signInUpActions.js";
+import { setMessageAfterSign, setAllUserParamsFromDb} from "../../Redux/Actions/signInUpActions.js";
 import { setAmountOfCalories } from "../../Redux/Actions/caloriesActions.js";
 import { setAllDefaultRecipesArray } from "../../Redux/Actions/recipesActions.js";
 import { setTodayRecipesArray, setFavoritesRecpies }  from "../../Redux/Actions/recipesActions.js";

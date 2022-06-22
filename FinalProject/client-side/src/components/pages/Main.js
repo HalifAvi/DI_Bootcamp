@@ -18,7 +18,6 @@ const Main = ({setChoosenRecepiesArrayIdx, setToSpecialRecipesArray}) => {
 
         setChoosenRecepiesArrayIdx(0);
         setToSpecialRecipesArray();
-
     })
 
     return(

@@ -13,7 +13,7 @@ const MyCalendar = ({setSpecificDayUserValuesNutrition}) => {
 
     const onChange = date => {
 
-        setSpecificDayUserValuesNutrition(formatDate(date));
+        setSpecificDayUserValuesNutrition(formatDate(date), date);
     }
 
     return(
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 
     return{
 
-        setSpecificDayUserValuesNutrition : (date) => dispatch(setSpecificDayUserValuesNutrition(date))
+        setSpecificDayUserValuesNutrition : (formatDate, date) => dispatch(setSpecificDayUserValuesNutrition(formatDate, date))
     }
 }
 

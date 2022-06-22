@@ -1,7 +1,8 @@
 import {
 
     DISPLAY_SIGNIN_UP_MESSAGE,
-    SET_ALL_USER_DETAILS
+    SET_ALL_USER_DETAILS,
+    SET_RECOMMENDED_CONSUPTION
 
 } from '../reduxConstants';
 
@@ -20,7 +21,10 @@ const initStateSignInUp = {
     height : '',
     weight : '',
     activityLevel : '',
-    fileName : ''
+    fileName : '',
+    recommendedConsumptionVitaminC : 0,
+    recommendedConsumptionIron : 0,
+    recommendedConsumptionProtein : 0
 }
 
 
@@ -39,6 +43,13 @@ export const signInUpReducer = (state=initStateSignInUp, action={}) => {
                     firstName: action.payload.firstName, lastName: action.payload.lastName, age: action.payload.age,
                     height: action.payload.height, weight: action.payload.weight, activityLevel: action.payload.activityLevel,
                     fileName: action.payload.fileName}
+
+        case SET_RECOMMENDED_CONSUPTION:
+
+        console.log(action.payload)
+
+                return {...state, recommendedConsumptionVitaminC : action.payload.recommendedConsumptionVitaminC,
+                        recommendedConsumptionIron : action.payload.recommendedConsumptionIron, recommendedConsumptionProtein : action.payload.recommendedConsumptionProtein}
 
         default: 
 
