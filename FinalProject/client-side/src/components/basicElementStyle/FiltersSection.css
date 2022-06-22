@@ -3,8 +3,6 @@
 .filterSection-container {
 
     position: fixed;
-    /* top: 160px;
-    left: -188px;     */
     font-size: 40px;
     top: 160px;
     left: 40px;
@@ -13,7 +11,6 @@
     width: 0px;
     background-color: var(--clr-white);
     border: 5px solid var(--clr-yellow);
-    /* visibility: hidden; */
     content-visibility: hidden;
     opacity: 0.9;
 }

@@ -6,8 +6,8 @@ import Grid from './Grid';
 import DoughnutChart from "../BasicElements/DoughnutChart";
 
 
-const RecpieDescriptionCard = ({caloriesCurrRecpie, proteinCurrRecpie, ironCurrRecpie, vitaminCCurrRecpie,instructionsCurrRecpie,
-                                ingredientsCurrRecpie,titleCurrRecpie,imageCurrRecpie}) => {
+const RecpieDescriptionCard = ({instructionsCurrRecpie,
+                                ingredientsCurrRecpie,titleCurrRecpie}) => {
 
 
 

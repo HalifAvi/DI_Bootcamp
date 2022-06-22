@@ -150,14 +150,9 @@ export const handleAction = async (event,
 
             await setFavoritesRecpies(decode.userFavRecipes);
 
-            console.log("FAV RECIPES - LOGIN !:", decode.userFavRecipes)
-
-
             await setAllDefaultRecipesArray();
 
             await setTodayRecipesArray(decode.userTodayRecipes);
-
-            console.log("TODAY RECIPES - LOGIN ======= CHECK IN MORNING IT'S EMPTY!:", decode.userTodayRecipes)
 
             // Navigate to main page in case login successfuly
             navigate(process.env.REACT_APP_BASE_LOADING_PAGE_PATH + 

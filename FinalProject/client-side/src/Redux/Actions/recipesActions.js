@@ -70,47 +70,7 @@ export const setAllDefaultRecipesArray = () => async (dispatch, getStatus) => {
         type: SET_ALL_DEFAULT_RECIPES_ARRAY,
         payload: updatedRecepiesArray
     })
-
-
-    // 2 OPTIONS :
-
-    // fetch(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}findByNutrients?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&number=${process.env.REACT_APP_BASE_NUM_OF_RECEPIES}&maxCalories=${currentCaloriesAmount}`)
-    // .then(res => res.json())
-    // .then(data => {
-
-    //         console.log("recipes actions:", data);
-
-    //         dispatch({
-    
-    //             type: SET_ALL_DEFAULT_RECEPIES_ARRAY,
-    //             payload: data
-    //         })
-    // })
-    // .catch( e => console.log(e) )
-
-
-
-
-    // try{
-
-    //     let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}findByNutrients?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&number=${process.env.REACT_APP_BASE_NUM_OF_RECEPIES}&maxCalories=${currentCaloriesAmount}`);
-    
-    //     console.log("recepies actions:", response.data);
-    
-    //     dispatch({
-    
-    //         type: SET_ALL_DEFAULT_RECEPIES_ARRAY,
-    //         payload: response.data
-    //     })
-    
-    
-    // }
-    // catch(e){
-    
-    //     console.log(e);
-    // }
 }
-
 
 
 
@@ -297,28 +257,6 @@ export const insertNotNewRecipeToDaily = (recpieSN, howManyAdded) => async (disp
 }
 
 
-
-
-    // try{
-
-    //     let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}findByNutrients?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&number=${process.env.REACT_APP_BASE_NUM_OF_RECEPIES}&maxCalories=${currentCaloriesAmount}`);
-    
-    //     console.log("recepies actions:", response.data);
-    
-    //     dispatch({
-    
-    //         type: SET_ALL_DEFAULT_RECEPIES_ARRAY,
-    //         payload: response.data
-    //     })
-    
-    
-    // }
-    // catch(e){
-    
-    //     console.log(e);
-    // }
-
-
 export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
 
     const recipeID = recipeObj.recipesn === undefined ? recipeObj.id : recipeObj.recipesn;
@@ -349,35 +287,6 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
                 type: MORE_RECPIE_DETAILS,
                 payload: objToUpdateReducer
             })
-
-
-
-            // let objToUpdateReducer;
-
-
-            // objToUpdateReducer = {
-
-            //     calories : ((objExample.nutrition.nutrients)[0].amount).toFixed(0),
-            //     protein: ((objExample.nutrition.nutrients)[8].amount).toFixed(0),
-            //     iron: ((objExample.nutrition.nutrients)[16].amount).toFixed(0),
-            //     vitaminC: ((objExample.nutrition.nutrients)[12].amount).toFixed(0),
-            //     unitProtein: (objExample.nutrition.nutrients)[8].unit,
-            //     unitIron: (objExample.nutrition.nutrients)[16].unit,
-            //     unitVitaminC: (objExample.nutrition.nutrients)[12].unit,
-            //     instructions: objExample.instructions,
-            //     ingredients: objExample.extendedIngredients,
-            //     title: objExample.title,
-            //     recipesn: objExample.id,
-            //     image: objExample.image
-            // }
-
-            // console.log(objToUpdateReducer)
-
-            // dispatch({
-    
-            //     type: MORE_RECPIE_DETAILS,
-            //     payload: objToUpdateReducer
-            // })
         }
 
         catch(e){
@@ -440,10 +349,7 @@ export const removeRecpieFromFavorites = (recpieToRemove) => async (dispatch, ge
 
 export const decreaseRecpieAmountFromDaily = (recpieToDecrease) => async (dispatch, getStatus) => {
 
-    const {todayRecipes} = getStatus().recipesReducer;
     const {userId} = getStatus().signInUpReducer;
-
-    // console.log(recpieToDecrease)
 
     try{
 
@@ -615,11 +521,37 @@ const shuffle = (array) => {
 // https://api.spoonacular.com/recipes/complexSearch?apiKey=d58baefbd9bf4263946475c94f999e9d&type=breakfast&number=50&maxCalories=3000
 
 
-
 // For specific recpie information
 // https://api.spoonacular.com/recipes/663845/information?apiKey=d58baefbd9bf4263946475c94f999e9d&includeNutrition
 
 
-
 // Self Query
 // https://api.spoonacular.com/recipes/findByIngredients?apiKey=77461e35401d4943a11dc5128cbcb91e&ingredients=banana,+flour&number=2
+
+
+            // let objToUpdateReducer;
+
+
+            // objToUpdateReducer = {
+
+            //     calories : ((objExample.nutrition.nutrients)[0].amount).toFixed(0),
+            //     protein: ((objExample.nutrition.nutrients)[8].amount).toFixed(0),
+            //     iron: ((objExample.nutrition.nutrients)[16].amount).toFixed(0),
+            //     vitaminC: ((objExample.nutrition.nutrients)[12].amount).toFixed(0),
+            //     unitProtein: (objExample.nutrition.nutrients)[8].unit,
+            //     unitIron: (objExample.nutrition.nutrients)[16].unit,
+            //     unitVitaminC: (objExample.nutrition.nutrients)[12].unit,
+            //     instructions: objExample.instructions,
+            //     ingredients: objExample.extendedIngredients,
+            //     title: objExample.title,
+            //     recipesn: objExample.id,
+            //     image: objExample.image
+            // }
+
+            // console.log(objToUpdateReducer)
+
+            // dispatch({
+    
+            //     type: MORE_RECPIE_DETAILS,
+            //     payload: objToUpdateReducer
+            // })

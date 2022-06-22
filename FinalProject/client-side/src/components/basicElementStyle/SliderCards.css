@@ -47,7 +47,6 @@
   box-shadow: 0 15px 50px rgba(0,0,0,0.2);
   border: 5px solid var(--clr-yellow);
   z-index: 20000;
-
   /* filter: blur(4px); */
   /* border-radius: 10px; */
 }

@@ -46,7 +46,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
         setChoosenRecepiesArrayIdx(0);
         setToSpecialRecipesArray();
-
+        
     }, [])
 
 
@@ -86,7 +86,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
         async function handleAddRecipe() {
 
-                if(wantToAdd){ /////////////////////////////////////
+                if(wantToAdd){ 
 
                     (clickedElement.nextElementSibling).style.display = "block";
         
@@ -180,15 +180,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     }, [popUp])
 
 
-    // useEffect(()=>{
-
-    //     setSwiperVariable(true);
-
-    //     console.log("'wantToAdd has been changed after we set the filtered recipes so go to renger and draw again the silder")
-
-    // }, [wantToAdd])
-
-
     const addRecipeToPlate = (recipeObj, e) => { 
         
         setClickedElement(e.target);
@@ -230,7 +221,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         modal.showModal();
     }
     
-    const handlePressOnLike = async (e, recipeObj) => {   /////////////////////////////////////
+    const handlePressOnLike = async (e, recipeObj) => {   
 
         if(!(allFavoriteRecpies.some(item=> recipeObj.id === item.recipesn))) {
 
@@ -271,8 +262,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         
         <section className={"swiper-section pattern-dots-sm slategray h-5"}>
 
-            {/* { swiperVariable ? setSwiperVariable(false) : null } */}
-
             <div className={"swiper-container"}>
                 <div className={"swiper-wrapper"}>
                     {
@@ -284,7 +273,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     { kindOfPage!=="fav" && kindOfPage!=="today"?
                                     <div>
-                                        <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
+                                        <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"absolute", bottom:"10px", left: "150px"}}></i>
                                         <div className={"dancing-hearts"}>
                                             <div>
                                                 <Image classN={"move-heart move-heart-icon1"} src={"./images/heart2-move.png"} />
@@ -306,13 +295,13 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                                         <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav" && kindOfPage!=="today"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
                                         <div className={"dancing-calories"}>
                                             <div>
-                                                <Image classN={"move-heart move-heart-icon1"} src={"./images/calories-move.png"} />
+                                                <Image classN={"move-calorie move-calorie-icon1"} src={"./images/calories-move.png"} />
                                             </div>
                                             <div>
-                                                <Image classN={"move-heart move-heart-icon2"} src={"./images/calories-move.png"} />
+                                                <Image classN={"move-calorie move-calorie-icon2"} src={"./images/calories-move.png"} />
                                             </div>
                                             <div>
-                                                <Image classN={"move-heart move-heart-icon3"} src={"./images/calories-move.png"} />
+                                                <Image classN={"move-calorie move-calorie-icon3"} src={"./images/calories-move.png"} />
                                             </div>
                                         </div>
                                     </div>

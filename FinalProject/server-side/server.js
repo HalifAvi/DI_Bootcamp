@@ -34,8 +34,6 @@ cron.schedule('0 0 0 * * *', async () => {
     UsersCalories.aggregate('userid', 'DISTINCT', { plain: false })
     .then(data=> {
             
-        // console.log(data[0].DISTINCT)
-        // console.log(data[1].DISTINCT)
         data.forEach((usersid, idx) => {
                 
             // Second: Get the max updatedat for each unique userid
@@ -45,8 +43,6 @@ cron.schedule('0 0 0 * * *', async () => {
                 where: [{userid: usersid.DISTINCT}]
 
             }).then(answer=> {   
-
-                // console.log("ANSWER:", answer[0].dataValues.max);
                 
                 // Third: Get the whole calories object
                 UsersCalories.findAll({
@@ -59,8 +55,6 @@ cron.schedule('0 0 0 * * *', async () => {
                     }]
 
                 }).then(data=>{
-
-                    // console.log(data[0].dataValues)
 
                     try{
                         // Last step: Open new calories row for this user

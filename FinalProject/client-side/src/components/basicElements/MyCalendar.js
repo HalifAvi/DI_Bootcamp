@@ -25,13 +25,6 @@ const MyCalendar = ({setSpecificDayUserValuesNutrition}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-
-    return{
-
-    
-    }
-}
 
 const mapDispatchToProps = (dispatch) => {
 
@@ -43,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyCalendar);
+export default connect(null, mapDispatchToProps)(MyCalendar);
 
 
 

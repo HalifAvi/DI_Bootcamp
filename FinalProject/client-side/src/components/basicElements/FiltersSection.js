@@ -2,10 +2,7 @@ import "../BasicElementStyle/FiltersSection.css";
 import Image from "./Image";
 import { connect } from 'react-redux';
 import { setToSpecialRecipesArray, setChoosenRecepiesArrayIdx } from '../../Redux/Actions/recipesActions.js';
-import { useState } from "react";
-import { useEffect } from "react";
 import Title from "../BasicElements/Title";
-import ReactTooltip from 'react-tooltip';
 
 
 

@@ -1,4 +1,3 @@
-import '../BasicElementStyle/DoughnutChart.css';
 import {Grid} from "@material-ui/core";
 import Chart from "react-apexcharts";
 import { connect } from "react-redux";

@@ -1,6 +1,4 @@
 import '../BasicElementStyle/CandleGraph.css';
-import { connect } from 'react-redux';
-import Title from './Title';
 import {
     BarChart,
     Bar,
@@ -60,23 +58,10 @@ const CandleGraph = ({dataToDisplay}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-
-    return{
-
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-
-    return{
-
-    }
-}
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CandleGraph);
+export default CandleGraph;
 
 
 

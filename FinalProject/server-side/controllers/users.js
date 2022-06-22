@@ -26,11 +26,6 @@ export const signUp = async (req, res) => {
     // Here we have all info about the uploaded file
     // console.log('upload file', req.body.formData);
 
-    console.log("###############")
-    console.log(req.body);
-    console.log(req.file);
-    console.log("###############")
-
     const {
             email, 
             password,
@@ -76,9 +71,6 @@ export const signUp = async (req, res) => {
         // The file was uploaded before we came here (made in the middleware by multer)
         const fileName = req.file ? req.file.filename : process.env.DEFAULT_IMAGE_URL;
         const fileType = req.file ? req.file.mimetype : process.env.DEFAULT_IMAGE_TYPE;
-
-        console.log("fileName",fileName)
-        console.log("fileType",fileType)
 
         await Upload.create({
 
@@ -174,19 +166,13 @@ export const signIn = async (req, res) => {
 
         const userFavRecipes = favRecpiesArr.map(item => item.dataValues)
 
-        console.log("FAV REC SERVER LOG IN", userFavRecipes)
-
-
         // First find the max updateserialnumber in table and then enter with this value
         const serialnumber = await UsersCalories.findAll({
 
             attributes: [[db.fn('max', db.col('updateserialnumber')), 'max']],
             where: [{userid: userId}]
 
-        })
-
-        console.log("LAST UPDATED CALORIES:", serialnumber[0].dataValues.max);
-            
+        })            
 
         // Get the data from calories table
         const usersCalories = await UsersCalories.findAll({
@@ -205,8 +191,6 @@ export const signIn = async (req, res) => {
         
         
         const todayDate = getCurrentDate()+'T'+"21:00:00.000Z";
-
-        console.log("DATEEEEEEEEEEE:", todayDate)
                 
         // Get the data from recipes table
         const usersRecipes = await UsersRecipe.findAll({
@@ -218,15 +202,6 @@ export const signIn = async (req, res) => {
         }
         })
 
-        // const usersRecipes = await UsersRecipe.findAll({
-
-        //     where: {                
-                    
-        //         [Op.eq]:  db.fn('date_trunc', 'day', db.col('createdat'))
-        //     }
-        // })
-
-        console.log(usersRecipes)
 
         // Retrive the data from db         
         const userTodayRecipes = usersRecipes.map(item => item.dataValues)
@@ -259,7 +234,6 @@ export const signIn = async (req, res) => {
             maxAge: 60 * 1000 // 60 seconds
         }); 
                 
-        console.log('accessToken', accessToken)
         // We send back the access token 
         res.json({accessToken});
         
@@ -300,8 +274,6 @@ const getDailyCaloriesAmount = (gender, age, height, weight, activityLevel) => {
                 Number(weight)*(Number(process.env.FOR_WEIGHT_WOMEN_BMR))+
                 Number(process.env.ADDITIONAL_PARAM_WOMEN_BMR)-
                 Number(age)*(Number(process.env.FOR_AGE_WOMEN_BMR))
-
-                console.log("BMR", BMR)
                 
     return  Number(activityLevel)*BMR*(Number(process.env.TERMI_EFFECT_FACTOR));
 }

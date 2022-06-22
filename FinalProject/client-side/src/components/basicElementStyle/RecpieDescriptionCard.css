@@ -1,6 +1,6 @@
 .modal {
   
-    background-co: var(--clr-white);
+    background-color: var(--clr-white);
     color:  var(--clr-black);
     border-radius: 0.25rem;
     width: 1200px;

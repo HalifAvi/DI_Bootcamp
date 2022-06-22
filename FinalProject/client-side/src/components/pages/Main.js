@@ -48,14 +48,6 @@ const Main = ({setChoosenRecepiesArrayIdx, setToSpecialRecipesArray}) => {
     )
 }
 
-// const mapStateToProps = (state) => {
-
-//     return{
-
-//         todayRecipes : state.recipesReducer.todayRecipes,
-//         currentDisplayedRecepies : state.recipesReducer.currentDisplayedRecepies
-//     }
-// }
 
 const mapDispatchToProps = (dispatch) => {
 

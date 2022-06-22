@@ -3,10 +3,6 @@ import UsersFavRecipe from "../models/favRecipeModel.js";
 
 export const insertRecipe = async (req, res) => {
 
-    console.log("###############")
-    console.log(req.body)
-    console.log("###############")
-
     const {
 
         userid,
@@ -24,9 +20,6 @@ export const insertRecipe = async (req, res) => {
         unitVitaminC 
 
     } = req.body
-
-    console.log(ingredients)
-
 
     try{
 
@@ -63,10 +56,6 @@ export const insertRecipe = async (req, res) => {
 
 
 export const decreaseAmountDailyRecipe = async (req, res) => {
-
-    console.log("###############")
-    // console.log(req.body);
-    console.log("###############")
 
     const {
             recpieSNtoDecrease,
@@ -144,10 +133,6 @@ export const insertExistDailyRecipe = async (req, res) => {
 
 export const insertFavRecpie = async (req, res) => {
 
-    console.log("###############")
-    console.log(req.body)
-    console.log("###############")
-
     const {
 
         userid,
@@ -202,10 +187,6 @@ export const insertFavRecpie = async (req, res) => {
 
 export const removeFavRecpie = async (req, res) => {
 
-    console.log("###############")
-    console.log(req.body.userId)
-    console.log("###############")
-
     try{
 
         const answer = await UsersFavRecipe.destroy({
@@ -231,10 +212,6 @@ export const removeFavRecpie = async (req, res) => {
 
 
 export const removeDailyRecipe = async (req, res) => {
-
-    console.log("###############")
-    console.log(req.body.recipeSnToRemove)
-    console.log("###############")
 
     const todayDate = getCurrentDate()+'T'+"21:00:00.000Z"
 
@@ -264,10 +241,6 @@ export const removeDailyRecipe = async (req, res) => {
 
 
 export const getAllSpecificDateUserRecpies = async (req, res) => {
-
-    console.log("###############")
-    console.log(req.query)
-    console.log("###############")
 
     try{
 

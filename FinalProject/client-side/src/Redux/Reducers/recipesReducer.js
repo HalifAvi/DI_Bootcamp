@@ -17,7 +17,6 @@ import {
 
 ///////////////////////////////// DEMO FETCH!!!
 import defaultRecipesFetch from '../../Components/Assistants/defaultRecipesFetch.json';
-
 import breakfastRecpies from '../../Components/Assistants/breakfastRecpies.json';
 import ChineseRecpies from '../../Components/Assistants/ChineseRecpies.json';
 import DessertsRecpies from '../../Components/Assistants/DessertsRecpies.json';

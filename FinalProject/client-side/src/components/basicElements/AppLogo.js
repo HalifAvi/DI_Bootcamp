@@ -1,4 +1,3 @@
-import '../BasicElementStyle/AppLogoStyle.css';
 import Title from "../BasicElements/Title";
 
 

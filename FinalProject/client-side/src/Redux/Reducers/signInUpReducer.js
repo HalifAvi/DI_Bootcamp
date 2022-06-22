@@ -46,10 +46,8 @@ export const signInUpReducer = (state=initStateSignInUp, action={}) => {
 
         case SET_RECOMMENDED_CONSUPTION:
 
-        console.log(action.payload)
-
-                return {...state, recommendedConsumptionVitaminC : action.payload.recommendedConsumptionVitaminC,
-                        recommendedConsumptionIron : action.payload.recommendedConsumptionIron, recommendedConsumptionProtein : action.payload.recommendedConsumptionProtein}
+            return {...state, recommendedConsumptionVitaminC : action.payload.recommendedConsumptionVitaminC,
+                    recommendedConsumptionIron : action.payload.recommendedConsumptionIron, recommendedConsumptionProtein : action.payload.recommendedConsumptionProtein}
 
         default: 
 
