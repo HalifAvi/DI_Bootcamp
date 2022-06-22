@@ -54,10 +54,9 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     useEffect(()=> {
 
         // We put the Swiper CND script in index.js cause we'll come accross row 17 we'll need Swiper 
-        var script = document.createElement("script");
+        var script = document.createElement("script");                      //  effect: 'coverflow',
         script.innerText = `var swiper = new Swiper('.swiper-container', {
                         pagination: '.swiper-pagination',
-                        effect: 'coverflow',
                         grabCursor: true,
                         centeredSlides: true,
                         slidesPerView: 'auto',
@@ -79,7 +78,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
             document.body.removeChild(script);
         }
 
-    }, [wantToAdd])  
+    }, [])  
 
 
     // In case the answer from the popUp is true : user wants to add
@@ -87,7 +86,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
         async function handleAddRecipe() {
 
-                if(wantToAdd){
+                if(wantToAdd){ /////////////////////////////////////
 
                     (clickedElement.nextElementSibling).style.display = "block";
         
@@ -104,7 +103,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                         await insertNewAddedRecipe(clickedRecipeObj, userId);
 
                     } else { // Want to add to daily + already found in daily
-
 
                         insertNotNewRecipeToDaily(clickedRecipeObj.id, isAlreadyExistInDaily);
 
@@ -132,9 +130,13 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                     setPaintAgainCaloriesBar(!paintAgainCaloriesBar);
         
                     setWantToAdd(false);
-        
-                    await setToSpecialRecipesArray(); // Set the recipes array to the current calories limitation
 
+                    setTimeout( async ()=>{
+
+                        await setToSpecialRecipesArray(); // Set the recipes array to the current calories limitation
+
+                    }, 3000)
+        
                 } else if(wantToRemoveFav){
 
                     await removeRecpieFromFavorites(clickedRecipeObj)
@@ -228,7 +230,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
         modal.showModal();
     }
     
-    const handlePressOnLike = async (e, recipeObj) => {  
+    const handlePressOnLike = async (e, recipeObj) => {   /////////////////////////////////////
 
         if(!(allFavoriteRecpies.some(item=> recipeObj.id === item.recipesn))) {
 
