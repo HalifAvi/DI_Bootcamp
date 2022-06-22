@@ -61,7 +61,7 @@ const DoughnutChart = ({
         <div className={"doughnutChart-container"}>
             <Grid
                 xs={12}
-                style={{height: `${window.innerHeight}`, marginTop: "50px"}}
+                style={{height: `${window.innerHeight}`, marginTop: "50px", fontFamily: "var(--clr-thin-font)", backgroundColor: "white"}}
             >
 
             <Grid xs={12} item>

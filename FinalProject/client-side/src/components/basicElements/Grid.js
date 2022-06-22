@@ -7,7 +7,7 @@ const Grid = ({itemsToDisplay}) => {
     return(
 
 
-        <div class="grid-container">
+        <div className={"grid-container"}>
             {
                 itemsToDisplay.map(item=>{  
 

@@ -32,8 +32,6 @@ export const setRecommendedConsumption = () => (dispatch, getStatus) => {
 
   const {gender, age, weight} = getStatus().signInUpReducer;
 
-  console.log(gender, age, weight)
-
   let recommendedConsumptionProtein = Number(weight)*0.8;
 
   let recommendedConsumptionIron = getIron(gender, age);

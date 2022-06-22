@@ -1,9 +1,17 @@
 export const moveIndicator = (e) => {
 
     let marker = document.querySelector('#navBar-marker'); 
-    
-    marker.style.left = e.offsetLeft + 'px';
-    marker.style.width = e.offsetWidth + 'px';
+
+    if(e.firstElementChild.className !== "fa fa-sign-out") {
+        
+        marker.style.left = e.offsetLeft + 'px';
+        marker.style.width = e.offsetWidth + 'px';
+
+    } else {
+
+        marker.style.left = 430 + 'px';
+        marker.style.width = e.offsetWidth + 'px';
+    }
 }
 
 

@@ -46,13 +46,13 @@ const NavBar = ({positionOnNavBar, numOfPxOnNavBar}) => {
             <div className={"navBar-container"}>
                 <nav>
                     <ul>
-                        <li id={0}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_MAIN_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-id-card-o" aria-hidden="true"></i></Link></li>
-                        <li id={1}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_GENERAL_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-cutlery" aria-hidden="true"></i></Link></li>
-                        <li id={2}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_FAV_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-heart-o" aria-hidden="true"></i></Link></li>
-                        <li id={3}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_PREV_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-calendar" aria-hidden="true"></i></Link></li>
-                        <li id={4}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_TODAY_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-list-ol" aria-hidden="true"></i></Link></li>
-                        <li id={5}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_SETTINGS_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-cogs" aria-hidden="true"></i></Link></li>
-                        <li id={6}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i class="fa fa-sign-out" aria-hidden="true"></i></Link></li>
+                        <li id={0}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_MAIN_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i className={"fa fa-id-card-o"} aria-hidden="true"></i></Link></li>
+                        <li id={1}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_GENERAL_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i className={"fa fa-cutlery"} aria-hidden="true"></i></Link></li>
+                        <li id={2}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_FAV_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i className={"fa fa-heart-o"} aria-hidden="true"></i></Link></li>
+                        <li id={3}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_PREV_RECEPIES_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i className={"fa fa-calendar"} aria-hidden="true"></i></Link></li>
+                        <li id={4}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_TODAY_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i className={"fa fa-list-ol"} aria-hidden="true"></i></Link></li>
+                        {/* <li id={5}><Link to ={process.env.REACT_APP_BASE_LOADING_PAGE_PATH + process.env.REACT_APP_BASE_SETTINGS_PATH + "/" + process.env.REACT_APP_BASE_NAVBAR_NAV_TIME} id={"navBar-link-logo"}><i className={"fa fa-cogs"} aria-hidden="true"></i></Link></li> */}
+                        <li id={5}><Link to ={process.env.REACT_APP_BASE_SIGN_IN_FORM_PATH} id={"navBar-link-logo"}><i className={"fa fa-sign-out"} aria-hidden="true"></i></Link></li>
 
                         <div id="navBar-marker"></div>
                     </ul>

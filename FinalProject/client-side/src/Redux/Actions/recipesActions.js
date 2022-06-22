@@ -211,8 +211,6 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
 
         let JSONIngredientsCurrRecpie = JSON.stringify(justNameAndAmountIngredientsArray);
 
-        console.log(recipeObj)
-
         let objToSend = 
 
             {
@@ -230,8 +228,6 @@ export const insertNewAddedRecipe = (recipeObj, userId) => async (dispatch, getS
                 unitIron: unitIron, 
                 unitVitaminC: unitVitaminC 
             }
-
-            console.log(objToSend)
 
         let response = await axios.post(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_INSERT_RECIPE_URL,
             
@@ -330,9 +326,6 @@ export const getMoreRecpieDetails = (recipeObj)  => async (dispatch) => {
         try{
             let response = await axios.get(`${process.env.REACT_APP_BASE_RECEPIES_EXT_API_BASE_URL}${recipeID}/information?${process.env.REACT_APP_BASE_RECEPIES_EXT_API_KEY}&includeNutrition=true`);
          
-
-            console.log("recepies actions:", response.data);
-
             let objToUpdateReducer;
 
             objToUpdateReducer = {
@@ -415,8 +408,6 @@ export const removeRecpieFromFavorites = (recpieToRemove) => async (dispatch, ge
     const {allFavoriteRecpies} = getStatus().recipesReducer;
     const {userId} = getStatus().signInUpReducer;
 
-    console.log(recpieToRemove.recipesn)
-
     try{
 
         let response = await axios.delete(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_REMOVE_FAV_RECIPE_URL}`, { data : {recipeSnToRemove : recpieToRemove.recipesn, userId : userId} },
@@ -473,8 +464,6 @@ export const decreaseRecpieAmountFromDaily = (recpieToDecrease) => async (dispat
             }
         })
 
-        console.log(response)
-
         dispatch({
     
             type: UPDATE_HOW_MANY_ADDED_IN_SPECIFIC_RECIPE,
@@ -493,8 +482,6 @@ export const removeRecpieFromDaily = (recpieToRemove) => async (dispatch, getSta
 
     const {todayRecipes} = getStatus().recipesReducer;
     const {userId} = getStatus().signInUpReducer;
-
-    console.log(recpieToRemove.recipesn)
 
     try{
 

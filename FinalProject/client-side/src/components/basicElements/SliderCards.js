@@ -21,6 +21,7 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
     const [wantToRemoveFav, setWantToRemoveFav] = useState(false);
     const [wantToRemoveDaily, setWantToRemoveDaily] = useState(false);
     const [clickedRecipeObj, setClickedRecipeObj] = useState(0);
+    const [clickedElement, setClickedElement] = useState('');
     const [message, setMessage] = useState('');
     const [isAlreadyExistInDaily, setIsAlreadyExistInDaily] = useState(0);
 
@@ -88,6 +89,14 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                 if(wantToAdd){
 
+                    (clickedElement.nextElementSibling).style.display = "block";
+        
+                    setTimeout(()=>{
+        
+                        (clickedElement.nextElementSibling).style.display = "none";
+        
+                    }, 4000);
+
                     if(isAlreadyExistInDaily==0){ // Want to add to daily + not found in daily already
 
                         await getMoreRecpieDetails(clickedRecipeObj);  
@@ -134,8 +143,6 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
                 } else if(wantToRemoveDaily){
 
-                    // console.log(clickedRecipeObj);
-
                     if(clickedRecipeObj.recipehowmanyadded > 1) {
 
                         await decreaseRecpieAmountFromDaily(clickedRecipeObj);
@@ -181,6 +188,8 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
 
     const addRecipeToPlate = (recipeObj, e) => { 
+        
+        setClickedElement(e.target);
 
         setClickableIcons("none");
 
@@ -225,6 +234,14 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
 
             e.target.style.color = "#e97e7e";
 
+            (e.target.nextElementSibling).style.display = "block";
+
+            setTimeout(()=>{
+
+                (e.target.nextElementSibling).style.display = "none";
+
+            }, 4000);
+
             await getMoreRecpieDetails(recipeObj);
 
             await addRecipeToFavorites(recipeObj);
@@ -264,13 +281,39 @@ const SliderCards = ({changeCurrentCaloriesAmount, paramToChange, getMoreRecpieD
                             return ( 
                                 <div key={recipeObj.id} className={"swiper-slide"}>
                                     { kindOfPage!=="fav" && kindOfPage!=="today"?
+                                    <div>
                                         <i onClick={(e)=>handlePressOnLike(e,recipeObj)} className={"fa fa-heart-o"} aria-hidden={"true"} id={"sliderCards-heart-btt"} style={{color:"white", fontSize:"40px", position:"fixed", bottom:"10px", left: "150px", zIndex: "5000"}}></i>
+                                        <div className={"dancing-hearts"}>
+                                            <div>
+                                                <Image classN={"move-heart move-heart-icon1"} src={"./images/heart2-move.png"} />
+                                            </div>
+                                            <div>
+                                                <Image classN={"move-heart move-heart-icon2"} src={"./images/heart1-move.png"} />
+                                            </div>
+                                            <div>
+                                                <Image classN={"move-heart move-heart-icon3"} src={"./images/heart2-move.png"} />
+                                            </div>
+                                        </div>
+                                    </div>
                                         :
                                         <Image onClickEvent={()=>handlePressOnRemove(recipeObj)} classN={"remove-like-icon-img"} src={process.env.REACT_APP_BASE_REMOVE_FAV_ICON_URL}/>  
                                     }
                                     <Image id={"recipe-img"} src={recipeObj.image || recipeObj.recipeimage}/>
                                     <Title id={"sliderCards-recipe-title"} titleName={recipeObj.title || recipeObj.recipetitle}/>
-                                    <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav" && kindOfPage!=="today"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+                                    <div>
+                                        <Image id={recipeObj.id} classN={"calories-icon-img"} onClickEvent={kindOfPage!=="fav" && kindOfPage!=="today"?(e)=>addRecipeToPlate(recipeObj, e):null} src={process.env.REACT_APP_BASE_CALORIES_ICON_URL}/>
+                                        <div className={"dancing-calories"}>
+                                            <div>
+                                                <Image classN={"move-heart move-heart-icon1"} src={"./images/calories-move.png"} />
+                                            </div>
+                                            <div>
+                                                <Image classN={"move-heart move-heart-icon2"} src={"./images/calories-move.png"} />
+                                            </div>
+                                            <div>
+                                                <Image classN={"move-heart move-heart-icon3"} src={"./images/calories-move.png"} />
+                                            </div>
+                                        </div>
+                                    </div>
                                     <Title id={"sliderCards-recipe-calories"} titleName={recipeObj.calories || recipeObj.recipecalories || (recipeObj.nutrition.nutrients[0].amount).toFixed(0)}/>
                                     <Title id={"sliderCards-recipe-moreDetails"} classN={"open-button"} onClickEvent={()=>handleMoreRecpieDetails(recipeObj)} titleName={process.env.REACT_APP_BASE_TITLE_GP_TO_RECIPE}/>
                                     { kindOfPage=="today" && recipeObj.recipehowmanyadded > 1 ?<Title id={"sliderCards-recipe-howmanyadded"} titleName={`x${recipeObj.recipehowmanyadded}`}/> : null}

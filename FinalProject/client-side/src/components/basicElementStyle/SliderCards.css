@@ -57,6 +57,24 @@
   /* filter: blur(0px); */
 }
 
+.dancing-hearts {
+
+  z-index: 10000;
+  position: relative;
+  top: 300px;
+  left: 120px;
+  display: none;
+}
+
+.dancing-calories {
+
+  z-index: 10000;
+  position: relative;
+  top: 280px;
+  left: 215px;
+  display: none;
+}
+
 
 
 
